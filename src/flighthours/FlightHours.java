@@ -15,7 +15,7 @@ public class FlightHours {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // TODO code application logic here, etc
         System.out.println("Hello World!");
         System.out.println("Welcome to CMSC495 FlightHours on GitHub!");
     }
