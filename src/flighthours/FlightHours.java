@@ -16,7 +16,7 @@ public class FlightHours {
      */
     public static void main(String[] args) {
         // TODO code application logic here, etc, etc
-        System.out.println("Hello World!");
+        System.out.println("Hello Team!");
         System.out.println("Welcome to CMSC495 FlightHours on GitHub!");
     }
     
