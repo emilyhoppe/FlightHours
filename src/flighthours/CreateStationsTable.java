@@ -8,7 +8,8 @@ package flighthours;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.ResultSet; //**********FOR TESTING **********
+import java.sql.ResultSetMetaData; //**********FOR TESTING **********
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -81,7 +82,30 @@ public class CreateStationsTable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+//****************FOR TESTING****************************
+        try (Connection conn = DriverManager.getConnection(CONNECTION);
+                Statement statement = conn.createStatement()) {
+            ResultSet results = statement.executeQuery("SELECT * FROM STATIONS");
+            ResultSetMetaData rsmd = results.getMetaData();
+            int numberCols = rsmd.getColumnCount();
+            for (int i = 1; i <= numberCols; i++) {
+                //print Column Names
+                System.out.print(rsmd.getColumnLabel(i) + "\t\t");
+            }
 
+            System.out.println("\n--------------------------------------------------------");
+
+            while (results.next()) {
+                int id = results.getInt(1);
+                String column2 = results.getString(2);
+                String column3 = results.getString(3);
+                System.out.println(id + "\t" + column2 + "\t" + column3);
+            }
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+//*****************FOR TESTING************************************
+        
     }
 
 }
