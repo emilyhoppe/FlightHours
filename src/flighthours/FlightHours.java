@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package flighthours;
+import view.MainView;
 
 /**
  *
@@ -18,6 +19,8 @@ public class FlightHours {
         // TODO code application logic here, etc, etc asdf
         System.out.println("Hello World!");
         System.out.println("Welcome to CMSC495 FlightHours on GitHub!");
+        MainView mainView = new MainView();
+        mainView.setVisible(true);
     }
     
 }
