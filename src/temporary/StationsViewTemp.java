@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package temporary;
 
+import view.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jgrimard
  */
-public class StationsView extends javax.swing.JPanel {
+public class StationsViewTemp extends javax.swing.JPanel {
 
     /**
      * Creates new form StationsView
      */
-    public StationsView() {
+    public StationsViewTemp() {
         getStationsTable();
         initComponents();
     }
