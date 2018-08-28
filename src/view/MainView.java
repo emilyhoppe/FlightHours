@@ -42,8 +42,8 @@ public class MainView extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -54,6 +54,7 @@ public class MainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AMO FlightHours");
         setName("MainFrame"); // NOI18N
+        setSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -103,11 +104,11 @@ public class MainView extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(24, 0, 13, 0);
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel1.add(jButton5, gridBagConstraints);
 
-        jTextField1.setColumns(15);
+        jTextField1.setColumns(10);
         jTextField1.setMinimumSize(new java.awt.Dimension(70, 20));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +157,7 @@ public class MainView extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {"A2K2J5", "FIXED WING", "Mcallen Air and Marine Branch", "Top Secret", "550", "35000", "4500", "No Idea", "3000", "50000", "FALSE", "3000", ""},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -193,11 +194,11 @@ public class MainView extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1);
 
-        jButton3.setText("Add Aircraft");
-        jPanel3.add(jButton3);
-
         jButton2.setText("Aircraft Maintenance");
         jPanel3.add(jButton2);
+
+        jButton3.setText("Add Aircraft");
+        jPanel3.add(jButton3);
 
         jButton4.setText("Modify Aircraft");
         jPanel3.add(jButton4);
@@ -236,7 +237,7 @@ public class MainView extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        pack();
+        setSize(new java.awt.Dimension(900, 500));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
