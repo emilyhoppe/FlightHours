@@ -5,8 +5,6 @@
  */
 package view;
 
-import java.awt.Dialog;
-
 /**
  *
  * @author jgrimard
@@ -28,7 +26,9 @@ public class MainView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        stationsView1 = new view.StationsView();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemExit = new javax.swing.JMenuItem();
@@ -38,6 +38,11 @@ public class MainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AMO FlightHours");
         setName("MainFrame"); // NOI18N
+        setResizable(false);
+
+        stationsView1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Stations Table"));
+        stationsView1.setMinimumSize(new java.awt.Dimension(400, 400));
+        stationsView1.setPreferredSize(new java.awt.Dimension(400, 400));
 
         jMenu1.setText("File");
 
@@ -69,11 +74,17 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(stationsView1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(stationsView1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,7 +100,7 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
     /**
@@ -134,5 +145,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemExit;
+    private view.StationsView stationsView1;
     // End of variables declaration//GEN-END:variables
 }
