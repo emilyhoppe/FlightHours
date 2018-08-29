@@ -55,7 +55,7 @@ public class MainView extends javax.swing.JFrame {
         setTitle("AMO FlightHours");
         setName("MainFrame"); // NOI18N
         setSize(new java.awt.Dimension(700, 500));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
@@ -85,7 +85,7 @@ public class MainView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
         jPanel1.add(jComboBox1, gridBagConstraints);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -157,19 +157,19 @@ public class MainView extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"A2K2J5", "FIXED WING", "Mcallen Air and Marine Branch", "Top Secret", "550", "35000", "4500", "No Idea", "3000", "50000", "FALSE", "3000", ""},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {"A2K2J5", "FIXED WING", "Mcallen Air and Marine Branch", "Top Secret", "550", "35000", "50000", "FALSE", "3000", ""},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tail Number", "Type", "Location", "Mission", "Max Speed", "Max Altitude", "Range", "Endurance", "Max Gross Weight", "Total Flight Hours", "Maintenance Flag", "Maintenance Hours Threshold", "End of Service Date"
+                "Tail Number", "Type", "Location", "Mission", "Max Speed", "Max Altitude", "Total Flight Hours", "Maintenance Flag", "Maintenance Hours Threshold", "End of Service Date"
             }
         ));
         jTable1.setName(""); // NOI18N

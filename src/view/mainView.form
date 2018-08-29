@@ -127,17 +127,18 @@
             <Component class="javax.swing.JComboBox" name="jComboBox2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="10">
-                    <StringItem index="0" value="Mcallen Air and Marine Branch"/>
-                    <StringItem index="1" value="Laredo Air Branch"/>
-                    <StringItem index="2" value="San Antonio Air Unit"/>
-                    <StringItem index="3" value="Uvalde Air Branch"/>
-                    <StringItem index="4" value="Del Rio Air Unit"/>
-                    <StringItem index="5" value="San Angelo Air Unit"/>
-                    <StringItem index="6" value="El Paso Air Branch"/>
-                    <StringItem index="7" value="Alpine Air Unit"/>
-                    <StringItem index="8" value="Deming Air Unit"/>
-                    <StringItem index="9" value="Tucson Air Branch"/>
+                  <StringArray count="11">
+                    <StringItem index="0" value="ANY"/>
+                    <StringItem index="1" value="Mcallen Air and Marine Branch"/>
+                    <StringItem index="2" value="Laredo Air Branch"/>
+                    <StringItem index="3" value="San Antonio Air Unit"/>
+                    <StringItem index="4" value="Uvalde Air Branch"/>
+                    <StringItem index="5" value="Del Rio Air Unit"/>
+                    <StringItem index="6" value="San Angelo Air Unit"/>
+                    <StringItem index="7" value="El Paso Air Branch"/>
+                    <StringItem index="8" value="Alpine Air Unit"/>
+                    <StringItem index="9" value="Deming Air Unit"/>
+                    <StringItem index="10" value="Tucson Air Branch"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -226,7 +227,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="13" rowCount="10">
+                  <Table columnCount="10" rowCount="10">
                     <Column editable="true" title="Tail Number" type="java.lang.Object">
                       <Data value="A2K2J5"/>
                       <Data value="null"/>
@@ -299,42 +300,6 @@
                       <Data value="null"/>
                       <Data value="null"/>
                     </Column>
-                    <Column editable="true" title="Range" type="java.lang.Object">
-                      <Data value="4500"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                    </Column>
-                    <Column editable="true" title="Endurance" type="java.lang.Object">
-                      <Data value="No Idea"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                    </Column>
-                    <Column editable="true" title="Max Gross Weight" type="java.lang.Object">
-                      <Data value="3000"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                    </Column>
                     <Column editable="true" title="Total Flight Hours" type="java.lang.Object">
                       <Data value="50000"/>
                       <Data value="null"/>
@@ -387,21 +352,6 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
