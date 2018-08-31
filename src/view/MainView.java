@@ -38,28 +38,28 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel2 = new javax.swing.JPanel();
-        logo = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItemExit = new javax.swing.JMenuItem();
+        outerPanel = new javax.swing.JPanel();
+        logoLabel = new javax.swing.JLabel();
+        topPanel = new javax.swing.JPanel();
+        tailNumberLabel = new javax.swing.JLabel();
+        maintFlagLabel = new javax.swing.JLabel();
+        locationLabel = new javax.swing.JLabel();
+        tailNumberTextField = new javax.swing.JTextField();
+        maintFlagComboBox = new javax.swing.JComboBox<>();
+        locationComboBox = new javax.swing.JComboBox<>();
+        searchAircraftButton = new javax.swing.JButton();
+        aircraftTableScrollPane = new javax.swing.JScrollPane();
+        aircraftTable = new javax.swing.JTable();
+        bottomPanel = new javax.swing.JPanel();
+        aircraftOperationsButton = new javax.swing.JButton();
+        aircraftMaintenanceButton = new javax.swing.JButton();
+        addAircraftButton = new javax.swing.JButton();
+        modifyAircraftButton = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        exitMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItemAbout = new javax.swing.JMenuItem();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FHS Flight Hours System");
@@ -67,66 +67,52 @@ public class MainView extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        outerPanel.setLayout(new java.awt.GridBagLayout());
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
-        logo.setText("Logo");
-        logo.setMaximumSize(new java.awt.Dimension(323, 133));
-        logo.setMinimumSize(new java.awt.Dimension(323, 133));
-        logo.setName(""); // NOI18N
-        logo.setPreferredSize(new java.awt.Dimension(323, 133));
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
+        logoLabel.setText("Logo");
+        logoLabel.setMaximumSize(new java.awt.Dimension(323, 133));
+        logoLabel.setMinimumSize(new java.awt.Dimension(323, 133));
+        logoLabel.setName(""); // NOI18N
+        logoLabel.setPreferredSize(new java.awt.Dimension(323, 133));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
-        jPanel2.add(logo, gridBagConstraints);
+        outerPanel.add(logoLabel, gridBagConstraints);
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        topPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        topPanel.setLayout(new java.awt.GridBagLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "TRUE", "FALSE" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
-        jPanel1.add(jComboBox1, gridBagConstraints);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 24);
-        jPanel1.add(jComboBox2, gridBagConstraints);
-
-        jButton5.setText("Search Aircraft");
+        tailNumberLabel.setText("Tail Number");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel1.add(jButton5, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(14, 38, 0, 0);
+        topPanel.add(tailNumberLabel, gridBagConstraints);
 
-        jTextField1.setColumns(10);
-        jTextField1.setMinimumSize(new java.awt.Dimension(70, 20));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        maintFlagLabel.setText("Maintenance Flag");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 10, 0, 0);
+        topPanel.add(maintFlagLabel, gridBagConstraints);
+
+        locationLabel.setText("Location");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 54, 0, 0);
+        topPanel.add(locationLabel, gridBagConstraints);
+
+        tailNumberTextField.setColumns(10);
+        tailNumberTextField.setMinimumSize(new java.awt.Dimension(70, 20));
+        tailNumberTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tailNumberTextFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -137,39 +123,53 @@ public class MainView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 56;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 0);
-        jPanel1.add(jTextField1, gridBagConstraints);
+        topPanel.add(tailNumberTextField, gridBagConstraints);
 
-        jLabel2.setText("Tail Number");
+        maintFlagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "TRUE", "FALSE" }));
+        maintFlagComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintFlagComboBoxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 38, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
-
-        jLabel3.setText("Maintenance Flag");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 10, 0, 0);
-        jPanel1.add(jLabel3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
+        topPanel.add(maintFlagComboBox, gridBagConstraints);
 
-        jLabel4.setText("Location");
+        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
+        locationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationComboBoxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 24);
+        topPanel.add(locationComboBox, gridBagConstraints);
+
+        searchAircraftButton.setText("Search Aircraft");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 54, 0, 0);
-        jPanel1.add(jLabel4, gridBagConstraints);
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        topPanel.add(searchAircraftButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel2.add(jPanel1, gridBagConstraints);
+        outerPanel.add(topPanel, gridBagConstraints);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        aircraftTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"A2K2J5", "FIXED WING", "Mcallen Air and Marine Branch", "Top Secret", "550", "35000", "50000", "FALSE", "3000", ""},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -228,10 +228,10 @@ public class MainView extends javax.swing.JFrame {
         )
         {public boolean isCellEditable(int row, int column){return false;}}
     );
-    jTable1.setName(""); // NOI18N
-    jTable1.setRequestFocusEnabled(false);
-    jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    jScrollPane1.setViewportView(jTable1);
+    aircraftTable.setName(""); // NOI18N
+    aircraftTable.setRequestFocusEnabled(false);
+    aircraftTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    aircraftTableScrollPane.setViewportView(aircraftTable);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -240,35 +240,35 @@ public class MainView extends javax.swing.JFrame {
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-    jPanel2.add(jScrollPane1, gridBagConstraints);
+    outerPanel.add(aircraftTableScrollPane, gridBagConstraints);
 
-    jButton1.setText("Aircraft Operations");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    aircraftOperationsButton.setText("Aircraft Operations");
+    aircraftOperationsButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
+            aircraftOperationsButtonActionPerformed(evt);
         }
     });
-    jPanel3.add(jButton1);
+    bottomPanel.add(aircraftOperationsButton);
 
-    jButton2.setText("Aircraft Maintenance");
-    jPanel3.add(jButton2);
+    aircraftMaintenanceButton.setText("Aircraft Maintenance");
+    bottomPanel.add(aircraftMaintenanceButton);
 
-    jButton3.setText("Add Aircraft");
-    jButton3.addActionListener(new java.awt.event.ActionListener() {
+    addAircraftButton.setText("Add Aircraft");
+    addAircraftButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton3ActionPerformed(evt);
+            addAircraftButtonActionPerformed(evt);
         }
     });
-    jPanel3.add(jButton3);
+    bottomPanel.add(addAircraftButton);
 
-    jButton4.setText("Modify Aircraft");
-    jPanel3.add(jButton4);
+    modifyAircraftButton.setText("Modify Aircraft");
+    bottomPanel.add(modifyAircraftButton);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 3;
     gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
-    jPanel2.add(jPanel3, gridBagConstraints);
+    outerPanel.add(bottomPanel, gridBagConstraints);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -277,71 +277,71 @@ public class MainView extends javax.swing.JFrame {
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
-    getContentPane().add(jPanel2, gridBagConstraints);
+    getContentPane().add(outerPanel, gridBagConstraints);
 
-    jMenu1.setText("File");
+    fileMenu.setText("File");
 
-    jMenuItemExit.setText("Exit");
-    jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
+    exitMenuItem.setText("Exit");
+    exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemExitActionPerformed(evt);
+            exitMenuItemActionPerformed(evt);
         }
     });
-    jMenu1.add(jMenuItemExit);
+    fileMenu.add(exitMenuItem);
 
-    jMenuBar1.add(jMenu1);
+    menuBar.add(fileMenu);
 
     jMenu2.setText("Help");
 
-    jMenuItemAbout.setText("About");
-    jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
+    aboutMenuItem.setText("About");
+    aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemAboutActionPerformed(evt);
+            aboutMenuItemActionPerformed(evt);
         }
     });
-    jMenu2.add(jMenuItemAbout);
+    jMenu2.add(aboutMenuItem);
 
-    jMenuBar1.add(jMenu2);
+    menuBar.add(jMenu2);
 
-    setJMenuBar(jMenuBar1);
+    setJMenuBar(menuBar);
 
     setSize(new java.awt.Dimension(966, 739));
     setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenuItemExitActionPerformed
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItemAboutActionPerformed
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void maintFlagComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintFlagComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_maintFlagComboBoxActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_locationComboBoxActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tailNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tailNumberTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tailNumberTextFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
         // TODO add your handling code here:
         AddAircraftView addAircraftView = new AddAircraftView(this, true);
         addAircraftView.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_addAircraftButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,27 +380,27 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton addAircraftButton;
+    private javax.swing.JButton aircraftMaintenanceButton;
+    private javax.swing.JButton aircraftOperationsButton;
+    private javax.swing.JTable aircraftTable;
+    private javax.swing.JScrollPane aircraftTableScrollPane;
+    private javax.swing.JPanel bottomPanel;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemAbout;
-    private javax.swing.JMenuItem jMenuItemExit;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel logo;
+    private javax.swing.JComboBox<String> locationComboBox;
+    private javax.swing.JLabel locationLabel;
+    private javax.swing.JLabel logoLabel;
+    private javax.swing.JComboBox<String> maintFlagComboBox;
+    private javax.swing.JLabel maintFlagLabel;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JButton modifyAircraftButton;
+    private javax.swing.JPanel outerPanel;
+    private javax.swing.JButton searchAircraftButton;
+    private javax.swing.JLabel tailNumberLabel;
+    private javax.swing.JTextField tailNumberTextField;
+    private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }

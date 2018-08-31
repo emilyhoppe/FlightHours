@@ -30,8 +30,8 @@ public class AboutView extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         closeButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
+        aboutLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About FHS Flight Hours System");
@@ -50,22 +50,22 @@ public class AboutView extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 15);
         getContentPane().add(closeButton, gridBagConstraints);
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        mainPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mainPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel1.setText("<html><font size=\"6\">This application was developed<BR>for UMUC CMSC495 Fall 2018 by:<BR> <Center> John Tamer<BR>Jason Grimard<BR>Demetrius Billups<BR>&<BR>Emily Hoppe");
+        aboutLabel.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        aboutLabel.setText("<html><font size=\"6\">This application was developed<BR>for UMUC CMSC495 Fall 2018 by:<BR> <Center> John Tamer<BR>Jason Grimard<BR>Demetrius Billups<BR>&<BR>Emily Hoppe");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        mainPanel.add(aboutLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 15);
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(mainPanel, gridBagConstraints);
 
         pack();
         setLocationRelativeTo(null);
@@ -119,8 +119,8 @@ public class AboutView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aboutLabel;
     private javax.swing.JButton closeButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }
