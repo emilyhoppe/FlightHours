@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jgrimard
@@ -17,6 +19,14 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
         initComponents();
     }
+
+    //Make all table cells non-editable
+    private final DefaultTableModel tableModel = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -215,81 +225,88 @@ public class MainView extends javax.swing.JFrame {
             new String [] {
                 "Tail Number", "Type", "Location", "Mission", "Max Speed", "Max Altitude", "Total Flight Hours", "Maintenance Flag", "Maintenance Hours Threshold", "End of Service Date"
             }
-        ));
-        jTable1.setName(""); // NOI18N
-        jTable1.setRequestFocusEnabled(false);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        )
+        {public boolean isCellEditable(int row, int column){return false;}}
+    );
+    jTable1.setName(""); // NOI18N
+    jTable1.setRequestFocusEnabled(false);
+    jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    jScrollPane1.setViewportView(jTable1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel2.add(jScrollPane1, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+    jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        jButton1.setText("Aircraft Operations");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1);
+    jButton1.setText("Aircraft Operations");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+    jPanel3.add(jButton1);
 
-        jButton2.setText("Aircraft Maintenance");
-        jPanel3.add(jButton2);
+    jButton2.setText("Aircraft Maintenance");
+    jPanel3.add(jButton2);
 
-        jButton3.setText("Add Aircraft");
-        jPanel3.add(jButton3);
+    jButton3.setText("Add Aircraft");
+    jButton3.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton3ActionPerformed(evt);
+        }
+    });
+    jPanel3.add(jButton3);
 
-        jButton4.setText("Modify Aircraft");
-        jPanel3.add(jButton4);
+    jButton4.setText("Modify Aircraft");
+    jPanel3.add(jButton4);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
-        jPanel2.add(jPanel3, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
+    jPanel2.add(jPanel3, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel2, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.weighty = 1.0;
+    getContentPane().add(jPanel2, gridBagConstraints);
 
-        jMenu1.setText("File");
+    jMenu1.setText("File");
 
-        jMenuItemExit.setText("Exit");
-        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemExitActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItemExit);
+    jMenuItemExit.setText("Exit");
+    jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jMenuItemExitActionPerformed(evt);
+        }
+    });
+    jMenu1.add(jMenuItemExit);
 
-        jMenuBar1.add(jMenu1);
+    jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Help");
+    jMenu2.setText("Help");
 
-        jMenuItemAbout.setText("About");
-        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAboutActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItemAbout);
+    jMenuItemAbout.setText("About");
+    jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jMenuItemAboutActionPerformed(evt);
+        }
+    });
+    jMenu2.add(jMenuItemAbout);
 
-        jMenuBar1.add(jMenu2);
+    jMenuBar1.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+    setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(966, 739));
-        setLocationRelativeTo(null);
+    setSize(new java.awt.Dimension(966, 739));
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
@@ -319,6 +336,12 @@ public class MainView extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AddAircraftView addAircraftView = new AddAircraftView(this, true);
+        addAircraftView.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
