@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+this can be deleted and isn't part of the application.  I ran CreatStationsTable 
+too many times and needed a way to remove all of the extra data from the table - JG
  */
 package flighthours;
 
