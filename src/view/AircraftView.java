@@ -223,6 +223,11 @@ public class AircraftView extends javax.swing.JPanel {
     bottomPanel.add(aircraftOperationsButton);
 
     aircraftMaintenanceButton.setText("Aircraft Maintenance");
+    aircraftMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            aircraftMaintenanceButtonActionPerformed(evt);
+        }
+    });
     bottomPanel.add(aircraftMaintenanceButton);
 
     addAircraftButton.setText("Add Aircraft");
@@ -251,11 +256,12 @@ public class AircraftView extends javax.swing.JPanel {
     private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         // TODO add your handling code here:
         JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel)button.getParent();
-        JPanel outerPanel = (JPanel)buttonPanel.getParent();
+        JPanel buttonPanel = (JPanel) button.getParent();
+        JPanel outerPanel = (JPanel) buttonPanel.getParent();
         JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
         CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel,"operationsView");
+        layout.show(cardLayoutPanel, "operationsView");
+
 
     }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
 
@@ -276,6 +282,16 @@ public class AircraftView extends javax.swing.JPanel {
     private void searchAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAircraftButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchAircraftButtonActionPerformed
+
+    private void aircraftMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftMaintenanceButtonActionPerformed
+        // TODO add your handling code here:
+        JButton button = (JButton) evt.getSource();
+        JPanel buttonPanel = (JPanel) button.getParent();
+        JPanel outerPanel = (JPanel) buttonPanel.getParent();
+        JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
+        CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
+        layout.show(cardLayoutPanel, "maintenanceView");
+    }//GEN-LAST:event_aircraftMaintenanceButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

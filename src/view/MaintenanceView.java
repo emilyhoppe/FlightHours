@@ -16,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jgrimard
  */
-public class OperationsView extends javax.swing.JPanel {
+public class MaintenanceView extends javax.swing.JPanel {
 
     /**
      * Creates new form MainView
      */
-    public OperationsView() {
+    public MaintenanceView() {
         initComponents();
     }
 
@@ -47,17 +47,17 @@ public class OperationsView extends javax.swing.JPanel {
         topPanel = new javax.swing.JPanel();
         tailNumberLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField();
-        operationsTableScrollPane = new javax.swing.JScrollPane();
-        operationsTable = new javax.swing.JTable();
+        maintenanceTableScrollPane = new javax.swing.JScrollPane();
+        maintenanceTable = new javax.swing.JTable();
         bottomPanel = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
-        addOperationButton = new javax.swing.JButton();
-        modifyOperationButton = new javax.swing.JButton();
+        addMaintenanceButton = new javax.swing.JButton();
+        modifyMaintenanceButton = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        titleLabel.setText("Aircraft Operations");
+        titleLabel.setText("Aircraft Maintenance");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
         add(titleLabel, gridBagConstraints);
@@ -90,20 +90,24 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
-        operationsTable.setModel(new javax.swing.table.DefaultTableModel(
+        maintenanceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Operation A", "Mcallen Air and Marine Branch", "Top Secret", "8/30/2018", "8/30/2018", "5"},
-                {"Operation B", "Mcallen Air and Marine Branch", "Mission 2", "8/31/2018", "8/31/2018", "6"},
-                {null, null, null, null, null, null}
+                {"7/28/2018", "7/28/2018", "Replaced front landing gear"},
+                {"7/30/2018", "7/30/2018", "Upgraded muffler bearings"},
+                {null, null, null}
             },
             new String [] {
-                "Name", "Location", "Mission", "Start Date", "End Date", "Flight Hours"
+                "Start Date", "End Date", "Description"
             }
         ));
-        operationsTable.setName(""); // NOI18N
-        operationsTable.setRequestFocusEnabled(false);
-        operationsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        operationsTableScrollPane.setViewportView(operationsTable);
+        maintenanceTable.setName(""); // NOI18N
+        maintenanceTable.setRequestFocusEnabled(false);
+        maintenanceTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        maintenanceTableScrollPane.setViewportView(maintenanceTable);
+        if (maintenanceTable.getColumnModel().getColumnCount() > 0) {
+            maintenanceTable.getColumnModel().getColumn(0).setMaxWidth(100);
+            maintenanceTable.getColumnModel().getColumn(1).setMaxWidth(100);
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -112,7 +116,7 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(operationsTableScrollPane, gridBagConstraints);
+        add(maintenanceTableScrollPane, gridBagConstraints);
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,21 +126,21 @@ public class OperationsView extends javax.swing.JPanel {
         });
         bottomPanel.add(backButton);
 
-        addOperationButton.setText("Add Operation");
-        addOperationButton.addActionListener(new java.awt.event.ActionListener() {
+        addMaintenanceButton.setText("Add Maintenance");
+        addMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addOperationButtonActionPerformed(evt);
+                addMaintenanceButtonActionPerformed(evt);
             }
         });
-        bottomPanel.add(addOperationButton);
+        bottomPanel.add(addMaintenanceButton);
 
-        modifyOperationButton.setText("Modify Operation");
-        modifyOperationButton.addActionListener(new java.awt.event.ActionListener() {
+        modifyMaintenanceButton.setText("Modify Maintenance");
+        modifyMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyOperationButtonActionPerformed(evt);
+                modifyMaintenanceButtonActionPerformed(evt);
             }
         });
-        bottomPanel.add(modifyOperationButton);
+        bottomPanel.add(modifyMaintenanceButton);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -156,28 +160,28 @@ public class OperationsView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void addOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
+    private void addMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddOperationView addOperationView = new AddOperationView(frame, true);
-        addOperationView.setVisible(true);
-    }//GEN-LAST:event_addOperationButtonActionPerformed
+        AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true);
+        addMaintenanceView.setVisible(true);
+    }//GEN-LAST:event_addMaintenanceButtonActionPerformed
 
-    private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
+    private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ModifyOperationView modifyOperationView = new ModifyOperationView(frame, true);
-        modifyOperationView.setVisible(true);
-    }//GEN-LAST:event_modifyOperationButtonActionPerformed
+        ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame, true);
+        modifyMaintenanceView.setVisible(true);
+    }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addOperationButton;
+    private javax.swing.JButton addMaintenanceButton;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel bottomPanel;
-    private javax.swing.JButton modifyOperationButton;
-    private javax.swing.JTable operationsTable;
-    private javax.swing.JScrollPane operationsTableScrollPane;
+    private javax.swing.JTable maintenanceTable;
+    private javax.swing.JScrollPane maintenanceTableScrollPane;
+    private javax.swing.JButton modifyMaintenanceButton;
     private javax.swing.JLabel tailNumberLabel;
     private javax.swing.JTextField tailNumberTextField;
     private javax.swing.JLabel titleLabel;

@@ -21,7 +21,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Aircraft Operations"/>
+        <Property name="text" type="java.lang.String" value="Aircraft Maintenance"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -72,7 +72,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="operationsTableScrollPane">
+    <Container class="javax.swing.JScrollPane" name="maintenanceTableScrollPane">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -84,65 +84,35 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="operationsTable">
+        <Component class="javax.swing.JTable" name="maintenanceTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="3">
-                <Column editable="true" title="Name" type="java.lang.Object">
-                  <Data value="Operation A"/>
-                  <Data value="Operation B"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Location" type="java.lang.Object">
-                  <Data value="Mcallen Air and Marine Branch"/>
-                  <Data value="Mcallen Air and Marine Branch"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Mission" type="java.lang.Object">
-                  <Data value="Top Secret"/>
-                  <Data value="Mission 2"/>
-                  <Data value="null"/>
-                </Column>
+              <Table columnCount="3" rowCount="3">
                 <Column editable="true" title="Start Date" type="java.lang.Object">
-                  <Data value="8/30/2018"/>
-                  <Data value="8/31/2018"/>
+                  <Data value="7/28/2018"/>
+                  <Data value="7/30/2018"/>
                   <Data value="null"/>
                 </Column>
                 <Column editable="true" title="End Date" type="java.lang.Object">
-                  <Data value="8/30/2018"/>
-                  <Data value="8/31/2018"/>
+                  <Data value="7/28/2018"/>
+                  <Data value="7/30/2018"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="Flight Hours" type="java.lang.Object">
-                  <Data value="5"/>
-                  <Data value="6"/>
+                <Column editable="true" title="Description" type="java.lang.Object">
+                  <Data value="Replaced front landing gear"/>
+                  <Data value="Upgraded muffler bearings"/>
                   <Data value="null"/>
                 </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="100" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="100" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -183,20 +153,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="addOperationButton">
+        <Component class="javax.swing.JButton" name="addMaintenanceButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Add Operation"/>
+            <Property name="text" type="java.lang.String" value="Add Maintenance"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOperationButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMaintenanceButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="modifyOperationButton">
+        <Component class="javax.swing.JButton" name="modifyMaintenanceButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Modify Operation"/>
+            <Property name="text" type="java.lang.String" value="Modify Maintenance"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyOperationButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyMaintenanceButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

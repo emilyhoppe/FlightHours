@@ -9,12 +9,12 @@ package view;
  *
  * @author jgrimard
  */
-public class AddAircraftView extends javax.swing.JDialog {
+public class AddMaintenanceView extends javax.swing.JDialog {
 
     /**
      * Creates new form AddAircraftView
      */
-    public AddAircraftView(java.awt.Frame parent, boolean modal) {
+    public AddMaintenanceView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -33,25 +33,20 @@ public class AddAircraftView extends javax.swing.JDialog {
         titleLabel = new javax.swing.JLabel();
         innerMiddlePanel = new javax.swing.JPanel();
         tailNumberLabel = new javax.swing.JLabel();
-        typeLabel = new javax.swing.JLabel();
-        locationLabel = new javax.swing.JLabel();
-        missionLabel = new javax.swing.JLabel();
-        maxSpeedLabel = new javax.swing.JLabel();
-        maxAltitudeLabel = new javax.swing.JLabel();
-        maintThresholdLabel = new javax.swing.JLabel();
+        startDateLabel = new javax.swing.JLabel();
+        endDateLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField();
-        typeComboBox = new javax.swing.JComboBox<>();
-        locationComboBox = new javax.swing.JComboBox<>();
-        missionComboBox = new javax.swing.JComboBox<>();
-        maxSpeedTextField = new javax.swing.JTextField();
-        maxAltitudeTextField = new javax.swing.JTextField();
-        maintThresholdTextField = new javax.swing.JTextField();
+        startDateTextField = new javax.swing.JTextField();
+        endDateTextField = new javax.swing.JTextField();
+        descriptionScrollPane = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
         innerBottomPanel = new javax.swing.JPanel();
-        addAircraftButton = new javax.swing.JButton();
+        addMaintenanceButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add Aircraft");
+        setTitle("Add Maintenance");
         setModal(true);
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -59,7 +54,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         outerPanel.setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        titleLabel.setText("Add Aircraft");
+        titleLabel.setText("Add Maintenance");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -78,55 +73,33 @@ public class AddAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(tailNumberLabel, gridBagConstraints);
 
-        typeLabel.setText("Type");
+        startDateLabel.setText("Start Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(typeLabel, gridBagConstraints);
+        innerMiddlePanel.add(startDateLabel, gridBagConstraints);
 
-        locationLabel.setText("Location");
+        endDateLabel.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(locationLabel, gridBagConstraints);
+        innerMiddlePanel.add(endDateLabel, gridBagConstraints);
 
-        missionLabel.setText("Mission");
+        descriptionLabel.setText("Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(missionLabel, gridBagConstraints);
+        innerMiddlePanel.add(descriptionLabel, gridBagConstraints);
 
-        maxSpeedLabel.setText("Max Speed");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(maxSpeedLabel, gridBagConstraints);
-
-        maxAltitudeLabel.setText("Max Altitude");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(maxAltitudeLabel, gridBagConstraints);
-
-        maintThresholdLabel.setText("Maintenance Hours Threshold");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(maintThresholdLabel, gridBagConstraints);
-
+        tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
+        tailNumberTextField.setText("A2K2J5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -134,53 +107,33 @@ public class AddAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(tailNumberTextField, gridBagConstraints);
 
-        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FIXED WING", "ROTARY WING", "UAV" }));
+        startDateTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(typeComboBox, gridBagConstraints);
+        innerMiddlePanel.add(startDateTextField, gridBagConstraints);
 
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
+        endDateTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(locationComboBox, gridBagConstraints);
+        innerMiddlePanel.add(endDateTextField, gridBagConstraints);
 
-        missionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mission 1", "Mission 2", "Mission 3", "Mission 4", "Mission 5", "Mission 6" }));
+        descriptionTextArea.setColumns(30);
+        descriptionTextArea.setRows(5);
+        descriptionTextArea.setTabSize(4);
+        descriptionScrollPane.setViewportView(descriptionTextArea);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(missionComboBox, gridBagConstraints);
-
-        maxSpeedTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(maxSpeedTextField, gridBagConstraints);
-
-        maxAltitudeTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(maxAltitudeTextField, gridBagConstraints);
-
-        maintThresholdTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(maintThresholdTextField, gridBagConstraints);
+        innerMiddlePanel.add(descriptionScrollPane, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -191,17 +144,17 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         innerBottomPanel.setLayout(new java.awt.GridBagLayout());
 
-        addAircraftButton.setText("Add Aircraft");
-        addAircraftButton.addActionListener(new java.awt.event.ActionListener() {
+        addMaintenanceButton.setText("Add Maintenance");
+        addMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addAircraftButtonActionPerformed(evt);
+                addMaintenanceButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerBottomPanel.add(addAircraftButton, gridBagConstraints);
+        innerBottomPanel.add(addMaintenanceButton, gridBagConstraints);
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -233,10 +186,10 @@ public class AddAircraftView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
+    private void addMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_addAircraftButtonActionPerformed
+    }//GEN-LAST:event_addMaintenanceButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
@@ -261,20 +214,23 @@ public class AddAircraftView extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddAircraftView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMaintenanceView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddAircraftView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMaintenanceView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddAircraftView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMaintenanceView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddAircraftView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMaintenanceView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddAircraftView dialog = new AddAircraftView(new javax.swing.JFrame(), true);
+                AddMaintenanceView dialog = new AddMaintenanceView(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -287,25 +243,20 @@ public class AddAircraftView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addAircraftButton;
+    private javax.swing.JButton addMaintenanceButton;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JScrollPane descriptionScrollPane;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JLabel endDateLabel;
+    private javax.swing.JTextField endDateTextField;
     private javax.swing.JPanel innerBottomPanel;
     private javax.swing.JPanel innerMiddlePanel;
-    private javax.swing.JComboBox<String> locationComboBox;
-    private javax.swing.JLabel locationLabel;
-    private javax.swing.JLabel maintThresholdLabel;
-    private javax.swing.JTextField maintThresholdTextField;
-    private javax.swing.JLabel maxAltitudeLabel;
-    private javax.swing.JTextField maxAltitudeTextField;
-    private javax.swing.JLabel maxSpeedLabel;
-    private javax.swing.JTextField maxSpeedTextField;
-    private javax.swing.JComboBox<String> missionComboBox;
-    private javax.swing.JLabel missionLabel;
     private javax.swing.JPanel outerPanel;
+    private javax.swing.JLabel startDateLabel;
+    private javax.swing.JTextField startDateTextField;
     private javax.swing.JLabel tailNumberLabel;
     private javax.swing.JTextField tailNumberTextField;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JComboBox<String> typeComboBox;
-    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,20 +16,30 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="view.AircraftView" name="aircraftView1">
+    <Component class="view.AircraftView" name="aircraftView">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="aircraftView"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="view.OperationsView" name="operationsView1">
+    <Component class="view.OperationsView" name="operationsView">
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
       </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="operationsView"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="view.MaintenanceView" name="maintenanceView">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="maintenanceView"/>
         </Constraint>
       </Constraints>
     </Component>
