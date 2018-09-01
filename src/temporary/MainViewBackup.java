@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package temporary;
 
+import view.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jgrimard
  */
-public class MainView extends javax.swing.JFrame {
+public class MainViewBackup extends javax.swing.JFrame {
 
     /**
      * Creates new form mainView
      */
-    public MainView() {
+    public MainViewBackup() {
         initComponents();
     }
 
@@ -118,7 +119,6 @@ public class MainView extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 56;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(tailNumberTextField, gridBagConstraints);
@@ -256,6 +256,11 @@ public class MainView extends javax.swing.JFrame {
     bottomPanel.add(addAircraftButton);
 
     modifyAircraftButton.setText("Modify Aircraft");
+    modifyAircraftButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modifyAircraftButtonActionPerformed(evt);
+        }
+    });
     bottomPanel.add(modifyAircraftButton);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -317,6 +322,9 @@ public class MainView extends javax.swing.JFrame {
 
     private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         // TODO add your handling code here:
+        OperationsView operationsView = new OperationsView();
+        operationsView.setVisible(true);
+        
     }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
 
     private void maintFlagComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintFlagComboBoxActionPerformed
@@ -337,6 +345,12 @@ public class MainView extends javax.swing.JFrame {
         addAircraftView.setVisible(true);
     }//GEN-LAST:event_addAircraftButtonActionPerformed
 
+    private void modifyAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
+        // TODO add your handling code here:
+        ModifyAircraftView modifyAircraftView = new ModifyAircraftView(this, true);
+        modifyAircraftView.setVisible(true);
+    }//GEN-LAST:event_modifyAircraftButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -354,21 +368,23 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewBackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView().setVisible(true);
+                new MainViewBackup().setVisible(true);
             }
         });
     }
