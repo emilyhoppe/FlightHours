@@ -1,0 +1,4 @@
+Type	tailNumber	aircraftType	stationID	primaryMission	maxSpeed	maxAltitude	totalFlightHours	maintenanceFlag	currentMaintenanceHours	maintenanceHoursThreshold
+aircraft	A123	Fixed Wing	1	Transport	349	45000	43000	True	200	4000
+aircraft	A124	Fixed Wing	2	Transport	389	46000	43000	False	400	5000
+aircraft	A125	Fixed Wing	3	Transport	379	47000	43000	True	888	3000
