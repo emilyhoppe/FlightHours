@@ -1,18 +1,19 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         ModifyOperationView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
+
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -26,6 +27,8 @@ public class ModifyOperationView extends javax.swing.JDialog {
     public ModifyOperationView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Set modify operation button to respond to enter key
+        SwingUtilities.getRootPane(modifyOperationButton).setDefaultButton(modifyOperationButton);
     }
 
     /**
@@ -56,7 +59,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         endDateTextField = new javax.swing.JTextField();
         flightHoursTextField = new javax.swing.JTextField();
         innerBottomPanel = new javax.swing.JPanel();
-        addOperationButton = new javax.swing.JButton();
+        modifyOperationButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -207,17 +210,17 @@ public class ModifyOperationView extends javax.swing.JDialog {
 
         innerBottomPanel.setLayout(new java.awt.GridBagLayout());
 
-        addOperationButton.setText("Modify Operation");
-        addOperationButton.addActionListener(new java.awt.event.ActionListener() {
+        modifyOperationButton.setText("Modify Operation");
+        modifyOperationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addOperationButtonActionPerformed(evt);
+                modifyOperationButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerBottomPanel.add(addOperationButton, gridBagConstraints);
+        innerBottomPanel.add(modifyOperationButton, gridBagConstraints);
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -249,10 +252,10 @@ public class ModifyOperationView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
+    private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_addOperationButtonActionPerformed
+    }//GEN-LAST:event_modifyOperationButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
@@ -306,7 +309,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addOperationButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel endDateLabel;
     private javax.swing.JTextField endDateTextField;
@@ -318,6 +320,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private javax.swing.JLabel locationLabel;
     private javax.swing.JComboBox<String> missionComboBox;
     private javax.swing.JLabel missionLabel;
+    private javax.swing.JButton modifyOperationButton;
     private javax.swing.JLabel operationNameLabel;
     private javax.swing.JTextField operationNameTextField;
     private javax.swing.JPanel outerPanel;

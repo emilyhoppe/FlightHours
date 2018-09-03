@@ -14,6 +14,8 @@
 
 package view;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author jgrimard
@@ -26,6 +28,8 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
     public ModifyMaintenanceView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Set modify maintenance button to respond to enter key
+        SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
     }
 
     /**
@@ -51,7 +55,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         descriptionScrollPane = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
         innerBottomPanel = new javax.swing.JPanel();
-        addMaintenanceButton = new javax.swing.JButton();
+        modifyMaintenanceButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -156,17 +160,17 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
 
         innerBottomPanel.setLayout(new java.awt.GridBagLayout());
 
-        addMaintenanceButton.setText("Modify Maintenance");
-        addMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
+        modifyMaintenanceButton.setText("Modify Maintenance");
+        modifyMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMaintenanceButtonActionPerformed(evt);
+                modifyMaintenanceButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerBottomPanel.add(addMaintenanceButton, gridBagConstraints);
+        innerBottomPanel.add(modifyMaintenanceButton, gridBagConstraints);
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -198,10 +202,10 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
+    private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_addMaintenanceButtonActionPerformed
+    }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
@@ -259,7 +263,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addMaintenanceButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JScrollPane descriptionScrollPane;
@@ -268,6 +271,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
     private javax.swing.JTextField endDateTextField;
     private javax.swing.JPanel innerBottomPanel;
     private javax.swing.JPanel innerMiddlePanel;
+    private javax.swing.JButton modifyMaintenanceButton;
     private javax.swing.JPanel outerPanel;
     private javax.swing.JLabel startDateLabel;
     private javax.swing.JTextField startDateTextField;

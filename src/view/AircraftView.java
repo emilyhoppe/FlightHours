@@ -34,6 +34,7 @@ public class AircraftView extends javax.swing.JPanel {
      */
     public AircraftView() {
         initComponents();
+        //Use search aircraft button when user hits enter key
     }
 
     //Make all table cells non-editable
@@ -117,6 +118,11 @@ public class AircraftView extends javax.swing.JPanel {
         tailNumberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tailNumberTextFieldMouseClicked(evt);
+            }
+        });
+        tailNumberTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tailNumberTextFieldKeyPressed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -420,6 +426,11 @@ public class AircraftView extends javax.swing.JPanel {
             locationComboBox.setForeground(Color.LIGHT_GRAY);
         }
     }//GEN-LAST:event_locationRadioButtonItemStateChanged
+
+    private void tailNumberTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tailNumberTextFieldKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tailNumberTextFieldKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

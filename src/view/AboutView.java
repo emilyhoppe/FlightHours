@@ -14,6 +14,8 @@
 
 package view;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author jgrimard
@@ -26,6 +28,8 @@ public class AboutView extends javax.swing.JDialog {
     public AboutView(java.awt.Frame parent, boolean model) {
         super(parent, model);
         initComponents();
+        //Set close button to respond to enter key
+        SwingUtilities.getRootPane(closeButton).setDefaultButton(closeButton);
     }
 
     /**

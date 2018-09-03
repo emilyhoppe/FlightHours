@@ -14,6 +14,8 @@
 
 package view;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author jgrimard
@@ -26,6 +28,8 @@ public class AddAircraftView extends javax.swing.JDialog {
     public AddAircraftView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Set add aircraft button to respond to enter key
+        SwingUtilities.getRootPane(addAircraftButton).setDefaultButton(addAircraftButton);
     }
 
     /**

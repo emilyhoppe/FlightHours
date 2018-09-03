@@ -1,18 +1,19 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         AddMaintenanceView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
+
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -26,6 +27,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
     public AddMaintenanceView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Set add maintenance button to respond to enter key
+        SwingUtilities.getRootPane(addMaintenanceButton).setDefaultButton(addMaintenanceButton);
     }
 
     /**
