@@ -1,22 +1,21 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         AircraftView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
  *          AircraftView is the default view that opens when the user starts the application
- *          This view allows the user to search a list of aircraft by tail number, maintenance 
+ *          This view allows the user to search a list of aircraft by tail number, maintenance
  *          flag or location.  A table with aircraft data will be produced.
- *          The user is then allowed to switch to the aircraft operations view or the aircraft 
- *          maintenance view.  Also, the user can open dialog boxes by pressing the add aircraft 
+ *          The user is then allowed to switch to the aircraft operations view or the aircraft
+ *          maintenance view.  Also, the user can open dialog boxes by pressing the add aircraft
  *          or modify aircraft buttons.
- * 
- ************/
-
+ *
+ *********** */
 package view;
 
 import java.awt.CardLayout;
@@ -118,11 +117,6 @@ public class AircraftView extends javax.swing.JPanel {
         tailNumberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tailNumberTextFieldMouseClicked(evt);
-            }
-        });
-        tailNumberTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tailNumberTextFieldKeyPressed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -382,11 +376,6 @@ public class AircraftView extends javax.swing.JPanel {
         layout.show(cardLayoutPanel, "maintenanceView");
     }//GEN-LAST:event_aircraftMaintenanceButtonActionPerformed
 
-    private void tailNumberTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tailNumberTextFieldMouseClicked
-        //Change radio button selection when user clicks on text field
-        tailNumberRadioButton.setSelected(true);
-    }//GEN-LAST:event_tailNumberTextFieldMouseClicked
-
     private void tailNumberRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tailNumberRadioButtonItemStateChanged
         //Change foreground to black of radio button is selected, gray if not.
         //This will help the user understand what is being searched
@@ -417,20 +406,20 @@ public class AircraftView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_locationRadioButtonItemStateChanged
 
-    private void tailNumberTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tailNumberTextFieldKeyPressed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tailNumberTextFieldKeyPressed
-
     private void maintFlagComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintFlagComboBoxActionPerformed
         //Change radio button selection when user clicks on combo box
         maintFlagRadioButton.setSelected(true);
     }//GEN-LAST:event_maintFlagComboBoxActionPerformed
 
     private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
-        //Change radio button selection when user clicks on text field
+        //Change radio button selection when user clicks on combo box
         locationRadioButton.setSelected(true);
     }//GEN-LAST:event_locationComboBoxActionPerformed
+
+    private void tailNumberTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tailNumberTextFieldMouseClicked
+        //Change radio button selection when user clicks on text field
+        tailNumberRadioButton.setSelected(true);
+    }//GEN-LAST:event_tailNumberTextFieldMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
