@@ -1,21 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/************   
+ * 
+ *      Class:         AircraftView.java
+ *      Package:       view      
+ *      Date:          September, 2018 
+ *      
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ * 
+ *      Class Description:
+ *          AircraftView is the default view that opens when the user starts the application
+ *          This view allows the user to search a list of aircraft by tail number, maintenance 
+ *          flag or location.  A table with aircraft data will be produced.
+ *          The user is then allowed to switch to the aircraft operations view or the aircraft 
+ *          maintenance view.  Also, the user can open dialog boxes by pressing the add aircraft 
+ *          or modify aircraft buttons.
+ * 
+ ************/
+
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jgrimard
- */
 public class AircraftView extends javax.swing.JPanel {
 
     /**
@@ -43,6 +54,7 @@ public class AircraftView extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        searchButtonGroup = new javax.swing.ButtonGroup();
         logoLabel = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
         tailNumberLabel = new javax.swing.JLabel();
@@ -52,6 +64,9 @@ public class AircraftView extends javax.swing.JPanel {
         maintFlagComboBox = new javax.swing.JComboBox<>();
         locationComboBox = new javax.swing.JComboBox<>();
         searchAircraftButton = new javax.swing.JButton();
+        tailNumberRadioButton = new javax.swing.JRadioButton();
+        maintFlagRadioButton = new javax.swing.JRadioButton();
+        locationRadioButton = new javax.swing.JRadioButton();
         aircraftTableScrollPane = new javax.swing.JScrollPane();
         aircraftTable = new javax.swing.JTable();
         bottomPanel = new javax.swing.JPanel();
@@ -76,47 +91,64 @@ public class AircraftView extends javax.swing.JPanel {
 
         tailNumberLabel.setText("Tail Number");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(tailNumberLabel, gridBagConstraints);
 
         maintFlagLabel.setText("Maintenance Flag");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(maintFlagLabel, gridBagConstraints);
 
         locationLabel.setText("Location");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(locationLabel, gridBagConstraints);
 
         tailNumberTextField.setColumns(10);
+        tailNumberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tailNumberTextFieldMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(tailNumberTextField, gridBagConstraints);
 
-        maintFlagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "TRUE", "FALSE" }));
+        maintFlagComboBox.setForeground(java.awt.Color.lightGray);
+        maintFlagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TRUE", "FALSE" }));
+        maintFlagComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                maintFlagComboBoxMousePressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(maintFlagComboBox, gridBagConstraints);
 
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANY", "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
+        locationComboBox.setForeground(java.awt.Color.lightGray);
+        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
+        locationComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                locationComboBoxMousePressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -131,9 +163,43 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(searchAircraftButton, gridBagConstraints);
+
+        searchButtonGroup.add(tailNumberRadioButton);
+        tailNumberRadioButton.setSelected(true);
+        tailNumberRadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tailNumberRadioButtonItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        topPanel.add(tailNumberRadioButton, gridBagConstraints);
+
+        searchButtonGroup.add(maintFlagRadioButton);
+        maintFlagRadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                maintFlagRadioButtonItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        topPanel.add(maintFlagRadioButton, gridBagConstraints);
+
+        searchButtonGroup.add(locationRadioButton);
+        locationRadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                locationRadioButtonItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        topPanel.add(locationRadioButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -254,7 +320,8 @@ public class AircraftView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
-        // TODO add your handling code here:
+        //Switch to operations view on card layout when aircraft operations button is pressed
+        //Gaining control of CardLayout by navigating backwards using getParent()
         JButton button = (JButton) evt.getSource();
         JPanel buttonPanel = (JPanel) button.getParent();
         JPanel outerPanel = (JPanel) buttonPanel.getParent();
@@ -266,25 +333,41 @@ public class AircraftView extends javax.swing.JPanel {
     }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
 
     private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
-        // TODO add your handling code here:
+        //Open add aircraft dialog window when add aircraft button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddAircraftView addAircraftView = new AddAircraftView(frame, true);
         addAircraftView.setVisible(true);
     }//GEN-LAST:event_addAircraftButtonActionPerformed
 
     private void modifyAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
-        // TODO add your handling code here:
+        //Open modify aircraft window when modify aircraft button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame, true);
         modifyAircraftView.setVisible(true);
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
     private void searchAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAircraftButtonActionPerformed
-        // TODO add your handling code here:
+        //Actions performed when search aircraft button is pressed
+
+        //If searching by tail number
+        if (tailNumberRadioButton.isSelected()) {
+            System.out.println("Searching by Tail Number: " + tailNumberTextField.getText());
+        }
+
+        //If searching by maintenance flag
+        if (maintFlagRadioButton.isSelected()) {
+            System.out.println("Searching by Maintenance Flag: " + maintFlagComboBox.getSelectedItem());
+        }
+
+        //If searching by location
+        if (locationRadioButton.isSelected()) {
+            System.out.println("Searching by Location: " + locationComboBox.getSelectedItem());
+        }
     }//GEN-LAST:event_searchAircraftButtonActionPerformed
 
     private void aircraftMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftMaintenanceButtonActionPerformed
-        // TODO add your handling code here:
+        //Switch to maintenance view on card layout when aircraft maintenance button is pressed
+        //Gaining control of CardLayout by navigating backwards using getParent()
         JButton button = (JButton) evt.getSource();
         JPanel buttonPanel = (JPanel) button.getParent();
         JPanel outerPanel = (JPanel) buttonPanel.getParent();
@@ -292,6 +375,51 @@ public class AircraftView extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
         layout.show(cardLayoutPanel, "maintenanceView");
     }//GEN-LAST:event_aircraftMaintenanceButtonActionPerformed
+
+    private void tailNumberTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tailNumberTextFieldMouseClicked
+        //Change radio button selection when user clicks on text field
+        tailNumberRadioButton.setSelected(true);
+    }//GEN-LAST:event_tailNumberTextFieldMouseClicked
+
+    private void maintFlagComboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maintFlagComboBoxMousePressed
+        //Change radio button selection when user clicks on combo box
+        maintFlagRadioButton.setSelected(true);
+    }//GEN-LAST:event_maintFlagComboBoxMousePressed
+
+    private void locationComboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_locationComboBoxMousePressed
+        //Change radio button selection when user clicks on combo box
+        locationRadioButton.setSelected(true);
+    }//GEN-LAST:event_locationComboBoxMousePressed
+
+    private void tailNumberRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tailNumberRadioButtonItemStateChanged
+        //Change foreground to black of radio button is selected, gray if not.
+        //This will help the user understand what is being searched
+        if (tailNumberRadioButton.isSelected()) {
+            tailNumberTextField.setForeground(Color.BLACK);
+        } else {
+            tailNumberTextField.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_tailNumberRadioButtonItemStateChanged
+
+    private void maintFlagRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_maintFlagRadioButtonItemStateChanged
+        //Change foreground to black of radio button is selected, gray if not.
+        //This will help the user understand what is being searched
+        if (maintFlagRadioButton.isSelected()) {
+            maintFlagComboBox.setForeground(Color.BLACK);
+        } else {
+            maintFlagComboBox.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_maintFlagRadioButtonItemStateChanged
+
+    private void locationRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_locationRadioButtonItemStateChanged
+        //Change foreground to black of radio button is selected, gray if not.
+        //This will help the user understand what is being searched
+        if (locationRadioButton.isSelected()) {
+            locationComboBox.setForeground(Color.BLACK);
+        } else {
+            locationComboBox.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_locationRadioButtonItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -303,12 +431,16 @@ public class AircraftView extends javax.swing.JPanel {
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
+    private javax.swing.JRadioButton locationRadioButton;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JComboBox<String> maintFlagComboBox;
     private javax.swing.JLabel maintFlagLabel;
+    private javax.swing.JRadioButton maintFlagRadioButton;
     private javax.swing.JButton modifyAircraftButton;
     private javax.swing.JButton searchAircraftButton;
+    private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JLabel tailNumberLabel;
+    private javax.swing.JRadioButton tailNumberRadioButton;
     private javax.swing.JTextField tailNumberTextField;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
