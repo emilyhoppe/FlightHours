@@ -53,8 +53,9 @@ public class AboutView extends javax.swing.JDialog {
         mainPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         mainPanel.setLayout(new java.awt.GridBagLayout());
 
-        aboutLabel.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        aboutLabel.setText("<html><font size=\"6\">This application was developed<BR>for UMUC CMSC495 Fall 2018 by:<BR> <Center> John Tamer<BR>Jason Grimard<BR>Demetrius Billups<BR>&<BR>Emily Hoppe");
+        aboutLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        aboutLabel.setText("<html>This application was developed<BR>for UMUC CMSC495 Fall 2018 by:<BR> <Center> John Tamer<BR>Jason Grimard<BR>Demetrius Billups<BR>&<BR>Emily Hoppe");
+        aboutLabel.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
