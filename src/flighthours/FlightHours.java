@@ -21,6 +21,12 @@ public class FlightHours {
         System.out.println("Welcome to CMSC495 FlightHours on GitHub!");
         MainFrame mainView = new MainFrame();
         mainView.setVisible(true);
+        
+        //Read in Test Data File (Edited by Emily)
+        System.out.println("Printing Test Data from AircraftTestData.txt");
+        ReadData test = new ReadData();
+        test.checkDataFormat();
+        test.printData();
     }
     
 }
