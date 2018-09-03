@@ -1,8 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/************   
+ * 
+ *      Class:         AboutView.java
+ *      Package:       view      
+ *      Date:          September, 2018 
+ *      
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ * 
+ *      Class Description:
+ *          
+ * 
+ ************/
+
 package view;
 
 /**
