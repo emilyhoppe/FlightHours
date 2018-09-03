@@ -134,9 +134,9 @@ public class AircraftView extends javax.swing.JPanel {
 
         maintFlagComboBox.setForeground(java.awt.Color.lightGray);
         maintFlagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TRUE", "FALSE" }));
-        maintFlagComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                maintFlagComboBoxMousePressed(evt);
+        maintFlagComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintFlagComboBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -148,9 +148,9 @@ public class AircraftView extends javax.swing.JPanel {
 
         locationComboBox.setForeground(java.awt.Color.lightGray);
         locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
-        locationComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                locationComboBoxMousePressed(evt);
+        locationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationComboBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -387,16 +387,6 @@ public class AircraftView extends javax.swing.JPanel {
         tailNumberRadioButton.setSelected(true);
     }//GEN-LAST:event_tailNumberTextFieldMouseClicked
 
-    private void maintFlagComboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maintFlagComboBoxMousePressed
-        //Change radio button selection when user clicks on combo box
-        maintFlagRadioButton.setSelected(true);
-    }//GEN-LAST:event_maintFlagComboBoxMousePressed
-
-    private void locationComboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_locationComboBoxMousePressed
-        //Change radio button selection when user clicks on combo box
-        locationRadioButton.setSelected(true);
-    }//GEN-LAST:event_locationComboBoxMousePressed
-
     private void tailNumberRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tailNumberRadioButtonItemStateChanged
         //Change foreground to black of radio button is selected, gray if not.
         //This will help the user understand what is being searched
@@ -431,6 +421,16 @@ public class AircraftView extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_tailNumberTextFieldKeyPressed
+
+    private void maintFlagComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintFlagComboBoxActionPerformed
+        //Change radio button selection when user clicks on combo box
+        maintFlagRadioButton.setSelected(true);
+    }//GEN-LAST:event_maintFlagComboBoxActionPerformed
+
+    private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
+        //Change radio button selection when user clicks on text field
+        locationRadioButton.setSelected(true);
+    }//GEN-LAST:event_locationComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
