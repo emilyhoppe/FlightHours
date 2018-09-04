@@ -90,6 +90,11 @@ public class AircraftView extends javax.swing.JPanel {
         topPanel.setLayout(new java.awt.GridBagLayout());
 
         tailNumberLabel.setText("Tail Number");
+        tailNumberLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tailNumberLabelMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -98,6 +103,11 @@ public class AircraftView extends javax.swing.JPanel {
         topPanel.add(tailNumberLabel, gridBagConstraints);
 
         maintFlagLabel.setText("Maintenance Flag");
+        maintFlagLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                maintFlagLabelMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -106,6 +116,11 @@ public class AircraftView extends javax.swing.JPanel {
         topPanel.add(maintFlagLabel, gridBagConstraints);
 
         locationLabel.setText("Location");
+        locationLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                locationLabelMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -440,6 +455,21 @@ public class AircraftView extends javax.swing.JPanel {
         // Change radio button selection when user clicks on location combo box
         locationRadioButton.setSelected(true);
     }//GEN-LAST:event_locationComboBoxMouseClicked
+
+    private void tailNumberLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseClicked
+        // Change radio button selection when user clicks on label
+        tailNumberRadioButton.setSelected(true);
+    }//GEN-LAST:event_tailNumberLabelMouseClicked
+
+    private void maintFlagLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maintFlagLabelMouseClicked
+        // Change radio button selection when user clicks on label
+        maintFlagRadioButton.setSelected(true);
+    }//GEN-LAST:event_maintFlagLabelMouseClicked
+
+    private void locationLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_locationLabelMouseClicked
+        // Change radio button selection when user clicks on label
+        locationRadioButton.setSelected(true);
+    }//GEN-LAST:event_locationLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
