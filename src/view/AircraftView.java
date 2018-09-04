@@ -432,12 +432,12 @@ public class AircraftView extends javax.swing.JPanel {
     }//GEN-LAST:event_tailNumberTextFieldMouseClicked
 
     private void maintFlagComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maintFlagComboBoxMouseClicked
-        // Change radio button selection when user clicks on combo box
+        // Change radio button selection when user clicks on maint flag combo box
         maintFlagRadioButton.setSelected(true);
     }//GEN-LAST:event_maintFlagComboBoxMouseClicked
 
     private void locationComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_locationComboBoxMouseClicked
-        // Change radio button selection when user clicks on combo box
+        // Change radio button selection when user clicks on location combo box
         locationRadioButton.setSelected(true);
     }//GEN-LAST:event_locationComboBoxMouseClicked
 
