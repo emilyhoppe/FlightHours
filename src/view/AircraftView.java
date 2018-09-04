@@ -128,6 +128,11 @@ public class AircraftView extends javax.swing.JPanel {
 
         maintFlagComboBox.setForeground(java.awt.Color.lightGray);
         maintFlagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TRUE", "FALSE" }));
+        maintFlagComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                maintFlagComboBoxMouseClicked(evt);
+            }
+        });
         maintFlagComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 maintFlagComboBoxActionPerformed(evt);
@@ -142,6 +147,11 @@ public class AircraftView extends javax.swing.JPanel {
 
         locationComboBox.setForeground(java.awt.Color.lightGray);
         locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
+        locationComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                locationComboBoxMouseClicked(evt);
+            }
+        });
         locationComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationComboBoxActionPerformed(evt);
@@ -420,6 +430,16 @@ public class AircraftView extends javax.swing.JPanel {
         //Change radio button selection when user clicks on text field
         tailNumberRadioButton.setSelected(true);
     }//GEN-LAST:event_tailNumberTextFieldMouseClicked
+
+    private void maintFlagComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maintFlagComboBoxMouseClicked
+        // Change radio button selection when user clicks on combo box
+        maintFlagRadioButton.setSelected(true);
+    }//GEN-LAST:event_maintFlagComboBoxMouseClicked
+
+    private void locationComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_locationComboBoxMouseClicked
+        // Change radio button selection when user clicks on combo box
+        locationRadioButton.setSelected(true);
+    }//GEN-LAST:event_locationComboBoxMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
