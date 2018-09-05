@@ -52,6 +52,7 @@ public class OperationsView extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        logoLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
         tailNumberLabel = new javax.swing.JLabel();
@@ -65,10 +66,20 @@ public class OperationsView extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
+        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
+        logoLabel.setName(""); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        add(logoLabel, gridBagConstraints);
+
         titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         titleLabel.setText("Aircraft Operations");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(titleLabel, gridBagConstraints);
 
         topPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -95,7 +106,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
@@ -116,7 +127,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -149,7 +160,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
@@ -184,6 +195,7 @@ public class OperationsView extends javax.swing.JPanel {
     private javax.swing.JButton addOperationButton;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel bottomPanel;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JButton modifyOperationButton;
     private javax.swing.JTable operationsTable;
     private javax.swing.JScrollPane operationsTableScrollPane;

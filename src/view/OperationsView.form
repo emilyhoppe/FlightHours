@@ -16,6 +16,19 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="logoLabel">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/view/Logo.png"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+          <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="20" insetsLeft="10" insetsBottom="10" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JLabel" name="titleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -25,7 +38,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="25" insetsLeft="25" insetsBottom="25" insetsRight="25" anchor="10" weightX="0.0" weightY="0.0"/>
+          <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="10" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -39,7 +52,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="10" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
+          <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="10" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
 
@@ -78,7 +91,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="10" insetsRight="10" anchor="10" weightX="1.0" weightY="1.0"/>
+          <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="10" insetsRight="10" anchor="10" weightX="1.0" weightY="1.0"/>
         </Constraint>
       </Constraints>
 
@@ -169,7 +182,7 @@
     <Container class="javax.swing.JPanel" name="bottomPanel">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="20" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
+          <GridBagConstraints gridX="0" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="10" insetsBottom="20" insetsRight="10" anchor="10" weightX="0.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
 
