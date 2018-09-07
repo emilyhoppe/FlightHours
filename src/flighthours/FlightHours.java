@@ -1,22 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/************   
+ * 
+ *      Class:         FlightHours.java
+ *      Package:       flighthours      
+ *      Date:          September, 2018 
+ *      
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ * 
+ *      Class Description:
+ *          
+ * 
+ ************/
+
 package flighthours;
 
 import javax.swing.SwingUtilities;
 import view.MainFrame;
 
-/**
- *
- * @author jgrimard
- */
 public class FlightHours {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         // TODO code application logic here, etc, etc
         System.out.println("Hello Team!");
