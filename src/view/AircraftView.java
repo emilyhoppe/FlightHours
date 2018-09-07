@@ -22,6 +22,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -57,17 +58,20 @@ public class AircraftView extends javax.swing.JPanel {
         searchButtonGroup = new javax.swing.ButtonGroup();
         logoLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
+        tailNumberRadioButton = new javax.swing.JRadioButton();
+        maintFlagRadioButton = new javax.swing.JRadioButton();
+        locationRadioButton = new javax.swing.JRadioButton();
         tailNumberLabel = new javax.swing.JLabel();
         maintFlagLabel = new javax.swing.JLabel();
         locationLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField();
         maintFlagComboBox = new javax.swing.JComboBox<>();
         locationComboBox = new javax.swing.JComboBox<>();
+        topButtonPanel = new javax.swing.JPanel();
         searchAircraftButton = new javax.swing.JButton();
-        tailNumberRadioButton = new javax.swing.JRadioButton();
-        maintFlagRadioButton = new javax.swing.JRadioButton();
-        locationRadioButton = new javax.swing.JRadioButton();
+        showAllButton = new javax.swing.JButton();
         aircraftTableScrollPane = new javax.swing.JScrollPane();
         aircraftTable = new javax.swing.JTable();
         bottomPanel = new javax.swing.JPanel();
@@ -93,9 +97,44 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(titleLabel, gridBagConstraints);
+        add(jPanel1, new java.awt.GridBagConstraints());
 
         topPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         topPanel.setLayout(new java.awt.GridBagLayout());
+
+        searchButtonGroup.add(tailNumberRadioButton);
+        tailNumberRadioButton.setSelected(true);
+        tailNumberRadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tailNumberRadioButtonItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        topPanel.add(tailNumberRadioButton, gridBagConstraints);
+
+        searchButtonGroup.add(maintFlagRadioButton);
+        maintFlagRadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                maintFlagRadioButtonItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        topPanel.add(maintFlagRadioButton, gridBagConstraints);
+
+        searchButtonGroup.add(locationRadioButton);
+        locationRadioButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                locationRadioButtonItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        topPanel.add(locationRadioButton, gridBagConstraints);
 
         tailNumberLabel.setText("Tail Number");
         tailNumberLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,6 +231,8 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         topPanel.add(locationComboBox, gridBagConstraints);
 
+        topButtonPanel.setLayout(new java.awt.GridBagLayout());
+
         searchAircraftButton.setText("Search Aircraft");
         searchAircraftButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,44 +241,27 @@ public class AircraftView extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        topButtonPanel.add(searchAircraftButton, gridBagConstraints);
+
+        showAllButton.setText("Show All");
+        showAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        topButtonPanel.add(showAllButton, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        topPanel.add(searchAircraftButton, gridBagConstraints);
-
-        searchButtonGroup.add(tailNumberRadioButton);
-        tailNumberRadioButton.setSelected(true);
-        tailNumberRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                tailNumberRadioButtonItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        topPanel.add(tailNumberRadioButton, gridBagConstraints);
-
-        searchButtonGroup.add(maintFlagRadioButton);
-        maintFlagRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                maintFlagRadioButtonItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        topPanel.add(maintFlagRadioButton, gridBagConstraints);
-
-        searchButtonGroup.add(locationRadioButton);
-        locationRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                locationRadioButtonItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        topPanel.add(locationRadioButton, gridBagConstraints);
+        topPanel.add(topButtonPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -389,16 +413,27 @@ public class AircraftView extends javax.swing.JPanel {
 
         //If searching by tail number
         if (tailNumberRadioButton.isSelected()) {
-            System.out.println("Searching by Tail Number: " + tailNumberTextField.getText());
+            //Output for testing
+            //If textfield is empty show error popup
+            if (tailNumberTextField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(topPanel, "Please enter text to search", "Notice", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(topPanel, "Searching by Tail Number: " + tailNumberTextField.getText(), "Notice", JOptionPane.PLAIN_MESSAGE);
+                System.out.println("Searching by Tail Number: " + tailNumberTextField.getText());
+            }
         }
 
         //If searching by maintenance flag
         if (maintFlagRadioButton.isSelected()) {
+            //Output for testing
+            JOptionPane.showMessageDialog(topPanel, "Searching by Maintenance Flag: " + maintFlagComboBox.getSelectedItem(), "Notice", JOptionPane.PLAIN_MESSAGE);
             System.out.println("Searching by Maintenance Flag: " + maintFlagComboBox.getSelectedItem());
         }
 
         //If searching by location
         if (locationRadioButton.isSelected()) {
+            //Output for testing
+            JOptionPane.showMessageDialog(topPanel, "Searching by Location: " + locationComboBox.getSelectedItem(), "Notice", JOptionPane.PLAIN_MESSAGE);
             System.out.println("Searching by Location: " + locationComboBox.getSelectedItem());
         }
     }//GEN-LAST:event_searchAircraftButtonActionPerformed
@@ -489,6 +524,13 @@ public class AircraftView extends javax.swing.JPanel {
         searchAircraftButton.doClick();
     }//GEN-LAST:event_tailNumberTextFieldActionPerformed
 
+    private void showAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
+        //Show all aircraft records in table
+        //TODO Call function to show all records in table
+        //Testing output dialog box
+        JOptionPane.showMessageDialog(topPanel, "Call function to show all records", "Notice", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_showAllButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAircraftButton;
@@ -497,6 +539,7 @@ public class AircraftView extends javax.swing.JPanel {
     private javax.swing.JTable aircraftTable;
     private javax.swing.JScrollPane aircraftTableScrollPane;
     private javax.swing.JPanel bottomPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JRadioButton locationRadioButton;
@@ -507,10 +550,12 @@ public class AircraftView extends javax.swing.JPanel {
     private javax.swing.JButton modifyAircraftButton;
     private javax.swing.JButton searchAircraftButton;
     private javax.swing.ButtonGroup searchButtonGroup;
+    private javax.swing.JButton showAllButton;
     private javax.swing.JLabel tailNumberLabel;
     private javax.swing.JRadioButton tailNumberRadioButton;
     private javax.swing.JTextField tailNumberTextField;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JPanel topButtonPanel;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }
