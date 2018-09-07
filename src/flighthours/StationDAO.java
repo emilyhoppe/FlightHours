@@ -26,6 +26,7 @@ public class StationDAO {
     private static Statement stmt = null;
     private static PreparedStatement selectStationByType;
     private static PreparedStatement selectAllStations;
+    private static PreparedStatement insertNewStation;
     private static List<Station> stationList;
 
     /* public static void main(String[] args) {
@@ -42,6 +43,9 @@ public class StationDAO {
             conn = DriverManager.getConnection(dbURL);
             selectStationByType = conn.prepareStatement("SELECT * FROM STATIONS WHERE STATION_TYPE = ?");
             selectAllStations = conn.prepareStatement("SELECT * FROM STATIONS");
+
+            insertNewStation = conn.prepareStatement("INSERT INTO STATIONS (STATION_NAME, STATION_TYPE)"
+                    + "VALUES (?, ?)");
 
         } catch (Exception except) {
             except.printStackTrace();
@@ -107,6 +111,22 @@ public class StationDAO {
         return results;
     }
 
+    public int addStation(Station inStation) {
+        int result = 0;
+
+        try {
+            insertNewStation.setString(1, inStation.getStationName());
+            insertNewStation.setString(2, inStation.getStationType());
+            result = insertNewStation.executeUpdate();
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+
+        }
+
+        return result;
+    }
+
     private static void shutdown() {
         try {
             if (stmt != null) {
@@ -123,4 +143,3 @@ public class StationDAO {
     }
 
 }
-
