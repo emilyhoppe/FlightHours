@@ -21,10 +21,7 @@ import javax.swing.SwingUtilities;
  * @author jgrimard
  */
 public class AddAircraftView extends javax.swing.JDialog {
-
-    /**
-     * Creates new form AddAircraftView
-     */
+    
     public AddAircraftView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

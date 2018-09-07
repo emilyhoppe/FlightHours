@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import temporary.TemporaryFunctions;
 
 public class AircraftView extends javax.swing.JPanel {
 
@@ -58,7 +59,6 @@ public class AircraftView extends javax.swing.JPanel {
         searchButtonGroup = new javax.swing.ButtonGroup();
         logoLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
         tailNumberRadioButton = new javax.swing.JRadioButton();
         maintFlagRadioButton = new javax.swing.JRadioButton();
@@ -68,7 +68,7 @@ public class AircraftView extends javax.swing.JPanel {
         locationLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField();
         maintFlagComboBox = new javax.swing.JComboBox<>();
-        locationComboBox = new javax.swing.JComboBox<>();
+        locationComboBox = new javax.swing.JComboBox<>(TemporaryFunctions.getLocationArray());
         topButtonPanel = new javax.swing.JPanel();
         searchAircraftButton = new javax.swing.JButton();
         showAllButton = new javax.swing.JButton();
@@ -97,7 +97,6 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(titleLabel, gridBagConstraints);
-        add(jPanel1, new java.awt.GridBagConstraints());
 
         topPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         topPanel.setLayout(new java.awt.GridBagLayout());
@@ -176,6 +175,7 @@ public class AircraftView extends javax.swing.JPanel {
         topPanel.add(locationLabel, gridBagConstraints);
 
         tailNumberTextField.setColumns(10);
+        tailNumberTextField.setMinimumSize(new java.awt.Dimension(100, 20));
         tailNumberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tailNumberTextFieldMouseClicked(evt);
@@ -213,7 +213,6 @@ public class AircraftView extends javax.swing.JPanel {
         topPanel.add(maintFlagComboBox, gridBagConstraints);
 
         locationComboBox.setForeground(java.awt.Color.lightGray);
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
         locationComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 locationComboBoxMouseClicked(evt);
@@ -269,116 +268,58 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
-        aircraftTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"A2K2J5", "FIXED WING", "Mcallen Air and Marine Branch", "Top Secret", "550", "35000", "50000", "FALSE", "3000", ""},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Tail Number", "Type", "Location", "Mission", "Max Speed", "Max Altitude", "Total Flight Hours", "Maintenance Flag", "Maintenance Hours Threshold", "End of Service Date"
+        aircraftTable.setAutoCreateRowSorter(true);
+        aircraftTable.setModel(TemporaryFunctions.getAircraftTableModel());
+        aircraftTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        aircraftTable.getTableHeader().setReorderingAllowed(false);
+        aircraftTableScrollPane.setViewportView(aircraftTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(aircraftTableScrollPane, gridBagConstraints);
+
+        aircraftOperationsButton.setText("Aircraft Operations");
+        aircraftOperationsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aircraftOperationsButtonActionPerformed(evt);
             }
-        )
-        {public boolean isCellEditable(int row, int column){return false;}}
-    );
-    aircraftTable.setName(""); // NOI18N
-    aircraftTable.setRequestFocusEnabled(false);
-    aircraftTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    aircraftTableScrollPane.setViewportView(aircraftTable);
+        });
+        bottomPanel.add(aircraftOperationsButton);
 
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-    add(aircraftTableScrollPane, gridBagConstraints);
+        aircraftMaintenanceButton.setText("Aircraft Maintenance");
+        aircraftMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aircraftMaintenanceButtonActionPerformed(evt);
+            }
+        });
+        bottomPanel.add(aircraftMaintenanceButton);
 
-    aircraftOperationsButton.setText("Aircraft Operations");
-    aircraftOperationsButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            aircraftOperationsButtonActionPerformed(evt);
-        }
-    });
-    bottomPanel.add(aircraftOperationsButton);
+        addAircraftButton.setText("Add Aircraft");
+        addAircraftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAircraftButtonActionPerformed(evt);
+            }
+        });
+        bottomPanel.add(addAircraftButton);
 
-    aircraftMaintenanceButton.setText("Aircraft Maintenance");
-    aircraftMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            aircraftMaintenanceButtonActionPerformed(evt);
-        }
-    });
-    bottomPanel.add(aircraftMaintenanceButton);
+        modifyAircraftButton.setText("Modify Aircraft");
+        modifyAircraftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyAircraftButtonActionPerformed(evt);
+            }
+        });
+        bottomPanel.add(modifyAircraftButton);
 
-    addAircraftButton.setText("Add Aircraft");
-    addAircraftButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            addAircraftButtonActionPerformed(evt);
-        }
-    });
-    bottomPanel.add(addAircraftButton);
-
-    modifyAircraftButton.setText("Modify Aircraft");
-    modifyAircraftButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            modifyAircraftButtonActionPerformed(evt);
-        }
-    });
-    bottomPanel.add(modifyAircraftButton);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
-    add(bottomPanel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
+        add(bottomPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
@@ -396,6 +337,7 @@ public class AircraftView extends javax.swing.JPanel {
 
     private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
         //Open add aircraft dialog window when add aircraft button is pressed
+
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddAircraftView addAircraftView = new AddAircraftView(frame, true);
         addAircraftView.setVisible(true);
@@ -404,8 +346,23 @@ public class AircraftView extends javax.swing.JPanel {
     private void modifyAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
         //Open modify aircraft window when modify aircraft button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame, true);
-        modifyAircraftView.setVisible(true);
+        try {
+            int selectedRow = aircraftTable.getSelectedRow();
+            String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
+            String type = aircraftTable.getValueAt(selectedRow, 1).toString();
+            String location = aircraftTable.getValueAt(selectedRow, 2).toString();
+            String mission = aircraftTable.getValueAt(selectedRow, 3).toString();
+            String maxSpeed = aircraftTable.getValueAt(selectedRow, 4).toString();
+            String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
+            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 8).toString();
+            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 9).toString();
+            ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame, true, tailNumber, type, location, mission, maxSpeed, maxAltitude, maintHoursThreshold, endOfServiceDate);
+
+            modifyAircraftView.setVisible(true);
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft to modify", "Notice", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
     private void searchAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAircraftButtonActionPerformed
@@ -539,7 +496,6 @@ public class AircraftView extends javax.swing.JPanel {
     private javax.swing.JTable aircraftTable;
     private javax.swing.JScrollPane aircraftTableScrollPane;
     private javax.swing.JPanel bottomPanel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JRadioButton locationRadioButton;
