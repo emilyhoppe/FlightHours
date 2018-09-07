@@ -19,9 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-//    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
         mainPanel = new view.MainPanel();
@@ -72,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(966, 739));
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:

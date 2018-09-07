@@ -25,9 +25,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         SwingUtilities.getRootPane(addAircraftButton).setDefaultButton(addAircraftButton);
     }
 
-//    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
         outerPanel = new javax.swing.JPanel();
@@ -232,7 +230,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
         // TODO add your handling code here:

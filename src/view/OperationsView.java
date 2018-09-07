@@ -35,9 +35,7 @@ public class OperationsView extends javax.swing.JPanel {
         }
     };
 
-//    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
         logoLabel = new javax.swing.JLabel();
@@ -151,7 +149,7 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:

@@ -1,17 +1,16 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         AboutView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
 
 import javax.swing.SwingUtilities;
@@ -25,9 +24,7 @@ public class AboutView extends javax.swing.JDialog {
         SwingUtilities.getRootPane(closeButton).setDefaultButton(closeButton);
     }
 
-//    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
         closeButton = new javax.swing.JButton();
@@ -71,7 +68,7 @@ public class AboutView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         // TODO add your handling code here:

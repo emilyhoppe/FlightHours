@@ -43,9 +43,7 @@ public class AircraftView extends javax.swing.JPanel {
         }
     };
 
-//    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
         searchButtonGroup = new javax.swing.ButtonGroup();
@@ -84,6 +82,7 @@ public class AircraftView extends javax.swing.JPanel {
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         titleLabel.setText("Aircraft Search");
+        titleLabel.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -312,7 +311,7 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         //Switch to operations view on card layout when aircraft operations button is pressed
