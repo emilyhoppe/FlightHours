@@ -1,17 +1,16 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         Maintenanceview.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
 
 import java.awt.CardLayout;
@@ -22,6 +21,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 public class MaintenanceView extends javax.swing.JPanel {
+
+    private String tailNumber = "";
+
+    //Set tail number public method
+    public void setTailNumber(String tailNumber) {
+        this.tailNumber = tailNumber;
+        tailNumberTextField.setText(tailNumber);
+    }
 
     public MaintenanceView() {
         initComponents();
@@ -35,14 +42,15 @@ public class MaintenanceView extends javax.swing.JPanel {
         }
     };
 
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         logoLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
         tailNumberLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField();
+        tailNumberTextField = new javax.swing.JTextField(tailNumber);
         maintenanceTableScrollPane = new javax.swing.JScrollPane();
         maintenanceTable = new javax.swing.JTable();
         bottomPanel = new javax.swing.JPanel();
@@ -81,7 +89,6 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setText("A2K2J5");
         tailNumberTextField.setMinimumSize(new java.awt.Dimension(70, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -153,30 +160,30 @@ public class MaintenanceView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel)button.getParent();
-        JPanel outerPanel = (JPanel)buttonPanel.getParent();
+        JPanel buttonPanel = (JPanel) button.getParent();
+        JPanel outerPanel = (JPanel) buttonPanel.getParent();
         JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
         CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel,"aircraftView");
+        layout.show(cardLayoutPanel, "aircraftView");
 
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true);
+        AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, tailNumber);
         addMaintenanceView.setVisible(true);
     }//GEN-LAST:event_addMaintenanceButtonActionPerformed
 
     private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame, true);
+        ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame, true, tailNumber);
         modifyMaintenanceView.setVisible(true);
     }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
 

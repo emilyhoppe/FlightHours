@@ -17,14 +17,18 @@ import javax.swing.SwingUtilities;
 
 public class ModifyOperationView extends javax.swing.JDialog {
 
-    public ModifyOperationView(java.awt.Frame parent, boolean modal) {
+    private String tailNumber;
+    
+    public ModifyOperationView(java.awt.Frame parent, boolean modal, String tailNumber) {
         super(parent, modal);
+        this.tailNumber = tailNumber;
         initComponents();
         //Set modify operation button to respond to enter key
         SwingUtilities.getRootPane(modifyOperationButton).setDefaultButton(modifyOperationButton);
     }
 
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         outerPanel = new javax.swing.JPanel();
@@ -37,7 +41,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         startDateLabel = new javax.swing.JLabel();
         endDateLabel = new javax.swing.JLabel();
         flightHoursLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField();
+        tailNumberTextField = new javax.swing.JTextField(tailNumber);
         operationNameTextField = new javax.swing.JTextField();
         locationComboBox = new javax.swing.JComboBox<>();
         missionComboBox = new javax.swing.JComboBox<>();
@@ -126,7 +130,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setText("A2K2J5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -236,7 +239,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
         // TODO add your handling code here:

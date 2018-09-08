@@ -1,17 +1,16 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         OperationsView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
 
 import java.awt.CardLayout;
@@ -22,6 +21,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 public class OperationsView extends javax.swing.JPanel {
+
+    private String tailNumber;
+
+    //Set tail number public method
+    public void setTailNumber(String tailNumber) {
+        this.tailNumber = tailNumber;
+        tailNumberTextField.setText(tailNumber);
+    }
 
     public OperationsView() {
         initComponents();
@@ -154,25 +161,25 @@ public class OperationsView extends javax.swing.JPanel {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel)button.getParent();
-        JPanel outerPanel = (JPanel)buttonPanel.getParent();
+        JPanel buttonPanel = (JPanel) button.getParent();
+        JPanel outerPanel = (JPanel) buttonPanel.getParent();
         JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
         CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel,"aircraftView");
+        layout.show(cardLayoutPanel, "aircraftView");
 
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddOperationView addOperationView = new AddOperationView(frame, true);
+        AddOperationView addOperationView = new AddOperationView(frame, true, tailNumber);
         addOperationView.setVisible(true);
     }//GEN-LAST:event_addOperationButtonActionPerformed
 
     private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ModifyOperationView modifyOperationView = new ModifyOperationView(frame, true);
+        ModifyOperationView modifyOperationView = new ModifyOperationView(frame, true, tailNumber);
         modifyOperationView.setVisible(true);
     }//GEN-LAST:event_modifyOperationButtonActionPerformed
 

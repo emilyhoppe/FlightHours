@@ -319,10 +319,21 @@ public class AircraftView extends javax.swing.JPanel {
         JButton button = (JButton) evt.getSource();
         JPanel buttonPanel = (JPanel) button.getParent();
         JPanel outerPanel = (JPanel) buttonPanel.getParent();
-        JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
+        MainPanel cardLayoutPanel = (MainPanel) outerPanel.getParent();
         CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel, "operationsView");
 
+        OperationsView operationsView = cardLayoutPanel.getOperationsView();
+        try {
+            //Get tail number from aircraft table and set in operationsView panel
+            int selectedRow = aircraftTable.getSelectedRow();
+            String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
+            operationsView.setTailNumber(tailNumber);
+            //Switch to operationsView panel
+            layout.show(cardLayoutPanel, "operationsView");
+        } catch (IndexOutOfBoundsException e) {
+            //If no aircraft is not selected in table, show error dialog
+            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
 
@@ -392,9 +403,22 @@ public class AircraftView extends javax.swing.JPanel {
         JButton button = (JButton) evt.getSource();
         JPanel buttonPanel = (JPanel) button.getParent();
         JPanel outerPanel = (JPanel) buttonPanel.getParent();
-        JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
+        MainPanel cardLayoutPanel = (MainPanel) outerPanel.getParent();
         CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel, "maintenanceView");
+
+        MaintenanceView maintenanceView = cardLayoutPanel.getMaintenanceView();
+        try {
+            //Get tail number from aircraft table and set in maintenance view panel
+            int selectedRow = aircraftTable.getSelectedRow();
+            String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
+            maintenanceView.setTailNumber(tailNumber);
+            //Switch to maintenanceView panel
+            layout.show(cardLayoutPanel, "maintenanceView");
+        } catch (IndexOutOfBoundsException e) {
+            //If no aircraft is not selected in table, show error dialog
+            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_aircraftMaintenanceButtonActionPerformed
 
     private void tailNumberRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tailNumberRadioButtonItemStateChanged

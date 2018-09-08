@@ -15,6 +15,19 @@ package view;
 
 public class MainPanel extends javax.swing.JPanel {
 
+    //Getter for aircraftView object used to pass data to view
+    public AircraftView getAircraftView() {
+        return aircraftView;
+    }
+    //Getter for maintenanceView object used to pass data to view
+    public MaintenanceView getMaintenanceView() {
+        return maintenanceView;
+    }
+    //Getter for operationsView object used to pass data to view
+    public OperationsView getOperationsView() {
+        return operationsView;
+    }
+  
     public MainPanel() {
         initComponents();
     }

@@ -18,14 +18,18 @@ import javax.swing.SwingUtilities;
 
 public class ModifyMaintenanceView extends javax.swing.JDialog {
 
-    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal) {
+    private String tailNumber;
+    
+    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, String tailNumber) {
         super(parent, modal);
+        this.tailNumber = tailNumber;
         initComponents();
         //Set modify maintenance button to respond to enter key
         SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
     }
 
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         outerPanel = new javax.swing.JPanel();
@@ -35,7 +39,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         startDateLabel = new javax.swing.JLabel();
         endDateLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField();
+        tailNumberTextField = new javax.swing.JTextField(tailNumber);
         startDateTextField = new javax.swing.JTextField();
         endDateTextField = new javax.swing.JTextField();
         descriptionScrollPane = new javax.swing.JScrollPane();
@@ -98,7 +102,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setText("A2K2J5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -186,7 +189,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
         // TODO add your handling code here:

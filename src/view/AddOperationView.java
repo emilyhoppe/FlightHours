@@ -17,14 +17,18 @@ import javax.swing.SwingUtilities;
 
 public class AddOperationView extends javax.swing.JDialog {
 
-    public AddOperationView(java.awt.Frame parent, boolean modal) {
+    private String tailNumber;
+    
+    public AddOperationView(java.awt.Frame parent, boolean modal, String tailNumber) {
         super(parent, modal);
+        this.tailNumber = tailNumber;
         initComponents();
         //Set add operation button to respond to enter key
         SwingUtilities.getRootPane(addOperationButton).setDefaultButton(addOperationButton);
     }
 
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         outerPanel = new javax.swing.JPanel();
@@ -37,10 +41,10 @@ public class AddOperationView extends javax.swing.JDialog {
         startDateLabel = new javax.swing.JLabel();
         endDateLabel = new javax.swing.JLabel();
         flightHoursLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField();
+        tailNumberTextField = new javax.swing.JTextField(tailNumber);
         operationNameTextField = new javax.swing.JTextField();
-        locationComboBox = new javax.swing.JComboBox<>();
-        missionComboBox = new javax.swing.JComboBox<>();
+        locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
+        missionComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getMissionArray());
         startDateTextField = new javax.swing.JTextField();
         endDateTextField = new javax.swing.JTextField();
         flightHoursTextField = new javax.swing.JTextField();
@@ -126,7 +130,6 @@ public class AddOperationView extends javax.swing.JDialog {
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setText("A2K2J5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -141,16 +144,12 @@ public class AddOperationView extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameTextField, gridBagConstraints);
-
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationComboBox, gridBagConstraints);
-
-        missionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mission 1", "Mission 2", "Mission 3", "Mission 4", "Mission 5", "Mission 6" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -231,7 +230,7 @@ public class AddOperationView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void addOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
         // TODO add your handling code here:
