@@ -15,6 +15,11 @@ package view;
 
 public class MainFrame extends javax.swing.JFrame {
 
+    //Returns mainPanel so cardLayout can be updated by user
+    public MainPanel getMainPanel() {
+        return mainPanel;
+    }
+
     public MainFrame() {
         initComponents();
     }

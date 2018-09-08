@@ -14,6 +14,7 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -163,14 +164,13 @@ public class MaintenanceView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-        JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel) button.getParent();
-        JPanel outerPanel = (JPanel) buttonPanel.getParent();
-        JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
-        CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel, "aircraftView");
-
+        //Switch to aircraft view on card layout when aircraft back button is pressed
+        //Gaining control of CardLayout by getting mainPanel from root frame
+        Component component = (Component) evt.getSource();
+        MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
+        MainPanel mainPanel = frame.getMainPanel();
+        CardLayout layout = (CardLayout) mainPanel.getLayout();        
+        layout.show(mainPanel, "aircraftView");
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed

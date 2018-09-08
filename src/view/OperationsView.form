@@ -72,7 +72,6 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="10"/>
-            <Property name="text" type="java.lang.String" value="A2K2J5"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[70, 20]"/>
             </Property>

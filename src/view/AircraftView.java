@@ -20,6 +20,7 @@ package view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -315,21 +316,20 @@ public class AircraftView extends javax.swing.JPanel {
 
     private void aircraftOperationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         //Switch to operations view on card layout when aircraft operations button is pressed
-        //Gaining control of CardLayout by navigating backwards using getParent()
-        JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel) button.getParent();
-        JPanel outerPanel = (JPanel) buttonPanel.getParent();
-        MainPanel cardLayoutPanel = (MainPanel) outerPanel.getParent();
-        CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
+        //Gaining control of CardLayout by getting mainPanel from root frame
+        Component component = (Component) evt.getSource();
+        MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
+        MainPanel mainPanel = frame.getMainPanel();
+        CardLayout layout = (CardLayout) mainPanel.getLayout();
 
-        OperationsView operationsView = cardLayoutPanel.getOperationsView();
+        OperationsView operationsView = mainPanel.getOperationsView();
         try {
             //Get tail number from aircraft table and set in operationsView panel
             int selectedRow = aircraftTable.getSelectedRow();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
             operationsView.setTailNumber(tailNumber);
             //Switch to operationsView panel
-            layout.show(cardLayoutPanel, "operationsView");
+            layout.show(mainPanel, "operationsView");
         } catch (IndexOutOfBoundsException e) {
             //If no aircraft is not selected in table, show error dialog
             JOptionPane.showMessageDialog(topPanel, "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
@@ -399,21 +399,20 @@ public class AircraftView extends javax.swing.JPanel {
 
     private void aircraftMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aircraftMaintenanceButtonActionPerformed
         //Switch to maintenance view on card layout when aircraft maintenance button is pressed
-        //Gaining control of CardLayout by navigating backwards using getParent()
-        JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel) button.getParent();
-        JPanel outerPanel = (JPanel) buttonPanel.getParent();
-        MainPanel cardLayoutPanel = (MainPanel) outerPanel.getParent();
-        CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
+        //Gaining control of CardLayout by getting mainPanel from root frame
+        Component component = (Component) evt.getSource();
+        MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
+        MainPanel mainPanel = frame.getMainPanel();
+        CardLayout layout = (CardLayout) mainPanel.getLayout();
 
-        MaintenanceView maintenanceView = cardLayoutPanel.getMaintenanceView();
+        MaintenanceView maintenanceView = mainPanel.getMaintenanceView();
         try {
             //Get tail number from aircraft table and set in maintenance view panel
             int selectedRow = aircraftTable.getSelectedRow();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
             maintenanceView.setTailNumber(tailNumber);
             //Switch to maintenanceView panel
-            layout.show(cardLayoutPanel, "maintenanceView");
+            layout.show(mainPanel, "maintenanceView");
         } catch (IndexOutOfBoundsException e) {
             //If no aircraft is not selected in table, show error dialog
             JOptionPane.showMessageDialog(topPanel, "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);

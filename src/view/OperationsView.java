@@ -14,6 +14,7 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,7 +43,8 @@ public class OperationsView extends javax.swing.JPanel {
         }
     };
 
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         logoLabel = new javax.swing.JLabel();
@@ -88,7 +90,6 @@ public class OperationsView extends javax.swing.JPanel {
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setText("A2K2J5");
         tailNumberTextField.setMinimumSize(new java.awt.Dimension(70, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -156,16 +157,16 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
-        JButton button = (JButton) evt.getSource();
-        JPanel buttonPanel = (JPanel) button.getParent();
-        JPanel outerPanel = (JPanel) buttonPanel.getParent();
-        JPanel cardLayoutPanel = (JPanel) outerPanel.getParent();
-        CardLayout layout = (CardLayout) cardLayoutPanel.getLayout();
-        layout.show(cardLayoutPanel, "aircraftView");
+        //Switch to aircraft view on card layout when aircraft back button is pressed
+        //Gaining control of CardLayout by getting mainPanel from root frame
+        Component component = (Component) evt.getSource();
+        MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
+        MainPanel mainPanel = frame.getMainPanel();
+        CardLayout layout = (CardLayout) mainPanel.getLayout();
+        layout.show(mainPanel, "aircraftView");
 
     }//GEN-LAST:event_backButtonActionPerformed
 
