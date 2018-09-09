@@ -110,4 +110,26 @@ public class TemporaryFunctions {
         return aircraftTableModel;
     }
 
+    //Returns a table model for the search aircraft table until SQL code is implemented
+    public static DefaultTableModel getOperationsTableModel() {
+
+        //Array of for table column names
+        Object[] tableColumns = {"ID", "Name", "Location", "Mission", "Start Date", "End Date", "Flight Hours"};
+
+        //2D array of table row data
+        Object[][] tableData = {
+            {"1","Operation A", "San Angelo Air Unit", "Disaster Relief", "8/30/2018", "8/30/2018", "5"},
+            {"2","Operation B", "Brownsville", "Interdiction", "8/31/2018", "8/31/2018", "6"}
+        };
+
+        DefaultTableModel operationsTableModel = new DefaultTableModel(tableData, tableColumns) {
+            //Override default table model method and make all cells non-editable
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        return operationsTableModel;
+    }
 }

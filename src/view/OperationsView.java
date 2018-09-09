@@ -101,18 +101,11 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
-        operationsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Operation A", "Mcallen Air and Marine Branch", "Top Secret", "8/30/2018", "8/30/2018", "5"},
-                {"Operation B", "Mcallen Air and Marine Branch", "Mission 2", "8/31/2018", "8/31/2018", "6"},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "Location", "Mission", "Start Date", "End Date", "Flight Hours"
-            }
-        ));
-        operationsTable.setName(""); // NOI18N
-        operationsTable.setRequestFocusEnabled(false);
+        operationsTable.setModel(temporary.TemporaryFunctions.getOperationsTableModel());
+        //Hide ID column in table but still allow application access to it
+        operationsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        operationsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        operationsTable.getColumnModel().getColumn(0).setWidth(0);
         operationsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         operationsTableScrollPane.setViewportView(operationsTable);
 

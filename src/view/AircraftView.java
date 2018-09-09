@@ -318,7 +318,7 @@ public class AircraftView extends javax.swing.JPanel {
         try {
             //Get tail number from aircraft table and set in operationsView panel
             int selectedRow = aircraftTable.getSelectedRow();
-            String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
+            String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             operationsView.setTailNumber(tailNumber);
             //Switch to operationsView panel
             layout.show(mainPanel, "operationsView");
@@ -402,7 +402,7 @@ public class AircraftView extends javax.swing.JPanel {
         try {
             //Get tail number from aircraft table and set in maintenance view panel
             int selectedRow = aircraftTable.getSelectedRow();
-            String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
+            String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             maintenanceView.setTailNumber(tailNumber);
             //Switch to maintenanceView panel
             layout.show(mainPanel, "maintenanceView");
