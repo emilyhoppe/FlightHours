@@ -66,7 +66,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         maintThresholdLabel = new javax.swing.JLabel();
         endOfServiceLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField(tailNumber);
-        typeComboBox = new javax.swing.JComboBox<>();
+        typeComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getAircraftTypeArray());
         locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
         missionComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getMissionArray());
         maxSpeedTextField = new javax.swing.JTextField(maxSpeed);
@@ -169,7 +169,6 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         dataPanel.add(tailNumberTextField, gridBagConstraints);
 
-        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FIXED WING", "ROTARY WING", "UAV" }));
         typeComboBox.setSelectedItem(type);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

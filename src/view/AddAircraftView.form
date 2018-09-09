@@ -146,16 +146,8 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JComboBox" name="typeComboBox">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="FIXED WING"/>
-                    <StringItem index="1" value="ROTARY WING"/>
-                    <StringItem index="2" value="UAV"/>
-                  </StringArray>
-                </Property>
-              </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(temporary.TemporaryFunctions.getAircraftTypeArray())"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
               <Constraints>

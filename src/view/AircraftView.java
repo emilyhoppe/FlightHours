@@ -21,28 +21,16 @@ package view;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 import temporary.TemporaryFunctions;
 
 public class AircraftView extends javax.swing.JPanel {
 
     public AircraftView() {
         initComponents();
-        //Use search aircraft button when user hits enter key
     }
-
-    //Make all table cells non-editable
-    private final DefaultTableModel tableModel = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
 
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;

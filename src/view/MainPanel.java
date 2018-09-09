@@ -32,8 +32,7 @@ public class MainPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
 
         aircraftView = new view.AircraftView();
         operationsView = new view.OperationsView();
@@ -43,7 +42,7 @@ public class MainPanel extends javax.swing.JPanel {
         add(aircraftView, "aircraftView");
         add(operationsView, "operationsView");
         add(maintenanceView, "maintenanceView");
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
