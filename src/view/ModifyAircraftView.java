@@ -14,10 +14,12 @@
 package view;
 
 import java.awt.Frame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class ModifyAircraftView extends javax.swing.JDialog {
 
+    private String ID;
     private String tailNumber;
     private String type;
     private String location;
@@ -36,8 +38,9 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     }
 
     //Constructor with passed variables
-    public ModifyAircraftView(Frame owner, boolean modal, String tailNumber, String type, String location, String mission, String maxSpeed, String maxAltitude, String maintHoursThreshold, String endOfServiceDate) {
+    public ModifyAircraftView(Frame owner, boolean modal, String ID, String tailNumber, String type, String location, String mission, String maxSpeed, String maxAltitude, String maintHoursThreshold, String endOfServiceDate) {
         super(owner, modal);
+        this.ID = ID;
         this.tailNumber = tailNumber;
         this.type = type;
         this.location = location;
@@ -277,7 +280,19 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     }//GEN-END:initComponents
 
     private void modifyAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
-        // TODO add your handling code here:
+        //TODO Call SQL function
+        //Temporarily show message box with values
+        JOptionPane.showMessageDialog(outerPanel,
+                "Modifying Database values for aircraft ID: " + ID + "\n"
+                + "Tail Number: " + tailNumberTextField.getText() + "\n"
+                + "Type: " + typeComboBox.getSelectedItem() + "\n"
+                + "Location: " + locationComboBox.getSelectedItem() + "\n"
+                + "Mission: " + missionComboBox.getSelectedItem() + "\n"
+                + "Max Speed: " + maxSpeedTextField.getText() + "\n"
+                + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
+                + "Maintenance Threshold: " + maintThresholdTextField.getText() + "\n"
+                + "End of Service Date: " + endOfServiceTextField.getText(),
+                 "Notice", JOptionPane.PLAIN_MESSAGE);
         dispose();
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 

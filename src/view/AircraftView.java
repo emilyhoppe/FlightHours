@@ -250,6 +250,10 @@ public class AircraftView extends javax.swing.JPanel {
 
         aircraftTable.setAutoCreateRowSorter(true);
         aircraftTable.setModel(TemporaryFunctions.getAircraftTableModel());
+        //Hide ID column in table but still allow application access to it
+        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
         aircraftTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         aircraftTable.getTableHeader().setReorderingAllowed(false);
         aircraftTableScrollPane.setViewportView(aircraftTable);
@@ -338,15 +342,16 @@ public class AircraftView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
             int selectedRow = aircraftTable.getSelectedRow();
-            String tailNumber = aircraftTable.getValueAt(selectedRow, 0).toString();
-            String type = aircraftTable.getValueAt(selectedRow, 1).toString();
-            String location = aircraftTable.getValueAt(selectedRow, 2).toString();
-            String mission = aircraftTable.getValueAt(selectedRow, 3).toString();
-            String maxSpeed = aircraftTable.getValueAt(selectedRow, 4).toString();
-            String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
-            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 8).toString();
-            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 9).toString();
-            ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame, true, tailNumber, type, location, mission, maxSpeed, maxAltitude, maintHoursThreshold, endOfServiceDate);
+            String ID = aircraftTable.getValueAt(selectedRow,0).toString();
+            String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
+            String type = aircraftTable.getValueAt(selectedRow, 2).toString();
+            String location = aircraftTable.getValueAt(selectedRow, 3).toString();
+            String mission = aircraftTable.getValueAt(selectedRow, 4).toString();
+            String maxSpeed = aircraftTable.getValueAt(selectedRow, 5).toString();
+            String maxAltitude = aircraftTable.getValueAt(selectedRow, 6).toString();
+            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
+            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
+            ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame, true, ID,tailNumber, type, location, mission, maxSpeed, maxAltitude, maintHoursThreshold, endOfServiceDate);
 
             modifyAircraftView.setVisible(true);
         } catch (IndexOutOfBoundsException e) {
