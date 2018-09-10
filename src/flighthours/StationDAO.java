@@ -37,10 +37,10 @@ public class StationDAO {
         System.out.println(stationList.size());
         shutdown();
      } */
-    public StationDAO() {
+    public StationDAO(Connection conn) {
         try {
-
-            conn = DriverManager.getConnection(dbURL);
+            StationDAO.conn = conn;
+            //conn = DriverManager.getConnection(dbURL);
             selectStationByType = conn.prepareStatement("SELECT * FROM STATIONS WHERE STATION_TYPE = ?");
             selectAllStations = conn.prepareStatement("SELECT * FROM STATIONS");
 
