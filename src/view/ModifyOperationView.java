@@ -42,8 +42,8 @@ public class ModifyOperationView extends javax.swing.JDialog {
         flightHoursLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField(tailNumber);
         operationNameTextField = new javax.swing.JTextField();
-        locationComboBox = new javax.swing.JComboBox<>();
-        missionComboBox = new javax.swing.JComboBox<>();
+        locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
+        missionComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getMissionArray());
         startDateTextField = new javax.swing.JTextField();
         endDateTextField = new javax.swing.JTextField();
         flightHoursTextField = new javax.swing.JTextField();
@@ -144,16 +144,12 @@ public class ModifyOperationView extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameTextField, gridBagConstraints);
-
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcallen Air and Marine Branch", "Laredo Air Branch", "San Antonio Air Unit", "Uvalde Air Branch", "Del Rio Air Unit", "San Angelo Air Unit", "El Paso Air Branch", "Alpine Air Unit", "Deming Air Unit", "Tucson Air Branch" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationComboBox, gridBagConstraints);
-
-        missionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top Secret", "Mission 2", "Mission 3", "Mission 4", "Mission 5", "Mission 6" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;

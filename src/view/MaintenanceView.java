@@ -17,6 +17,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import temporary.TemporaryFunctions;
 
 public class MaintenanceView extends javax.swing.JPanel {
 
@@ -92,24 +93,18 @@ public class MaintenanceView extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
-        maintenanceTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"7/28/2018", "7/28/2018", "Replaced front landing gear"},
-                {"7/30/2018", "7/30/2018", "Upgraded muffler bearings"},
-                {null, null, null}
-            },
-            new String [] {
-                "Start Date", "End Date", "Description"
-            }
-        ));
+        maintenanceTable.setModel(TemporaryFunctions.getMaintenanceTableModel());
+        //Hide ID column in table but still allow application access to it
+        maintenanceTable.getColumnModel().getColumn(0).setMinWidth(0);
+        maintenanceTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        maintenanceTable.getColumnModel().getColumn(0).setWidth(0);
+        //Adjust date colums smaller so description column can be wide
+        maintenanceTable.getColumnModel().getColumn(1).setMaxWidth(100);
+        maintenanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
         maintenanceTable.setName(""); // NOI18N
         maintenanceTable.setRequestFocusEnabled(false);
         maintenanceTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         maintenanceTableScrollPane.setViewportView(maintenanceTable);
-        if (maintenanceTable.getColumnModel().getColumnCount() > 0) {
-            maintenanceTable.getColumnModel().getColumn(0).setMaxWidth(100);
-            maintenanceTable.getColumnModel().getColumn(1).setMaxWidth(100);
-        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

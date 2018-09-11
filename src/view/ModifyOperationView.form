@@ -161,23 +161,8 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JComboBox" name="locationComboBox">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="10">
-                    <StringItem index="0" value="Mcallen Air and Marine Branch"/>
-                    <StringItem index="1" value="Laredo Air Branch"/>
-                    <StringItem index="2" value="San Antonio Air Unit"/>
-                    <StringItem index="3" value="Uvalde Air Branch"/>
-                    <StringItem index="4" value="Del Rio Air Unit"/>
-                    <StringItem index="5" value="San Angelo Air Unit"/>
-                    <StringItem index="6" value="El Paso Air Branch"/>
-                    <StringItem index="7" value="Alpine Air Unit"/>
-                    <StringItem index="8" value="Deming Air Unit"/>
-                    <StringItem index="9" value="Tucson Air Branch"/>
-                  </StringArray>
-                </Property>
-              </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(temporary.TemporaryFunctions.getLocationArray())"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
               <Constraints>
@@ -187,19 +172,8 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JComboBox" name="missionComboBox">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
-                    <StringItem index="0" value="Top Secret"/>
-                    <StringItem index="1" value="Mission 2"/>
-                    <StringItem index="2" value="Mission 3"/>
-                    <StringItem index="3" value="Mission 4"/>
-                    <StringItem index="4" value="Mission 5"/>
-                    <StringItem index="5" value="Mission 6"/>
-                  </StringArray>
-                </Property>
-              </Properties>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(temporary.TemporaryFunctions.getMissionArray())"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
               <Constraints>

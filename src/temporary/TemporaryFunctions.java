@@ -70,7 +70,7 @@ public class TemporaryFunctions {
         return aircraftTypeArray;
     }
 
-    //Returns a table model for the search aircraft table until SQL code is implemented
+    //Returns a table model for the Aircraft Search table until SQL code is implemented
     public static DefaultTableModel getAircraftTableModel() {
 
         //Array of for table column names
@@ -110,7 +110,7 @@ public class TemporaryFunctions {
         return aircraftTableModel;
     }
 
-    //Returns a table model for the search aircraft table until SQL code is implemented
+    //Returns a table model for the Aircraft Operations table until SQL code is implemented
     public static DefaultTableModel getOperationsTableModel() {
 
         //Array of for table column names
@@ -132,4 +132,28 @@ public class TemporaryFunctions {
 
         return operationsTableModel;
     }
+    
+        //Returns a table model for the Aircraft Maintenance table until SQL code is implemented
+    public static DefaultTableModel getMaintenanceTableModel() {
+
+        //Array of for table column names
+        Object[] tableColumns = {"ID", "Start Date", "End Date", "Description"};
+
+        //2D array of table row data
+        Object[][] tableData = {
+            {"1","7/28/2018", "7/28/2018", "Replace front landing gear"},
+            {"2","7/30/2018", "7/30/2018", "Upgraded muffler bearings"},
+        };
+
+        DefaultTableModel maintenanceTableModel = new DefaultTableModel(tableData, tableColumns) {
+            //Override default table model method and make all cells non-editable
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        return maintenanceTableModel;
+    }
+    
 }
