@@ -40,7 +40,6 @@ public class AircraftDAO {
             except.printStackTrace();
         }
         
-        JTable t = new JTable(temporary.DBUtils.resultSetToTableModel(rs));
     }
 
     public static JTable selectAllAircraft() {
