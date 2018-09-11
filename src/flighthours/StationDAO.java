@@ -19,8 +19,8 @@ import java.util.List;
 
 public class StationDAO {
 
-    private static String dbURL = "jdbc:derby:FlightHours";
-    private static String tableName = "STATIONS";
+    //private static String dbURL = "jdbc:derby:FlightHours";
+    //private static String tableName = "STATIONS";
     // jdbc Connection
     private static Connection conn = null;
     private static Statement stmt = null;
@@ -133,7 +133,7 @@ public class StationDAO {
                 stmt.close();
             }
             if (conn != null) {
-                DriverManager.getConnection(dbURL + ";shutdown=true");
+                //DriverManager.getConnection(dbURL + ";shutdown=true");
                 conn.close();
             }
         } catch (SQLException sqlExcept) {
