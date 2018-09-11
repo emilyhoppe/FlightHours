@@ -62,7 +62,7 @@ public class AircraftDAO {
         }
        
     
-        JTable aircraftTable = new JTable(temporary.DBUtils.resultSetToTableModel(resultSet));
+        JTable aircraftTable = new JTable(utilityClasses.DBUtils.resultSetToTableModel(resultSet));
 
         return aircraftTable;
     }
