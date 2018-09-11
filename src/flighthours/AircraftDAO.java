@@ -10,15 +10,13 @@ package flighthours;
  * @author jjtam
  */
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.List;
+import javax.swing.JTable;
 
 public class AircraftDAO {
 
@@ -41,14 +39,33 @@ public class AircraftDAO {
         } catch (Exception except) {
             except.printStackTrace();
         }
+        
+        JTable t = new JTable(temporary.DBUtils.resultSetToTableModel(rs));
     }
 
-    public static List<Aircraft> selectAllAircraft() {
+    public static JTable selectAllAircraft() {
 
-        List<Aircraft> results = null;
+        //List<Aircraft> results = null;
         ResultSet resultSet = null;
+        
+        try {
+            resultSet = selectAllAircraft.executeQuery();
+            
 
-        return results;
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+            } catch (SQLException sqlExcept) {
+                sqlExcept.printStackTrace();
+            }
+        }
+       
+    
+        JTable aircraftTable = new JTable(temporary.DBUtils.resultSetToTableModel(resultSet));
+
+        return aircraftTable;
     }
 
     public static List<Aircraft> selectAircraftbyLocation() {
