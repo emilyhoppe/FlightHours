@@ -368,11 +368,8 @@ public class AircraftView extends javax.swing.JPanel {
 
         //If searching by tail number
         if (tailNumberRadioButton.isSelected()) {
-            //Output for testing
-            //If textfield is empty show error popup
-            if (tailNumberTextField.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(topPanel, "Please enter text to search", "Notice", JOptionPane.ERROR_MESSAGE);
-            } else if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
+            //Input validation
+            if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
                 JOptionPane.showMessageDialog(topPanel, "Please enter letters and numbers only", "Notice", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(topPanel, "Searching by Tail Number: " + tailNumberTextField.getText(), "Notice", JOptionPane.PLAIN_MESSAGE);
