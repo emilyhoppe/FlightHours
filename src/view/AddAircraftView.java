@@ -14,6 +14,7 @@
 
 package view;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class AddAircraftView extends javax.swing.JDialog {
@@ -228,7 +229,8 @@ public class AddAircraftView extends javax.swing.JDialog {
 
     private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
+        JOptionPane.showMessageDialog(outerPanel, "Sorry, that tail number already exists", "Notice", JOptionPane.ERROR_MESSAGE);
+        //dispose();
     }//GEN-LAST:event_addAircraftButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

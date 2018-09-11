@@ -26,6 +26,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private String mission;
     private String maxSpeed;
     private String maxAltitude;
+    private String currentMaintHours;
     private String maintHoursThreshold;
     private String endOfServiceDate;
 
@@ -38,7 +39,10 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     }
 
     //Constructor with passed variables
-    public ModifyAircraftView(Frame owner, boolean modal, String ID, String tailNumber, String type, String location, String mission, String maxSpeed, String maxAltitude, String maintHoursThreshold, String endOfServiceDate) {
+    public ModifyAircraftView(Frame owner, boolean modal, String ID, String tailNumber,
+            String type, String location, String mission, String maxSpeed,
+            String maxAltitude, String currentMaintHours, String maintHoursThreshold,
+            String endOfServiceDate) {
         super(owner, modal);
         this.ID = ID;
         this.tailNumber = tailNumber;
@@ -47,6 +51,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         this.mission = mission;
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
+        this.currentMaintHours = currentMaintHours;
         this.maintHoursThreshold = maintHoursThreshold;
         this.endOfServiceDate = endOfServiceDate;
         initComponents();
@@ -76,6 +81,8 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         maxAltitudeTextField = new javax.swing.JTextField(maxAltitude);
         maintThresholdTextField = new javax.swing.JTextField(maintHoursThreshold);
         endOfServiceTextField = new javax.swing.JTextField(endOfServiceDate);
+        currentMaintHoursLabel = new javax.swing.JLabel();
+        currentMaintHoursTextField = new javax.swing.JTextField(currentMaintHours);
         buttonPanel = new javax.swing.JPanel();
         modifyAircraftButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -151,7 +158,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         maintThresholdLabel.setText("Maintenance Hours Threshold");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         dataPanel.add(maintThresholdLabel, gridBagConstraints);
@@ -159,7 +166,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         endOfServiceLabel.setText("End of Service Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         dataPanel.add(endOfServiceLabel, gridBagConstraints);
@@ -215,7 +222,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         maintThresholdTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         dataPanel.add(maintThresholdTextField, gridBagConstraints);
@@ -223,10 +230,26 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         endOfServiceTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         dataPanel.add(endOfServiceTextField, gridBagConstraints);
+
+        currentMaintHoursLabel.setText("Current Maintenance Hours");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        dataPanel.add(currentMaintHoursLabel, gridBagConstraints);
+
+        currentMaintHoursTextField.setColumns(10);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        dataPanel.add(currentMaintHoursTextField, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -292,7 +315,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
                 + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
                 + "Maintenance Threshold: " + maintThresholdTextField.getText() + "\n"
                 + "End of Service Date: " + endOfServiceTextField.getText(),
-                 "Notice", JOptionPane.PLAIN_MESSAGE);
+                "Notice", JOptionPane.PLAIN_MESSAGE);
         dispose();
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
@@ -304,6 +327,8 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel currentMaintHoursLabel;
+    private javax.swing.JTextField currentMaintHoursTextField;
     private javax.swing.JPanel dataPanel;
     private javax.swing.JLabel endOfServiceLabel;
     private javax.swing.JTextField endOfServiceTextField;

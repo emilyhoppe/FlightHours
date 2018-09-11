@@ -349,9 +349,12 @@ public class AircraftView extends javax.swing.JPanel {
             String mission = aircraftTable.getValueAt(selectedRow, 4).toString();
             String maxSpeed = aircraftTable.getValueAt(selectedRow, 5).toString();
             String maxAltitude = aircraftTable.getValueAt(selectedRow, 6).toString();
-            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
-            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
-            ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame, true, ID,tailNumber, type, location, mission, maxSpeed, maxAltitude, maintHoursThreshold, endOfServiceDate);
+            String currentMaintHours = aircraftTable.getValueAt(selectedRow,9).toString();
+            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 10).toString();
+            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 11).toString();
+            ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
+                    true, ID,tailNumber, type, location, mission, maxSpeed, maxAltitude, 
+                    currentMaintHours, maintHoursThreshold, endOfServiceDate);
 
             modifyAircraftView.setVisible(true);
         } catch (IndexOutOfBoundsException e) {
