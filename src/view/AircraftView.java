@@ -346,14 +346,13 @@ public class AircraftView extends javax.swing.JPanel {
             String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             String type = aircraftTable.getValueAt(selectedRow, 2).toString();
             String location = aircraftTable.getValueAt(selectedRow, 3).toString();
-            String mission = aircraftTable.getValueAt(selectedRow, 4).toString();
-            String maxSpeed = aircraftTable.getValueAt(selectedRow, 5).toString();
-            String maxAltitude = aircraftTable.getValueAt(selectedRow, 6).toString();
-            String currentMaintHours = aircraftTable.getValueAt(selectedRow,9).toString();
-            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 10).toString();
-            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 11).toString();
+            String maxSpeed = aircraftTable.getValueAt(selectedRow, 4).toString();
+            String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
+            String currentMaintHours = aircraftTable.getValueAt(selectedRow,8).toString();
+            String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
+            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
             ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
-                    true, ID,tailNumber, type, location, mission, maxSpeed, maxAltitude, 
+                    true, ID,tailNumber, type, location, maxSpeed, maxAltitude, 
                     currentMaintHours, maintHoursThreshold, endOfServiceDate);
 
             modifyAircraftView.setVisible(true);
