@@ -49,17 +49,14 @@ public class AircraftDAO {
         
         try {
             resultSet = selectAllAircraft.executeQuery();
-            
+            while (resultSet.next()) {
+                System.out.println("Tail Number" + resultSet.getString("TAIL_NUMBER"));
+            }
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
-        } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException sqlExcept) {
-                sqlExcept.printStackTrace();
-            }
-        }
+        } 
+        
        
     
         JTable aircraftTable = new JTable(util.DBUtils.resultSetToTableModel(resultSet));
