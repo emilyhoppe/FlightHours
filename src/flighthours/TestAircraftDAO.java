@@ -10,6 +10,7 @@ package flighthours;
  * @author jjtam
  */
 
+import controller.AircraftDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
@@ -36,8 +37,8 @@ public class TestAircraftDAO {
         
         aircraftQueries = new AircraftDAO(conn);
         
-        aircraftTable = aircraftQueries.selectAllAircraft();
-
+        aircraftTable = AircraftDAO.selectAllAircraft();
+       
         System.out.println("Stop Here");
 
     }

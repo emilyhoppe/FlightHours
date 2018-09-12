@@ -4,8 +4,9 @@
  * and open the template in the editor.
  * Test commit/push
  */
-package flighthours;
+package controller;
 
+import flighthours.Station;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

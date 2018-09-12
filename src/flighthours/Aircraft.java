@@ -18,7 +18,7 @@ public class Aircraft {
     private String tailNumber;
     private String aircraftType;
     private int stationID;
-    private String primaryMission;
+    //private String primaryMission;
     private int maxSpeed;
     private int maxAltitude;  
     private int totalFlightHours;
@@ -33,7 +33,7 @@ public class Aircraft {
         this.tailNumber = tailNumber;
         this.aircraftType = aircraftType;
         this.stationID = stationID;
-        this.primaryMission = primaryMission;
+        //this.primaryMission = primaryMission;
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
         this.totalFlightHours = totalFlightHours;
@@ -46,7 +46,7 @@ public class Aircraft {
         if (scanner.hasNext()) tailNumber = scanner.next();
         if (scanner.hasNext()) aircraftType = scanner.next();
         if (scanner.hasNextInt()) stationID = scanner.nextInt();
-        if (scanner.hasNext()) primaryMission = scanner.next();
+        //if (scanner.hasNext()) primaryMission = scanner.next();
         if (scanner.hasNextInt()) maxSpeed = scanner.nextInt();
         if (scanner.hasNextInt()) maxAltitude = scanner.nextInt();
         if (scanner.hasNextInt()) totalFlightHours = scanner.nextInt();
@@ -79,13 +79,13 @@ public class Aircraft {
         this.stationID = stationID;
     }
 
-    public String getPrimaryMission() {
-        return primaryMission;
-    }
+    //public String getPrimaryMission() {
+    //    return primaryMission;
+    //}
 
-    public void setPrimaryMission(String primaryMission) {
-        this.primaryMission = primaryMission;
-    }
+    //public void setPrimaryMission(String primaryMission) {
+    //    this.primaryMission = primaryMission;
+    //}
     
     public int getMaxSpeed() {
         return maxSpeed;
@@ -138,7 +138,7 @@ public class Aircraft {
     @Override
     public String toString() {
         return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID + 
-                ", primaryMission=" + primaryMission + ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude + 
+                ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude + 
                 ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag + 
                 ", currentMaintenanceHours=" + currentMaintenanceHours + ", maintenanceHoursThreshold=" + maintenanceHoursThreshold + '}';
     }
