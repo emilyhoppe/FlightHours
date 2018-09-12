@@ -11,14 +11,14 @@ public class Maintenance {
     private int aircraftID;
     private int startDate;
     private int endDate;
-    private String maintDesce;
+    private String maintDescr;
 
     public Maintenance(int maintenanceID, int aircraftID, int startDate, int endDate, String maintDesce) {
         this.maintenanceID = maintenanceID;
         this.aircraftID = aircraftID;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.maintDesce = maintDesce;
+        this.maintDescr = maintDesce;
     }
 
     public Maintenance() {
@@ -57,16 +57,16 @@ public class Maintenance {
     }
 
     public String getMaintDesce() {
-        return maintDesce;
+        return maintDescr;
     }
 
     public void setMaintDesce(String maintDesce) {
-        this.maintDesce = maintDesce;
+        this.maintDescr = maintDesce;
     }
 
     @Override
     public String toString() {
-        return "Maintenance{" + "maintenanceID=" + maintenanceID + ", aircraftID=" + aircraftID + ", startDate=" + startDate + ", endDate=" + endDate + ", maintDesce=" + maintDesce + '}';
+        return "Maintenance{" + "maintenanceID=" + maintenanceID + ", aircraftID=" + aircraftID + ", startDate=" + startDate + ", endDate=" + endDate + ", maintDesce=" + maintDescr + '}';
     }
     
     
