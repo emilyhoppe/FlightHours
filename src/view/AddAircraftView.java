@@ -35,14 +35,12 @@ public class AddAircraftView extends javax.swing.JDialog {
         tailNumberLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
         locationLabel = new javax.swing.JLabel();
-        missionLabel = new javax.swing.JLabel();
         maxSpeedLabel = new javax.swing.JLabel();
         maxAltitudeLabel = new javax.swing.JLabel();
         maintThresholdLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField();
         typeComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getAircraftTypeArray());
         locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
-        missionComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getMissionArray());
         maxSpeedTextField = new javax.swing.JTextField();
         maxAltitudeTextField = new javax.swing.JTextField();
         maintThresholdTextField = new javax.swing.JTextField();
@@ -94,18 +92,10 @@ public class AddAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationLabel, gridBagConstraints);
 
-        missionLabel.setText("Mission");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(missionLabel, gridBagConstraints);
-
         maxSpeedLabel.setText("Max Speed");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxSpeedLabel, gridBagConstraints);
@@ -113,7 +103,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         maxAltitudeLabel.setText("Max Altitude");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxAltitudeLabel, gridBagConstraints);
@@ -121,7 +111,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         maintThresholdLabel.setText("Maintenance Hours Threshold");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maintThresholdLabel, gridBagConstraints);
@@ -145,17 +135,11 @@ public class AddAircraftView extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationComboBox, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(missionComboBox, gridBagConstraints);
 
         maxSpeedTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxSpeedTextField, gridBagConstraints);
@@ -163,7 +147,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         maxAltitudeTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxAltitudeTextField, gridBagConstraints);
@@ -171,7 +155,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         maintThresholdTextField.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maintThresholdTextField, gridBagConstraints);
@@ -251,8 +235,6 @@ public class AddAircraftView extends javax.swing.JDialog {
     private javax.swing.JTextField maxAltitudeTextField;
     private javax.swing.JLabel maxSpeedLabel;
     private javax.swing.JTextField maxSpeedTextField;
-    private javax.swing.JComboBox<String> missionComboBox;
-    private javax.swing.JLabel missionLabel;
     private javax.swing.JPanel outerPanel;
     private javax.swing.JLabel tailNumberLabel;
     private javax.swing.JTextField tailNumberTextField;
