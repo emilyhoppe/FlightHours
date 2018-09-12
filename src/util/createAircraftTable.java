@@ -47,7 +47,6 @@ public class createAircraftTable {
                         + " TAIL_NUMBER   VARCHAR (10) NOT NULL,"
                         + " AIRCRAFT_TYPE VARCHAR (20) NOT NULL,"
                         + " STATION_ID INT NOT NULL,"
-                        + " PRIMARY_MISSION INT NOT NULL,"
                         + " MAX_SPEED INT NOT NULL,"
                         + " MAX_ALTITUDE INT NOT NULL,"
                         + " TOTAL_FILGHT_HOURS INT NOT NULL,"
