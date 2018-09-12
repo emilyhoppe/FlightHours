@@ -31,12 +31,6 @@ public class FlightHours {
                 createAndShowGUI();
             }
         });
-
-        //Read in Test Data File (Edited by Emily)
-        System.out.println("Printing Test Data from AircraftTestData.txt");
-        ReadData test = new ReadData();
-        test.checkDataFormat();
-        test.printData();
     }
 
     //Create applicaiton frame and set it to visible
