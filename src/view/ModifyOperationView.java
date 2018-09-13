@@ -13,15 +13,34 @@
  *********** */
 package view;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class ModifyOperationView extends javax.swing.JDialog {
 
     private String tailNumber;
-    
-    public ModifyOperationView(java.awt.Frame parent, boolean modal, String tailNumber) {
+    private String operationID;
+    private String name;
+    private String location;
+    private String mission;
+    private String startDate;
+    private String endDate;
+    private String flightHours;
+
+    //Constructor with passed variables
+    public ModifyOperationView(java.awt.Frame parent, boolean modal,
+            String tailNumber, String operationID, String name,
+            String location, String mission, String startDate,
+            String endDate, String flightHours) {
         super(parent, modal);
         this.tailNumber = tailNumber;
+        this.operationID = operationID;
+        this.name = name;
+        this.location = location;
+        this.mission = mission;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.flightHours = flightHours;
         initComponents();
         //Set modify operation button to respond to enter key
         SwingUtilities.getRootPane(modifyOperationButton).setDefaultButton(modifyOperationButton);
@@ -41,12 +60,12 @@ public class ModifyOperationView extends javax.swing.JDialog {
         endDateLabel = new javax.swing.JLabel();
         flightHoursLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField(tailNumber);
-        operationNameTextField = new javax.swing.JTextField();
+        operationNameTextField = new javax.swing.JTextField(name);
         locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
         missionComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getMissionArray());
-        startDateTextField = new javax.swing.JTextField();
-        endDateTextField = new javax.swing.JTextField();
-        flightHoursTextField = new javax.swing.JTextField();
+        startDateTextField = new javax.swing.JTextField(startDate);
+        endDateTextField = new javax.swing.JTextField(endDate);
+        flightHoursTextField = new javax.swing.JTextField(flightHours);
         innerBottomPanel = new javax.swing.JPanel();
         modifyOperationButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -137,7 +156,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
         innerMiddlePanel.add(tailNumberTextField, gridBagConstraints);
 
         operationNameTextField.setColumns(10);
-        operationNameTextField.setText("Operation A");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -158,7 +176,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
         innerMiddlePanel.add(missionComboBox, gridBagConstraints);
 
         startDateTextField.setColumns(10);
-        startDateTextField.setText("8/30/2018");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -167,8 +184,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
         innerMiddlePanel.add(startDateTextField, gridBagConstraints);
 
         endDateTextField.setColumns(10);
-        endDateTextField.setText("8/30/2018");
-        endDateTextField.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -177,7 +192,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
         innerMiddlePanel.add(endDateTextField, gridBagConstraints);
 
         flightHoursTextField.setColumns(10);
-        flightHoursTextField.setText("5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -237,12 +251,23 @@ public class ModifyOperationView extends javax.swing.JDialog {
     }//GEN-END:initComponents
 
     private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
-        // TODO add your handling code here:
+        //TODO Call SQL function
+        //Temporarily show message box with values
+        JOptionPane.showMessageDialog(outerPanel,
+                "Modifying Operations Database record for aircraft tail number: " + tailNumberTextField.getText() + "\n"
+                + "Operation ID: " + operationID + "\n"
+                + "Operation Name: " + operationNameTextField.getText() + "\n"
+                + "Location: " + locationComboBox.getSelectedItem() + "\n"
+                + "Mission: " + missionComboBox.getSelectedItem()+ "\n"
+                + "Start Date: " + startDateTextField.getText() + "\n"
+                + "End Date: " + endDateTextField.getText() + "\n"
+                + "Flight Hours: " + flightHoursTextField.getText(),
+                "Notice", JOptionPane.PLAIN_MESSAGE);
         dispose();
     }//GEN-LAST:event_modifyOperationButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        //Cancel modifying operaiton and close window
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 

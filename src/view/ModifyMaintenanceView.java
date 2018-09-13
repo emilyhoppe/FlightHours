@@ -1,28 +1,38 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         ModifyMaintenanceView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class ModifyMaintenanceView extends javax.swing.JDialog {
 
     private String tailNumber;
-    
-    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, String tailNumber) {
+    private String maintenanceID;
+    private String startDate;
+    private String endDate;
+    private String description;
+
+    //Constructor with passed variables
+    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, String tailNumber,
+            String maintenanceID, String startDate, String endDate, String description) {
         super(parent, modal);
         this.tailNumber = tailNumber;
+        this.maintenanceID = maintenanceID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
         initComponents();
         //Set modify maintenance button to respond to enter key
         SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
@@ -39,10 +49,10 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         endDateLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
         tailNumberTextField = new javax.swing.JTextField(tailNumber);
-        startDateTextField = new javax.swing.JTextField();
-        endDateTextField = new javax.swing.JTextField();
+        startDateTextField = new javax.swing.JTextField(startDate);
+        endDateTextField = new javax.swing.JTextField(endDate);
         descriptionScrollPane = new javax.swing.JScrollPane();
-        descriptionTextArea = new javax.swing.JTextArea();
+        descriptionTextArea = new javax.swing.JTextArea(description);
         innerBottomPanel = new javax.swing.JPanel();
         modifyMaintenanceButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -109,7 +119,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         innerMiddlePanel.add(tailNumberTextField, gridBagConstraints);
 
         startDateTextField.setColumns(10);
-        startDateTextField.setText("7/28/2018");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -118,7 +127,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         innerMiddlePanel.add(startDateTextField, gridBagConstraints);
 
         endDateTextField.setColumns(10);
-        endDateTextField.setText("7/28/2018");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -129,7 +137,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         descriptionTextArea.setColumns(30);
         descriptionTextArea.setRows(5);
         descriptionTextArea.setTabSize(4);
-        descriptionTextArea.setText("Replace front landing gear");
         descriptionScrollPane.setViewportView(descriptionTextArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -191,12 +198,20 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
     }//GEN-END:initComponents
 
     private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
-        // TODO add your handling code here:
+        //TODO Call SQL function
+        //Temporarily show message box with values
+        JOptionPane.showMessageDialog(outerPanel,
+                "Modify Maintenance Database record for aircraft tail number: " + tailNumberTextField.getText() + "\n"
+                + "Maintenance ID: " + maintenanceID + "\n"
+                + "Start Date: " + startDateTextField.getText() + "\n"
+                + "End Date: " + endDateTextField.getText()+ "\n"
+                + "Description: " + descriptionTextArea.getText(),
+                "Notice", JOptionPane.PLAIN_MESSAGE);
         dispose();
     }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        //Cancel modifying maintenance record and close window
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 

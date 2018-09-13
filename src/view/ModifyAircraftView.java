@@ -29,14 +29,6 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private String maintHoursThreshold;
     private String endOfServiceDate;
 
-    //Constructor without variables
-    public ModifyAircraftView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        //Set modify aircraft button to respond to enter key
-        SwingUtilities.getRootPane(modifyAircraftButton).setDefaultButton(modifyAircraftButton);
-    }
-
     //Constructor with passed variables
     public ModifyAircraftView(Frame owner, boolean modal, String ID, String tailNumber,
             String type, String location, String maxSpeed,
@@ -286,7 +278,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         //TODO Call SQL function
         //Temporarily show message box with values
         JOptionPane.showMessageDialog(outerPanel,
-                "Modifying Database values for aircraft ID: " + ID + "\n"
+                "Modifying Aircraft Database values for aircraft ID: " + ID + "\n"
                 + "Tail Number: " + tailNumberTextField.getText() + "\n"
                 + "Type: " + typeComboBox.getSelectedItem() + "\n"
                 + "Location: " + locationComboBox.getSelectedItem() + "\n"
@@ -299,7 +291,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        //Cancel modifying aircraft and close window
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 

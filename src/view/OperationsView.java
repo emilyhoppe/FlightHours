@@ -16,6 +16,7 @@ package view;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -168,10 +169,27 @@ public class OperationsView extends javax.swing.JPanel {
     }//GEN-LAST:event_addOperationButtonActionPerformed
 
     private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
-        // TODO add your handling code here:
+        //Open modify operation window when modify operation button is pressed
+        //Retrieve selected table row and pass all data to new window
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ModifyOperationView modifyOperationView = new ModifyOperationView(frame, true, tailNumber);
-        modifyOperationView.setVisible(true);
+        try {
+            int selectedRow = operationsTable.getSelectedRow();
+            String operationID = operationsTable.getValueAt(selectedRow,0).toString();
+            String name = operationsTable.getValueAt(selectedRow, 1).toString();
+            String location = operationsTable.getValueAt(selectedRow, 2).toString();
+            String mission = operationsTable.getValueAt(selectedRow, 3).toString();
+            String startDate = operationsTable.getValueAt(selectedRow, 4).toString();
+            String endDate = operationsTable.getValueAt(selectedRow,5).toString();
+            String flightHours = operationsTable.getValueAt(selectedRow, 6).toString();
+            ModifyOperationView modifyOperationView = new ModifyOperationView(frame,
+                    true, tailNumber,operationID, name, location, mission, startDate, 
+                    endDate, flightHours);
+
+            modifyOperationView.setVisible(true);
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(topPanel, "Please select an operation to modify", "Notice", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_modifyOperationButtonActionPerformed
 
 

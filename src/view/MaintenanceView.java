@@ -16,6 +16,7 @@ package view;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import temporary.TemporaryFunctions;
 
@@ -152,7 +153,7 @@ public class MaintenanceView extends javax.swing.JPanel {
         Component component = (Component) evt.getSource();
         MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
         MainPanel mainPanel = frame.getMainPanel();
-        CardLayout layout = (CardLayout) mainPanel.getLayout();        
+        CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, "aircraftView");
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -164,10 +165,23 @@ public class MaintenanceView extends javax.swing.JPanel {
     }//GEN-LAST:event_addMaintenanceButtonActionPerformed
 
     private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
-        // TODO add your handling code here:
+        //Open modify maintenance window when modify maintenance button is pressed
+        //Retrieve selected table row and pass all data to new window
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame, true, tailNumber);
-        modifyMaintenanceView.setVisible(true);
+        try {
+            int selectedRow = maintenanceTable.getSelectedRow();
+            String maintenanceID = maintenanceTable.getValueAt(selectedRow, 0).toString();
+            String startDate = maintenanceTable.getValueAt(selectedRow, 1).toString();
+            String endDate = maintenanceTable.getValueAt(selectedRow, 2).toString();
+            String description = maintenanceTable.getValueAt(selectedRow, 3).toString();
+            ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame,
+                    true, tailNumber, maintenanceID, startDate, endDate, description);
+
+            modifyMaintenanceView.setVisible(true);
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(topPanel, "Please select a maintenance event to modify", "Notice", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
 
 
