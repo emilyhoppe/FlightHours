@@ -275,19 +275,57 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     }//GEN-END:initComponents
 
     private void modifyAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
-        //TODO Call SQL function
-        //Temporarily show message box with values
-        JOptionPane.showMessageDialog(outerPanel,
-                "Modifying Aircraft Database values for aircraft ID: " + ID + "\n"
-                + "Tail Number: " + tailNumberTextField.getText() + "\n"
-                + "Type: " + typeComboBox.getSelectedItem() + "\n"
-                + "Location: " + locationComboBox.getSelectedItem() + "\n"
-                + "Max Speed: " + maxSpeedTextField.getText() + "\n"
-                + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
-                + "Maintenance Threshold: " + maintThresholdTextField.getText() + "\n"
-                + "End of Service Date: " + endOfServiceTextField.getText(),
-                "Notice", JOptionPane.PLAIN_MESSAGE);
-        dispose();
+        //Validate user input
+        boolean isValid = true;
+        if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
+            isValid = false;
+            JOptionPane.showMessageDialog(outerPanel, "Tail Number is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        } else if (!util.InputValidator.isPositiveNumber(maxSpeedTextField.getText())) {
+            isValid = false;
+            JOptionPane.showMessageDialog(outerPanel, "Max Speed is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        } else if (!util.InputValidator.isPositiveNumber(maxAltitudeTextField.getText())) {
+            isValid = false;
+            JOptionPane.showMessageDialog(outerPanel, "Max Altitude is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        } else if (!util.InputValidator.isPositiveNumber(currentMaintHoursTextField.getText())) {
+            isValid = false;
+            JOptionPane.showMessageDialog(outerPanel, "Current Maintenance Hours is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        } else if (!util.InputValidator.isPositiveNumber(maintThresholdTextField.getText())) {
+            isValid = false;
+            JOptionPane.showMessageDialog(outerPanel, "Maintenance Threshold is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            //This date field can be empty, if so, skip date validation
+        } else if (!endOfServiceTextField.getText().equals("")) {
+            if (!util.InputValidator.isValidDate(endOfServiceTextField.getText())) {
+                isValid = false;
+                JOptionPane.showMessageDialog(outerPanel, "End of Service Date is invalid\n"
+                        + "Please use format MM/DD/YYYY",
+                        "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //If all user inputs are valid
+        if (isValid) {
+            //TODO Call SQL function
+            //TODO Validate that tail number does not already exist in DATABASE only if it 
+            //  is being changed, (first check to see if it matches what is already in 
+            //  the table, then there is no need to validate)
+            //Temporarily show message box with values
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Modifying Aircraft Database values for aircraft ID: " + ID + "\n"
+                    + "Tail Number: " + tailNumberTextField.getText() + "\n"
+                    + "Type: " + typeComboBox.getSelectedItem() + "\n"
+                    + "Location: " + locationComboBox.getSelectedItem() + "\n"
+                    + "Max Speed: " + maxSpeedTextField.getText() + "\n"
+                    + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
+                    + "Current Maintenance Hours: " + currentMaintHoursTextField.getText() + "\n"
+                    + "Maintenance Threshold: " + maintThresholdTextField.getText() + "\n"
+                    + "End of Service Date: " + endOfServiceTextField.getText(),
+                    "Notice", JOptionPane.PLAIN_MESSAGE);
+            dispose();
+        }
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
