@@ -50,6 +50,14 @@ public class OperationDAO {
         return results;
     }
     
+    public static List<Operation> selectOperationByAircraft() {
+
+        List<Operation> results = null;
+        ResultSet resultSet = null;
+
+        return results;
+    }
+    
     public int insertNewOperation(Operation inOperation) {
         int result = 0;
 
