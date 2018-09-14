@@ -35,7 +35,9 @@ public class InputValidator {
         if (text.matches("^[0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4}$")) {
             SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             //This causes dates with more than 12 months to fail instead of rollover
+            //to the next year.  Same for days rolling over into the next month.
             df.setLenient(false);
+            //Parse string, if it is a valid date return true, otherwise false
             try {
                 df.parse(text);
                 return true;

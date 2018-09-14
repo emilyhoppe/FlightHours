@@ -15,15 +15,17 @@ package view;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    //Returns mainPanel so cardLayout can be updated by user
+    //Returns mainPanel object so cardLayout can be changed by user, aka switch screens
     public MainPanel getMainPanel() {
         return mainPanel;
     }
 
+    //Constructor
     public MainFrame() {
         initComponents();
     }
 
+    //Initialize all Swing components and place them in the JFrame using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 

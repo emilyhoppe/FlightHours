@@ -7,13 +7,14 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
- *          AircraftView is the default view that opens when the user starts the application
- *          This view allows the user to search a list of aircraft by tail number, maintenance
- *          flag or location.  A table with aircraft data will be produced.
- *          The user is then allowed to switch to the aircraft operations view or the aircraft
- *          maintenance view.  Also, the user can open dialog boxes by pressing the add aircraft
+ *      Class Description:  AircraftView is the default GUI view that opens when 
+ *          the user starts the application.  This view allows the user to search 
+ *          a list of aircraft by tail number, maintenance flag or location.  
+ *          A table with aircraft data will be produced.  The user is then allowed 
+ *          to switch to the aircraft operations view or the aircraft maintenance 
+ *          view.  Also, the user can open dialog boxes by pressing the add aircraft
  *          or modify aircraft buttons.
+ * 
  *
  *********** */
 package view;
@@ -28,10 +29,12 @@ import temporary.TemporaryFunctions;
 
 public class AircraftView extends javax.swing.JPanel {
 
+    //Constructor
     public AircraftView() {
         initComponents();
     }
 
+    //Initialize all Swing components and place them in the JPanel using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
@@ -342,17 +345,17 @@ public class AircraftView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
             int selectedRow = aircraftTable.getSelectedRow();
-            String ID = aircraftTable.getValueAt(selectedRow,0).toString();
+            String ID = aircraftTable.getValueAt(selectedRow, 0).toString();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             String type = aircraftTable.getValueAt(selectedRow, 2).toString();
             String location = aircraftTable.getValueAt(selectedRow, 3).toString();
             String maxSpeed = aircraftTable.getValueAt(selectedRow, 4).toString();
             String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
-            String currentMaintHours = aircraftTable.getValueAt(selectedRow,8).toString();
+            String currentMaintHours = aircraftTable.getValueAt(selectedRow, 8).toString();
             String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
             String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
             ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
-                    true, ID,tailNumber, type, location, maxSpeed, maxAltitude, 
+                    true, ID, tailNumber, type, location, maxSpeed, maxAltitude,
                     currentMaintHours, maintHoursThreshold, endOfServiceDate);
 
             modifyAircraftView.setVisible(true);

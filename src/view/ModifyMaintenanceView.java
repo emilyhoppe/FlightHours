@@ -7,7 +7,11 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: ModifyMaintenance is a GUI view class which extends JDialog.
+ *              It provides text fields and combo boxes for the user to modify
+ *              existing maintenance events in the database.  When a user clicks the Modify 
+ *              Maintenance button, the inputs will be validated and updated in 
+ *              the database.
  *
  *
  *********** */
@@ -18,13 +22,14 @@ import javax.swing.SwingUtilities;
 
 public class ModifyMaintenanceView extends javax.swing.JDialog {
 
+    //Instance variables
     private String tailNumber;
     private String maintenanceID;
     private String startDate;
     private String endDate;
     private String description;
 
-    //Constructor with passed variables
+    //Constructor with parameters
     public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, String tailNumber,
             String maintenanceID, String startDate, String endDate, String description) {
         super(parent, modal);
@@ -37,7 +42,8 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         //Set modify maintenance button to respond to enter key
         SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
     }
-
+    
+    //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 

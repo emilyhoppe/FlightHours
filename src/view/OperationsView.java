@@ -7,7 +7,12 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: OperationsView is a GUI view class which extends JPanel.
+ *          A table with aircraft operations will be provided, showing all 
+ *          operations related to the previously selected aircraft.  The 
+ *          user can select an operation from the table and click Add Operation
+ *          or Modify Operation to open input dialog boxes.  A Back button is provided
+ *          which will switch the card layout back to the Aircraft Search view.
  *
  *
  *********** */
@@ -18,10 +23,10 @@ import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 
 public class OperationsView extends javax.swing.JPanel {
 
+    //Instance variables
     private String tailNumber;
 
     //Set tail number public method
@@ -30,18 +35,12 @@ public class OperationsView extends javax.swing.JPanel {
         tailNumberTextField.setText(tailNumber);
     }
 
+    //Constructor
     public OperationsView() {
         initComponents();
     }
 
-    //Make all table cells non-editable
-    private final DefaultTableModel tableModel = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
-
+    //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 

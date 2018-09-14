@@ -7,7 +7,11 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: ModifyOperationView is a GUI view class which extends JDialog.
+ *              It provides text fields and combo boxes for the user to modify
+ *              existing operations in the database.  When a user clicks the Modify 
+ *              Operation button, the inputs will be validated and updated in 
+ *              the database.
  *
  *
  *********** */
@@ -18,6 +22,7 @@ import javax.swing.SwingUtilities;
 
 public class ModifyOperationView extends javax.swing.JDialog {
 
+    //Instance variables
     private String tailNumber;
     private String operationID;
     private String name;
@@ -27,7 +32,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private String endDate;
     private String flightHours;
 
-    //Constructor with passed variables
+    //Constructor with parameters
     public ModifyOperationView(java.awt.Frame parent, boolean modal,
             String tailNumber, String operationID, String name,
             String location, String mission, String startDate,
@@ -45,7 +50,8 @@ public class ModifyOperationView extends javax.swing.JDialog {
         //Set modify operation button to respond to enter key
         SwingUtilities.getRootPane(modifyOperationButton).setDefaultButton(modifyOperationButton);
     }
-
+    
+    //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 

@@ -1,4 +1,4 @@
-/************
+/** **********
  *
  *      Class:         MainPanel.java
  *      Package:       view
@@ -10,7 +10,7 @@
  *      Class Description:
  *
  *
- ************/
+ *********** */
 package view;
 
 public class MainPanel extends javax.swing.JPanel {
@@ -19,19 +19,23 @@ public class MainPanel extends javax.swing.JPanel {
     public AircraftView getAircraftView() {
         return aircraftView;
     }
+
     //Getter for maintenanceView object used to pass data to view
     public MaintenanceView getMaintenanceView() {
         return maintenanceView;
     }
+
     //Getter for operationsView object used to pass data to view
     public OperationsView getOperationsView() {
         return operationsView;
     }
-  
+
+    //Constructor
     public MainPanel() {
         initComponents();
     }
 
+    //Initialize all Swing components and place them in the JPanel using CardLayout
     private void initComponents() {//GEN-BEGIN:initComponents
 
         aircraftView = new view.AircraftView();

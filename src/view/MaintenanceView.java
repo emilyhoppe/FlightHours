@@ -7,7 +7,12 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: MaintenanceView is a GUI view class which extends JPanel.
+ *          A table with aircraft maintenance events will be provided, showing all 
+ *          maintenance events related to the previously selected aircraft.  The 
+ *          user can select a maintenance event from the table and click Add Maintenance
+ *          or Modify Maintenance to open input dialog boxes.  A Back button is provided
+ *          which will switch the card layout back to the Aircraft Search view.
  *
  *
  *********** */
@@ -22,7 +27,8 @@ import temporary.TemporaryFunctions;
 
 public class MaintenanceView extends javax.swing.JPanel {
 
-    private String tailNumber = "";
+    //Instance variables
+    private String tailNumber;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -30,10 +36,12 @@ public class MaintenanceView extends javax.swing.JPanel {
         tailNumberTextField.setText(tailNumber);
     }
 
+    //Constructor
     public MaintenanceView() {
         initComponents();
     }
 
+    //Initialize all Swing components and place them in the JPanel using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 

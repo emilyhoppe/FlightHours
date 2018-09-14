@@ -7,7 +7,11 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: ModifyAircraftView is a GUI view class which extends JDialog.
+ *              It provides text fields and combo boxes for the user to modify
+ *              existing aircraft in the database.  When a user clicks the Modify 
+ *              Aircraft button, the inputs will be validated and updated in 
+ *              the database.
  *
  *
  *********** */
@@ -19,6 +23,7 @@ import javax.swing.SwingUtilities;
 
 public class ModifyAircraftView extends javax.swing.JDialog {
 
+    //Instance variables
     private String ID;
     private String tailNumber;
     private String type;
@@ -29,7 +34,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private String maintHoursThreshold;
     private String endOfServiceDate;
 
-    //Constructor with passed variables
+    //Constructor with parameters
     public ModifyAircraftView(Frame owner, boolean modal, String ID, String tailNumber,
             String type, String location, String maxSpeed,
             String maxAltitude, String currentMaintHours, String maintHoursThreshold,
@@ -49,6 +54,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         SwingUtilities.getRootPane(modifyAircraftButton).setDefaultButton(modifyAircraftButton);
     }
 
+    //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
@@ -301,18 +307,20 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         } else if (!endOfServiceTextField.getText().equals("")) {
             if (!util.InputValidator.isValidDate(endOfServiceTextField.getText())) {
                 isValid = false;
-                JOptionPane.showMessageDialog(outerPanel, "End of Service Date is invalid\n"
-                        + "Please use format MM/DD/YYYY",
+                JOptionPane.showMessageDialog(outerPanel, 
+                        "End of Service Date is invalid\n" +
+                        "Please use format MM/DD/YYYY\n" + 
+                        "or leave field empty",
                         "Invalid Input", JOptionPane.ERROR_MESSAGE);
             }
         }
-        //If all user inputs are valid
+        //Run only if all user inputs are valid
         if (isValid) {
             //TODO Call SQL function
             //TODO Validate that tail number does not already exist in DATABASE only if it 
             //  is being changed, (first check to see if it matches what is already in 
             //  the table, then there is no need to validate)
-            //Temporarily show message box with values
+            //TODO Temporarily show message box with values
             JOptionPane.showMessageDialog(outerPanel,
                     "Modifying Aircraft Database values for aircraft ID: " + ID + "\n"
                     + "Tail Number: " + tailNumberTextField.getText() + "\n"
