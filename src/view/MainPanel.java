@@ -7,7 +7,11 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: The MainPanel class extends JPanel.  This panel sits 
+ *              on the Main Frame and uses the CardLayout layout manager.  Aircraft,
+ *              Operations, and Maintenance panels are added to this layout as 
+ *              cards, so they can be switched between to show the user different
+ *              screens.
  *
  *
  *********** */
