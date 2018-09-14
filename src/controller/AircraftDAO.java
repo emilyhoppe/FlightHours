@@ -29,6 +29,7 @@ public class AircraftDAO {
     private static PreparedStatement selectAircraftByMaintFlag;
     private static PreparedStatement insertNewAircraft;
     private static PreparedStatement modifyAircraft;
+    private static PreparedStatement tailNumberExists;
     private static List<Aircraft> AircraftList;
 
     public AircraftDAO(Connection conn) {
@@ -36,18 +37,18 @@ public class AircraftDAO {
             AircraftDAO.conn = conn;
             //conn = DriverManager.getConnection(dbURL);
             selectAllAircraft = conn.prepareStatement("SELECT * FROM AIRCRAFT ORDER BY TAIL_NUMBER");
-
+            tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
         } catch (Exception except) {
             except.printStackTrace();
         }
-        
+
     }
 
     public static JTable selectAllAircraft() {
 
         //List<Aircraft> results = null;
         ResultSet resultSet = null;
-        
+
         try {
             resultSet = selectAllAircraft.executeQuery();
             while (resultSet.next()) {
@@ -56,10 +57,8 @@ public class AircraftDAO {
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
-        } 
-        
-       
-    
+        }
+
         JTable aircraftTable = new JTable(util.DBUtils.resultSetToTableModel(resultSet));
 
         return aircraftTable;
@@ -98,6 +97,12 @@ public class AircraftDAO {
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
+        return result;
+    }
+    
+    public boolean tailNumberExists(String tailNumber) {
+        
+        boolean result = false;
         return result;
     }
 }
