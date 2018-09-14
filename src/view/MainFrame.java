@@ -7,7 +7,9 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: The MainFrame class extends JFrame and is the base
+ *          of the GUI which all other GUI components sit on.  This class also 
+ *          creates the menu bar and menu items.
  *
  *
  *********** */
@@ -80,12 +82,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        // TODO add your handling code here:
+        //Exit the system
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        // TODO add your handling code here:
+        //Display the AboutView dialog
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
 
