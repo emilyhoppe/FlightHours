@@ -45,6 +45,8 @@ public class AddOperationView extends javax.swing.JDialog {
         super(parent, modal);
         this.tailNumber = tailNumber;
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set add operation button to respond to enter key
         SwingUtilities.getRootPane(addOperationButton).setDefaultButton(addOperationButton);
     }

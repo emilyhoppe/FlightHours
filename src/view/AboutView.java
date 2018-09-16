@@ -34,6 +34,8 @@ public class AboutView extends javax.swing.JDialog {
     public AboutView(java.awt.Frame parent, boolean model) {
         super(parent, model);
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set close button to respond to enter key
         SwingUtilities.getRootPane(closeButton).setDefaultButton(closeButton);
     }
@@ -82,6 +84,7 @@ public class AboutView extends javax.swing.JDialog {
         getContentPane().add(mainPanel, gridBagConstraints);
 
         pack();
+        setLocationRelativeTo(null);
     }//GEN-END:initComponents
 
     private void closeButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed

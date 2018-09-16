@@ -45,6 +45,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         super(parent, modal);
         this.tailNumber = tailNumber;
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set add maintenance button to respond to enter key
         SwingUtilities.getRootPane(addMaintenanceButton).setDefaultButton(addMaintenanceButton);
     }

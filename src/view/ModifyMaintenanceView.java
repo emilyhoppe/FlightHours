@@ -54,6 +54,8 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         this.endDate = endDate;
         this.description = description;
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set modify maintenance button to respond to enter key
         SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
     }

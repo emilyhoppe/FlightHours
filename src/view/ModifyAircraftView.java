@@ -50,11 +50,11 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private String endOfServiceDate;
 
     //Constructor with parameters
-    public ModifyAircraftView(Frame owner, boolean modal, String ID, String tailNumber,
+    public ModifyAircraftView(Frame parent, boolean modal, String ID, String tailNumber,
             String type, String location, String maxSpeed,
             String maxAltitude, String currentMaintHours, String maintHoursThreshold,
             String endOfServiceDate) {
-        super(owner, modal);
+        super(parent, modal);
         this.ID = ID;
         this.tailNumber = tailNumber;
         this.type = type;
@@ -65,6 +65,8 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         this.maintHoursThreshold = maintHoursThreshold;
         this.endOfServiceDate = endOfServiceDate;
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set modify aircraft button to respond to enter key
         SwingUtilities.getRootPane(modifyAircraftButton).setDefaultButton(modifyAircraftButton);
     }

@@ -1,21 +1,20 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         AddAircraftView.java
- *      Package:       view      
- *      Date:          September, 2018 
- *      
+ *      Package:       view
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description: AddAircraftView is a GUI view class which extends JDialog.
  *              It provides text fields and combo boxes for the user to add a new
- *              aircraft to the database.  When a user clicks the Add 
- *              Aircraft button, the inputs will be validated and inserted in 
+ *              aircraft to the database.  When a user clicks the Add
+ *              Aircraft button, the inputs will be validated and inserted in
  *              the database.
- * 
- * 
- ************/
-
+ *
+ *
+ *********** */
 package view;
 
 import java.awt.Font;
@@ -37,11 +36,13 @@ import javax.swing.border.SoftBevelBorder;
 import temporary.TemporaryFunctions;
 
 public class AddAircraftView extends javax.swing.JDialog {
-    
+
     //Constructor
     public AddAircraftView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set add aircraft button to respond to enter key
         SwingUtilities.getRootPane(addAircraftButton).setDefaultButton(addAircraftButton);
     }

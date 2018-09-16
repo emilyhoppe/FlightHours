@@ -62,6 +62,8 @@ public class ModifyOperationView extends javax.swing.JDialog {
         this.endDate = endDate;
         this.flightHours = flightHours;
         initComponents();
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
         //Set modify operation button to respond to enter key
         SwingUtilities.getRootPane(modifyOperationButton).setDefaultButton(modifyOperationButton);
     }
