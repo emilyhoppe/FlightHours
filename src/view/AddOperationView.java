@@ -17,8 +17,23 @@
  *********** */
 package view;
 
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import temporary.TemporaryFunctions;
 
 public class AddOperationView extends javax.swing.JDialog {
 
@@ -36,210 +51,210 @@ public class AddOperationView extends javax.swing.JDialog {
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        outerPanel = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
-        innerMiddlePanel = new javax.swing.JPanel();
-        tailNumberLabel = new javax.swing.JLabel();
-        operationNameLabel = new javax.swing.JLabel();
-        locationLabel = new javax.swing.JLabel();
-        missionLabel = new javax.swing.JLabel();
-        startDateLabel = new javax.swing.JLabel();
-        endDateLabel = new javax.swing.JLabel();
-        flightHoursLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField(tailNumber);
-        operationNameTextField = new javax.swing.JTextField();
-        locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
-        missionComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getMissionArray());
-        startDateTextField = new javax.swing.JTextField();
-        endDateTextField = new javax.swing.JTextField();
-        flightHoursTextField = new javax.swing.JTextField();
-        innerBottomPanel = new javax.swing.JPanel();
-        addOperationButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
+        outerPanel = new JPanel();
+        titleLabel = new JLabel();
+        innerMiddlePanel = new JPanel();
+        tailNumberLabel = new JLabel();
+        operationNameLabel = new JLabel();
+        locationLabel = new JLabel();
+        missionLabel = new JLabel();
+        startDateLabel = new JLabel();
+        endDateLabel = new JLabel();
+        flightHoursLabel = new JLabel();
+        tailNumberTextField = new JTextField(tailNumber);
+        operationNameTextField = new JTextField();
+        locationComboBox = new JComboBox<>(TemporaryFunctions.getLocationArray());
+        missionComboBox = new JComboBox<>(TemporaryFunctions.getMissionArray());
+        startDateTextField = new JTextField();
+        endDateTextField = new JTextField();
+        flightHoursTextField = new JTextField();
+        innerBottomPanel = new JPanel();
+        addOperationButton = new JButton();
+        cancelButton = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Operation");
         setModal(true);
         setResizable(false);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new GridBagLayout());
 
-        outerPanel.setLayout(new java.awt.GridBagLayout());
+        outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setFont(new Font("Tahoma", 1, 18)); // NOI18N
         titleLabel.setText("Add Operation");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        gridBagConstraints.insets = new Insets(5, 0, 5, 0);
         outerPanel.add(titleLabel, gridBagConstraints);
 
-        innerMiddlePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        innerMiddlePanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         innerMiddlePanel.setToolTipText("");
-        innerMiddlePanel.setLayout(new java.awt.GridBagLayout());
+        innerMiddlePanel.setLayout(new GridBagLayout());
 
         tailNumberLabel.setText("Tail Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(tailNumberLabel, gridBagConstraints);
 
         operationNameLabel.setText("Operation Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameLabel, gridBagConstraints);
 
         locationLabel.setText("Location");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationLabel, gridBagConstraints);
 
         missionLabel.setText("Mission");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(missionLabel, gridBagConstraints);
 
         startDateLabel.setText("Start Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(startDateLabel, gridBagConstraints);
 
         endDateLabel.setText("End Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(endDateLabel, gridBagConstraints);
 
         flightHoursLabel.setText("Flight Hours");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(flightHoursLabel, gridBagConstraints);
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(tailNumberTextField, gridBagConstraints);
 
         operationNameTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationComboBox, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(missionComboBox, gridBagConstraints);
 
         startDateTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(startDateTextField, gridBagConstraints);
 
         endDateTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(endDateTextField, gridBagConstraints);
 
         flightHoursTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(flightHoursTextField, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
+        gridBagConstraints.insets = new Insets(15, 0, 15, 0);
         outerPanel.add(innerMiddlePanel, gridBagConstraints);
 
-        innerBottomPanel.setLayout(new java.awt.GridBagLayout());
+        innerBottomPanel.setLayout(new GridBagLayout());
 
         addOperationButton.setText("Add Operation");
-        addOperationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addOperationButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 addOperationButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerBottomPanel.add(addOperationButton, gridBagConstraints);
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerBottomPanel.add(cancelButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        gridBagConstraints.insets = new Insets(5, 0, 5, 0);
         outerPanel.add(innerBottomPanel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 30, 30);
+        gridBagConstraints.insets = new Insets(30, 30, 30, 30);
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
         setLocationRelativeTo(null);
     }//GEN-END:initComponents
 
-    private void addOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
+    private void addOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
         //TODO Call SQL function
         //Temporarily show message box with values
         JOptionPane.showMessageDialog(outerPanel,
@@ -255,31 +270,31 @@ public class AddOperationView extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_addOperationButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         //Cancel adding operations and close window
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addOperationButton;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel endDateLabel;
-    private javax.swing.JTextField endDateTextField;
-    private javax.swing.JLabel flightHoursLabel;
-    private javax.swing.JTextField flightHoursTextField;
-    private javax.swing.JPanel innerBottomPanel;
-    private javax.swing.JPanel innerMiddlePanel;
-    private javax.swing.JComboBox<String> locationComboBox;
-    private javax.swing.JLabel locationLabel;
-    private javax.swing.JComboBox<String> missionComboBox;
-    private javax.swing.JLabel missionLabel;
-    private javax.swing.JLabel operationNameLabel;
-    private javax.swing.JTextField operationNameTextField;
-    private javax.swing.JPanel outerPanel;
-    private javax.swing.JLabel startDateLabel;
-    private javax.swing.JTextField startDateTextField;
-    private javax.swing.JLabel tailNumberLabel;
-    private javax.swing.JTextField tailNumberTextField;
-    private javax.swing.JLabel titleLabel;
+    private JButton addOperationButton;
+    private JButton cancelButton;
+    private JLabel endDateLabel;
+    private JTextField endDateTextField;
+    private JLabel flightHoursLabel;
+    private JTextField flightHoursTextField;
+    private JPanel innerBottomPanel;
+    private JPanel innerMiddlePanel;
+    private JComboBox<String> locationComboBox;
+    private JLabel locationLabel;
+    private JComboBox<String> missionComboBox;
+    private JLabel missionLabel;
+    private JLabel operationNameLabel;
+    private JTextField operationNameTextField;
+    private JPanel outerPanel;
+    private JLabel startDateLabel;
+    private JTextField startDateTextField;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

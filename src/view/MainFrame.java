@@ -15,6 +15,16 @@
  *********** */
 package view;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.WindowConstants;
+
 public class MainFrame extends javax.swing.JFrame {
 
     //Returns mainPanel object so cardLayout can be changed by user, aka switch screens
@@ -29,24 +39,24 @@ public class MainFrame extends javax.swing.JFrame {
 
     //Initialize all Swing components and place them in the JFrame using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        mainPanel = new view.MainPanel();
-        menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        exitMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        aboutMenuItem = new javax.swing.JMenuItem();
+        mainPanel = new MainPanel();
+        menuBar = new JMenuBar();
+        fileMenu = new JMenu();
+        exitMenuItem = new JMenuItem();
+        helpMenu = new JMenu();
+        aboutMenuItem = new JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("FHS Flight Hours System");
         setName("MainFrame"); // NOI18N
-        setSize(new java.awt.Dimension(700, 500));
-        getContentPane().setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        setSize(new Dimension(700, 500));
+        getContentPane().setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(mainPanel, gridBagConstraints);
@@ -54,8 +64,8 @@ public class MainFrame extends javax.swing.JFrame {
         fileMenu.setText("File");
 
         exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
             }
         });
@@ -66,8 +76,8 @@ public class MainFrame extends javax.swing.JFrame {
         helpMenu.setText("Help");
 
         aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        aboutMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
             }
         });
@@ -77,16 +87,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
-        setSize(new java.awt.Dimension(966, 739));
+        setSize(new Dimension(966, 739));
         setLocationRelativeTo(null);
     }//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void exitMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         //Exit the system
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+    private void aboutMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         //Display the AboutView dialog
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
@@ -94,11 +104,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private view.MainPanel mainPanel;
-    private javax.swing.JMenuBar menuBar;
+    private JMenuItem aboutMenuItem;
+    private JMenuItem exitMenuItem;
+    private JMenu fileMenu;
+    private JMenu helpMenu;
+    private MainPanel mainPanel;
+    private JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 }

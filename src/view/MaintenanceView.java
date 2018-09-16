@@ -20,9 +20,26 @@ package view;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
 import temporary.TemporaryFunctions;
 
 public class MaintenanceView extends javax.swing.JPanel {
@@ -43,63 +60,63 @@ public class MaintenanceView extends javax.swing.JPanel {
 
     //Initialize all Swing components and place them in the JPanel using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        logoLabel = new javax.swing.JLabel();
-        titleLabel = new javax.swing.JLabel();
-        topPanel = new javax.swing.JPanel();
-        tailNumberLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField(tailNumber);
-        maintenanceTableScrollPane = new javax.swing.JScrollPane();
-        maintenanceTable = new javax.swing.JTable();
-        bottomPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JButton();
-        addMaintenanceButton = new javax.swing.JButton();
-        modifyMaintenanceButton = new javax.swing.JButton();
+        logoLabel = new JLabel();
+        titleLabel = new JLabel();
+        topPanel = new JPanel();
+        tailNumberLabel = new JLabel();
+        tailNumberTextField = new JTextField(tailNumber);
+        maintenanceTableScrollPane = new JScrollPane();
+        maintenanceTable = new JTable();
+        bottomPanel = new JPanel();
+        backButton = new JButton();
+        addMaintenanceButton = new JButton();
+        modifyMaintenanceButton = new JButton();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
         logoLabel.setName(""); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        titleLabel.setFont(new Font("Arial", 1, 36)); // NOI18N
         titleLabel.setText("Aircraft Maintenance");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(titleLabel, gridBagConstraints);
 
-        topPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        topPanel.setLayout(new java.awt.GridBagLayout());
+        topPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+        topPanel.setLayout(new GridBagLayout());
 
         tailNumberLabel.setText("Tail Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(tailNumberLabel, gridBagConstraints);
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setMinimumSize(new java.awt.Dimension(70, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        tailNumberTextField.setMinimumSize(new Dimension(70, 20));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(tailNumberTextField, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
         maintenanceTable.setModel(TemporaryFunctions.getMaintenanceTableModel());
@@ -112,50 +129,50 @@ public class MaintenanceView extends javax.swing.JPanel {
         maintenanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
         maintenanceTable.setName(""); // NOI18N
         maintenanceTable.setRequestFocusEnabled(false);
-        maintenanceTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        maintenanceTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         maintenanceTableScrollPane.setViewportView(maintenanceTable);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(maintenanceTableScrollPane, gridBagConstraints);
 
         backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
         bottomPanel.add(backButton);
 
         addMaintenanceButton.setText("Add Maintenance");
-        addMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addMaintenanceButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 addMaintenanceButtonActionPerformed(evt);
             }
         });
         bottomPanel.add(addMaintenanceButton);
 
         modifyMaintenanceButton.setText("Modify Maintenance");
-        modifyMaintenanceButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        modifyMaintenanceButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 modifyMaintenanceButtonActionPerformed(evt);
             }
         });
         bottomPanel.add(modifyMaintenanceButton);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
     }//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void backButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         //Switch to aircraft view on card layout when aircraft back button is pressed
         //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
@@ -165,14 +182,14 @@ public class MaintenanceView extends javax.swing.JPanel {
         layout.show(mainPanel, "aircraftView");
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void addMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
+    private void addMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, tailNumber);
         addMaintenanceView.setVisible(true);
     }//GEN-LAST:event_addMaintenanceButtonActionPerformed
 
-    private void modifyMaintenanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
+    private void modifyMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
         //Open modify maintenance window when modify maintenance button is pressed
         //Retrieve selected table row and pass all data to new window
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -194,16 +211,16 @@ public class MaintenanceView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addMaintenanceButton;
-    private javax.swing.JButton backButton;
-    private javax.swing.JPanel bottomPanel;
-    private javax.swing.JLabel logoLabel;
-    private javax.swing.JTable maintenanceTable;
-    private javax.swing.JScrollPane maintenanceTableScrollPane;
-    private javax.swing.JButton modifyMaintenanceButton;
-    private javax.swing.JLabel tailNumberLabel;
-    private javax.swing.JTextField tailNumberTextField;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JPanel topPanel;
+    private JButton addMaintenanceButton;
+    private JButton backButton;
+    private JPanel bottomPanel;
+    private JLabel logoLabel;
+    private JTable maintenanceTable;
+    private JScrollPane maintenanceTableScrollPane;
+    private JButton modifyMaintenanceButton;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }

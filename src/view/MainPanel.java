@@ -17,6 +17,8 @@
  *********** */
 package view;
 
+import java.awt.CardLayout;
+
 public class MainPanel extends javax.swing.JPanel {
 
     //Getter for aircraftView object used to pass data to view
@@ -42,11 +44,11 @@ public class MainPanel extends javax.swing.JPanel {
     //Initialize all Swing components and place them in the JPanel using CardLayout
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        aircraftView = new view.AircraftView();
-        operationsView = new view.OperationsView();
-        maintenanceView = new view.MaintenanceView();
+        aircraftView = new AircraftView();
+        operationsView = new OperationsView();
+        maintenanceView = new MaintenanceView();
 
-        setLayout(new java.awt.CardLayout());
+        setLayout(new CardLayout());
         add(aircraftView, "aircraftView");
         add(operationsView, "operationsView");
         add(maintenanceView, "maintenanceView");
@@ -54,8 +56,8 @@ public class MainPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private view.AircraftView aircraftView;
-    private view.MaintenanceView maintenanceView;
-    private view.OperationsView operationsView;
+    private AircraftView aircraftView;
+    private MaintenanceView maintenanceView;
+    private OperationsView operationsView;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,19 @@
  *********** */
 package view;
 
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
 
 public class AboutView extends javax.swing.JDialog {
 
@@ -28,59 +40,58 @@ public class AboutView extends javax.swing.JDialog {
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        closeButton = new javax.swing.JButton();
-        mainPanel = new javax.swing.JPanel();
-        aboutLabel = new javax.swing.JLabel();
+        closeButton = new JButton();
+        mainPanel = new JPanel();
+        aboutLabel = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About FHS Flight Hours System");
-        setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        getContentPane().setLayout(new GridBagLayout());
 
         closeButton.setText("Close");
-        closeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 closeButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 15, 15, 15);
+        gridBagConstraints.insets = new Insets(5, 15, 15, 15);
         getContentPane().add(closeButton, gridBagConstraints);
 
-        mainPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        mainPanel.setLayout(new java.awt.GridBagLayout());
+        mainPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+        mainPanel.setLayout(new GridBagLayout());
 
-        aboutLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        aboutLabel.setFont(new Font("Tahoma", 0, 18)); // NOI18N
         aboutLabel.setText("<html> <Center>\nFHS<BR>\nFlight Hours System<BR>\nVersion 0.1 BETA<BR>\n<BR>\nThis application was developed<BR>\nfor UMUC CMSC495 Fall 2018 by:<BR>\nJohn Tamer<BR>\nJason Grimard<BR>\nDemetrius Billups<BR>\n&<BR>\nEmily Hoppe");
         aboutLabel.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        gridBagConstraints.insets = new Insets(20, 20, 20, 20);
         mainPanel.add(aboutLabel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 15);
+        gridBagConstraints.insets = new Insets(15, 15, 15, 15);
         getContentPane().add(mainPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
     }//GEN-END:initComponents
 
-    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+    private void closeButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         //Close the dialog box
         dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel aboutLabel;
-    private javax.swing.JButton closeButton;
-    private javax.swing.JPanel mainPanel;
+    private JLabel aboutLabel;
+    private JButton closeButton;
+    private JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

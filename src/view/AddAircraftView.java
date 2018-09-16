@@ -18,8 +18,23 @@
 
 package view;
 
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import temporary.TemporaryFunctions;
 
 public class AddAircraftView extends javax.swing.JDialog {
     
@@ -33,191 +48,191 @@ public class AddAircraftView extends javax.swing.JDialog {
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        outerPanel = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
-        innerMiddlePanel = new javax.swing.JPanel();
-        tailNumberLabel = new javax.swing.JLabel();
-        typeLabel = new javax.swing.JLabel();
-        locationLabel = new javax.swing.JLabel();
-        maxSpeedLabel = new javax.swing.JLabel();
-        maxAltitudeLabel = new javax.swing.JLabel();
-        maintThresholdLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField();
-        typeComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getAircraftTypeArray());
-        locationComboBox = new javax.swing.JComboBox<>(temporary.TemporaryFunctions.getLocationArray());
-        maxSpeedTextField = new javax.swing.JTextField();
-        maxAltitudeTextField = new javax.swing.JTextField();
-        maintThresholdTextField = new javax.swing.JTextField();
-        innerBottomPanel = new javax.swing.JPanel();
-        addAircraftButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
+        outerPanel = new JPanel();
+        titleLabel = new JLabel();
+        innerMiddlePanel = new JPanel();
+        tailNumberLabel = new JLabel();
+        typeLabel = new JLabel();
+        locationLabel = new JLabel();
+        maxSpeedLabel = new JLabel();
+        maxAltitudeLabel = new JLabel();
+        maintThresholdLabel = new JLabel();
+        tailNumberTextField = new JTextField();
+        typeComboBox = new JComboBox<>(TemporaryFunctions.getAircraftTypeArray());
+        locationComboBox = new JComboBox<>(TemporaryFunctions.getLocationArray());
+        maxSpeedTextField = new JTextField();
+        maxAltitudeTextField = new JTextField();
+        maintThresholdTextField = new JTextField();
+        innerBottomPanel = new JPanel();
+        addAircraftButton = new JButton();
+        cancelButton = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Aircraft");
         setModal(true);
         setResizable(false);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new GridBagLayout());
 
-        outerPanel.setLayout(new java.awt.GridBagLayout());
+        outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setFont(new Font("Tahoma", 1, 18)); // NOI18N
         titleLabel.setText("Add Aircraft");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        gridBagConstraints.insets = new Insets(5, 0, 5, 0);
         outerPanel.add(titleLabel, gridBagConstraints);
 
-        innerMiddlePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        innerMiddlePanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         innerMiddlePanel.setToolTipText("");
-        innerMiddlePanel.setLayout(new java.awt.GridBagLayout());
+        innerMiddlePanel.setLayout(new GridBagLayout());
 
         tailNumberLabel.setText("Tail Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(tailNumberLabel, gridBagConstraints);
 
         typeLabel.setText("Type");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(typeLabel, gridBagConstraints);
 
         locationLabel.setText("Location");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationLabel, gridBagConstraints);
 
         maxSpeedLabel.setText("Max Speed");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxSpeedLabel, gridBagConstraints);
 
         maxAltitudeLabel.setText("Max Altitude");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxAltitudeLabel, gridBagConstraints);
 
         maintThresholdLabel.setText("Maintenance Hours Threshold");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maintThresholdLabel, gridBagConstraints);
 
         tailNumberTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(tailNumberTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(typeComboBox, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(locationComboBox, gridBagConstraints);
 
         maxSpeedTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxSpeedTextField, gridBagConstraints);
 
         maxAltitudeTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maxAltitudeTextField, gridBagConstraints);
 
         maintThresholdTextField.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(maintThresholdTextField, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
+        gridBagConstraints.insets = new Insets(15, 0, 15, 0);
         outerPanel.add(innerMiddlePanel, gridBagConstraints);
 
-        innerBottomPanel.setLayout(new java.awt.GridBagLayout());
+        innerBottomPanel.setLayout(new GridBagLayout());
 
         addAircraftButton.setText("Add Aircraft");
-        addAircraftButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addAircraftButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 addAircraftButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerBottomPanel.add(addAircraftButton, gridBagConstraints);
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerBottomPanel.add(cancelButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        gridBagConstraints.insets = new Insets(5, 0, 5, 0);
         outerPanel.add(innerBottomPanel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(30, 30, 30, 30);
+        gridBagConstraints.insets = new Insets(30, 30, 30, 30);
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
         setLocationRelativeTo(null);
     }//GEN-END:initComponents
 
-    private void addAircraftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
+    private void addAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
         //TODO Validate all user input
         //TODO Call SQL function
         //TODO Temporarily show message box with values
@@ -234,29 +249,29 @@ public class AddAircraftView extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_addAircraftButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         //Cancel adding aircraft and close window
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addAircraftButton;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JPanel innerBottomPanel;
-    private javax.swing.JPanel innerMiddlePanel;
-    private javax.swing.JComboBox<String> locationComboBox;
-    private javax.swing.JLabel locationLabel;
-    private javax.swing.JLabel maintThresholdLabel;
-    private javax.swing.JTextField maintThresholdTextField;
-    private javax.swing.JLabel maxAltitudeLabel;
-    private javax.swing.JTextField maxAltitudeTextField;
-    private javax.swing.JLabel maxSpeedLabel;
-    private javax.swing.JTextField maxSpeedTextField;
-    private javax.swing.JPanel outerPanel;
-    private javax.swing.JLabel tailNumberLabel;
-    private javax.swing.JTextField tailNumberTextField;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JComboBox<String> typeComboBox;
-    private javax.swing.JLabel typeLabel;
+    private JButton addAircraftButton;
+    private JButton cancelButton;
+    private JPanel innerBottomPanel;
+    private JPanel innerMiddlePanel;
+    private JComboBox<String> locationComboBox;
+    private JLabel locationLabel;
+    private JLabel maintThresholdLabel;
+    private JTextField maintThresholdTextField;
+    private JLabel maxAltitudeLabel;
+    private JTextField maxAltitudeTextField;
+    private JLabel maxSpeedLabel;
+    private JTextField maxSpeedTextField;
+    private JPanel outerPanel;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JComboBox<String> typeComboBox;
+    private JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }

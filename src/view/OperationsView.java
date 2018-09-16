@@ -20,9 +20,27 @@ package view;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import temporary.TemporaryFunctions;
 
 public class OperationsView extends javax.swing.JPanel {
 
@@ -42,114 +60,114 @@ public class OperationsView extends javax.swing.JPanel {
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        logoLabel = new javax.swing.JLabel();
-        titleLabel = new javax.swing.JLabel();
-        topPanel = new javax.swing.JPanel();
-        tailNumberLabel = new javax.swing.JLabel();
-        tailNumberTextField = new javax.swing.JTextField();
-        operationsTableScrollPane = new javax.swing.JScrollPane();
-        operationsTable = new javax.swing.JTable();
-        bottomPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JButton();
-        addOperationButton = new javax.swing.JButton();
-        modifyOperationButton = new javax.swing.JButton();
+        logoLabel = new JLabel();
+        titleLabel = new JLabel();
+        topPanel = new JPanel();
+        tailNumberLabel = new JLabel();
+        tailNumberTextField = new JTextField();
+        operationsTableScrollPane = new JScrollPane();
+        operationsTable = new JTable();
+        bottomPanel = new JPanel();
+        backButton = new JButton();
+        addOperationButton = new JButton();
+        modifyOperationButton = new JButton();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
         logoLabel.setName(""); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        titleLabel.setFont(new Font("Arial", 1, 36)); // NOI18N
         titleLabel.setText("Aircraft Operations");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(titleLabel, gridBagConstraints);
 
-        topPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        topPanel.setLayout(new java.awt.GridBagLayout());
+        topPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+        topPanel.setLayout(new GridBagLayout());
 
         tailNumberLabel.setText("Tail Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(tailNumberLabel, gridBagConstraints);
 
         tailNumberTextField.setEditable(false);
         tailNumberTextField.setColumns(10);
-        tailNumberTextField.setMinimumSize(new java.awt.Dimension(70, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        tailNumberTextField.setMinimumSize(new Dimension(70, 20));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(tailNumberTextField, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
-        operationsTable.setModel(temporary.TemporaryFunctions.getOperationsTableModel());
+        operationsTable.setModel(TemporaryFunctions.getOperationsTableModel());
         //Hide ID column in table but still allow application access to it
         operationsTable.getColumnModel().getColumn(0).setMinWidth(0);
         operationsTable.getColumnModel().getColumn(0).setMaxWidth(0);
         operationsTable.getColumnModel().getColumn(0).setWidth(0);
-        operationsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        operationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         operationsTableScrollPane.setViewportView(operationsTable);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(operationsTableScrollPane, gridBagConstraints);
 
         backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
         bottomPanel.add(backButton);
 
         addOperationButton.setText("Add Operation");
-        addOperationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addOperationButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 addOperationButtonActionPerformed(evt);
             }
         });
         bottomPanel.add(addOperationButton);
 
         modifyOperationButton.setText("Modify Operation");
-        modifyOperationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        modifyOperationButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 modifyOperationButtonActionPerformed(evt);
             }
         });
         bottomPanel.add(modifyOperationButton);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 20, 10);
+        gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
     }//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void backButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         //Switch to aircraft view on card layout when aircraft back button is pressed
         //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
@@ -160,14 +178,14 @@ public class OperationsView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void addOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
+    private void addOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddOperationView addOperationView = new AddOperationView(frame, true, tailNumber);
         addOperationView.setVisible(true);
     }//GEN-LAST:event_addOperationButtonActionPerformed
 
-    private void modifyOperationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
+    private void modifyOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
         //Open modify operation window when modify operation button is pressed
         //Retrieve selected table row and pass all data to new window
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -193,16 +211,16 @@ public class OperationsView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addOperationButton;
-    private javax.swing.JButton backButton;
-    private javax.swing.JPanel bottomPanel;
-    private javax.swing.JLabel logoLabel;
-    private javax.swing.JButton modifyOperationButton;
-    private javax.swing.JTable operationsTable;
-    private javax.swing.JScrollPane operationsTableScrollPane;
-    private javax.swing.JLabel tailNumberLabel;
-    private javax.swing.JTextField tailNumberTextField;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JPanel topPanel;
+    private JButton addOperationButton;
+    private JButton backButton;
+    private JPanel bottomPanel;
+    private JLabel logoLabel;
+    private JButton modifyOperationButton;
+    private JTable operationsTable;
+    private JScrollPane operationsTableScrollPane;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JPanel topPanel;
     // End of variables declaration//GEN-END:variables
 }
