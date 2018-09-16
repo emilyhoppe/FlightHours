@@ -1,17 +1,16 @@
-/************   
- * 
+/** **********
+ *
  *      Class:         FlightHours.java
- *      Package:       flighthours      
- *      Date:          September, 2018 
- *      
+ *      Package:       flighthours
+ *      Date:          September, 2018
+ *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
- * 
+ *
  *      Class Description:
- *          
- * 
- ************/
-
+ *
+ *
+ *********** */
 package flighthours;
 
 import javax.swing.SwingUtilities;
