@@ -179,7 +179,7 @@ public class OperationsView extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
-        // TODO add your handling code here:
+        //Open add operation window when add operaiton button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddOperationView addOperationView = new AddOperationView(frame, true, tailNumber);
         addOperationView.setVisible(true);
