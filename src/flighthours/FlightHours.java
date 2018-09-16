@@ -7,7 +7,10 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:
+ *      Class Description: FlightHours contains the main method of the FHS
+ *              application.  It starts the GUI using the SwingUtilities.invokeLater
+ *              method which prevents any visible lag in the GUI when background 
+ *              tasks are processing.
  *
  *
  *********** */
