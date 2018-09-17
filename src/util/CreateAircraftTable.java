@@ -1,25 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** **********
+ *
+ *      Class:         CreateAircraftTable.java
+ *      Package:       util
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: CreateAircraftTable is a static utility class that is
+ *                  used to create a table in the database and fill it with
+ *                  sample data.
+ *
+ *
+ *********** */
 package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-/**
- *
- * @author tamerjj1
- */
 public class CreateAircraftTable {
 
     public static void main(String args[]) {
@@ -75,4 +75,4 @@ public class CreateAircraftTable {
     private int currentMaintenanceHours;
     private int maintenanceHoursThreshold;
     private Date endOfServiceDate;
-*/
+ */

@@ -1,27 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** **********
+ *
+ *      Class:         CreateMaintenanceTable.java
+ *      Package:       util
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: CreateMaintenanceTable is a static utility class that is
+ *                  used to create a table in the database and fill it with
+ *                  sample data.
+ *
+ *
+ *********** */
 package util;
 
-/**
- *
- * @author tamerjj1
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CreateMaintenanceTable { 
-    
+public class CreateMaintenanceTable {
+
     public static void main(String args[]) {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         boolean okayToCreate = false;
@@ -48,7 +48,7 @@ public class CreateMaintenanceTable {
                         + " MAINTENANCE_START_DATE DATE NOT NULL,"
                         + " MAINTENANCE_END_DATE DATE NOT NULL,"
                         + " MAINTENANCE_DESCRIPTION VARCHAR(100) NOT NULL)");
-                       
+
                 System.out.println("MAINTENANCE table created.");
 
             } catch (SQLException e) {
@@ -65,4 +65,4 @@ public class CreateMaintenanceTable {
     private int startDate;
     private int endDate;
     private String maintDescr;
-*/
+ */
