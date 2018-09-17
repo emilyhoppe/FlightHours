@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 public class CreateMissionsTable {
 
@@ -36,7 +37,8 @@ public class CreateMissionsTable {
             {
                 okayToCreate = true;
             } else {
-                System.out.println("Unhandled SQLException" + theError);
+                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (okayToCreate) {
@@ -48,7 +50,8 @@ public class CreateMissionsTable {
                 System.out.println("MISSIONS table created.");
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -64,7 +67,8 @@ public class CreateMissionsTable {
                     + "('Disaster Relief') ");
             System.out.println("Missions inserted");
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }

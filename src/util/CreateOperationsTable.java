@@ -7,8 +7,8 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description: CreateOperationsTable is a static utility class that is 
- *                  used to create a table in the database and fill it with 
+ *      Class Description: CreateOperationsTable is a static utility class that is
+ *                  used to create a table in the database and fill it with
  *                  sample data.
  *
  *
@@ -19,10 +19,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 public class CreateOperationsTable {
-    
-    
+
     public static void main(String args[]) {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         boolean okayToCreate = false;
@@ -37,7 +37,8 @@ public class CreateOperationsTable {
             {
                 okayToCreate = true;
             } else {
-                System.out.println("Unhandled SQLException" + theError);
+                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (okayToCreate) {
@@ -52,11 +53,12 @@ public class CreateOperationsTable {
                         + " OPERATION_START_DATE DATE NOT NULL,"
                         + " OPERATION_END_DATE DATE NOT NULL,"
                         + " OPERATION_FILGHT_HOURS INT NOT NULL)");
-                       
+
                 System.out.println("OPERATIONS table created.");
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -72,4 +74,4 @@ public class CreateOperationsTable {
     private int operationStartDate;
     private int operationEndDate;
     private int operationFlighHour;
-*/
+ */

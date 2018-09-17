@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 public class CreateStationsTable {
 
@@ -36,10 +37,12 @@ public class CreateStationsTable {
             {
                 okayToCreate = true;
             } else {
-                System.out.println("Unhandled SQLException" + theError);
+                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (okayToCreate) {
+            //Create Table
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE STATIONS ( "
@@ -47,47 +50,48 @@ public class CreateStationsTable {
                         + " STATION_NAME VARCHAR (50) NOT NULL, "
                         + " STATION_TYPE VARCHAR (10) NOT NULL)");
                 System.out.println("STATIONS table created.");
-
+                //Insert rows into the table
+                try {
+                    Statement insertStatement = conn.createStatement();
+                    insertStatement.executeUpdate("INSERT INTO STATIONS (STATION_NAME, STATION_TYPE) VALUES "
+                            + "('McAllen Air and Marine Branch', 'AMO'), "
+                            + "('Laredo Air Branch', 'AMO'), "
+                            + "('San Antonio Air Unit', 'AMO'), "
+                            + "('Uvalde Air Branch', 'AMO'), "
+                            + "('Del Rio Air Unit', 'AMO'), "
+                            + "('San Angelo Air Unit', 'AMO'), "
+                            + "('El Paso Air Branch', 'AMO'), "
+                            + "('Alpine Air Unit', 'AMO'), "
+                            + "('Deming Air Unit', 'AMO'), "
+                            + "('Tucson Air Branch', 'AMO'), "
+                            + "('Sierra Vista Air Unit', 'AMO'), "
+                            + "('Yuma Air Branch', 'AMO'), "
+                            + "('San Diego Air and Marine Branch', 'AMO'), "
+                            + "('Riverside Air Unit', 'AMO'), "
+                            + "('Brown Field Air Unit', 'AMO'), "
+                            + "('Sacramento Air Unit', 'AMO'), "
+                            + "('Pine Valley Air Unit', 'AMO'), "
+                            + "('McAllen', 'USBP'), "
+                            + "('Rio Grande City', 'USBP'), "
+                            + "('Brownsville', 'USBP'), "
+                            + "('Imperial Beach', 'USBP'), "
+                            + "('Boulevard', 'USBP'), "
+                            + "('Chula Vista', 'USBP'), "
+                            + "('Alpine', 'USBP'), "
+                            + "('Sanderson', 'USBP'), "
+                            + "('Marfa', 'USBP'), "
+                            + "('Presidio', 'USBP'), "
+                            + "('Yuma', 'USBP'), "
+                            + "('Wellton', 'USBP') ");
+                    System.out.println("STATIONS inserted");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (SQLException e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
-
-        try (Connection conn = DriverManager.getConnection(CONNECTION);
-                Statement statement = conn.createStatement()) {
-            statement.executeUpdate("INSERT INTO STATIONS (STATION_NAME, STATION_TYPE) VALUES "
-                    + "('McAllen Air and Marine Branch', 'AMO'), "
-                    + "('Laredo Air Branch', 'AMO'), "
-                    + "('San Antonio Air Unit', 'AMO'), "
-                    + "('Uvalde Air Branch', 'AMO'), "
-                    + "('Del Rio Air Unit', 'AMO'), "
-                    + "('San Angelo Air Unit', 'AMO'), "
-                    + "('El Paso Air Branch', 'AMO'), "
-                    + "('Alpine Air Unit', 'AMO'), "
-                    + "('Deming Air Unit', 'AMO'), "
-                    + "('Tucson Air Branch', 'AMO'), "
-                    + "('Sierra Vista Air Unit', 'AMO'), "
-                    + "('Yuma Air Branch', 'AMO'), "
-                    + "('San Diego Air and Marine Branch', 'AMO'), "
-                    + "('Riverside Air Unit', 'AMO'), "
-                    + "('Brown Field Air Unit', 'AMO'), "
-                    + "('Sacramento Air Unit', 'AMO'), "
-                    + "('Pine Valley Air Unit', 'AMO'), "
-                    + "('McAllen', 'USBP'), "
-                    + "('Rio Grande City', 'USBP'), "
-                    + "('Brownsville', 'USBP'), "
-                    + "('Imperial Beach', 'USBP'), "
-                    + "('Boulevard', 'USBP'), "
-                    + "('Chula Vista', 'USBP'), "
-                    + "('Alpine', 'USBP'), "
-                    + "('Sanderson', 'USBP'), "
-                    + "('Marfa', 'USBP'), "
-                    + "('Presidio', 'USBP'), "
-                    + "('Yuma', 'USBP'), "
-                    + "('Wellton', 'USBP') ");
-            System.out.println("STATIONS inserted");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
     }
