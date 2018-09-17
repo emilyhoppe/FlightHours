@@ -1,3 +1,17 @@
+/** **********
+ *
+ *      File:          MaintenanceSampleData.sql
+ *      Package:       util
+ *      Date:          September, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      File Description: MaintenanceSampleData.sql is an SQL script which inserts
+ *              sample maintenance data into the database Maintenance table.
+ *
+ *
+ *********** */
 INSERT INTO maintenance
             (aircraft_id,
              maintenance_start_date,

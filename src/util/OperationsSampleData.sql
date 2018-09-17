@@ -1,3 +1,17 @@
+/** **********
+ *
+ *      File:          OperationsSampleData.sql
+ *      Package:       util
+ *      Date:          September, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      File Description: OperationsSampleData.sql is an SQL script which inserts
+ *              sample operations data into the database Operations table.
+ *
+ *
+ *********** */
 INSERT INTO operations
             (aircraft_id,
              station_id,
