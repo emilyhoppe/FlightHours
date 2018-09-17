@@ -1,7 +1,6 @@
 package flighthours;
 
 import java.util.Date;
-import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +26,7 @@ public class Aircraft {
     private int maintenanceHoursThreshold;
     private Date endOfServiceDate;
     
-    public Aircraft(String tailNumber, String aircraftType, int stationID, String primaryMission, 
+    public Aircraft(String tailNumber, String aircraftType, int stationID, 
             int maxSpeed, int maxAltitude, int totalFlightHours, boolean maintenanceFlag, int currentMaintenanceHours,
             int maintenanceHoursThreshold) {
         this.tailNumber = tailNumber;
@@ -42,17 +41,20 @@ public class Aircraft {
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
     }
     
-    public Aircraft(Scanner scanner){
-        if (scanner.hasNext()) tailNumber = scanner.next();
-        if (scanner.hasNext()) aircraftType = scanner.next();
-        if (scanner.hasNextInt()) stationID = scanner.nextInt();
-        //if (scanner.hasNext()) primaryMission = scanner.next();
-        if (scanner.hasNextInt()) maxSpeed = scanner.nextInt();
-        if (scanner.hasNextInt()) maxAltitude = scanner.nextInt();
-        if (scanner.hasNextInt()) totalFlightHours = scanner.nextInt();
-        if (scanner.hasNextBoolean()) maintenanceFlag = scanner.nextBoolean();
-        if (scanner.hasNextInt()) currentMaintenanceHours = scanner.nextInt();
-        if (scanner.hasNextInt()) maintenanceHoursThreshold = scanner.nextInt();
+    public Aircraft(String tailNumber, String aircraftType, int stationID, 
+            int maxSpeed, int maxAltitude, int totalFlightHours, boolean maintenanceFlag, int currentMaintenanceHours,
+            int maintenanceHoursThreshold, Date endOfServiceDate) {
+        this.tailNumber = tailNumber;
+        this.aircraftType = aircraftType;
+        this.stationID = stationID;
+        //this.primaryMission = primaryMission;
+        this.maxSpeed = maxSpeed;
+        this.maxAltitude = maxAltitude;
+        this.totalFlightHours = totalFlightHours;
+        this.maintenanceFlag = maintenanceFlag;
+        this.currentMaintenanceHours = currentMaintenanceHours;
+        this.maintenanceHoursThreshold = maintenanceHoursThreshold;
+        this.endOfServiceDate= endOfServiceDate;
     }
 
     public String getTailNumber() {
@@ -135,8 +137,22 @@ public class Aircraft {
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
     }
     
+    public Date getEndOfServiceDate() {
+        return endOfServiceDate;
+    }
+
+    public void setEndOfServiceDate(Date endOfServiceDate) {
+        this.endOfServiceDate = endOfServiceDate;
+    }
+    
     @Override
     public String toString() {
+        if(endOfServiceDate != null){
+            return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID + 
+                ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude + 
+                ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag + 
+                ", currentMaintenanceHours=" + currentMaintenanceHours + ", maintenanceHoursThreshold=" + maintenanceHoursThreshold + ", endOfServiceDate=" + endOfServiceDate + '}';
+        }
         return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID + 
                 ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude + 
                 ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag + 
