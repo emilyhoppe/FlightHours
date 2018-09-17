@@ -1,8 +1,8 @@
 /** **********
  *
- *      Class:         Maintenanceview.java
+ *      Class:         MaintenanceView.java
  *      Package:       view
- *      Date:          September, 2018
+ *      Date:          October 14, 2018
  *
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
