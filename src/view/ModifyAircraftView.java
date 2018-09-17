@@ -42,7 +42,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private String ID;
     private String tailNumber;
     private String type;
-    private String location;
+    private String station;
     private String maxSpeed;
     private String maxAltitude;
     private String currentMaintHours;
@@ -51,14 +51,14 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
     //Constructor with parameters
     public ModifyAircraftView(Frame parent, boolean modal, String ID, String tailNumber,
-            String type, String location, String maxSpeed,
+            String type, String station, String maxSpeed,
             String maxAltitude, String currentMaintHours, String maintHoursThreshold,
             String endOfServiceDate) {
         super(parent, modal);
         this.ID = ID;
         this.tailNumber = tailNumber;
         this.type = type;
-        this.location = location;
+        this.station = station;
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
         this.currentMaintHours = currentMaintHours;
@@ -80,14 +80,14 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         dataPanel = new JPanel();
         tailNumberLabel = new JLabel();
         typeLabel = new JLabel();
-        locationLabel = new JLabel();
+        stationLabel = new JLabel();
         maxSpeedLabel = new JLabel();
         maxAltitudeLabel = new JLabel();
         maintThresholdLabel = new JLabel();
         endOfServiceLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
         typeComboBox = new JComboBox<>(TemporaryFunctions.getAircraftTypeArray());
-        locationComboBox = new JComboBox<>(TemporaryFunctions.getLocationArray());
+        stationComboBox = new JComboBox<>(TemporaryFunctions.getAmoStationsArray());
         maxSpeedTextField = new JTextField(maxSpeed);
         maxAltitudeTextField = new JTextField(maxAltitude);
         maintThresholdTextField = new JTextField(maintHoursThreshold);
@@ -134,13 +134,13 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         dataPanel.add(typeLabel, gridBagConstraints);
 
-        locationLabel.setText("Location");
+        stationLabel.setText("Station");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        dataPanel.add(locationLabel, gridBagConstraints);
+        dataPanel.add(stationLabel, gridBagConstraints);
 
         maxSpeedLabel.setText("Max Speed");
         gridBagConstraints = new GridBagConstraints();
@@ -190,13 +190,13 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         dataPanel.add(typeComboBox, gridBagConstraints);
 
-        locationComboBox.setSelectedItem(location);
+        stationComboBox.setSelectedItem(station);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        dataPanel.add(locationComboBox, gridBagConstraints);
+        dataPanel.add(stationComboBox, gridBagConstraints);
 
         maxSpeedTextField.setColumns(10);
         gridBagConstraints = new GridBagConstraints();
@@ -342,7 +342,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
                     "Modifying Aircraft Database values for aircraft ID: " + ID + "\n"
                     + "Tail Number: " + tailNumberTextField.getText() + "\n"
                     + "Type: " + typeComboBox.getSelectedItem() + "\n"
-                    + "Location: " + locationComboBox.getSelectedItem() + "\n"
+                    + "Station: " + stationComboBox.getSelectedItem() + "\n"
                     + "Max Speed: " + maxSpeedTextField.getText() + "\n"
                     + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
                     + "Current Maintenance Hours: " + currentMaintHoursTextField.getText() + "\n"
@@ -366,8 +366,6 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private JPanel dataPanel;
     private JLabel endOfServiceLabel;
     private JTextField endOfServiceTextField;
-    private JComboBox<String> locationComboBox;
-    private JLabel locationLabel;
     private JLabel maintThresholdLabel;
     private JTextField maintThresholdTextField;
     private JLabel maxAltitudeLabel;
@@ -376,6 +374,8 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private JTextField maxSpeedTextField;
     private JButton modifyAircraftButton;
     private JPanel outerPanel;
+    private JComboBox<String> stationComboBox;
+    private JLabel stationLabel;
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;
     private JLabel titleLabel;

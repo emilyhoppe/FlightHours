@@ -41,7 +41,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private String tailNumber;
     private String operationID;
     private String name;
-    private String location;
+    private String station;
     private String mission;
     private String startDate;
     private String endDate;
@@ -50,13 +50,13 @@ public class ModifyOperationView extends javax.swing.JDialog {
     //Constructor with parameters
     public ModifyOperationView(java.awt.Frame parent, boolean modal,
             String tailNumber, String operationID, String name,
-            String location, String mission, String startDate,
+            String station, String mission, String startDate,
             String endDate, String flightHours) {
         super(parent, modal);
         this.tailNumber = tailNumber;
         this.operationID = operationID;
         this.name = name;
-        this.location = location;
+        this.station = station;
         this.mission = mission;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -77,14 +77,14 @@ public class ModifyOperationView extends javax.swing.JDialog {
         innerMiddlePanel = new JPanel();
         tailNumberLabel = new JLabel();
         operationNameLabel = new JLabel();
-        locationLabel = new JLabel();
+        stationLabel = new JLabel();
         missionLabel = new JLabel();
         startDateLabel = new JLabel();
         endDateLabel = new JLabel();
         flightHoursLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
         operationNameTextField = new JTextField(name);
-        locationComboBox = new JComboBox<>(TemporaryFunctions.getLocationArray());
+        stationComboBox = new JComboBox<>(TemporaryFunctions.getUsbpStationsArray());
         missionComboBox = new JComboBox<>(TemporaryFunctions.getMissionArray());
         startDateTextField = new JTextField(startDate);
         endDateTextField = new JTextField(endDate);
@@ -129,13 +129,13 @@ public class ModifyOperationView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameLabel, gridBagConstraints);
 
-        locationLabel.setText("Location");
+        stationLabel.setText("Station");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(locationLabel, gridBagConstraints);
+        innerMiddlePanel.add(stationLabel, gridBagConstraints);
 
         missionLabel.setText("Mission");
         gridBagConstraints = new GridBagConstraints();
@@ -186,13 +186,13 @@ public class ModifyOperationView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameTextField, gridBagConstraints);
 
-        locationComboBox.setSelectedItem(location);
+        stationComboBox.setSelectedItem(station);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        innerMiddlePanel.add(locationComboBox, gridBagConstraints);
+        innerMiddlePanel.add(stationComboBox, gridBagConstraints);
 
         missionComboBox.setSelectedItem(mission);
         gridBagConstraints = new GridBagConstraints();
@@ -284,7 +284,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
                 "Modifying Operations Database record for aircraft tail number: " + tailNumberTextField.getText() + "\n"
                 + "Operation ID: " + operationID + "\n"
                 + "Operation Name: " + operationNameTextField.getText() + "\n"
-                + "Location: " + locationComboBox.getSelectedItem() + "\n"
+                + "Station: " + stationComboBox.getSelectedItem() + "\n"
                 + "Mission: " + missionComboBox.getSelectedItem()+ "\n"
                 + "Start Date: " + startDateTextField.getText() + "\n"
                 + "End Date: " + endDateTextField.getText() + "\n"
@@ -306,8 +306,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private JTextField flightHoursTextField;
     private JPanel innerBottomPanel;
     private JPanel innerMiddlePanel;
-    private JComboBox<String> locationComboBox;
-    private JLabel locationLabel;
     private JComboBox<String> missionComboBox;
     private JLabel missionLabel;
     private JButton modifyOperationButton;
@@ -316,6 +314,8 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private JPanel outerPanel;
     private JLabel startDateLabel;
     private JTextField startDateTextField;
+    private JComboBox<String> stationComboBox;
+    private JLabel stationLabel;
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;
     private JLabel titleLabel;

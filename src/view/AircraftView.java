@@ -9,7 +9,7 @@
  *
  *      Class Description:  AircraftView is the default GUI view that opens when 
  *          the user starts the application.  This view allows the user to search 
- *          a list of aircraft by tail number, maintenance flag or location.  
+ *          a list of aircraft by tail number, maintenance flag or station.  
  *          A table with aircraft data will be produced.  The user is then allowed 
  *          to switch to the aircraft operations view or the aircraft maintenance 
  *          view.  Also, the user can open dialog boxes by pressing the add aircraft
@@ -69,13 +69,13 @@ public class AircraftView extends javax.swing.JPanel {
         topPanel = new JPanel();
         tailNumberRadioButton = new JRadioButton();
         maintFlagRadioButton = new JRadioButton();
-        locationRadioButton = new JRadioButton();
+        stationRadioButton = new JRadioButton();
         tailNumberLabel = new JLabel();
         maintFlagLabel = new JLabel();
-        locationLabel = new JLabel();
+        stationLabel = new JLabel();
         tailNumberTextField = new JTextField();
         maintFlagComboBox = new JComboBox<>();
-        locationComboBox = new JComboBox<>(TemporaryFunctions.getLocationArray());
+        stationComboBox = new JComboBox<>(TemporaryFunctions.getAmoStationsArray());
         topButtonPanel = new JPanel();
         searchAircraftButton = new JButton();
         showAllButton = new JButton();
@@ -132,16 +132,16 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         topPanel.add(maintFlagRadioButton, gridBagConstraints);
 
-        searchButtonGroup.add(locationRadioButton);
-        locationRadioButton.addItemListener(new ItemListener() {
+        searchButtonGroup.add(stationRadioButton);
+        stationRadioButton.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent evt) {
-                locationRadioButtonItemStateChanged(evt);
+                stationRadioButtonItemStateChanged(evt);
             }
         });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        topPanel.add(locationRadioButton, gridBagConstraints);
+        topPanel.add(stationRadioButton, gridBagConstraints);
 
         tailNumberLabel.setText("Tail Number");
         tailNumberLabel.addMouseListener(new MouseAdapter() {
@@ -169,10 +169,10 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(maintFlagLabel, gridBagConstraints);
 
-        locationLabel.setText("Location");
-        locationLabel.addMouseListener(new MouseAdapter() {
+        stationLabel.setText("Station");
+        stationLabel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                locationLabelMouseClicked(evt);
+                stationLabelMouseClicked(evt);
             }
         });
         gridBagConstraints = new GridBagConstraints();
@@ -180,7 +180,7 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        topPanel.add(locationLabel, gridBagConstraints);
+        topPanel.add(stationLabel, gridBagConstraints);
 
         tailNumberTextField.setColumns(10);
         tailNumberTextField.setMinimumSize(new Dimension(100, 20));
@@ -220,15 +220,15 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(maintFlagComboBox, gridBagConstraints);
 
-        locationComboBox.setForeground(Color.lightGray);
-        locationComboBox.addMouseListener(new MouseAdapter() {
+        stationComboBox.setForeground(Color.lightGray);
+        stationComboBox.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                locationComboBoxMouseClicked(evt);
+                stationComboBoxMouseClicked(evt);
             }
         });
-        locationComboBox.addActionListener(new ActionListener() {
+        stationComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                locationComboBoxActionPerformed(evt);
+                stationComboBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new GridBagConstraints();
@@ -236,7 +236,7 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        topPanel.add(locationComboBox, gridBagConstraints);
+        topPanel.add(stationComboBox, gridBagConstraints);
 
         topButtonPanel.setLayout(new GridBagLayout());
 
@@ -373,14 +373,14 @@ public class AircraftView extends javax.swing.JPanel {
             String ID = aircraftTable.getValueAt(selectedRow, 0).toString();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             String type = aircraftTable.getValueAt(selectedRow, 2).toString();
-            String location = aircraftTable.getValueAt(selectedRow, 3).toString();
+            String station = aircraftTable.getValueAt(selectedRow, 3).toString();
             String maxSpeed = aircraftTable.getValueAt(selectedRow, 4).toString();
             String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
             String currentMaintHours = aircraftTable.getValueAt(selectedRow, 8).toString();
             String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
             String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
             ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
-                    true, ID, tailNumber, type, location, maxSpeed, maxAltitude,
+                    true, ID, tailNumber, type, station, maxSpeed, maxAltitude,
                     currentMaintHours, maintHoursThreshold, endOfServiceDate);
 
             modifyAircraftView.setVisible(true);
@@ -411,11 +411,11 @@ public class AircraftView extends javax.swing.JPanel {
             System.out.println("Searching by Maintenance Flag: " + maintFlagComboBox.getSelectedItem());
         }
 
-        //If searching by location
-        if (locationRadioButton.isSelected()) {
+        //If searching by station
+        if (stationRadioButton.isSelected()) {
             //Output for testing
-            JOptionPane.showMessageDialog(topPanel, "Searching by Location: " + locationComboBox.getSelectedItem(), "Notice", JOptionPane.PLAIN_MESSAGE);
-            System.out.println("Searching by Location: " + locationComboBox.getSelectedItem());
+            JOptionPane.showMessageDialog(topPanel, "Searching by Station: " + stationComboBox.getSelectedItem(), "Notice", JOptionPane.PLAIN_MESSAGE);
+            System.out.println("Searching by Station: " + stationComboBox.getSelectedItem());
         }
     }//GEN-LAST:event_searchAircraftButtonActionPerformed
 
@@ -462,25 +462,25 @@ public class AircraftView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_maintFlagRadioButtonItemStateChanged
 
-    private void locationRadioButtonItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_locationRadioButtonItemStateChanged
+    private void stationRadioButtonItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_stationRadioButtonItemStateChanged
         //Change foreground to black of radio button is selected, gray if not.
         //This will help the user understand what is being searched
-        if (locationRadioButton.isSelected()) {
-            locationComboBox.setForeground(Color.BLACK);
+        if (stationRadioButton.isSelected()) {
+            stationComboBox.setForeground(Color.BLACK);
         } else {
-            locationComboBox.setForeground(Color.LIGHT_GRAY);
+            stationComboBox.setForeground(Color.LIGHT_GRAY);
         }
-    }//GEN-LAST:event_locationRadioButtonItemStateChanged
+    }//GEN-LAST:event_stationRadioButtonItemStateChanged
 
     private void maintFlagComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_maintFlagComboBoxActionPerformed
         //Change radio button selection when user clicks on combo box
         maintFlagRadioButton.setSelected(true);
     }//GEN-LAST:event_maintFlagComboBoxActionPerformed
 
-    private void locationComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
+    private void stationComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_stationComboBoxActionPerformed
         //Change radio button selection when user clicks on combo box
-        locationRadioButton.setSelected(true);
-    }//GEN-LAST:event_locationComboBoxActionPerformed
+        stationRadioButton.setSelected(true);
+    }//GEN-LAST:event_stationComboBoxActionPerformed
 
     private void tailNumberTextFieldMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tailNumberTextFieldMouseClicked
         //Change radio button selection when user clicks on text field
@@ -492,10 +492,10 @@ public class AircraftView extends javax.swing.JPanel {
         maintFlagRadioButton.setSelected(true);
     }//GEN-LAST:event_maintFlagComboBoxMouseClicked
 
-    private void locationComboBoxMouseClicked(MouseEvent evt) {//GEN-FIRST:event_locationComboBoxMouseClicked
-        //Change radio button selection when user clicks on location combo box
-        locationRadioButton.setSelected(true);
-    }//GEN-LAST:event_locationComboBoxMouseClicked
+    private void stationComboBoxMouseClicked(MouseEvent evt) {//GEN-FIRST:event_stationComboBoxMouseClicked
+        //Change radio button selection when user clicks on station combo box
+        stationRadioButton.setSelected(true);
+    }//GEN-LAST:event_stationComboBoxMouseClicked
 
     private void tailNumberLabelMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseClicked
         //Change radio button selection when user clicks on label
@@ -507,10 +507,10 @@ public class AircraftView extends javax.swing.JPanel {
         maintFlagRadioButton.setSelected(true);
     }//GEN-LAST:event_maintFlagLabelMouseClicked
 
-    private void locationLabelMouseClicked(MouseEvent evt) {//GEN-FIRST:event_locationLabelMouseClicked
+    private void stationLabelMouseClicked(MouseEvent evt) {//GEN-FIRST:event_stationLabelMouseClicked
         //Change radio button selection when user clicks on label
-        locationRadioButton.setSelected(true);
-    }//GEN-LAST:event_locationLabelMouseClicked
+        stationRadioButton.setSelected(true);
+    }//GEN-LAST:event_stationLabelMouseClicked
 
     private void tailNumberTextFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_tailNumberTextFieldActionPerformed
         //Perform search when enter key is pressed in text field
@@ -532,9 +532,6 @@ public class AircraftView extends javax.swing.JPanel {
     private JTable aircraftTable;
     private JScrollPane aircraftTableScrollPane;
     private JPanel bottomPanel;
-    private JComboBox<String> locationComboBox;
-    private JLabel locationLabel;
-    private JRadioButton locationRadioButton;
     private JLabel logoLabel;
     private JComboBox<String> maintFlagComboBox;
     private JLabel maintFlagLabel;
@@ -543,6 +540,9 @@ public class AircraftView extends javax.swing.JPanel {
     private JButton searchAircraftButton;
     private ButtonGroup searchButtonGroup;
     private JButton showAllButton;
+    private JComboBox<String> stationComboBox;
+    private JLabel stationLabel;
+    private JRadioButton stationRadioButton;
     private JLabel tailNumberLabel;
     private JRadioButton tailNumberRadioButton;
     private JTextField tailNumberTextField;
