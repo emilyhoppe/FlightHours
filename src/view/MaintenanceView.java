@@ -119,6 +119,7 @@ public class MaintenanceView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
+        maintenanceTable.setAutoCreateRowSorter(true);
         maintenanceTable.setModel(TemporaryFunctions.getMaintenanceTableModel());
         //Hide ID column in table but still allow application access to it
         maintenanceTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -127,8 +128,6 @@ public class MaintenanceView extends javax.swing.JPanel {
         //Adjust date colums smaller so description column can be wide
         maintenanceTable.getColumnModel().getColumn(1).setMaxWidth(100);
         maintenanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
-        maintenanceTable.setName(""); // NOI18N
-        maintenanceTable.setRequestFocusEnabled(false);
         maintenanceTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         maintenanceTableScrollPane.setViewportView(maintenanceTable);
 

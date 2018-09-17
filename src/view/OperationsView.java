@@ -119,6 +119,7 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
+        operationsTable.setAutoCreateRowSorter(true);
         operationsTable.setModel(TemporaryFunctions.getOperationsTableModel());
         //Hide ID column in table but still allow application access to it
         operationsTable.getColumnModel().getColumn(0).setMinWidth(0);
