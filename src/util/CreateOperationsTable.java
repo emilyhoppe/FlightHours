@@ -9,6 +9,7 @@ package util;
  *
  * @author tamerjj1
  */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,7 +21,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class createMaintenanceTable { 
+public class CreateOperationsTable {
+    
     
     public static void main(String args[]) {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
@@ -29,7 +31,7 @@ public class createMaintenanceTable {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION);
             Statement s = conn.createStatement();
-            s.execute("SELECT '1' FROM MAINTENANCE");
+            s.execute("SELECT '1' FROM OPERATIONS");
         } catch (SQLException sqle) {
             String theError = (sqle).getSQLState();
             if (theError.equals("42X05")) // Table does not exist
@@ -42,14 +44,17 @@ public class createMaintenanceTable {
         if (okayToCreate) {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE MAINTENANCE ( "
-                        + " MAINTENANCE_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                statement.executeUpdate("CREATE TABLE OPERATIONS ( "
+                        + " OPERATION_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
                         + " AIRCRAFT_ID INT NOT NULL,"
-                        + " MAINTENANCE_START_DATE DATE NOT NULL,"
-                        + " MAINTENANCE_END_DATE DATE NOT NULL,"
-                        + " MAINTENANCE_DESCRIPTION VARCHAR(100) NOT NULL)");
+                        + " STATION_ID INT NOT NULL,"
+                        + " MISSION_ID INT NOT NULL,"
+                        + " OPERATION_NAME VARCHAR(20) NOT NULL,"
+                        + " OPERATION_START_DATE DATE NOT NULL,"
+                        + " OPERATION_END_DATE DATE NOT NULL,"
+                        + " OPERATION_FILGHT_HOURS INT NOT NULL)");
                        
-                System.out.println("MAINTENANCE table created.");
+                System.out.println("OPERATIONS table created.");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -59,10 +64,13 @@ public class createMaintenanceTable {
     }
 
 }
-/*    
-    private int maintenanceID;
+/*
+    private int operationID;
     private int aircraftID;
-    private int startDate;
-    private int endDate;
-    private String maintDescr;
+    private int stationID;
+    private int missionID;
+    private String operationName;
+    private int operationStartDate;
+    private int operationEndDate;
+    private int operationFlighHour;
 */

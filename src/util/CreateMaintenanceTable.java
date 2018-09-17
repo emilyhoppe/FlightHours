@@ -5,6 +5,10 @@
  */
 package util;
 
+/**
+ *
+ * @author tamerjj1
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,12 +20,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author tamerjj1
- */
-public class createAircraftTable {
-
+public class CreateMaintenanceTable { 
+    
     public static void main(String args[]) {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         boolean okayToCreate = false;
@@ -29,7 +29,7 @@ public class createAircraftTable {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION);
             Statement s = conn.createStatement();
-            s.execute("SELECT '1' FROM AIRCRAFT");
+            s.execute("SELECT '1' FROM MAINTENANCE");
         } catch (SQLException sqle) {
             String theError = (sqle).getSQLState();
             if (theError.equals("42X05")) // Table does not exist
@@ -42,18 +42,14 @@ public class createAircraftTable {
         if (okayToCreate) {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE AIRCRAFT ( "
-                        + " AIRCRAFT_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " TAIL_NUMBER   VARCHAR (10) NOT NULL,"
-                        + " AIRCRAFT_TYPE VARCHAR (20) NOT NULL,"
-                        + " STATION_ID INT NOT NULL,"
-                        + " MAX_SPEED INT NOT NULL,"
-                        + " MAX_ALTITUDE INT NOT NULL,"
-                        + " TOTAL_FILGHT_HOURS INT NOT NULL,"
-                        + " MAINTENANCE_FLAG BOOLEAN NOT NULL,"
-                        + " CURRENT_MAINTENANCE_HOURS INT NOT NULL,"
-                        + " END_OF_SERVICE_DATE DATE) ");
-                System.out.println("AIRCRAFT table created.");
+                statement.executeUpdate("CREATE TABLE MAINTENANCE ( "
+                        + " MAINTENANCE_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " AIRCRAFT_ID INT NOT NULL,"
+                        + " MAINTENANCE_START_DATE DATE NOT NULL,"
+                        + " MAINTENANCE_END_DATE DATE NOT NULL,"
+                        + " MAINTENANCE_DESCRIPTION VARCHAR(100) NOT NULL)");
+                       
+                System.out.println("MAINTENANCE table created.");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -63,16 +59,10 @@ public class createAircraftTable {
     }
 
 }
-/*
-    private String tailNumber;
-    private String aircraftType;
-    private int stationID;
-    private String primaryMission;
-    private int maxSpeed;
-    private int maxAltitude;  
-    private int totalFlightHours;
-    private boolean maintenanceFlag;
-    private int currentMaintenanceHours;
-    private int maintenanceHoursThreshold;
-    private Date endOfServiceDate;
+/*    
+    private int maintenanceID;
+    private int aircraftID;
+    private int startDate;
+    private int endDate;
+    private String maintDescr;
 */
