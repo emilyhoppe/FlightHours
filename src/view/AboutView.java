@@ -69,7 +69,7 @@ public class AboutView extends javax.swing.JDialog {
         mainPanel.setLayout(new GridBagLayout());
 
         aboutLabel.setFont(new Font("Tahoma", 0, 18)); // NOI18N
-        aboutLabel.setText("<html> <Center>\nFHS<BR>\nFlight Hours System<BR>\nVersion 0.1 BETA<BR>\n<BR>\nThis application was developed<BR>\nfor UMUC CMSC495 Fall 2018 by:<BR>\nJohn Tamer<BR>\nJason Grimard<BR>\nDemetrius Billups<BR>\n&<BR>\nEmily Hoppe");
+        aboutLabel.setText("<html> <Center> FHS<BR> Flight Hours System<BR> Version 1.0<BR> <BR> This application was developed<BR> for UMUC CMSC495 Fall 2018 by:<BR> John Tamer<BR> Jason Grimard<BR> Demetrius Billups<BR> &<BR> Emily Hoppe");
         aboutLabel.setToolTipText("");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
