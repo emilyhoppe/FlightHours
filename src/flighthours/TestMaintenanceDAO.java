@@ -7,10 +7,9 @@ package flighthours;
 
 /**
  *
- * @author jjtam
+ * @author ehoppe
  */
 
-import controller.AircraftDAO;
 import controller.MaintenanceDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,50 +17,39 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class TestAircraftDAO {
+public class TestMaintenanceDAO {
     private static String dbURL = "jdbc:derby:FlightHours";
     private static String tableName = "AIRCRAFT";
 
     private static Connection conn = null;
-    private static AircraftDAO aircraftQueries;
     private static MaintenanceDAO mtQueries;
-    private static List<Aircraft> aircraftList;
-    private static JTable aircraftTable;
-    private static DefaultTableModel acTableModel;
+    private static JTable mtTable;
+    private static DefaultTableModel mtTableModel;
 
     public static void main(String args[]) {
         int result;
-        new TestAircraftDAO();
         try {
             conn = DriverManager.getConnection(dbURL);
 
         } catch (Exception except) {
             except.printStackTrace();
-        }
+        }        
         
-        aircraftQueries = new AircraftDAO(conn);
+        mtQueries = new MaintenanceDAO(conn);
+        int aircraftID = 4;
+        mtTableModel = MaintenanceDAO.selectMaintenanceByAircraft(aircraftID);
         
-        //acTableModel = AircraftDAO.selectAllAircraft();
-        
-        //Added Section below to see results - Emily
-        int rowCount = acTableModel.getRowCount();
-        int columnCount = acTableModel.getColumnCount();  
+        //Section below is to test and print results
+        int rowCount = mtTableModel.getRowCount();
+        int columnCount = mtTableModel.getColumnCount();  
         for (int row = 0; row < rowCount; row++) {
             for (int column = 0; column < columnCount; column++) {
-                System.out.print(acTableModel.getValueAt(row, column) + ", ");                 
+                System.out.print(mtTableModel.getValueAt(row, column) + ", ");                 
             }
             System.out.println();
-        }         
+        } 
         
-        String loc = "Laredo Air Branch";
-        acTableModel = AircraftDAO.selectAircraftbyLocation(loc);
-
-        
-        //aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
-        
-       
         System.out.println("Stop Here");
-
     }
 
 }
