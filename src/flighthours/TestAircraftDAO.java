@@ -41,7 +41,7 @@ public class TestAircraftDAO {
         
         aircraftQueries = new AircraftDAO(conn);
         
-        acTableModel = AircraftDAO.selectAllAircraft();
+        //acTableModel = AircraftDAO.selectAllAircraft();
         
         //Added Section below to see results - Emily
         int rowCount = acTableModel.getRowCount();
@@ -54,6 +54,9 @@ public class TestAircraftDAO {
         }         
         
         String loc = "Laredo Air Branch";
+        acTableModel = AircraftDAO.selectAircraftbyLocation(loc);
+
+        
         //aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
         
        
