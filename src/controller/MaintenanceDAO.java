@@ -14,6 +14,7 @@ package controller;
  */
 import flighthours.Maintenance;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,9 +81,18 @@ public class MaintenanceDAO {
         return mtTableModel;
     }
     
-    public int insertNewMaintenance(Maintenance inMaintenance) {
+    public static int insertNewMaintenance(Maintenance inMaintenance) {
         int result = 0;
+        try {
+            insertNewMaintenance.setInt(1, inMaintenance.getAircraftID());
+            insertNewMaintenance.setDate(2, new java.sql.Date(inMaintenance.getStartDate().getTime()));
+            insertNewMaintenance.setDate(3, new java.sql.Date(inMaintenance.getEndDate().getTime()));
+            insertNewMaintenance.setString(4, inMaintenance.getMaintDescr());  
+            result = insertNewMaintenance.executeUpdate();
 
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
         return result;
     }
 

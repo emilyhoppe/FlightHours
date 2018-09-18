@@ -5,15 +5,17 @@
  */
 package flighthours;
 
+import java.util.Date;
+
 public class Maintenance {
     
     private int maintenanceID;
     private int aircraftID;
-    private int startDate;
-    private int endDate;
+    private Date startDate;
+    private Date endDate;
     private String maintDescr;
 
-    public Maintenance(int maintenanceID, int aircraftID, int startDate, int endDate, String maintDesce) {
+    public Maintenance(int maintenanceID, int aircraftID, Date startDate, Date endDate, String maintDesce) {
         this.maintenanceID = maintenanceID;
         this.aircraftID = aircraftID;
         this.startDate = startDate;
@@ -40,33 +42,33 @@ public class Maintenance {
         this.aircraftID = aircraftID;
     }
 
-    public int getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(int startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public int getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(int endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getMaintDesce() {
+    public String getMaintDescr() {
         return maintDescr;
     }
 
-    public void setMaintDesce(String maintDesce) {
-        this.maintDescr = maintDesce;
+    public void setMaintDescr(String maintDescr) {
+        this.maintDescr = maintDescr;
     }
 
     @Override
     public String toString() {
-        return "Maintenance{" + "maintenanceID=" + maintenanceID + ", aircraftID=" + aircraftID + ", startDate=" + startDate + ", endDate=" + endDate + ", maintDesce=" + maintDescr + '}';
+        return "Maintenance{" + "maintenanceID=" + maintenanceID + ", aircraftID=" + aircraftID + ", startDate=" + startDate + ", endDate=" + endDate + ", maintDescr=" + maintDescr + '}';
     }
     
     

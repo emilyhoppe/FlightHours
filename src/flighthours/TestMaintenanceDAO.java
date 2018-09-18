@@ -13,6 +13,7 @@ package flighthours;
 import controller.MaintenanceDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -48,6 +49,20 @@ public class TestMaintenanceDAO {
             }
             System.out.println();
         } 
+        
+        //New Maintenance Test Verified
+        Date start = new Date("5/10/2018");
+        Date end = new Date("5/11/2018");
+        //System.out.println(start.toString());
+        String desc = "testing";
+        Maintenance inMaintenance = new Maintenance();
+        inMaintenance.setAircraftID(aircraftID);
+        inMaintenance.setStartDate(start);
+        inMaintenance.setEndDate(end);
+        inMaintenance.setMaintDescr(desc);
+        
+        //int success = MaintenanceDAO.insertNewMaintenance(inMaintenance);
+        //System.out.println(String.valueOf(success));
         
         System.out.println("Stop Here");
     }
