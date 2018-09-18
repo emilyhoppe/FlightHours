@@ -368,7 +368,7 @@ public class AircraftView extends javax.swing.JPanel {
     }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
 
     private void addAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
-        //Open add aircraft dialog window when add aircraft button is pressed
+        //Open  add aircraft dialog window when add aircraft button is pressed
 
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddAircraftView addAircraftView = new AddAircraftView(frame, true);
