@@ -289,7 +289,7 @@ public class AircraftView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         aircraftTable.setAutoCreateRowSorter(true);
-        //temporary, need to remove connection creation code here
+        //TODO temporary, need to remove connection creation code here
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         try{
             Connection conn = DriverManager.getConnection(CONNECTION);
