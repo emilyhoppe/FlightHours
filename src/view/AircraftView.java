@@ -60,8 +60,7 @@ public class AircraftView extends javax.swing.JPanel {
     }
 
     //Initialize all Swing components and place them in the JPanel using GridBag layout
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {//GEN-BEGIN:initComponents
         GridBagConstraints gridBagConstraints;
 
         searchButtonGroup = new ButtonGroup();
@@ -342,7 +341,7 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
+    }//GEN-END:initComponents
 
     private void aircraftOperationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         //Switch to operations view on card layout when aircraft operations button is pressed
