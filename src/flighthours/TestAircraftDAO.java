@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TestAircraftDAO {
     private static String dbURL = "jdbc:derby:FlightHours";
@@ -24,6 +25,7 @@ public class TestAircraftDAO {
     private static AircraftDAO aircraftQueries;
     private static List<Aircraft> aircraftList;
     private static JTable aircraftTable;
+    private static DefaultTableModel acTableModel;
 
     public static void main(String args[]) {
         int result;
@@ -37,11 +39,11 @@ public class TestAircraftDAO {
         
         aircraftQueries = new AircraftDAO(conn);
         
-        //aircraftTable = AircraftDAO.selectAllAircraft();
+        acTableModel = AircraftDAO.selectAllAircraft();
         
         String loc = "Laredo Air Branch";
         
-        aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
+        //aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
         
        
         System.out.println("Stop Here");
