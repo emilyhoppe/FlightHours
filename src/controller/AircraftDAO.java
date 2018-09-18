@@ -90,9 +90,9 @@ public class AircraftDAO {
 
         try {
             resultSet = selectAllAircraft.executeQuery();
-            while (resultSet.next()) {
-                System.out.println("Tail Number" + resultSet.getString("TAIL_NUMBER"));
-            }
+            //while (resultSet.next()) {
+            //    System.out.println("Tail Number" + resultSet.getString("TAIL_NUMBER"));
+            //}
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
