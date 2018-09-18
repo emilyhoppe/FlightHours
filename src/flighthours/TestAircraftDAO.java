@@ -22,7 +22,7 @@ public class TestAircraftDAO {
 
     private static Connection conn = null;
     private static AircraftDAO aircraftQueries;
-    //private static List<Station> stationList;
+    private static List<Aircraft> aircraftList;
     private static JTable aircraftTable;
 
     public static void main(String args[]) {
@@ -37,7 +37,12 @@ public class TestAircraftDAO {
         
         aircraftQueries = new AircraftDAO(conn);
         
-        aircraftTable = AircraftDAO.selectAllAircraft();
+        //aircraftTable = AircraftDAO.selectAllAircraft();
+        
+        String loc = "Laredo Air Branch";
+        
+        aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
+        
        
         System.out.println("Stop Here");
 
