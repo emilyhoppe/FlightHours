@@ -9,7 +9,9 @@
  *
  *      Class Description:
  *          Temporary functions for GUI.  Do not delete until all temporary items
- *          have been implemented in real code.
+ *          have been implemented in real code.  Comment out functions as they
+ *          are removed instead of deleting them.  Then when we are done we 
+ *          can delete this entire class.
  *
  *
  *********** */
@@ -87,46 +89,50 @@ public class TemporaryFunctions {
         return aircraftTypeArray;
     }
 
-    //Returns a table model for the Aircraft Search table until SQL code is implemented
-    public static DefaultTableModel getAircraftTableModel() {
+//    //Returns a table model for the Aircraft Search table until SQL code is implemented
+//    public static DefaultTableModel getAircraftTableModel() {
+//
+//        //Array of for table column names
+//        Object[] tableColumns = {"ID", "Tail Number", "Type", "Station", "Max Speed", "Max Altitude", "Total Hours", "Maint Flag", "Maint Hours",
+//            "Maint Threshold", "End of Service"};
+//
+//        //2D array of table row data
+//        Object[][] tableData = {
+//            {"1", "A2K2J5", "FIXED WING", "San Diego Air and Marine Branch", "555", "22000", "50100", "FALSE", "575", "2000", ""},
+//            {"2", "A2K2J6", "FIXED WING", "Alpine Air Unit", "550", "36200", "50000", "FALSE", "505", "1000", ""},
+//            {"3", "A2K2J7", "FIXED WING", "McAllen Air and Marine Branch", "550", "35200", "50700", "FALSE", "50", "3000", ""},
+//            {"4", "A2K2J8", "ROTARY WING", "McAllen Air and Marine Branch", "550", "35000", "50000", "TRUE", "6521", "6000", ""},
+//            {"5", "A2K2J9", "FIXED WING", "Laredo Air Branch", "350", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"6", "A2K2K0", "FIXED WING", "Sacramento Air Unit", "450", "31000", "50000", "FALSE", "50", "3000", ""},
+//            {"7", "A2K2K1", "FIXED WING", "Alpine Air Unit", "550", "35000", "50000", "FALSE", "0", "2000", "12/25/2017"},
+//            {"8", "A2K2K2", "UAV", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"9", "A2K2K3", "FIXED WING", "Tucson Air Branch", "550", "35000", "50000", "FALSE", "10", "3000", ""},
+//            {"10", "A2K2K4", "UAV", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "10", "3000", ""},
+//            {"11", "A2K2K5", "ROTARY WING", "Sacramento Air Unit", "550", "35000", "50000", "FALSE", "150", "3000", ""},
+//            {"12", "A2K2K6", "FIXED WING", "Tucson Air Branch", "550", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"13", "A2K2K7", "UAV", "Tucson Air Branch", "550", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"14", "A2K2Z5", "FIXED WING", "Alpine Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"15", "A2K2Z6", "FIXED WING", "Laredo Air Branch", "555", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"16", "A2K2Z7", "ROTARY WING", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
+//            {"17", "A2K2Z8", "FIXED WING", "San Diego Air and Marine Branch", "550", "35000", "50000", "FALSE", "500", "3000", ""}
+//        };
+//
+//        DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
+//            //Override default table model method and make all cells non-editable
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                return false;
+//            }
+//        };
+//
+//        return aircraftTableModel;
+//    }
 
-        //Array of for table column names
-        Object[] tableColumns = {"ID", "Tail Number", "Type", "Station", "Max Speed", "Max Altitude", "Total Hours", "Maint Flag", "Maint Hours",
-            "Maint Threshold", "End of Service"};
-
-        //2D array of table row data
-        Object[][] tableData = {
-            {"1", "A2K2J5", "FIXED WING", "San Diego Air and Marine Branch", "555", "22000", "50100", "FALSE", "575", "2000", ""},
-            {"2", "A2K2J6", "FIXED WING", "Alpine Air Unit", "550", "36200", "50000", "FALSE", "505", "1000", ""},
-            {"3", "A2K2J7", "FIXED WING", "McAllen Air and Marine Branch", "550", "35200", "50700", "FALSE", "50", "3000", ""},
-            {"4", "A2K2J8", "ROTARY WING", "McAllen Air and Marine Branch", "550", "35000", "50000", "TRUE", "6521", "6000", ""},
-            {"5", "A2K2J9", "FIXED WING", "Laredo Air Branch", "350", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"6", "A2K2K0", "FIXED WING", "Sacramento Air Unit", "450", "31000", "50000", "FALSE", "50", "3000", ""},
-            {"7", "A2K2K1", "FIXED WING", "Alpine Air Unit", "550", "35000", "50000", "FALSE", "0", "2000", "12/25/2017"},
-            {"8", "A2K2K2", "UAV", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"9", "A2K2K3", "FIXED WING", "Tucson Air Branch", "550", "35000", "50000", "FALSE", "10", "3000", ""},
-            {"10", "A2K2K4", "UAV", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "10", "3000", ""},
-            {"11", "A2K2K5", "ROTARY WING", "Sacramento Air Unit", "550", "35000", "50000", "FALSE", "150", "3000", ""},
-            {"12", "A2K2K6", "FIXED WING", "Tucson Air Branch", "550", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"13", "A2K2K7", "UAV", "Tucson Air Branch", "550", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"14", "A2K2Z5", "FIXED WING", "Alpine Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"15", "A2K2Z6", "FIXED WING", "Laredo Air Branch", "555", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"16", "A2K2Z7", "ROTARY WING", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
-            {"17", "A2K2Z8", "FIXED WING", "San Diego Air and Marine Branch", "550", "35000", "50000", "FALSE", "500", "3000", ""}
-        };
-
-        DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
-            //Override default table model method and make all cells non-editable
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        return aircraftTableModel;
-    }
-
-    //Database Version - Returns a table model for the Aircraft Search table until SQL code is implemented
+    //Database Version - Returns a table model for the Aircraft Search table 
+    //until SQL code is implemented.
+    //This function uses Vectors because DefaultTableModel only supports
+    //Vectors.  Unfortunately it does not support ArrayList, otherwise I would
+    //have used that....
     public static DefaultTableModel getAircraftTableModelFromDatabase() {
         
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
