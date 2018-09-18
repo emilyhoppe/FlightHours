@@ -39,11 +39,11 @@ public class TestAircraftDAO {
         
         aircraftQueries = new AircraftDAO(conn);
         
-        acTableModel = AircraftDAO.selectAllAircraft();
+        //acTableModel = AircraftDAO.selectAllAircraft();
         
         String loc = "Laredo Air Branch";
         
-        //aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
+        acTableModel = AircraftDAO.selectAircraftbyLocation(loc);
         
        
         System.out.println("Stop Here");
