@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 public class CreateStationsTable {
 
-    public static void main(String args[]) {
+    public static void createTable() {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         boolean okayToCreate = false;
 

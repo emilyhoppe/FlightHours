@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 public class CreateAircraftTable {
 
-    public static void main(String args[]) {
+    public static void createTable() {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         boolean okayToCreate = false;
 
@@ -42,6 +42,7 @@ public class CreateAircraftTable {
             }
         }
         if (okayToCreate) {
+            //Create table in database
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE AIRCRAFT ( "
@@ -56,7 +57,7 @@ public class CreateAircraftTable {
                         + " CURRENT_MAINTENANCE_HOURS INT NOT NULL,"
                         + " END_OF_SERVICE_DATE DATE) ");
                 System.out.println("AIRCRAFT table created.");
-                //Insert rows into the table
+                //Insert rows of sample data into the table
                 try {
                     Statement insertStatement = conn.createStatement();
                     insertStatement.executeUpdate("INSERT INTO aircraft"
@@ -104,7 +105,7 @@ public class CreateAircraftTable {
                             + "('N0667P','Rotary Wing',16,130,15000,7302,false,7302,NULL),"
                             + "('N0898N','Rotary Wing',17,150,20000,70630,false,70630,NULL),"
                             + "('N2121N','Fixed Wing',17,130,15000,14535,false,14535,NULL)");
-                    System.out.println("STATIONS inserted");
+                    System.out.println("AIRCRAFT inserted");
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);

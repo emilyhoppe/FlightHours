@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 public class CreateMissionsTable {
 
-    public static void main(String args[]) {
+    public static void createTable() {
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         boolean okayToCreate = false;
 
@@ -47,28 +47,29 @@ public class CreateMissionsTable {
                 statement.executeUpdate("CREATE TABLE MISSIONS ( "
                         + " MISSION_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
                         + " MISSION_NAME VARCHAR (50) NOT NULL)");
+
                 System.out.println("MISSIONS table created.");
 
+                //Insert rows into the table
+                try {
+                    Statement insertStatement = conn.createStatement();
+                    insertStatement.executeUpdate("INSERT INTO MISSIONS (MISSION_NAME) VALUES "
+                            + "('Interdiction'), "
+                            + "('Surveillance'), "
+                            + "('Intelligence'), "
+                            + "('Tactical Ops'), "
+                            + "('Transport'), "
+                            + "('Search and Rescue'), "
+                            + "('Disaster Relief') ");
+                    System.out.println("Missions inserted");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Database Error: " + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
-
-        try (Connection conn = DriverManager.getConnection(CONNECTION);
-                Statement statement = conn.createStatement()) {
-            statement.executeUpdate("INSERT INTO MISSIONS (MISSION_NAME) VALUES "
-                    + "('Interdiction'), "
-                    + "('Surveillance'), "
-                    + "('Intelligence'), "
-                    + "('Tactical Ops'), "
-                    + "('Transport'), "
-                    + "('Search and Rescue'), "
-                    + "('Disaster Relief') ");
-            System.out.println("Missions inserted");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Database Error: " + e,
-                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
