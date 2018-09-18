@@ -25,8 +25,7 @@ import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
-public class MaintenanceDAO {
-    
+public class MaintenanceDAO {    
     
     private static Connection conn = null;
     private static Statement stmt = null;

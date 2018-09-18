@@ -5,6 +5,8 @@
  */
 package flighthours;
 
+import java.util.Date;
+
 /**
  *
  * @author jjtam
@@ -15,14 +17,14 @@ public class Operation {
     private int stationID;
     private int missionID;
     private String operationName;
-    private int operationStartDate;
-    private int operationEndDate;
+    private Date operationStartDate;
+    private Date operationEndDate;
     private int operationFlighHour;
 
     public Operation() {
     }
 
-    public Operation(int operationID, int aircraftID, int stationID, int missionID, String operationName, int operationStartDate, int operationEndDate, int operationFlighHour) {
+    public Operation(int operationID, int aircraftID, int stationID, int missionID, String operationName, Date operationStartDate, Date operationEndDate, int operationFlighHour) {
         this.operationID = operationID;
         this.aircraftID = aircraftID;
         this.stationID = stationID;
@@ -73,27 +75,27 @@ public class Operation {
         this.operationName = operationName;
     }
 
-    public int getOperationStartDate() {
+    public Date getOperationStartDate() {
         return operationStartDate;
     }
 
-    public void setOperationStartDate(int operationStartDate) {
+    public void setOperationStartDate(Date operationStartDate) {
         this.operationStartDate = operationStartDate;
     }
 
-    public int getOperationEndDate() {
+    public Date getOperationEndDate() {
         return operationEndDate;
     }
 
-    public void setOperationEndDate(int operationEndDate) {
+    public void setOperationEndDate(Date operationEndDate) {
         this.operationEndDate = operationEndDate;
     }
 
-    public int getOperationFlighHour() {
+    public int getOperationFlightHour() {
         return operationFlighHour;
     }
 
-    public void setOperationFlighHour(int operationFlighHour) {
+    public void setOperationFlightHour(int operationFlighHour) {
         this.operationFlighHour = operationFlighHour;
     }
 
