@@ -39,11 +39,27 @@ public class AircraftDAO {
     public AircraftDAO(Connection conn) {
         try {
             AircraftDAO.conn = conn;
-            //conn = DriverManager.getConnection(dbURL);
-            selectAllAircraft = conn.prepareStatement("SELECT * FROM AIRCRAFT ORDER BY TAIL_NUMBER");
+                        
+            selectAllAircraft = conn.prepareStatement("SELECT "
+                    + "aircraft_id, "
+                    + "tail_number, "
+                    + "aircraft_type, "
+                    + "stations.station_name, "
+                    + "max_speed, "
+                    + "max_altitude, "
+                    + "total_flight_hours, "
+                    + "maintenance_flag, "
+                    + "current_maintenance_hours, "
+                    + "maintenance_hours_threshold, "
+                    + "end_of_service_date "
+                    + "FROM aircraft "
+                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
+            
             tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
+            
             selectAircraftByLocation
                     = conn.prepareStatement("select * from AIRCRAFT where STATION_ID = (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = ?)");
+            
             selectAircraftByTailNumber = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
             
             insertNewAircraft = conn.prepareStatement("INSERT INTO aircraft"
@@ -52,7 +68,7 @@ public class AircraftDAO {
                             + " station_id,"
                             + " max_speed,"
                             + " max_altitude,"
-                            + " total_filght_hours,"
+                            + " total_flight_hours,"
                             + " maintenance_flag,"
                             + " current_maintenance_hours,"
                             + " maintenance_hours_threshold)"
