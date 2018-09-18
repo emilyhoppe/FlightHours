@@ -61,7 +61,7 @@ public class CreateMissionsTable {
                             + "('Transport'), "
                             + "('Search and Rescue'), "
                             + "('Disaster Relief') ");
-                    System.out.println("Missions inserted");
+                    System.out.println("MISSIONS inserted");
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);

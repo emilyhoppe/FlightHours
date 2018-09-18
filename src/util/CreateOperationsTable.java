@@ -81,7 +81,7 @@ public class CreateOperationsTable {
                             + "(21,13,6,'Test Operation 11','2018-02-16','2018-02-16',9765),"
                             + "(22,12,5,'Test Operation 12','2018-02-23','2018-02-23',5192),"
                             + "(30,1,7,'Test Operation 13','2018-01-05','2018-01-05',12666)");
-                    System.out.println("Operations inserted");
+                    System.out.println("OPERATIONS inserted");
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);
