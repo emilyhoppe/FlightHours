@@ -17,13 +17,6 @@
  *********** */
 package temporary;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 //This class is holding temporary functions used by the GUI until real
@@ -132,76 +125,76 @@ public class TemporaryFunctions {
     //This function uses Vectors because DefaultTableModel only supports
     //Vectors.  Unfortunately it does not support ArrayList, otherwise I would
     //have used that....
-    public static DefaultTableModel getAircraftTableModelFromDatabase() {
-
-        final String CONNECTION = "jdbc:derby:FlightHours;create=true";
-        Vector<String> tableColumns = new Vector<String>();
-        Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
-
-        try (Connection conn = DriverManager.getConnection(CONNECTION);
-                Statement statement = conn.createStatement()) {
-            ResultSet results = statement.executeQuery("SELECT "
-                    + "aircraft_id, "
-                    + "tail_number, "
-                    + "aircraft_type, "
-                    + "stations.station_name, "
-                    + "max_speed, "
-                    + "max_altitude, "
-                    + "total_flight_hours, "
-                    + "maintenance_flag, "
-                    + "current_maintenance_hours, "
-                    + "maintenance_hours_threshold, "
-                    + "end_of_service_date "
-                    + "FROM aircraft "
-                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
-            ResultSetMetaData metaData = results.getMetaData();
-
-            //Create column names
-            tableColumns.add("ID");
-            tableColumns.add("Tail Number");
-            tableColumns.add("Type");
-            tableColumns.add("Station");
-            tableColumns.add("Max Speed");
-            tableColumns.add("Max Altitude");
-            tableColumns.add("Total Hours");
-            tableColumns.add("Maint Flag");
-            tableColumns.add("Maint Hours");
-            tableColumns.add("Maint Threshold");
-            tableColumns.add("End of Service");
-
-            //Fill all rows with results
-            while (results.next()) {
-                Vector<Object> vector = new Vector<Object>();
-                vector.add(results.getObject(1));
-                vector.add(results.getObject(2));
-                vector.add(results.getObject(3));
-                vector.add(results.getObject(4));
-                vector.add(results.getObject(5));
-                vector.add(results.getObject(6));
-                vector.add(results.getObject(7));
-                vector.add(results.getObject(8));
-                vector.add(results.getObject(9));
-                vector.add(results.getObject(10));
-                vector.add(results.getObject(11));
-                tableData.add(vector);
-
-            }
-
-            //tableModel.setDataVector(data, columnNames);
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }
-
-        DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
-            //Override default table model method and make all cells non-editable
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        return aircraftTableModel;
-    }
+//    public static DefaultTableModel getAircraftTableModelFromDatabase() {
+//
+//        final String CONNECTION = "jdbc:derby:FlightHours;create=true";
+//        Vector<String> tableColumns = new Vector<String>();
+//        Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
+//
+//        try (Connection conn = DriverManager.getConnection(CONNECTION);
+//                Statement statement = conn.createStatement()) {
+//            ResultSet results = statement.executeQuery("SELECT "
+//                    + "aircraft_id, "
+//                    + "tail_number, "
+//                    + "aircraft_type, "
+//                    + "stations.station_name, "
+//                    + "max_speed, "
+//                    + "max_altitude, "
+//                    + "total_flight_hours, "
+//                    + "maintenance_flag, "
+//                    + "current_maintenance_hours, "
+//                    + "maintenance_hours_threshold, "
+//                    + "end_of_service_date "
+//                    + "FROM aircraft "
+//                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
+//            ResultSetMetaData metaData = results.getMetaData();
+//
+//            //Create column names
+//            tableColumns.add("ID");
+//            tableColumns.add("Tail Number");
+//            tableColumns.add("Type");
+//            tableColumns.add("Station");
+//            tableColumns.add("Max Speed");
+//            tableColumns.add("Max Altitude");
+//            tableColumns.add("Total Hours");
+//            tableColumns.add("Maint Flag");
+//            tableColumns.add("Maint Hours");
+//            tableColumns.add("Maint Threshold");
+//            tableColumns.add("End of Service");
+//
+//            //Fill all rows with results
+//            while (results.next()) {
+//                Vector<Object> vector = new Vector<Object>();
+//                vector.add(results.getObject(1));
+//                vector.add(results.getObject(2));
+//                vector.add(results.getObject(3));
+//                vector.add(results.getObject(4));
+//                vector.add(results.getObject(5));
+//                vector.add(results.getObject(6));
+//                vector.add(results.getObject(7));
+//                vector.add(results.getObject(8));
+//                vector.add(results.getObject(9));
+//                vector.add(results.getObject(10));
+//                vector.add(results.getObject(11));
+//                tableData.add(vector);
+//
+//            }
+//
+//            //tableModel.setDataVector(data, columnNames);
+//        } catch (SQLException sqlExcept) {
+//            sqlExcept.printStackTrace();
+//        }
+//
+//        DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
+//            //Override default table model method and make all cells non-editable
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                return false;
+//            }
+//        };
+//
+//        return aircraftTableModel;
+//    }
 
     //Returns a table model for the Aircraft Operations table until SQL code is implemented
     public static DefaultTableModel getOperationsTableModel() {
