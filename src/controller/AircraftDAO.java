@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** **********
+ *
+ *      Class:         AircraftDAO.java
+ *      Package:       controller
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: Data access class used to interact with AIRCRAFT database table.
+ *
+ *
+ *********** */
 package controller;
 
-/**
- *
- * @author jjtam
- */
 import flighthours.Aircraft;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,6 +42,23 @@ public class AircraftDAO {
             //conn = DriverManager.getConnection(dbURL);
             selectAllAircraft = conn.prepareStatement("SELECT * FROM AIRCRAFT ORDER BY TAIL_NUMBER");
             tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
+            selectAircraftByLocation
+                    = conn.prepareStatement("select * from AIRCRAFT where STATION_ID = (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = ?)");
+            selectAircraftByTailNumber = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
+            
+            insertNewAircraft = conn.prepareStatement("INSERT INTO aircraft"
+                            + "(tail_number,"
+                            + " aircraft_type,"
+                            + " station_id,"
+                            + " max_speed,"
+                            + " max_altitude,"
+                            + " total_filght_hours,"
+                            + " maintenance_flag,"
+                            + " current_maintenance_hours,"
+                            + " maintenance_hours_threshold)"
+                            + "VALUES (?,?,?,?,?,?,?,?,?)");
+            
+            
         } catch (Exception except) {
             except.printStackTrace();
         }
@@ -64,18 +85,37 @@ public class AircraftDAO {
         return aircraftTable;
     }
 
-    public static List<Aircraft> selectAircraftbyLocation() {
+    public static List<Aircraft> selectAircraftbyLocation(String inLocation) {
 
         List<Aircraft> results = null;
         ResultSet resultSet = null;
 
+        //System.out.println("Location: " + inLocation);
+        try {
+            selectAircraftByLocation.setString(1, inLocation);
+            resultSet = selectAircraftByLocation.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Tail Number" + resultSet.getString("TAIL_NUMBER"));
+            }
+
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+
         return results;
     }
 
-    public static Aircraft selectAircraftByTailnumber() {
+    public static Aircraft selectAircraftByTailnumber(String inTailNumber) {
 
         Aircraft results = null;
         ResultSet resultSet = null;
+        try {
+            selectAircraftByTailNumber.setString(1, inTailNumber);
+            resultSet = selectAircraftByTailNumber.executeQuery();
+            
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
 
         return results;
     }
@@ -90,6 +130,28 @@ public class AircraftDAO {
 
     public int insertNewAircraft(Aircraft inAircraft) {
         int result = 0;
+              
+        try {
+            insertNewAircraft.setString(1, inAircraft.getTailNumber());
+            insertNewAircraft.setString(2, inAircraft.getAircraftType());
+            insertNewAircraft.setInt(3, inAircraft.getStationID());
+            insertNewAircraft.setInt(4, inAircraft.getMaxSpeed());               
+            insertNewAircraft.setInt(5, inAircraft.getMaxAltitude());                  
+            insertNewAircraft.setInt(6, inAircraft.getTotalFlightHours());  
+            insertNewAircraft.setBoolean(6,inAircraft.getMaintenanceFlag());
+            insertNewAircraft.setInt(7, inAircraft.getCurrentMaintenanceHours());   
+            //insertNewAircraft.setInt(8, inAircraft.getMaintenanceHoursThreshold());   
+            
+            //java.util.Date myDate = new java.util.Date(inAircraft.getEndOfServiceDate());
+            //java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+            
+            //insertNewAircraft.setNull(9, 1); 
+          
+            result = insertNewAircraft.executeUpdate();
+                        
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
 
         return result;
     }
@@ -99,9 +161,9 @@ public class AircraftDAO {
 
         return result;
     }
-    
+
     public boolean tailNumberExists(String tailNumber) {
-        
+
         boolean result = false;
         return result;
     }
