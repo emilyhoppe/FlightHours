@@ -60,7 +60,8 @@ public class AircraftView extends javax.swing.JPanel {
     }
 
     //Initialize all Swing components and place them in the JPanel using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         searchButtonGroup = new ButtonGroup();
@@ -148,6 +149,9 @@ public class AircraftView extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent evt) {
                 tailNumberLabelMouseClicked(evt);
             }
+            public void mouseEntered(MouseEvent evt) {
+                tailNumberLabelMouseEntered(evt);
+            }
         });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -161,6 +165,9 @@ public class AircraftView extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent evt) {
                 maintFlagLabelMouseClicked(evt);
             }
+            public void mouseEntered(MouseEvent evt) {
+                maintFlagLabelMouseEntered(evt);
+            }
         });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -173,6 +180,9 @@ public class AircraftView extends javax.swing.JPanel {
         stationLabel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 stationLabelMouseClicked(evt);
+            }
+            public void mouseEntered(MouseEvent evt) {
+                stationLabelMouseEntered(evt);
             }
         });
         gridBagConstraints = new GridBagConstraints();
@@ -332,7 +342,7 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     private void aircraftOperationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
         //Switch to operations view on card layout when aircraft operations button is pressed
@@ -523,6 +533,18 @@ public class AircraftView extends javax.swing.JPanel {
         //Testing output dialog box
         JOptionPane.showMessageDialog(topPanel, "Call function to show all records", "Notice", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_showAllButtonActionPerformed
+
+    private void tailNumberLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseEntered
+        tailNumberLabel.setToolTipText("Select this option to search Aircraft by Tail Number");
+    }//GEN-LAST:event_tailNumberLabelMouseEntered
+
+    private void maintFlagLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_maintFlagLabelMouseEntered
+        maintFlagLabel.setToolTipText("Select this option to search Aircraft by Maintenance Flag");
+    }//GEN-LAST:event_maintFlagLabelMouseEntered
+
+    private void stationLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_stationLabelMouseEntered
+        stationLabel.setToolTipText("Select this option to search Aircraft by Station");
+    }//GEN-LAST:event_stationLabelMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
