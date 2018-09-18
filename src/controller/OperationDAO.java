@@ -32,15 +32,14 @@ public class OperationDAO {
     
     private static Connection conn = null;
     private static Statement stmt = null;
-    private static PreparedStatement selectAllOperation;
     private static PreparedStatement selectOperationByAircraft;
     private static PreparedStatement insertNewOperation;
     private static PreparedStatement modifyOperation;
     private static DefaultTableModel opTableModel;
 
-    public OperationDAO(Connection conn) {
+    public OperationDAO() {
         try {
-            OperationDAO.conn = conn;
+            conn = DriverManager.getConnection("jdbc:derby:FlightHours;create=true");
             selectOperationByAircraft = conn.prepareStatement("SELECT * FROM OPERATIONS "
                     + "WHERE AIRCRAFT_ID = ?");
             

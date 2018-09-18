@@ -36,7 +36,7 @@ public class TestMaintenanceDAO {
             except.printStackTrace();
         }        
         
-        mtQueries = new MaintenanceDAO(conn);
+        mtQueries = new MaintenanceDAO();
         int aircraftID = 4;
         mtTableModel = MaintenanceDAO.selectMaintenanceByAircraft(aircraftID);
         

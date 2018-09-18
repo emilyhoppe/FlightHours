@@ -35,9 +35,9 @@ public class MaintenanceDAO {
     private static PreparedStatement modifyMaintenance;
     private static DefaultTableModel mtTableModel;
 
-    public MaintenanceDAO(Connection conn) {
+    public MaintenanceDAO() {
         try {
-            MaintenanceDAO.conn = conn;
+            conn = DriverManager.getConnection("jdbc:derby:FlightHours;create=true");
             selectMaintenanceByAircraft = conn.prepareStatement("select * from MAINTENANCE "
                     + "where AIRCRAFT_ID = ?");
             

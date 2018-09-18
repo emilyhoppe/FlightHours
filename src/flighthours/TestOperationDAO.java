@@ -27,15 +27,8 @@ public class TestOperationDAO {
     private static DefaultTableModel opTableModel;
 
     public static void main(String args[]) {
-        int result;
-        try {
-            conn = DriverManager.getConnection(dbURL);
-
-        } catch (Exception except) {
-            except.printStackTrace();
-        }        
         
-        opQueries = new OperationDAO(conn);
+        opQueries = new OperationDAO();
         int aircraftID = 4;
         opTableModel = OperationDAO.selectOperationByAircraft(aircraftID);
         
@@ -65,9 +58,12 @@ public class TestOperationDAO {
         inOperation.setOperationEndDate(end);
         inOperation.setOperationFlightHour(6);
         
+        //Insert Operation Test
         //int success = OperationDAO.insertNewOperation(inOperation);
         //System.out.println(String.valueOf(success));
         
+        
+        //Modify Operation Test
         //int success = OperationDAO.modifyOperation(inOperation);
         //System.out.println(String.valueOf(success));
         
