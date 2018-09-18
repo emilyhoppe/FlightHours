@@ -19,6 +19,7 @@
  *********** */
 package view;
 
+import controller.AircraftDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -33,6 +34,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -286,7 +289,14 @@ public class AircraftView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         aircraftTable.setAutoCreateRowSorter(true);
-        aircraftTable.setModel(TemporaryFunctions.getAircraftTableModelFromDatabase());
+        //temporary, need to remove connection creation code here
+        final String CONNECTION = "jdbc:derby:FlightHours;create=true";
+        try{
+            Connection conn = DriverManager.getConnection(CONNECTION);
+            AircraftDAO aircraftDAO = new AircraftDAO(conn);
+            aircraftTable.setModel(aircraftDAO.selectAllAircraft());
+        } catch (Exception e){}
+
         //Hide ID column in table but still allow application access to it
         aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
         aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
