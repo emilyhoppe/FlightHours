@@ -15,6 +15,13 @@
  *********** */
 package temporary;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 //This class is holding temporary functions used by the GUI until real
@@ -76,7 +83,7 @@ public class TemporaryFunctions {
     //Returns an array of strings for the aircraft type combo boxes.
     //Not sure where we will put this code permanently
     public static String[] getAircraftTypeArray() {
-        String[] aircraftTypeArray = {"FIXED WING", "ROTARY WING", "UAV"};
+        String[] aircraftTypeArray = {"Fixed Wing", "Rotary Wing", "UAV"};
         return aircraftTypeArray;
     }
 
@@ -107,6 +114,64 @@ public class TemporaryFunctions {
             {"16", "A2K2Z7", "ROTARY WING", "Brown Field Air Unit", "550", "35000", "50000", "FALSE", "50", "3000", ""},
             {"17", "A2K2Z8", "FIXED WING", "San Diego Air and Marine Branch", "550", "35000", "50000", "FALSE", "500", "3000", ""}
         };
+
+        DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
+            //Override default table model method and make all cells non-editable
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        return aircraftTableModel;
+    }
+
+    //Database Version - Returns a table model for the Aircraft Search table until SQL code is implemented
+    public static DefaultTableModel getAircraftTableModelFromDatabase() {
+        
+        final String CONNECTION = "jdbc:derby:FlightHours;create=true";
+        Vector<String> tableColumns = new Vector<String>();
+        Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
+        
+        try (Connection conn = DriverManager.getConnection(CONNECTION);
+                Statement statement = conn.createStatement()) {
+            ResultSet results = statement.executeQuery("SELECT * FROM aircraft");
+            ResultSetMetaData metaData = results.getMetaData();
+
+            //Create column names
+            tableColumns.add("ID");
+            tableColumns.add("Tail Number");
+            tableColumns.add("Type");
+            tableColumns.add("Station");
+            tableColumns.add("Max Speed");
+            tableColumns.add("Max Altitude");
+            tableColumns.add("Total Hours");
+            tableColumns.add("Maint Flag");
+            tableColumns.add("Maint Hours");
+            tableColumns.add("Maint Threshold");
+            tableColumns.add("End of Service");
+
+            //Fill all rows with results
+            while (results.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                vector.add(results.getObject(1));
+                vector.add(results.getObject(2));
+                vector.add(results.getObject(3));
+                vector.add(results.getObject(4));
+                vector.add(results.getObject(5));
+                vector.add(results.getObject(6));
+                vector.add(results.getObject(7));
+                vector.add(results.getObject(8));
+                vector.add(25);
+                vector.add(results.getObject(10));
+                tableData.add(vector);
+
+            }
+
+            //tableModel.setDataVector(data, columnNames);
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
 
         DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
             //Override default table model method and make all cells non-editable

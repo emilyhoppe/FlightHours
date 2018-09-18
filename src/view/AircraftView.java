@@ -7,14 +7,14 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description:  AircraftView is the default GUI view that opens when 
- *          the user starts the application.  This view allows the user to search 
- *          a list of aircraft by tail number, maintenance flag or station.  
- *          A table with aircraft data will be produced.  The user is then allowed 
- *          to switch to the aircraft operations view or the aircraft maintenance 
+ *      Class Description:  AircraftView is the default GUI view that opens when
+ *          the user starts the application.  This view allows the user to search
+ *          a list of aircraft by tail number, maintenance flag or station.
+ *          A table with aircraft data will be produced.  The user is then allowed
+ *          to switch to the aircraft operations view or the aircraft maintenance
  *          view.  Also, the user can open dialog boxes by pressing the add aircraft
  *          or modify aircraft buttons.
- * 
+ *
  *
  *********** */
 package view;
@@ -286,7 +286,7 @@ public class AircraftView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         aircraftTable.setAutoCreateRowSorter(true);
-        aircraftTable.setModel(TemporaryFunctions.getAircraftTableModel());
+        aircraftTable.setModel(TemporaryFunctions.getAircraftTableModelFromDatabase());
         //Hide ID column in table but still allow application access to it
         aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
         aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -387,7 +387,13 @@ public class AircraftView extends javax.swing.JPanel {
             String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
             String currentMaintHours = aircraftTable.getValueAt(selectedRow, 8).toString();
             String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
-            String endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
+            String endOfServiceDate;
+            //endOfServiceDate is sometimes null so we will use an empty string if it is
+            try {
+                endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
+            } catch (NullPointerException expected) {
+                endOfServiceDate = "";
+            }
             ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
                     true, ID, tailNumber, type, station, maxSpeed, maxAltitude,
                     currentMaintHours, maintHoursThreshold, endOfServiceDate);
