@@ -37,7 +37,7 @@ public class CreateMaintenanceTable {
             {
                 okayToCreate = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                JOptionPane.showMessageDialog(null, "CreateMaintenanceTable Database Error: " + theError,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -89,12 +89,12 @@ public class CreateMaintenanceTable {
                             + "(17,'2018-04-06','2018-04-09','Test Maintenance 25')");
                     System.out.println("MAINTENANCE inserted");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                    JOptionPane.showMessageDialog(null, "CreateMaintenanceTable Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                JOptionPane.showMessageDialog(null, "CreateMaintenanceTable Database Error: " + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

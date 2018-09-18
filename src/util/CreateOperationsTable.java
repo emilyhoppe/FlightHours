@@ -37,7 +37,7 @@ public class CreateOperationsTable {
             {
                 okayToCreate = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                JOptionPane.showMessageDialog(null, "CreateOperationsTable Database Error: " + theError,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -83,12 +83,12 @@ public class CreateOperationsTable {
                             + "(30,1,7,'Test Operation 13','2018-01-05','2018-01-05',12666)");
                     System.out.println("OPERATIONS inserted");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                    JOptionPane.showMessageDialog(null, "CreateOperationsTable Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                JOptionPane.showMessageDialog(null, "CreateOperationsTable Database Error: " + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
