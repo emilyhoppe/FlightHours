@@ -29,7 +29,6 @@ public class MaintenanceDAO {
     
     private static Connection conn = null;
     private static Statement stmt = null;
-    private static PreparedStatement selectAllMaintenance;
     private static PreparedStatement selectMaintenanceByAircraft;
     private static PreparedStatement insertNewMaintenance;
     private static PreparedStatement modifyMaintenance;
