@@ -10,7 +10,7 @@
  *      Class Description:
  *          Temporary functions for GUI.  Do not delete until all temporary items
  *          have been implemented in real code.  Comment out functions as they
- *          are removed instead of deleting them.  Then when we are done we 
+ *          are removed instead of deleting them.  Then when we are done we
  *          can delete this entire class.
  *
  *
@@ -127,21 +127,33 @@ public class TemporaryFunctions {
 //
 //        return aircraftTableModel;
 //    }
-
     //Database Version - Returns a table model for the Aircraft Search table 
     //until SQL code is implemented.
     //This function uses Vectors because DefaultTableModel only supports
     //Vectors.  Unfortunately it does not support ArrayList, otherwise I would
     //have used that....
     public static DefaultTableModel getAircraftTableModelFromDatabase() {
-        
+
         final String CONNECTION = "jdbc:derby:FlightHours;create=true";
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
-        
+
         try (Connection conn = DriverManager.getConnection(CONNECTION);
                 Statement statement = conn.createStatement()) {
-            ResultSet results = statement.executeQuery("SELECT * FROM aircraft");
+            ResultSet results = statement.executeQuery("SELECT "
+                    + "aircraft_id, "
+                    + "tail_number, "
+                    + "aircraft_type, "
+                    + "stations.station_name, "
+                    + "max_speed, "
+                    + "max_altitude, "
+                    + "total_flight_hours, "
+                    + "maintenance_flag, "
+                    + "current_maintenance_hours, "
+                    + "maintenance_hours_threshold, "
+                    + "end_of_service_date "
+                    + "FROM aircraft "
+                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
             ResultSetMetaData metaData = results.getMetaData();
 
             //Create column names
@@ -168,8 +180,9 @@ public class TemporaryFunctions {
                 vector.add(results.getObject(6));
                 vector.add(results.getObject(7));
                 vector.add(results.getObject(8));
-                vector.add(25);
+                vector.add(results.getObject(9));
                 vector.add(results.getObject(10));
+                vector.add(results.getObject(11));
                 tableData.add(vector);
 
             }
