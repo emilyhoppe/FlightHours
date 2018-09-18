@@ -21,7 +21,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class AircraftDAO {
 
@@ -35,11 +37,12 @@ public class AircraftDAO {
     private static PreparedStatement modifyAircraft;
     private static PreparedStatement tailNumberExists;
     private static List<Aircraft> AircraftList;
+    private static DefaultTableModel acTableModel;
 
     public AircraftDAO(Connection conn) {
         try {
             AircraftDAO.conn = conn;
-                        
+
             selectAllAircraft = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
                     + "tail_number, "
@@ -54,34 +57,33 @@ public class AircraftDAO {
                     + "end_of_service_date "
                     + "FROM aircraft "
                     + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
-            
+
             tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
-            
+
             selectAircraftByLocation
                     = conn.prepareStatement("select * from AIRCRAFT where STATION_ID = (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = ?)");
-            
+
             selectAircraftByTailNumber = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
-            
+
             insertNewAircraft = conn.prepareStatement("INSERT INTO aircraft"
-                            + "(tail_number,"
-                            + " aircraft_type,"
-                            + " station_id,"
-                            + " max_speed,"
-                            + " max_altitude,"
-                            + " total_flight_hours,"
-                            + " maintenance_flag,"
-                            + " current_maintenance_hours,"
-                            + " maintenance_hours_threshold)"
-                            + "VALUES (?,?,?,?,?,?,?,?,?)");
-            
-            
+                    + "(tail_number,"
+                    + " aircraft_type,"
+                    + " station_id,"
+                    + " max_speed,"
+                    + " max_altitude,"
+                    + " total_flight_hours,"
+                    + " maintenance_flag,"
+                    + " current_maintenance_hours,"
+                    + " maintenance_hours_threshold)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?)");
+
         } catch (Exception except) {
             except.printStackTrace();
         }
 
     }
 
-    public static JTable selectAllAircraft() {
+    public static DefaultTableModel selectAllAircraft() {
 
         //List<Aircraft> results = null;
         ResultSet resultSet = null;
@@ -96,9 +98,8 @@ public class AircraftDAO {
             sqlExcept.printStackTrace();
         }
 
-        JTable aircraftTable = new JTable(util.DBUtils.resultSetToTableModel(resultSet));
-
-        return aircraftTable;
+        acTableModel = createAircraftTableModel(resultSet);
+        return acTableModel;
     }
 
     public static List<Aircraft> selectAircraftbyLocation(String inLocation) {
@@ -128,7 +129,7 @@ public class AircraftDAO {
         try {
             selectAircraftByTailNumber.setString(1, inTailNumber);
             resultSet = selectAircraftByTailNumber.executeQuery();
-            
+
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
@@ -146,25 +147,23 @@ public class AircraftDAO {
 
     public int insertNewAircraft(Aircraft inAircraft) {
         int result = 0;
-              
+
         try {
             insertNewAircraft.setString(1, inAircraft.getTailNumber());
             insertNewAircraft.setString(2, inAircraft.getAircraftType());
             insertNewAircraft.setInt(3, inAircraft.getStationID());
-            insertNewAircraft.setInt(4, inAircraft.getMaxSpeed());               
-            insertNewAircraft.setInt(5, inAircraft.getMaxAltitude());                  
-            insertNewAircraft.setInt(6, inAircraft.getTotalFlightHours());  
-            insertNewAircraft.setBoolean(6,inAircraft.getMaintenanceFlag());
-            insertNewAircraft.setInt(7, inAircraft.getCurrentMaintenanceHours());   
+            insertNewAircraft.setInt(4, inAircraft.getMaxSpeed());
+            insertNewAircraft.setInt(5, inAircraft.getMaxAltitude());
+            insertNewAircraft.setInt(6, inAircraft.getTotalFlightHours());
+            insertNewAircraft.setBoolean(6, inAircraft.getMaintenanceFlag());
+            insertNewAircraft.setInt(7, inAircraft.getCurrentMaintenanceHours());
             //insertNewAircraft.setInt(8, inAircraft.getMaintenanceHoursThreshold());   
-            
+
             //java.util.Date myDate = new java.util.Date(inAircraft.getEndOfServiceDate());
             //java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-            
             //insertNewAircraft.setNull(9, 1); 
-          
             result = insertNewAircraft.executeUpdate();
-                        
+
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
@@ -182,5 +181,55 @@ public class AircraftDAO {
 
         boolean result = false;
         return result;
+    }
+
+    public static DefaultTableModel createAircraftTableModel(ResultSet results) {
+
+        Vector<String> tableColumns = new Vector<String>();
+        Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
+
+        tableColumns.add("ID");
+        tableColumns.add("Tail Number");
+        tableColumns.add("Type");
+        tableColumns.add("Station");
+        tableColumns.add("Max Speed");
+        tableColumns.add("Max Altitude");
+        tableColumns.add("Total Hours");
+        tableColumns.add("Maint Flag");
+        tableColumns.add("Maint Hours");
+        tableColumns.add("Maint Threshold");
+        tableColumns.add("End of Service");
+
+        try {
+            //Fill all rows with results
+            while (results.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                vector.add(results.getObject(1));
+                vector.add(results.getObject(2));
+                vector.add(results.getObject(3));
+                vector.add(results.getObject(4));
+                vector.add(results.getObject(5));
+                vector.add(results.getObject(6));
+                vector.add(results.getObject(7));
+                vector.add(results.getObject(8));
+                vector.add(results.getObject(9));
+                vector.add(results.getObject(10));
+                vector.add(results.getObject(11));
+                tableData.add(vector);
+            }
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+
+        DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
+            //Override default table model method and make all cells non-editable
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        return aircraftTableModel;
+
     }
 }
