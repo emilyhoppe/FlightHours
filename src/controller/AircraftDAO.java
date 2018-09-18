@@ -60,8 +60,21 @@ public class AircraftDAO {
 
             tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
 
-            selectAircraftByLocation
-                    = conn.prepareStatement("select * from AIRCRAFT where STATION_ID = (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = ?)");
+            selectAircraftByLocation = conn.prepareStatement("SELECT "
+                    + "aircraft_id, "
+                    + "tail_number, "
+                    + "aircraft_type, "
+                    + "stations.station_name, "
+                    + "max_speed, "
+                    + "max_altitude, "
+                    + "total_flight_hours, "
+                    + "maintenance_flag, "
+                    + "current_maintenance_hours, "
+                    + "maintenance_hours_threshold, "
+                    + "end_of_service_date "
+                    + "FROM aircraft, stations "
+                    + "WHERE aircraft.STATION_ID = (select stations.station_id from STATIONS where STATIONS.STATION_NAME = ?"
+                    + "AND aircraft.station_id = stations.station_id)");
 
             selectAircraftByTailNumber = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
 
@@ -85,7 +98,6 @@ public class AircraftDAO {
 
     public static DefaultTableModel selectAllAircraft() {
 
-        //List<Aircraft> results = null;
         ResultSet resultSet = null;
 
         try {
@@ -102,24 +114,21 @@ public class AircraftDAO {
         return acTableModel;
     }
 
-    public static List<Aircraft> selectAircraftbyLocation(String inLocation) {
+    public static DefaultTableModel selectAircraftbyLocation(String inLocation) {
 
-        List<Aircraft> results = null;
         ResultSet resultSet = null;
 
         //System.out.println("Location: " + inLocation);
         try {
             selectAircraftByLocation.setString(1, inLocation);
             resultSet = selectAircraftByLocation.executeQuery();
-            while (resultSet.next()) {
-                System.out.println("Tail Number" + resultSet.getString("TAIL_NUMBER"));
-            }
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
 
-        return results;
+        acTableModel = createAircraftTableModel(resultSet);
+        return acTableModel;
     }
 
     public static Aircraft selectAircraftByTailnumber(String inTailNumber) {
