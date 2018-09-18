@@ -1,17 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** **********
+ *
+ *      Class:         MaintenanceDAO.java
+ *      Package:       controller
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: MaintenanceDAO accesses the embedded Apache Derby Database
+ *                  and performs the main maintenance functions.
+ *
+ *
+ *********** */
 package controller;
 
-/**
- *
- * @author jjtam
- * methods filled out by ehoppe
- * 
- * 
- */
 import flighthours.Maintenance;
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,10 +22,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSetMetaData;
-import java.util.ArrayList;
-import static java.util.Collections.list;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,14 +34,11 @@ public class MaintenanceDAO {
     private static PreparedStatement selectMaintenanceByAircraft;
     private static PreparedStatement insertNewMaintenance;
     private static PreparedStatement modifyMaintenance;
-    private static List<Maintenance> MaintenanceList;
     private static DefaultTableModel mtTableModel;
 
     public MaintenanceDAO(Connection conn) {
         try {
             MaintenanceDAO.conn = conn;
-            //conn = DriverManager.getConnection(dbURL);
-            //selectAllMaintenance = conn.prepareStatement("SELECT * FROM MAINTENANCE");
             selectMaintenanceByAircraft = conn.prepareStatement("select * from MAINTENANCE "
                     + "where AIRCRAFT_ID = ?");
             
@@ -53,22 +48,20 @@ public class MaintenanceDAO {
                     + " MAINTENANCE_END_DATE,"
                     + " MAINTENANCE_DESCRIPTION)"
                     + "VALUES (?,?,?,?)");
+            
+            modifyMaintenance = conn.prepareStatement("UPDATE MAINTENANCE SET"
+                    + " MAINTENANCE_START_DATE = ?,"
+                    + " MAINTENANCE_END_DATE = ?,"
+                    + " MAINTENANCE_DESCRIPTION = ?"
+                    + " WHERE MAINTENANCE_ID = ?");
 
         } catch (Exception except) {
             except.printStackTrace();
         }
     }
-    public static List<Maintenance> selectAllMaintenance() {
-
-        List<Maintenance> results = null;
-        ResultSet resultSet = null;
-
-        return results;
-    }
     
     public static DefaultTableModel selectMaintenanceByAircraft(int aircraftID) {
-
-        List<Maintenance> results = null;
+        
         ResultSet resultSet = null;
         try {
             selectMaintenanceByAircraft.setInt(1, aircraftID);
@@ -96,9 +89,18 @@ public class MaintenanceDAO {
         return result;
     }
 
-    public int modifyMaintenance(Maintenance inMaintenance) {
+    public static int modifyMaintenance(Maintenance inMaintenance) {
         int result = 0;
+        try {
+            modifyMaintenance.setDate(1, new java.sql.Date(inMaintenance.getStartDate().getTime()));
+            modifyMaintenance.setDate(2, new java.sql.Date(inMaintenance.getEndDate().getTime()));
+            modifyMaintenance.setString(3, inMaintenance.getMaintDescr());
+            modifyMaintenance.setInt(4, inMaintenance.getMaintenanceID());
+            result = modifyMaintenance.executeUpdate();
 
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
         return result;
     }
     

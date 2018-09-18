@@ -51,17 +51,22 @@ public class TestMaintenanceDAO {
         } 
         
         //New Maintenance Test Verified
+        int maintenanceID = 1;
         Date start = new Date("5/10/2018");
         Date end = new Date("5/11/2018");
         //System.out.println(start.toString());
         String desc = "testing";
         Maintenance inMaintenance = new Maintenance();
+        inMaintenance.setMaintenanceID(maintenanceID);
         inMaintenance.setAircraftID(aircraftID);
         inMaintenance.setStartDate(start);
         inMaintenance.setEndDate(end);
         inMaintenance.setMaintDescr(desc);
         
         //int success = MaintenanceDAO.insertNewMaintenance(inMaintenance);
+        //System.out.println(String.valueOf(success));
+        
+        //int success = MaintenanceDAO.modifyMaintenance(inMaintenance);
         //System.out.println(String.valueOf(success));
         
         System.out.println("Stop Here");
