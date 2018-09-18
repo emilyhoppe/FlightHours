@@ -23,16 +23,16 @@ import view.MainFrame;
 public class FlightHours {
 
     public static void main(String[] args) {
-        // TODO code application logic here, etc, etc
+        //Welcome message for our Dev team
         System.out.println("Hello Team!");
-        System.out.println("Welcome to CMSC495 FlightHours on GitHub!");
+        System.out.println("Welcome to CMSC495 FlightHours!");
 
         //Create tables and load with sample data
         util.CreateStationsTable.createTable();
         util.CreateMissionsTable.createTable();
         util.CreateAircraftTable.createTable();
         util.CreateOperationsTable.createTable();
-        util.CreateMissionsTable.createTable();
+        util.CreateMaintenanceTable.createTable();
 
         //Start GUI, this is needed to avoid unresponsive GUI on slow tasks
         SwingUtilities.invokeLater(new Runnable() {

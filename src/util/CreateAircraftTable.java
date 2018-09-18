@@ -37,7 +37,7 @@ public class CreateAircraftTable {
             {
                 okayToCreate = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                JOptionPane.showMessageDialog(null, "CreateAircraftTable Database Error: " + theError,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -107,11 +107,11 @@ public class CreateAircraftTable {
                             + "('N2121N','Fixed Wing',17,130,15000,14535,false,14535,NULL)");
                     System.out.println("AIRCRAFT inserted");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                    JOptionPane.showMessageDialog(null, "CreateAircraftTable Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                JOptionPane.showMessageDialog(null, "CreateAircraftTable Database Error: " + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

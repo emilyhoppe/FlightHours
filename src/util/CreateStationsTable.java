@@ -37,7 +37,7 @@ public class CreateStationsTable {
             {
                 okayToCreate = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                JOptionPane.showMessageDialog(null, "CreateStationsTable Database Error: " + theError,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -85,11 +85,11 @@ public class CreateStationsTable {
                             + "('Wellton', 'USBP') ");
                     System.out.println("STATIONS inserted");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                    JOptionPane.showMessageDialog(null, "CreateStationsTable Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                JOptionPane.showMessageDialog(null, "CreateStationsTable Database Error: " + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

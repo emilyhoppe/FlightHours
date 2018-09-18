@@ -37,7 +37,7 @@ public class CreateMissionsTable {
             {
                 okayToCreate = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Database Error: " + theError,
+                JOptionPane.showMessageDialog(null, "CreateMissionsTable Database Error: " + theError,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -63,11 +63,11 @@ public class CreateMissionsTable {
                             + "('Disaster Relief') ");
                     System.out.println("MISSIONS inserted");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                    JOptionPane.showMessageDialog(null, "CreateMissionsTable Database Error: " + e,
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Database Error: " + e,
+                JOptionPane.showMessageDialog(null, "CreateMissionsTable Database Error: " + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
