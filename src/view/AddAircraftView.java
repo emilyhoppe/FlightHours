@@ -35,7 +35,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-import temporary.TemporaryFunctions;
 
 public class AddAircraftView extends javax.swing.JDialog {
 

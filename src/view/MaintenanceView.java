@@ -8,8 +8,8 @@
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
  *      Class Description: MaintenanceView is a GUI view class which extends JPanel.
- *          A table with aircraft maintenance events will be provided, showing all 
- *          maintenance events related to the previously selected aircraft.  The 
+ *          A table with aircraft maintenance events will be provided, showing all
+ *          maintenance events related to the previously selected aircraft.  The
  *          user can select a maintenance event from the table and click Add Maintenance
  *          or Modify Maintenance to open input dialog boxes.  A Back button is provided
  *          which will switch the card layout back to the Aircraft Search view.
@@ -18,6 +18,7 @@
  *********** */
 package view;
 
+import controller.MaintenanceDAO;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -40,17 +41,24 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-import temporary.TemporaryFunctions;
 
 public class MaintenanceView extends javax.swing.JPanel {
 
     //Instance variables
+    MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
     private String tailNumber;
+    private int aircraftID;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
         this.tailNumber = tailNumber;
         tailNumberTextField.setText(tailNumber);
+    }
+
+    //Set aircraft ID public method
+    public void setAircraftID(int aircraftID) {
+        this.aircraftID = aircraftID;
+        maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
     }
 
     //Constructor
@@ -120,7 +128,7 @@ public class MaintenanceView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         maintenanceTable.setAutoCreateRowSorter(true);
-        maintenanceTable.setModel(TemporaryFunctions.getMaintenanceTableModel());
+        maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
         //Hide ID column in table but still allow application access to it
         maintenanceTable.getColumnModel().getColumn(0).setMinWidth(0);
         maintenanceTable.getColumnModel().getColumn(0).setMaxWidth(0);

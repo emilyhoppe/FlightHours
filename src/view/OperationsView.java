@@ -128,7 +128,6 @@ public class OperationsView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         operationsTable.setAutoCreateRowSorter(true);
-        //OperationDAO operationDAO = new OperationDAO();
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
         //Hide ID column in table but still allow application access to it
         operationsTable.getColumnModel().getColumn(0).setMinWidth(0);

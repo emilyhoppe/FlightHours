@@ -98,7 +98,7 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="operationsTable">
           <Properties>
-            <Property name="autoCreateRowSorter" type="boolean" value="true" postCode="//OperationDAO operationDAO = new OperationDAO();"/>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="//Hide ID column in table but still allow application access to it&#xa;operationsTable.getColumnModel().getColumn(0).setMinWidth(0);&#xa;operationsTable.getColumnModel().getColumn(0).setMaxWidth(0);&#xa;operationsTable.getColumnModel().getColumn(0).setWidth(0);">
               <Connection code="operationDAO.selectOperationsByAircraft(aircraftID)" type="code"/>
             </Property>
