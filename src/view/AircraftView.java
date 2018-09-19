@@ -55,6 +55,9 @@ import javax.swing.border.SoftBevelBorder;
 
 public class AircraftView extends javax.swing.JPanel {
 
+    //Instance variables
+    private AircraftDAO aircraftDAO;
+
     //Constructor
     public AircraftView() {
         initComponents();
@@ -288,7 +291,7 @@ public class AircraftView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         aircraftTable.setAutoCreateRowSorter(true);
-        AircraftDAO aircraftDAO = new AircraftDAO();
+        aircraftDAO = new AircraftDAO();
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
         //Hide ID column in table but still allow application access to it
         aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -360,7 +363,7 @@ public class AircraftView extends javax.swing.JPanel {
             int selectedRow = aircraftTable.getSelectedRow();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             operationsView.setTailNumber(tailNumber);
-            int aircraftID = (Integer)aircraftTable.getValueAt(selectedRow, 0);
+            int aircraftID = (Integer) aircraftTable.getValueAt(selectedRow, 0);
             operationsView.setAircraftID(aircraftID);
             //Switch to operationsView panel
             layout.show(mainPanel, "operationsView");
@@ -377,6 +380,12 @@ public class AircraftView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddAircraftView addAircraftView = new AddAircraftView(frame, true);
         addAircraftView.setVisible(true);
+        //Refresh all aircraft records in table when returning from dialog
+        aircraftTable.setModel(aircraftDAO.selectAllAircraft());
+        //Hide first column
+        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_addAircraftButtonActionPerformed
 
     private void modifyAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
@@ -453,7 +462,7 @@ public class AircraftView extends javax.swing.JPanel {
             int selectedRow = aircraftTable.getSelectedRow();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             maintenanceView.setTailNumber(tailNumber);
-            int aircraftID = (Integer)aircraftTable.getValueAt(selectedRow, 0);
+            int aircraftID = (Integer) aircraftTable.getValueAt(selectedRow, 0);
             maintenanceView.setAircraftID(aircraftID);
             //Switch to maintenanceView panel
             layout.show(mainPanel, "maintenanceView");
@@ -541,9 +550,11 @@ public class AircraftView extends javax.swing.JPanel {
 
     private void showAllButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
         //Show all aircraft records in table
-        //TODO Call function to show all records in table
-        //Testing output dialog box
-        JOptionPane.showMessageDialog(topPanel, "Call function to show all records", "Notice", JOptionPane.PLAIN_MESSAGE);
+        aircraftTable.setModel(aircraftDAO.selectAllAircraft());
+        //Hide first column
+        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_showAllButtonActionPerformed
 
     private void tailNumberLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseEntered
