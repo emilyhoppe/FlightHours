@@ -58,7 +58,7 @@ public class MaintenanceDAO {
         }
     }
     
-    public static DefaultTableModel selectMaintenanceByAircraft(int aircraftID) {
+    public DefaultTableModel selectMaintenanceByAircraft(int aircraftID) {
         
         ResultSet resultSet = null;
         try {
@@ -72,7 +72,7 @@ public class MaintenanceDAO {
         return mtTableModel;
     }
     
-    public static int insertNewMaintenance(Maintenance inMaintenance) {
+    public int insertNewMaintenance(Maintenance inMaintenance) {
         int result = 0;
         try {
             insertNewMaintenance.setInt(1, inMaintenance.getAircraftID());
@@ -87,7 +87,7 @@ public class MaintenanceDAO {
         return result;
     }
 
-    public static int modifyMaintenance(Maintenance inMaintenance) {
+    public int modifyMaintenance(Maintenance inMaintenance) {
         int result = 0;
         try {
             modifyMaintenance.setDate(1, new java.sql.Date(inMaintenance.getStartDate().getTime()));
@@ -102,7 +102,7 @@ public class MaintenanceDAO {
         return result;
     }
     
-    public static DefaultTableModel createMaintenanceTableModel(ResultSet results) {
+    public DefaultTableModel createMaintenanceTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();

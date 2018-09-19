@@ -38,7 +38,7 @@ public class TestMaintenanceDAO {
         
         mtQueries = new MaintenanceDAO();
         int aircraftID = 4;
-        mtTableModel = MaintenanceDAO.selectMaintenanceByAircraft(aircraftID);
+        mtTableModel = mtQueries.selectMaintenanceByAircraft(aircraftID);
         
         //Section below is to test and print results
         int rowCount = mtTableModel.getRowCount();
@@ -63,10 +63,10 @@ public class TestMaintenanceDAO {
         inMaintenance.setEndDate(end);
         inMaintenance.setMaintDescr(desc);
         
-        //int success = MaintenanceDAO.insertNewMaintenance(inMaintenance);
+        //int success = mtQueries.insertNewMaintenance(inMaintenance);
         //System.out.println(String.valueOf(success));
         
-        //int success = MaintenanceDAO.modifyMaintenance(inMaintenance);
+        //int success = mtQueries.modifyMaintenance(inMaintenance);
         //System.out.println(String.valueOf(success));
         
         System.out.println("Stop Here");

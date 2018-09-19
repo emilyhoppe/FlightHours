@@ -68,7 +68,7 @@ public class OperationDAO {
         }
     }
     
-    public static DefaultTableModel selectOperationByAircraft(int aircraftID) {
+    public DefaultTableModel selectOperationByAircraft(int aircraftID) {
 
         ResultSet resultSet = null;
         try {
@@ -83,7 +83,7 @@ public class OperationDAO {
         return opTableModel;
     }
     
-    public static int insertNewOperation(Operation inOperation) {
+    public int insertNewOperation(Operation inOperation) {
         int result = 0;
         try {
             insertNewOperation.setInt(1, inOperation.getAircraftID());
@@ -101,7 +101,7 @@ public class OperationDAO {
         return result;
     }
 
-    public static int modifyOperation(Operation inOperation) {
+    public int modifyOperation(Operation inOperation) {
         int result = 0;
         try {
             modifyOperation.setInt(1, inOperation.getStationID());
@@ -119,7 +119,7 @@ public class OperationDAO {
         return result;
     }
     
-    public static DefaultTableModel createOperationTableModel(ResultSet results) {
+    public DefaultTableModel createOperationTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
