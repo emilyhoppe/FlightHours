@@ -18,6 +18,7 @@
  *********** */
 package view;
 
+import controller.OperationDAO;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -40,17 +41,24 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-import temporary.TemporaryFunctions;
 
 public class OperationsView extends javax.swing.JPanel {
 
     //Instance variables
+    OperationDAO operationDAO = new OperationDAO();
     private String tailNumber;
+    private int aircraftID;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
         this.tailNumber = tailNumber;
         tailNumberTextField.setText(tailNumber);
+    }
+
+    //Set aircraft ID public method
+    public void setAircraftID(int aircraftID) {
+        this.aircraftID = aircraftID;
+        operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
     }
 
     //Constructor
@@ -120,7 +128,8 @@ public class OperationsView extends javax.swing.JPanel {
         add(topPanel, gridBagConstraints);
 
         operationsTable.setAutoCreateRowSorter(true);
-        operationsTable.setModel(TemporaryFunctions.getOperationsTableModel());
+        //OperationDAO operationDAO = new OperationDAO();
+        operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
         //Hide ID column in table but still allow application access to it
         operationsTable.getColumnModel().getColumn(0).setMinWidth(0);
         operationsTable.getColumnModel().getColumn(0).setMaxWidth(0);

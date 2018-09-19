@@ -360,6 +360,8 @@ public class AircraftView extends javax.swing.JPanel {
             int selectedRow = aircraftTable.getSelectedRow();
             String tailNumber = aircraftTable.getValueAt(selectedRow, 1).toString();
             operationsView.setTailNumber(tailNumber);
+            int aircraftID = (Integer)aircraftTable.getValueAt(selectedRow, 0);
+            operationsView.setAircraftID(aircraftID);
             //Switch to operationsView panel
             layout.show(mainPanel, "operationsView");
         } catch (IndexOutOfBoundsException e) {
