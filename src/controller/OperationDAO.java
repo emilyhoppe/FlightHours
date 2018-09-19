@@ -30,12 +30,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class OperationDAO {
     
-    private static Connection conn = null;
-    private static Statement stmt = null;
-    private static PreparedStatement selectOperationByAircraft;
-    private static PreparedStatement insertNewOperation;
-    private static PreparedStatement modifyOperation;
-    private static DefaultTableModel opTableModel;
+    private Connection conn = null;
+    private Statement stmt = null;
+    private PreparedStatement selectOperationByAircraft;
+    private PreparedStatement insertNewOperation;
+    private PreparedStatement modifyOperation;
+    private DefaultTableModel opTableModel;
 
     public OperationDAO() {
         try {

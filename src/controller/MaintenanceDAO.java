@@ -27,12 +27,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class MaintenanceDAO {    
     
-    private static Connection conn = null;
-    private static Statement stmt = null;
-    private static PreparedStatement selectMaintenanceByAircraft;
-    private static PreparedStatement insertNewMaintenance;
-    private static PreparedStatement modifyMaintenance;
-    private static DefaultTableModel mtTableModel;
+    private Connection conn = null;
+    private Statement stmt = null;
+    private PreparedStatement selectMaintenanceByAircraft;
+    private PreparedStatement insertNewMaintenance;
+    private PreparedStatement modifyMaintenance;
+    private DefaultTableModel mtTableModel;
 
     public MaintenanceDAO() {
         try {
