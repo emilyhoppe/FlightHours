@@ -17,6 +17,8 @@
  *********** */
 package view;
 
+import controller.StationDAO;
+import flighthours.Station;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
@@ -24,6 +26,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -87,7 +91,19 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         endOfServiceLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
         typeComboBox = new JComboBox<>(TemporaryFunctions.getAircraftTypeArray());
-        stationComboBox = new JComboBox<>(TemporaryFunctions.getAmoStationsArray());
+        int stationComboBoxIndex = -1;
+        StationDAO stationDAO = new StationDAO();
+        List<Station> stationArrayList = new ArrayList<>(stationDAO.selectStationByType("AMO"));
+        //Find selected index to use for station combo box
+        stationComboBoxIndex = -1;
+        for(Station currentStation : stationArrayList){
+            stationComboBoxIndex++;
+            if(currentStation.getStationName().equals(station)){
+                break;
+            }
+        }
+        Station[] stationArray = stationArrayList.toArray(new Station[0]);
+        stationComboBox = new JComboBox<>(stationArray);
         maxSpeedTextField = new JTextField(maxSpeed);
         maxAltitudeTextField = new JTextField(maxAltitude);
         maintThresholdTextField = new JTextField(maintHoursThreshold);
@@ -190,7 +206,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         dataPanel.add(typeComboBox, gridBagConstraints);
 
-        stationComboBox.setSelectedItem(station);
+        stationComboBox.setSelectedIndex(stationComboBoxIndex);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -374,7 +390,10 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private JTextField maxSpeedTextField;
     private JButton modifyAircraftButton;
     private JPanel outerPanel;
-    private JComboBox<String> stationComboBox;
+    /*TODO REMOVE THIS LINE
+    private javax.swing.JComboBox<String> stationComboBox;
+    */
+    private JComboBox stationComboBox;
     private JLabel stationLabel;
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;

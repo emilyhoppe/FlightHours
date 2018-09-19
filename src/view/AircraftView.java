@@ -20,6 +20,7 @@
 package view;
 
 import controller.AircraftDAO;
+import controller.StationDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -34,8 +35,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -53,7 +52,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-import temporary.TemporaryFunctions;
 
 public class AircraftView extends javax.swing.JPanel {
 
@@ -78,7 +76,8 @@ public class AircraftView extends javax.swing.JPanel {
         stationLabel = new JLabel();
         tailNumberTextField = new JTextField();
         maintFlagComboBox = new JComboBox<>();
-        stationComboBox = new JComboBox<>(TemporaryFunctions.getAmoStationsArray());
+        StationDAO stationDAO = new StationDAO();
+        stationComboBox = new JComboBox(stationDAO.selectStationByType("AMO").toArray());
         topButtonPanel = new JPanel();
         searchAircraftButton = new JButton();
         showAllButton = new JButton();
@@ -571,7 +570,10 @@ public class AircraftView extends javax.swing.JPanel {
     private JButton searchAircraftButton;
     private ButtonGroup searchButtonGroup;
     private JButton showAllButton;
-    private JComboBox<String> stationComboBox;
+    /*TODO REMOVE THIS LINE
+    private javax.swing.JComboBox<String> stationComboBox;
+    */
+    private JComboBox stationComboBox;
     private JLabel stationLabel;
     private JRadioButton stationRadioButton;
     private JLabel tailNumberLabel;

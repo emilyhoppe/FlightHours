@@ -9,7 +9,6 @@ package controller;
  *
  * @author tamerjj1
  */
-
 import flighthours.Mission;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,22 +22,24 @@ import static java.util.Collections.list;
 import java.util.List;
 
 public class MissionDAO {
-    
+
+    private String dbURL = "jdbc:derby:FlightHours";
     private static Connection conn = null;
     private static Statement stmt = null;
     private static PreparedStatement selectAllMissions;
     private static List<Mission> MissionList;
-    
-    public MissionDAO(Connection conn) {
+
+    public MissionDAO() {
         try {
-            MissionDAO.conn = conn;
-            //conn = DriverManager.getConnection(dbURL);
+            //MissionDAO.conn = conn;
+            conn = DriverManager.getConnection(dbURL);
             selectAllMissions = conn.prepareStatement("SELECT * FROM MISSIONS");
 
         } catch (Exception except) {
             except.printStackTrace();
         }
     }
+
     public static List<Mission> selectAllMissions() {
 
         List<Mission> results = null;
@@ -46,5 +47,5 @@ public class MissionDAO {
 
         return results;
     }
-    
+
 }

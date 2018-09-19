@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class MaintenanceDAO {    
     
+    private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private Statement stmt = null;
     private PreparedStatement selectMaintenanceByAircraft;
@@ -36,7 +37,7 @@ public class MaintenanceDAO {
 
     public MaintenanceDAO() {
         try {
-            conn = DriverManager.getConnection("jdbc:derby:FlightHours;create=true");
+            conn = DriverManager.getConnection(dbURL);
             selectMaintenanceByAircraft = conn.prepareStatement("select * from MAINTENANCE "
                     + "where AIRCRAFT_ID = ?");
             

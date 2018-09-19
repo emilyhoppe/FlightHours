@@ -20,15 +20,15 @@ import java.util.List;
 
 public class StationDAO {
 
-    //private static String dbURL = "jdbc:derby:FlightHours";
+    private String dbURL = "jdbc:derby:FlightHours";
     //private static String tableName = "STATIONS";
     // jdbc Connection
-    private static Connection conn = null;
-    private static Statement stmt = null;
-    private static PreparedStatement selectStationByType;
-    private static PreparedStatement selectAllStations;
-    private static PreparedStatement insertNewStation;
-    private static List<Station> stationList;
+    private Connection conn = null;
+    private Statement stmt = null;
+    private PreparedStatement selectStationByType;
+    private PreparedStatement selectAllStations;
+    private PreparedStatement insertNewStation;
+    private List<Station> stationList;
 
     /* public static void main(String[] args) {
         createConnection();
@@ -38,10 +38,10 @@ public class StationDAO {
         System.out.println(stationList.size());
         shutdown();
      } */
-    public StationDAO(Connection conn) {
+    public StationDAO() {
         try {
-            StationDAO.conn = conn;
-            //conn = DriverManager.getConnection(dbURL);
+            //StationDAO.conn = conn;
+            conn = DriverManager.getConnection(dbURL);
             selectStationByType = conn.prepareStatement("SELECT * FROM STATIONS WHERE STATION_TYPE = ?");
             selectAllStations = conn.prepareStatement("SELECT * FROM STATIONS");
 
@@ -55,7 +55,7 @@ public class StationDAO {
         //createConnection();
     }
 
-    public static List< Station> selectAllStations() {
+    public List< Station> selectAllStations() {
 
         List<Station> results = null;
         ResultSet resultSet = null;
@@ -84,7 +84,7 @@ public class StationDAO {
         return results;
     }
 
-    public static List< Station> selectStationByType(String stationType) {
+    public List<Station> selectStationByType(String stationType) {
 
         List<Station> results = null;
         ResultSet resultSet = null;
@@ -128,7 +128,7 @@ public class StationDAO {
         return result;
     }
 
-    private static void shutdown() {
+    private void shutdown() {
         try {
             if (stmt != null) {
                 stmt.close();

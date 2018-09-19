@@ -47,8 +47,9 @@ public class Station {
     }
 
     @Override
+    //This is used by the JComboBoxes in the GUI
     public String toString() {
-        return "Station{" + "stationID=" + stationID + ", stationName=" + stationName + ", stationType=" + stationType + '}';
+        return stationName;
     }
     
     

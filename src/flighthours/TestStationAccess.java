@@ -40,7 +40,7 @@ public class TestStationAccess {
             except.printStackTrace();
         }
         
-        stationQueries = new StationDAO(conn);
+        stationQueries = new StationDAO();
         
         Station inStation = new Station(0, "JHUAPL", "USBP");
 

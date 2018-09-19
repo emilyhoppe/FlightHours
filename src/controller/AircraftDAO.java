@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class AircraftDAO {
 
+    private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private Statement stmt = null;
     private PreparedStatement selectAllAircraft;
@@ -40,7 +41,7 @@ public class AircraftDAO {
 
     public AircraftDAO() {
         try {
-            conn = DriverManager.getConnection("jdbc:derby:FlightHours;create=true");
+            conn = DriverManager.getConnection(dbURL);
             selectAllAircraft = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
                     + "tail_number, "

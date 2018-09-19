@@ -13,7 +13,7 @@
  *
  *********** */
 package controller;
-    
+
 import flighthours.Operation;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,7 +29,8 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class OperationDAO {
-    
+
+    private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private Statement stmt = null;
     private PreparedStatement selectOperationByAircraft;
@@ -39,10 +40,10 @@ public class OperationDAO {
 
     public OperationDAO() {
         try {
-            conn = DriverManager.getConnection("jdbc:derby:FlightHours;create=true");
+            conn = DriverManager.getConnection(dbURL);
             selectOperationByAircraft = conn.prepareStatement("SELECT * FROM OPERATIONS "
                     + "WHERE AIRCRAFT_ID = ?");
-            
+
             insertNewOperation = conn.prepareStatement("INSERT INTO OPERATIONS"
                     + " (AIRCRAFT_ID,"
                     + " STATION_ID,"
@@ -52,7 +53,7 @@ public class OperationDAO {
                     + " OPERATION_END_DATE,"
                     + " OPERATION_FILGHT_HOURS)"
                     + "VALUES (?,?,?,?,?,?,?)");
-            
+
             modifyOperation = conn.prepareStatement("UPDATE OPERATIONS SET"
                     + " STATION_ID = ?,"
                     + " MISSION_ID = ?,"
@@ -62,12 +63,11 @@ public class OperationDAO {
                     + " OPERATION_FILGHT_HOURS = ?"
                     + " WHERE OPERATION_ID = ?");
 
-
         } catch (Exception except) {
             except.printStackTrace();
         }
     }
-    
+
     public DefaultTableModel selectOperationByAircraft(int aircraftID) {
 
         ResultSet resultSet = null;
@@ -79,10 +79,10 @@ public class OperationDAO {
         }
 
         opTableModel = createOperationTableModel(resultSet);
-        
+
         return opTableModel;
     }
-    
+
     public int insertNewOperation(Operation inOperation) {
         int result = 0;
         try {
@@ -92,7 +92,7 @@ public class OperationDAO {
             insertNewOperation.setString(4, inOperation.getOperationName());
             insertNewOperation.setDate(5, new java.sql.Date(inOperation.getOperationStartDate().getTime()));
             insertNewOperation.setDate(6, new java.sql.Date(inOperation.getOperationEndDate().getTime()));
-            insertNewOperation.setInt(7, inOperation.getOperationFlightHour());  
+            insertNewOperation.setInt(7, inOperation.getOperationFlightHour());
             result = insertNewOperation.executeUpdate();
 
         } catch (SQLException sqlExcept) {
@@ -109,8 +109,8 @@ public class OperationDAO {
             modifyOperation.setString(3, inOperation.getOperationName());
             modifyOperation.setDate(4, new java.sql.Date(inOperation.getOperationStartDate().getTime()));
             modifyOperation.setDate(5, new java.sql.Date(inOperation.getOperationEndDate().getTime()));
-            modifyOperation.setInt(6, inOperation.getOperationFlightHour()); 
-            modifyOperation.setInt(7, inOperation.getOperationID());  
+            modifyOperation.setInt(6, inOperation.getOperationFlightHour());
+            modifyOperation.setInt(7, inOperation.getOperationID());
             result = modifyOperation.executeUpdate();
 
         } catch (SQLException sqlExcept) {
@@ -118,7 +118,7 @@ public class OperationDAO {
         }
         return result;
     }
-    
+
     public DefaultTableModel createOperationTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
@@ -163,6 +163,3 @@ public class OperationDAO {
 
     }
 }
-
-    
-
