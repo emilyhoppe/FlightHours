@@ -191,7 +191,7 @@ public class AircraftDAO {
         return result;
     }
 
-    public DefaultTableModel createAircraftTableModel(ResultSet results) {
+    private DefaultTableModel createAircraftTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();

@@ -119,7 +119,7 @@ public class OperationDAO {
         return result;
     }
 
-    public DefaultTableModel createOperationTableModel(ResultSet results) {
+    private DefaultTableModel createOperationTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();

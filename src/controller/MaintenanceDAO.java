@@ -103,7 +103,7 @@ public class MaintenanceDAO {
         return result;
     }
     
-    public DefaultTableModel createMaintenanceTableModel(ResultSet results) {
+    private DefaultTableModel createMaintenanceTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
