@@ -33,7 +33,7 @@ public class MissionDAO {
         try {
             //MissionDAO.conn = conn;
             conn = DriverManager.getConnection(dbURL);
-            selectAllMissions = conn.prepareStatement("SELECT * FROM MISSIONS");
+            selectAllMissions = conn.prepareStatement("SELECT * FROM MISSIONS ORDER BY MISSION_NAME");
 
         } catch (Exception except) {
             except.printStackTrace();
