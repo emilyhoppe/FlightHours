@@ -15,34 +15,32 @@ package controller;
 
 import flighthours.Aircraft;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AircraftDAO {
 
-    private static Connection conn = null;
-    private static Statement stmt = null;
-    private static PreparedStatement selectAllAircraft;
-    private static PreparedStatement selectAircraftByLocation;
-    private static PreparedStatement selectAircraftByTailNumber;
-    private static PreparedStatement selectAircraftByMaintFlag;
-    private static PreparedStatement insertNewAircraft;
-    private static PreparedStatement modifyAircraft;
-    private static PreparedStatement tailNumberExists;
-    private static List<Aircraft> AircraftList;
-    private static DefaultTableModel acTableModel;
+    private Connection conn = null;
+    private Statement stmt = null;
+    private PreparedStatement selectAllAircraft;
+    private PreparedStatement selectAircraftByLocation;
+    private PreparedStatement selectAircraftByTailNumber;
+    private PreparedStatement selectAircraftByMaintFlag;
+    private PreparedStatement insertNewAircraft;
+    private PreparedStatement modifyAircraft;
+    private PreparedStatement tailNumberExists;
+    private List<Aircraft> AircraftList;
+    private DefaultTableModel acTableModel;
 
-    public AircraftDAO(Connection conn) {
+    public AircraftDAO() {
         try {
-            AircraftDAO.conn = conn;
-
+            conn = DriverManager.getConnection("jdbc:derby:FlightHours;create=true");
             selectAllAircraft = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
                     + "tail_number, "
@@ -96,7 +94,7 @@ public class AircraftDAO {
 
     }
 
-    public static DefaultTableModel selectAllAircraft() {
+    public DefaultTableModel selectAllAircraft() {
 
         ResultSet resultSet = null;
 
@@ -114,7 +112,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
-    public static DefaultTableModel selectAircraftbyLocation(String inLocation) {
+    public DefaultTableModel selectAircraftbyLocation(String inLocation) {
 
         ResultSet resultSet = null;
 
@@ -131,7 +129,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
-    public static Aircraft selectAircraftByTailnumber(String inTailNumber) {
+    public Aircraft selectAircraftByTailnumber(String inTailNumber) {
 
         Aircraft results = null;
         ResultSet resultSet = null;
@@ -146,7 +144,7 @@ public class AircraftDAO {
         return results;
     }
 
-    public static List<Aircraft> selectAircraftbyMaintFlag() {
+    public List<Aircraft> selectAircraftbyMaintFlag() {
 
         List<Aircraft> results = null;
         ResultSet resultSet = null;
@@ -192,7 +190,7 @@ public class AircraftDAO {
         return result;
     }
 
-    public static DefaultTableModel createAircraftTableModel(ResultSet results) {
+    public DefaultTableModel createAircraftTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
