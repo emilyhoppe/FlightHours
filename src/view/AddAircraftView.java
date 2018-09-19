@@ -17,6 +17,7 @@
  *********** */
 package view;
 
+import controller.AircraftDAO;
 import controller.StationDAO;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -62,7 +63,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         maxAltitudeLabel = new JLabel();
         maintThresholdLabel = new JLabel();
         tailNumberTextField = new JTextField();
-        typeComboBox = new JComboBox<>(TemporaryFunctions.getAircraftTypeArray());
+        typeComboBox = new JComboBox<>(AircraftDAO.getAircraftTypeArray());
         StationDAO stationDAO = new StationDAO();
         stationComboBox = new JComboBox<>(stationDAO.selectStationByType("AMO").toArray());
         maxSpeedTextField = new JTextField();

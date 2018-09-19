@@ -17,6 +17,7 @@
  *********** */
 package view;
 
+import controller.AircraftDAO;
 import controller.StationDAO;
 import flighthours.Station;
 import java.awt.Font;
@@ -90,7 +91,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         maintThresholdLabel = new JLabel();
         endOfServiceLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
-        typeComboBox = new JComboBox<>(TemporaryFunctions.getAircraftTypeArray());
+        typeComboBox = new JComboBox<>(AircraftDAO.getAircraftTypeArray());
         int stationComboBoxIndex = -1;
         StationDAO stationDAO = new StationDAO();
         List<Station> stationArrayList = new ArrayList<>(stationDAO.selectStationByType("AMO"));

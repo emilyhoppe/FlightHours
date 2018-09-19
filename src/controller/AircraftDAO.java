@@ -240,4 +240,10 @@ public class AircraftDAO {
         return aircraftTableModel;
 
     }
+
+    //Returns an array of strings for the aircraft type combo boxes.
+    public static String[] getAircraftTypeArray() {
+        String[] aircraftTypeArray = {"Fixed Wing", "Rotary Wing", "UAV"};
+        return aircraftTypeArray;
+    }
 }

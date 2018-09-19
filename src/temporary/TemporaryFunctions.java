@@ -77,10 +77,10 @@ public class TemporaryFunctions {
 
     //Returns an array of strings for the aircraft type combo boxes.
     //Not sure where we will put this code permanently
-    public static String[] getAircraftTypeArray() {
-        String[] aircraftTypeArray = {"Fixed Wing", "Rotary Wing", "UAV"};
-        return aircraftTypeArray;
-    }
+//    public static String[] getAircraftTypeArray() {
+//        String[] aircraftTypeArray = {"Fixed Wing", "Rotary Wing", "UAV"};
+//        return aircraftTypeArray;
+//    }
 
 //    //Returns a table model for the Aircraft Search table until SQL code is implemented
 //    public static DefaultTableModel getAircraftTableModel() {
