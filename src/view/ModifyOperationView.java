@@ -17,12 +17,16 @@
  *********** */
 package view;
 
+import controller.StationDAO;
+import flighthours.Station;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -84,7 +88,19 @@ public class ModifyOperationView extends javax.swing.JDialog {
         flightHoursLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
         operationNameTextField = new JTextField(name);
-        stationComboBox = new JComboBox<>(TemporaryFunctions.getUsbpStationsArray());
+        int stationComboBoxIndex = -1;
+        StationDAO stationDAO = new StationDAO();
+        List<Station> stationArrayList = new ArrayList<>(stationDAO.selectStationByType("USBP"));
+        //Find selected index to use for station combo box
+        stationComboBoxIndex = -1;
+        for(Station currentStation : stationArrayList){
+            stationComboBoxIndex++;
+            if(currentStation.getStationName().equals(station)){
+                break;
+            }
+        }
+        Station[] stationArray = stationArrayList.toArray(new Station[0]);
+        stationComboBox = new JComboBox<>(stationArray);
         missionComboBox = new JComboBox<>(TemporaryFunctions.getMissionArray());
         startDateTextField = new JTextField(startDate);
         endDateTextField = new JTextField(endDate);
@@ -186,7 +202,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameTextField, gridBagConstraints);
 
-        stationComboBox.setSelectedItem(station);
+        stationComboBox.setSelectedIndex(stationComboBoxIndex);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -314,7 +330,10 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private JPanel outerPanel;
     private JLabel startDateLabel;
     private JTextField startDateTextField;
-    private JComboBox<String> stationComboBox;
+    /*TODO REMOVE THIS LINE
+    private javax.swing.JComboBox<String> stationComboBox;
+    */
+    private JComboBox stationComboBox;
     private JLabel stationLabel;
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;
