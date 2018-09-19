@@ -137,7 +137,7 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="typeComboBox">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(temporary.TemporaryFunctions.getAircraftTypeArray())"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(controller.AircraftDAO.getAircraftTypeArray())"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
               <Constraints>
