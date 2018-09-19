@@ -24,10 +24,10 @@ import java.util.List;
 public class MissionDAO {
 
     private String dbURL = "jdbc:derby:FlightHours";
-    private static Connection conn = null;
-    private static Statement stmt = null;
-    private static PreparedStatement selectAllMissions;
-    private static List<Mission> MissionList;
+    private Connection conn = null;
+    private Statement stmt = null;
+    private PreparedStatement selectAllMissions;
+    private List<Mission> MissionList;
 
     public MissionDAO() {
         try {
@@ -40,7 +40,7 @@ public class MissionDAO {
         }
     }
 
-    public static List<Mission> selectAllMissions() {
+    public List<Mission> selectAllMissions() {
 
         List<Mission> results = null;
         ResultSet resultSet = null;

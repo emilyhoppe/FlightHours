@@ -175,7 +175,10 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="missionComboBox">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(temporary.TemporaryFunctions.getMissionArray())"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(missionDAO.selectAllMissions().toArray())"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="MissionDAO missionDAO = new MissionDAO();"/>
+                <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="*/&#xa;private javax.swing.JComboBox missionComboBox;"/>
+                <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/*TODO REMOVE THIS LINE"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
               <Constraints>

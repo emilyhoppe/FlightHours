@@ -35,8 +35,9 @@ public class Mission {
     }
 
     @Override
+    //Used for populating JComboBoxes
     public String toString() {
-        return "Mission{" + "missionID=" + missionID + ", missionName=" + missionName + '}';
+        return missionName;
     }
     
     

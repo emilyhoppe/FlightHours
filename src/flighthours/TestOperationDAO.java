@@ -29,7 +29,7 @@ public class TestOperationDAO {
         
         opQueries = new OperationDAO();
         int aircraftID = 4;
-        opTableModel = opQueries.selectOperationByAircraft(aircraftID);
+        opTableModel = opQueries.selectOperationsByAircraft(aircraftID);
         
         //Section below is to test and print results
         int rowCount = opTableModel.getRowCount();

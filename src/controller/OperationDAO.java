@@ -68,7 +68,7 @@ public class OperationDAO {
         }
     }
 
-    public DefaultTableModel selectOperationByAircraft(int aircraftID) {
+    public DefaultTableModel selectOperationsByAircraft(int aircraftID) {
 
         ResultSet resultSet = null;
         try {

@@ -17,7 +17,9 @@
  *********** */
 package view;
 
+import controller.MissionDAO;
 import controller.StationDAO;
+import flighthours.Mission;
 import flighthours.Station;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -101,7 +103,19 @@ public class ModifyOperationView extends javax.swing.JDialog {
         }
         Station[] stationArray = stationArrayList.toArray(new Station[0]);
         stationComboBox = new JComboBox<>(stationArray);
-        missionComboBox = new JComboBox<>(TemporaryFunctions.getMissionArray());
+        int missionComboBoxIndex;
+        MissionDAO missionDAO = new MissionDAO();
+        List<Mission> missionArrayList = new ArrayList<>(missionDAO.selectAllMissions());
+        //Find selected index to use for station combo box
+        missionComboBoxIndex = -1;
+        for(Mission currentMission : missionArrayList){
+            missionComboBoxIndex++;
+            if(currentMission.getMissionName().equals(mission)){
+                break;
+            }
+        }
+        Mission[] missionArray = missionArrayList.toArray(new Mission[0]);
+        missionComboBox = new JComboBox<>(missionArray);
         startDateTextField = new JTextField(startDate);
         endDateTextField = new JTextField(endDate);
         flightHoursTextField = new JTextField(flightHours);
@@ -210,7 +224,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(stationComboBox, gridBagConstraints);
 
-        missionComboBox.setSelectedItem(mission);
+        missionComboBox.setSelectedIndex(missionComboBoxIndex);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -322,7 +336,10 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private JTextField flightHoursTextField;
     private JPanel innerBottomPanel;
     private JPanel innerMiddlePanel;
-    private JComboBox<String> missionComboBox;
+    /*TODO REMOVE THIS LINE
+    private javax.swing.JComboBox<String> missionComboBox;
+    */
+    private JComboBox missionComboBox;
     private JLabel missionLabel;
     private JButton modifyOperationButton;
     private JLabel operationNameLabel;

@@ -183,12 +183,15 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="missionComboBox">
               <Properties>
-                <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="mission" type="code"/>
+                <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="missionComboBoxIndex" type="code"/>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(temporary.TemporaryFunctions.getMissionArray())"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(missionArray)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="int missionComboBoxIndex;&#xa;controller.MissionDAO missionDAO = new MissionDAO();&#xa;List&lt;Mission&gt; missionArrayList = new ArrayList&lt;&gt;(missionDAO.selectAllMissions());&#xa;//Find selected index to use for station combo box&#xa;missionComboBoxIndex = -1;&#xa;for(Mission currentMission : missionArrayList){&#xa;    missionComboBoxIndex++;&#xa;    if(currentMission.getMissionName().equals(mission)){&#xa;        break;&#xa;    }&#xa;}&#xa;Mission[] missionArray = missionArrayList.toArray(new Mission[0]);"/>
+                <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="*/&#xa;private javax.swing.JComboBox missionComboBox;"/>
+                <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/*TODO REMOVE THIS LINE"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
               <Constraints>

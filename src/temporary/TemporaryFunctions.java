@@ -70,10 +70,10 @@ public class TemporaryFunctions {
 
     //Returns an array of strings for the mission combo boxes until sql code
     //is implemented
-    public static String[] getMissionArray() {
-        String[] missionArray = {"Interdiction", "Surveillance", "Intelligence", "Tactical Ops", "Transport", "Search and Rescue", "Disaster Relief"};
-        return missionArray;
-    }
+//    public static String[] getMissionArray() {
+//        String[] missionArray = {"Interdiction", "Surveillance", "Intelligence", "Tactical Ops", "Transport", "Search and Rescue", "Disaster Relief"};
+//        return missionArray;
+//    }
 
     //Returns an array of strings for the aircraft type combo boxes.
     //Not sure where we will put this code permanently
