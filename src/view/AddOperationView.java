@@ -17,6 +17,7 @@
  *********** */
 package view;
 
+import controller.StationDAO;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -67,7 +68,8 @@ public class AddOperationView extends javax.swing.JDialog {
         flightHoursLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
         operationNameTextField = new JTextField();
-        stationComboBox = new JComboBox<>(TemporaryFunctions.getUsbpStationsArray());
+        StationDAO stationDAO = new StationDAO();
+        stationComboBox = new JComboBox<>(stationDAO.selectStationByType("USBP").toArray());
         missionComboBox = new JComboBox<>(TemporaryFunctions.getMissionArray());
         startDateTextField = new JTextField();
         endDateTextField = new JTextField();
@@ -293,7 +295,10 @@ public class AddOperationView extends javax.swing.JDialog {
     private JPanel outerPanel;
     private JLabel startDateLabel;
     private JTextField startDateTextField;
-    private JComboBox<String> stationComboBox;
+    /*TODO REMOVE THIS LINE
+    private javax.swing.JComboBox<String> stationComboBox;
+    */
+    private JComboBox stationComboBox;
     private JLabel stationLabel;
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;

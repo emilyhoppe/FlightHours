@@ -26,47 +26,47 @@ public class TemporaryFunctions {
     //Returns an array of strings for the AMO stations combo boxes until sql code
     //is implemented
     //This is used for the Add and Modify Aircraft dialogs
-    public static String[] getAmoStationsArray() {
-        String[] amoStationsArray = {
-            "McAllen Air and Marine Branch",
-            "Laredo Air Branch",
-            "San Antonio Air Unit",
-            "Uvalde Air Branch",
-            "Del Rio Air Unit",
-            "San Angelo Air Unit",
-            "El Paso Air Branch",
-            "Alpine Air Unit",
-            "Deming Air Unit",
-            "Tucson Air Branch",
-            "Sierra Vista Air Unit",
-            "Yuma Air Branch",
-            "San Diego Air and Marine Branch",
-            "Riverside Air Unit",
-            "Brown Field Air Unit",
-            "Sacramento Air Unit",
-            "Pine Valley Air Unit"};
-        return amoStationsArray;
-    }
+//    public static String[] getAmoStationsArray() {
+//        String[] amoStationsArray = {
+//            "McAllen Air and Marine Branch",
+//            "Laredo Air Branch",
+//            "San Antonio Air Unit",
+//            "Uvalde Air Branch",
+//            "Del Rio Air Unit",
+//            "San Angelo Air Unit",
+//            "El Paso Air Branch",
+//            "Alpine Air Unit",
+//            "Deming Air Unit",
+//            "Tucson Air Branch",
+//            "Sierra Vista Air Unit",
+//            "Yuma Air Branch",
+//            "San Diego Air and Marine Branch",
+//            "Riverside Air Unit",
+//            "Brown Field Air Unit",
+//            "Sacramento Air Unit",
+//            "Pine Valley Air Unit"};
+//        return amoStationsArray;
+//    }
 
     //Returns an array of strings for the USBP stations combo boxes until sql code
     //is implemented
     //This is used for the Add and Modify Operations dialogs
-    public static String[] getUsbpStationsArray() {
-        String[] usbpStationsArray = {
-            "McAllen",
-            "Rio Grande City",
-            "Brownsville",
-            "Imperial Beach",
-            "Boulevard",
-            "Chula Vista",
-            "Alpine",
-            "Sanderson",
-            "Marfa",
-            "Presidio",
-            "Yuma",
-            "Wellton"};
-        return usbpStationsArray;
-    }
+//    public static String[] getUsbpStationsArray() {
+//        String[] usbpStationsArray = {
+//            "McAllen",
+//            "Rio Grande City",
+//            "Brownsville",
+//            "Imperial Beach",
+//            "Boulevard",
+//            "Chula Vista",
+//            "Alpine",
+//            "Sanderson",
+//            "Marfa",
+//            "Presidio",
+//            "Yuma",
+//            "Wellton"};
+//        return usbpStationsArray;
+//    }
 
     //Returns an array of strings for the mission combo boxes until sql code
     //is implemented
