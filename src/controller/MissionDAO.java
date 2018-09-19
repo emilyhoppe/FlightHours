@@ -44,8 +44,30 @@ public class MissionDAO {
 
         List<Mission> results = null;
         ResultSet resultSet = null;
+        
+        try {
+            resultSet = selectAllMissions.executeQuery();
+            results = new ArrayList<Mission>();
+
+            while (resultSet.next()) {
+                results.add(new Mission(
+                        resultSet.getInt("MISSION_ID"),
+                        resultSet.getString("MISSION_NAME")));
+            }
+
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+            } catch (SQLException sqlExcept) {
+                sqlExcept.printStackTrace();
+            }
+        }
 
         return results;
+
+       
     }
 
 }
