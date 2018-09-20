@@ -193,7 +193,7 @@ public class MaintenanceView extends javax.swing.JPanel {
     private void addMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
         // TODO add your handling code here:
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, tailNumber);
+        AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, aircraftID, tailNumber);
         addMaintenanceView.setVisible(true);
         //Refresh all maintenance records in table when returning from dialog
         maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));

@@ -22,6 +22,13 @@ public class Maintenance {
         this.endDate = endDate;
         this.maintDescr = maintDesce;
     }
+    
+    public Maintenance(int aircraftID, Date startDate, Date endDate, String maintDesce) {
+        this.aircraftID = aircraftID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.maintDescr = maintDesce;
+    }
 
     public Maintenance() {
     }
