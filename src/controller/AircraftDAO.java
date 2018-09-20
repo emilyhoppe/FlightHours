@@ -57,7 +57,7 @@ public class AircraftDAO {
                     + "FROM aircraft "
                     + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
 
-            tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
+            tailNumberExists = conn.prepareStatement("SELECT COUNT(*) FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
 
             selectAircraftByStation = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
@@ -228,8 +228,8 @@ public class AircraftDAO {
         try {
             tailNumberExists.setString(1, tailNumber);
             resultSet = tailNumberExists.executeQuery();
-            
-            int nrows = resultSet.getFetchSize();
+            resultSet.next();
+            int nrows = resultSet.getInt(1);
             
             if (nrows > 0) {
                 result = true;
