@@ -119,6 +119,19 @@ public class AircraftDAO {
                     + " maintenance_hours_threshold)"
                     + "VALUES (?,?,?,?,?,?,?,?,?)");
 
+            modifyAircraft = conn.prepareStatement("UPDATE AIRCRAFT SET"
+                    + " tail_number   = ?,"
+                    + " aircraft_type = ?,"
+                    + " station_id = ?,"
+                    + " max_speed= ?,"
+                    + " max_altitude= ?,,"
+                    + " total_flight_hours= ?,"
+                    + " maintenance_flag= ?,"
+                    + " current_maintenance_hours= ?,"
+                    + " maintenance_hours_threshold= ?,"
+                    + " end_of_service_date = ?"
+                    + "WHERE aircraft_id = ?");
+
         } catch (Exception except) {
             except.printStackTrace();
         }
@@ -216,6 +229,24 @@ public class AircraftDAO {
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
+        try {
+            modifyAircraft.setString(1, inAircraft.getTailNumber());
+            modifyAircraft.setString(2, inAircraft.getAircraftType());
+            modifyAircraft.setInt(3, inAircraft.getStationID());
+            modifyAircraft.setInt(4, inAircraft.getMaxSpeed());
+            modifyAircraft.setInt(5, inAircraft.getMaxAltitude());
+            modifyAircraft.setInt(6, inAircraft.getTotalFlightHours());
+            modifyAircraft.setBoolean(7, inAircraft.getMaintenanceFlag());
+            modifyAircraft.setInt(8, inAircraft.getCurrentMaintenanceHours());
+            modifyAircraft.setInt(9, inAircraft.getMaintenanceHoursThreshold());
+            modifyAircraft.setDate(10, new java.sql.Date(inAircraft.getEndOfServiceDate().getTime()));
+
+            result = modifyAircraft.executeUpdate();
+
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+
         return result;
     }
 
@@ -223,13 +254,13 @@ public class AircraftDAO {
 
         boolean result = false;
         ResultSet resultSet = null;
-        
+
         try {
             tailNumberExists.setString(1, tailNumber);
             resultSet = tailNumberExists.executeQuery();
             resultSet.next();
             int nrows = resultSet.getInt(1);
-            
+
             if (nrows > 0) {
                 result = true;
             }
@@ -237,8 +268,7 @@ public class AircraftDAO {
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
-        
-        
+
         return result;
     }
 
