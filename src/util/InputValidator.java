@@ -18,12 +18,27 @@ import java.text.SimpleDateFormat;
 
 public class InputValidator {
 
-    //Validate that a string contains only letters and numbers
-    public static Boolean isAlphaNumeric(String text) {
-        return text.matches("^[a-zA-Z0-9]+$");
+    //Validate that a string contains only letters and numbers <= 10 characters
+    public static Boolean isAlphaNumeric10(String text) {
+        if (text.length() <= 10) {
+            if (text.matches("^[a-zA-Z0-9]+$")) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    //Validate that a string contains only numbers and is <+ 9 digits
+    //Validate that a string contains only letters and numbers <= 100 characters
+    public static Boolean isAlphaNumeric100(String text) {
+        if (text.length() <= 100) {
+            if (text.matches("^[a-zA-Z0-9]+$")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Validate that a string contains only numbers and is <= 9 digits
     public static Boolean isPositiveNumber(String text) {
         return text.matches("^[0-9]+$") && text.length() <= 9;
     }

@@ -436,7 +436,7 @@ public class AircraftView extends javax.swing.JPanel {
         //If tail number radio butto is selected
         if (tailNumberRadioButton.isSelected()) {
             //Input validation
-            if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
+            if (!util.InputValidator.isAlphaNumeric10(tailNumberTextField.getText())) {
                 JOptionPane.showMessageDialog(topPanel,
                         "Please enter letters and numbers only", "Notice", JOptionPane.ERROR_MESSAGE);
                 return;

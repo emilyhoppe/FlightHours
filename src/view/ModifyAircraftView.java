@@ -318,7 +318,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
     private void modifyAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
         //Validate user input
-        if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
+        if (!util.InputValidator.isAlphaNumeric10(tailNumberTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Tail Number is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;

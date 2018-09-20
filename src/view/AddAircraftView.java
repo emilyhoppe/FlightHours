@@ -253,7 +253,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
     private void addAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
         //Validate all user input
-        if (!InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
+        if (!InputValidator.isAlphaNumeric10(tailNumberTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Tail Number is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
