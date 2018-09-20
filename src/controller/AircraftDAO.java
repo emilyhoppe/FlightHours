@@ -122,15 +122,15 @@ public class AircraftDAO {
             modifyAircraft = conn.prepareStatement("UPDATE AIRCRAFT SET"
                     + " tail_number   = ?,"
                     + " aircraft_type = ?,"
-                    + " station_id = ?,"
-                    + " max_speed= ?,"
-                    + " max_altitude= ?,,"
-                    + " total_flight_hours= ?,"
-                    + " maintenance_flag= ?,"
-                    + " current_maintenance_hours= ?,"
+                    + " station_id    = ?,"
+                    + " max_speed     = ?,"
+                    + " max_altitude  = ?,"
+                    + " total_flight_hours         = ?,"
+                    + " maintenance_flag           = ?,"
+                    + " current_maintenance_hours  = ?,"
                     + " maintenance_hours_threshold= ?,"
-                    + " end_of_service_date = ?"
-                    + "WHERE aircraft_id = ?");
+                    + " end_of_service_date        = ?"
+                    + "WHERE aircraft_id           = ?");
 
         } catch (Exception except) {
             except.printStackTrace();
