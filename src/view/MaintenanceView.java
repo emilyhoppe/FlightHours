@@ -28,6 +28,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,6 +43,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 public class MaintenanceView extends javax.swing.JPanel {
 
@@ -48,6 +52,7 @@ public class MaintenanceView extends javax.swing.JPanel {
     MaintenanceDAO maintenanceDAO = new MaintenanceDAO();
     private String tailNumber;
     private int aircraftID;
+    SimpleDateFormat simpleDateFormat;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -59,10 +64,12 @@ public class MaintenanceView extends javax.swing.JPanel {
     public void setAircraftID(int aircraftID) {
         this.aircraftID = aircraftID;
         maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
+        setupMaintenanceTable();
     }
 
     //Constructor
     public MaintenanceView() {
+        this.simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         initComponents();
     }
 
@@ -129,13 +136,7 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         maintenanceTable.setAutoCreateRowSorter(true);
         maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
-        //Hide ID column in table but still allow application access to it
-        maintenanceTable.getColumnModel().getColumn(0).setMinWidth(0);
-        maintenanceTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        maintenanceTable.getColumnModel().getColumn(0).setWidth(0);
-        //Adjust date colums smaller so description column can be wide
-        maintenanceTable.getColumnModel().getColumn(1).setMaxWidth(100);
-        maintenanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
+        setupMaintenanceTable();
         maintenanceTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         maintenanceTableScrollPane.setViewportView(maintenanceTable);
 
@@ -194,27 +195,62 @@ public class MaintenanceView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, tailNumber);
         addMaintenanceView.setVisible(true);
+        //Refresh all maintenance records in table when returning from dialog
+        maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
+        setupMaintenanceTable();
     }//GEN-LAST:event_addMaintenanceButtonActionPerformed
 
     private void modifyMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
         //Open modify maintenance window when modify maintenance button is pressed
         //Retrieve selected table row and pass all data to new window
+        //Dates will be formatted to MM/dd/yyyy
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
             int selectedRow = maintenanceTable.getSelectedRow();
             String maintenanceID = maintenanceTable.getValueAt(selectedRow, 0).toString();
-            String startDate = maintenanceTable.getValueAt(selectedRow, 1).toString();
-            String endDate = maintenanceTable.getValueAt(selectedRow, 2).toString();
-            String description = maintenanceTable.getValueAt(selectedRow, 3).toString();
+            String startDate = simpleDateFormat.format(maintenanceTable.getValueAt(selectedRow, 2));
+            String endDate = simpleDateFormat.format(maintenanceTable.getValueAt(selectedRow, 3));
+            String description = maintenanceTable.getValueAt(selectedRow, 4).toString();
             ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame,
                     true, tailNumber, maintenanceID, startDate, endDate, description);
 
             modifyMaintenanceView.setVisible(true);
+            //Refresh all maintenance records in table when returning from dialog
+            maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
+            setupMaintenanceTable();
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(topPanel, "Please select a maintenance event to modify", "Notice", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
+
+    //Modifies maintenanceTable to adjust columns correctly for display
+    private void setupMaintenanceTable() {
+        //Hide ID column in table but still allow application access to it
+        maintenanceTable.getColumnModel().getColumn(0).setMinWidth(0);
+        maintenanceTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        maintenanceTable.getColumnModel().getColumn(0).setWidth(0);
+        maintenanceTable.getColumnModel().getColumn(1).setMinWidth(0);
+        maintenanceTable.getColumnModel().getColumn(1).setMaxWidth(0);
+        maintenanceTable.getColumnModel().getColumn(1).setWidth(0);
+        //Adjust date colums smaller so description column can be wide
+        maintenanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
+        maintenanceTable.getColumnModel().getColumn(3).setMaxWidth(100);
+
+        //Change date format for columns 2 and 3 to MM/dd/yyyy format
+        TableCellRenderer tableCellRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                if (value instanceof Date) {
+                    value = simpleDateFormat.format(value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+            }
+        };
+        maintenanceTable.getColumnModel().getColumn(2).setCellRenderer(tableCellRenderer);
+        maintenanceTable.getColumnModel().getColumn(3).setCellRenderer(tableCellRenderer);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
