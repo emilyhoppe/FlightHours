@@ -223,6 +223,23 @@ public class AircraftDAO {
     public boolean tailNumberExists(String tailNumber) {
 
         boolean result = false;
+        ResultSet resultSet = null;
+        
+        try {
+            tailNumberExists.setString(1, tailNumber);
+            resultSet = tailNumberExists.executeQuery();
+            
+            int nrows = resultSet.getFetchSize();
+            
+            if (nrows > 0) {
+                result = true;
+            }
+
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+        
+        
         return result;
     }
 

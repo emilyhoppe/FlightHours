@@ -45,16 +45,20 @@ public class TestAircraftDAO {
         //Added Section below to see results - Emily
         int rowCount = acTableModel.getRowCount();
         int columnCount = acTableModel.getColumnCount();
-        for (int row = 0; row < rowCount; row++) {
-            for (int column = 0; column < columnCount; column++) {
-                System.out.print(acTableModel.getValueAt(row, column) + ", ");
-            }
-            System.out.println();
-        }
+        //for (int row = 0; row < rowCount; row++) {
+        //    for (int column = 0; column < columnCount; column++) {
+        //        System.out.print(acTableModel.getValueAt(row, column) + ", ");
+        //    }
+        //    System.out.println();
+        //}
 
-        int loc = 1;
-        AircraftDAO aircraftDAO = new AircraftDAO();
-        acTableModel = aircraftDAO.selectAircraftByStation(loc);
+        //int loc = 1;
+        //AircraftDAO aircraftDAO = new AircraftDAO();
+        //acTableModel = aircraftDAO.selectAircraftByStation(loc);
+        
+        boolean tailExists = aircraftQueries.tailNumberExists("N7255N");
+        
+        System.out.println("TailExists: " + tailExists);
 
         //aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
         System.out.println("Stop Here");
