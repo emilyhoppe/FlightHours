@@ -212,13 +212,13 @@ public class AircraftDAO {
         return result;
     }
 
+    //TODO CREATE FUNCTION
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
         return result;
     }
 
-    //TODO CREATE FUNCTION
     public boolean tailNumberExists(String tailNumber) {
 
         boolean result = false;
