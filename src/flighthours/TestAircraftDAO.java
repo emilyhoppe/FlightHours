@@ -52,9 +52,9 @@ public class TestAircraftDAO {
             System.out.println();
         }
 
-        String loc = "Laredo Air Branch";
+        int loc = 1;
         AircraftDAO aircraftDAO = new AircraftDAO();
-        acTableModel = aircraftDAO.selectAircraftbyLocation(loc);
+        acTableModel = aircraftDAO.selectAircraftByStation(loc);
 
         //aircraftList = AircraftDAO.selectAircraftbyLocation(loc);
         System.out.println("Stop Here");

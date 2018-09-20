@@ -9,8 +9,8 @@
  *
  *      Class Description: ModifyAircraftView is a GUI view class which extends JDialog.
  *              It provides text fields and combo boxes for the user to modify
- *              existing aircraft in the database.  When a user clicks the Modify 
- *              Aircraft button, the inputs will be validated and updated in 
+ *              existing aircraft in the database.  When a user clicks the Modify
+ *              Aircraft button, the inputs will be validated and updated in
  *              the database.
  *
  *
@@ -19,6 +19,7 @@ package view;
 
 import controller.AircraftDAO;
 import controller.StationDAO;
+import flighthours.Aircraft;
 import flighthours.Station;
 import java.awt.Font;
 import java.awt.Frame;
@@ -43,10 +44,12 @@ import javax.swing.border.SoftBevelBorder;
 public class ModifyAircraftView extends javax.swing.JDialog {
 
     //Instance variables
-    private String ID;
+    private Aircraft aircraft;
+    private String aircraftID;
     private String tailNumber;
     private String type;
-    private String station;
+    private String stationString;
+    private Station station;
     private String maxSpeed;
     private String maxAltitude;
     private String currentMaintHours;
@@ -54,15 +57,15 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private String endOfServiceDate;
 
     //Constructor with parameters
-    public ModifyAircraftView(Frame parent, boolean modal, String ID, String tailNumber,
-            String type, String station, String maxSpeed,
+    public ModifyAircraftView(Frame parent, boolean modal, String aircraftID, String tailNumber,
+            String type, String stationString, String maxSpeed,
             String maxAltitude, String currentMaintHours, String maintHoursThreshold,
             String endOfServiceDate) {
         super(parent, modal);
-        this.ID = ID;
+        this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         this.type = type;
-        this.station = station;
+        this.stationString = stationString;
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
         this.currentMaintHours = currentMaintHours;
@@ -315,58 +318,62 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
     private void modifyAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
         //Validate user input
-        boolean isValid = true;
         if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
-            isValid = false;
             JOptionPane.showMessageDialog(outerPanel, "Tail Number is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
-        } else if (!util.InputValidator.isPositiveNumber(maxSpeedTextField.getText())) {
-            isValid = false;
+            return;
+        }
+        if (!util.InputValidator.isPositiveNumber(maxSpeedTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Max Speed is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
-        } else if (!util.InputValidator.isPositiveNumber(maxAltitudeTextField.getText())) {
-            isValid = false;
+            return;
+        }
+        if (!util.InputValidator.isPositiveNumber(maxAltitudeTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Max Altitude is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
-        } else if (!util.InputValidator.isPositiveNumber(currentMaintHoursTextField.getText())) {
-            isValid = false;
+            return;
+        }
+        if (!util.InputValidator.isPositiveNumber(currentMaintHoursTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Current Maintenance Hours is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
-        } else if (!util.InputValidator.isPositiveNumber(maintThresholdTextField.getText())) {
-            isValid = false;
+            return;
+        }
+        if (!util.InputValidator.isPositiveNumber(maintThresholdTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Maintenance Threshold is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            //This date field can be empty, if so, skip date validation
-        } else if (!endOfServiceTextField.getText().equals("")) {
+            return;
+        }
+        //This date field can be empty, if so, skip date validation
+        if (!endOfServiceTextField.getText().equals("")) {
             if (!util.InputValidator.isValidDate(endOfServiceTextField.getText())) {
-                isValid = false;
-                JOptionPane.showMessageDialog(outerPanel, 
-                        "End of Service Date is invalid\n" +
-                        "Please use format MM/DD/YYYY\n" + 
-                        "or leave field empty",
+                JOptionPane.showMessageDialog(outerPanel,
+                        "End of Service Date is invalid\n"
+                        + "Please use format MM/DD/YYYY\n"
+                        + "or leave field empty",
                         "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                return;
             }
         }
         //Run only if all user inputs are valid
-        if (isValid) {
-            //TODO Call SQL function
-            //TODO Validate that tail number does not already exist in DATABASE only if it 
-            //  is being changed, (first check to see if it matches what is already in 
-            //  the table, then there is no need to validate)
-            //TODO Temporarily show message box with values
-            JOptionPane.showMessageDialog(outerPanel,
-                    "Modifying Aircraft Database values for aircraft ID: " + ID + "\n"
-                    + "Tail Number: " + tailNumberTextField.getText() + "\n"
-                    + "Type: " + typeComboBox.getSelectedItem() + "\n"
-                    + "Station: " + stationComboBox.getSelectedItem() + "\n"
-                    + "Max Speed: " + maxSpeedTextField.getText() + "\n"
-                    + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
-                    + "Current Maintenance Hours: " + currentMaintHoursTextField.getText() + "\n"
-                    + "Maintenance Threshold: " + maintThresholdTextField.getText() + "\n"
-                    + "End of Service Date: " + endOfServiceTextField.getText(),
-                    "Notice", JOptionPane.PLAIN_MESSAGE);
-            dispose();
-        }
+        //TODO WAITING ON MODIFY AIRCRAFT DAO FUNCTION
+        
+        
+        //TODO Call SQL function
+        //TODO Validate that tail number does not already exist in DATABASE only if it 
+        //TODO Temporarily show message box with values
+        JOptionPane.showMessageDialog(outerPanel,
+                "Modifying Aircraft Database values for aircraft ID: " + aircraftID + "\n"
+                + "Tail Number: " + tailNumberTextField.getText() + "\n"
+                + "Type: " + typeComboBox.getSelectedItem() + "\n"
+                + "Station: " + stationComboBox.getSelectedItem() + "\n"
+                + "Max Speed: " + maxSpeedTextField.getText() + "\n"
+                + "Max Altitude: " + maxAltitudeTextField.getText() + "\n"
+                + "Current Maintenance Hours: " + currentMaintHoursTextField.getText() + "\n"
+                + "Maintenance Threshold: " + maintThresholdTextField.getText() + "\n"
+                + "End of Service Date: " + endOfServiceTextField.getText(),
+                "Notice", JOptionPane.PLAIN_MESSAGE);
+        //Close window
+        dispose();
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
     private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

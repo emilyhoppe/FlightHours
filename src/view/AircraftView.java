@@ -21,6 +21,7 @@ package view;
 
 import controller.AircraftDAO;
 import controller.StationDAO;
+import flighthours.Station;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -52,6 +53,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class AircraftView extends javax.swing.JPanel {
 
@@ -369,7 +371,8 @@ public class AircraftView extends javax.swing.JPanel {
             layout.show(mainPanel, "operationsView");
         } catch (IndexOutOfBoundsException e) {
             //If no aircraft is not selected in table, show error dialog
-            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(topPanel,
+                    "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
@@ -414,37 +417,61 @@ public class AircraftView extends javax.swing.JPanel {
 
             modifyAircraftView.setVisible(true);
         } catch (IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft to modify", "Notice", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(topPanel,
+                    "Please select an aircraft to modify", "Notice", JOptionPane.ERROR_MESSAGE);
         }
+        //Refresh all aircraft records in table when returning from dialog
+        aircraftTable.setModel(aircraftDAO.selectAllAircraft());
+        //Hide first column
+        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
 
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
     private void searchAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_searchAircraftButtonActionPerformed
         //Actions performed when search aircraft button is pressed
-
-        //If searching by tail number
+        //
+        aircraftDAO = new AircraftDAO();
+        //If tail number radio butto is selected
         if (tailNumberRadioButton.isSelected()) {
             //Input validation
             if (!util.InputValidator.isAlphaNumeric(tailNumberTextField.getText())) {
-                JOptionPane.showMessageDialog(topPanel, "Please enter letters and numbers only", "Notice", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(topPanel, "Searching by Tail Number: " + tailNumberTextField.getText(), "Notice", JOptionPane.PLAIN_MESSAGE);
-                System.out.println("Searching by Tail Number: " + tailNumberTextField.getText());
+                JOptionPane.showMessageDialog(topPanel,
+                        "Please enter letters and numbers only", "Notice", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            //Search database and retrieve new table model from AircraftDAO
+            aircraftTable.setModel(aircraftDAO.selectAircraftByTailnumber(
+                    tailNumberTextField.getText().toUpperCase()));
+            //Hide first column
+            aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+            aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            aircraftTable.getColumnModel().getColumn(0).setWidth(0);
         }
 
-        //If searching by maintenance flag
+        //If maintenance flag radio button is selected
         if (maintFlagRadioButton.isSelected()) {
-            //Output for testing
-            JOptionPane.showMessageDialog(topPanel, "Searching by Maintenance Flag: " + maintFlagComboBox.getSelectedItem(), "Notice", JOptionPane.PLAIN_MESSAGE);
-            System.out.println("Searching by Maintenance Flag: " + maintFlagComboBox.getSelectedItem());
+            //Search database and retrieve new table model from AircraftDAO
+            aircraftTable.setModel(aircraftDAO.selectAircraftByMaintFlag(
+                    Boolean.parseBoolean(maintFlagComboBox.getSelectedItem().toString())));
+            //Hide first column
+            aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+            aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            aircraftTable.getColumnModel().getColumn(0).setWidth(0);
         }
 
-        //If searching by station
+        //If station radio butto is selected
         if (stationRadioButton.isSelected()) {
-            //Output for testing
-            JOptionPane.showMessageDialog(topPanel, "Searching by Station: " + stationComboBox.getSelectedItem(), "Notice", JOptionPane.PLAIN_MESSAGE);
-            System.out.println("Searching by Station: " + stationComboBox.getSelectedItem());
+            //Search database and retrieve new table model from AircraftDAO
+            Station station = (Station) stationComboBox.getSelectedItem();
+            int stationID = station.getStationID();
+            aircraftTable.setModel(aircraftDAO.selectAircraftByStation(stationID));
+            //Hide first column
+            aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
+            aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            aircraftTable.getColumnModel().getColumn(0).setWidth(0);
         }
     }//GEN-LAST:event_searchAircraftButtonActionPerformed
 
@@ -468,7 +495,8 @@ public class AircraftView extends javax.swing.JPanel {
             layout.show(mainPanel, "maintenanceView");
         } catch (IndexOutOfBoundsException e) {
             //If no aircraft is not selected in table, show error dialog
-            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(topPanel, "Please select an aircraft",
+                    "Notice", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_aircraftMaintenanceButtonActionPerformed

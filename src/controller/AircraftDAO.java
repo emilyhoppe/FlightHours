@@ -30,7 +30,7 @@ public class AircraftDAO {
     private Connection conn = null;
     private Statement stmt = null;
     private PreparedStatement selectAllAircraft;
-    private PreparedStatement selectAircraftByLocation;
+    private PreparedStatement selectAircraftByStation;
     private PreparedStatement selectAircraftByTailNumber;
     private PreparedStatement selectAircraftByMaintFlag;
     private PreparedStatement insertNewAircraft;
@@ -59,7 +59,7 @@ public class AircraftDAO {
 
             tailNumberExists = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
 
-            selectAircraftByLocation = conn.prepareStatement("SELECT "
+            selectAircraftByStation = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
                     + "tail_number, "
                     + "aircraft_type, "
@@ -71,11 +71,41 @@ public class AircraftDAO {
                     + "current_maintenance_hours, "
                     + "maintenance_hours_threshold, "
                     + "end_of_service_date "
-                    + "FROM aircraft, stations "
-                    + "WHERE aircraft.STATION_ID = (select stations.station_id from STATIONS where STATIONS.STATION_NAME = ?"
-                    + "AND aircraft.station_id = stations.station_id)");
+                    + "FROM aircraft "
+                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id "
+                    + "WHERE aircraft.station_id = ?");
 
-            selectAircraftByTailNumber = conn.prepareStatement("SELECT * FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
+            selectAircraftByTailNumber = conn.prepareStatement("SELECT "
+                    + "aircraft_id, "
+                    + "tail_number, "
+                    + "aircraft_type, "
+                    + "stations.station_name, "
+                    + "max_speed, "
+                    + "max_altitude, "
+                    + "total_flight_hours, "
+                    + "maintenance_flag, "
+                    + "current_maintenance_hours, "
+                    + "maintenance_hours_threshold, "
+                    + "end_of_service_date "
+                    + "FROM aircraft "
+                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id "
+                    + "WHERE TAIL_NUMBER = ?");
+
+            selectAircraftByMaintFlag = conn.prepareStatement("SELECT "
+                    + "aircraft_id, "
+                    + "tail_number, "
+                    + "aircraft_type, "
+                    + "stations.station_name, "
+                    + "max_speed, "
+                    + "max_altitude, "
+                    + "total_flight_hours, "
+                    + "maintenance_flag, "
+                    + "current_maintenance_hours, "
+                    + "maintenance_hours_threshold, "
+                    + "end_of_service_date "
+                    + "FROM aircraft "
+                    + "INNER JOIN stations ON aircraft.station_id = stations.station_id "
+                    + "WHERE MAINTENANCE_FLAG = ?");
 
             insertNewAircraft = conn.prepareStatement("INSERT INTO aircraft"
                     + "(tail_number,"
@@ -101,9 +131,6 @@ public class AircraftDAO {
 
         try {
             resultSet = selectAllAircraft.executeQuery();
-            //while (resultSet.next()) {
-            //    System.out.println("Tail Number" + resultSet.getString("TAIL_NUMBER"));
-            //}
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -113,14 +140,13 @@ public class AircraftDAO {
         return acTableModel;
     }
 
-    public DefaultTableModel selectAircraftbyLocation(String inLocation) {
+    public DefaultTableModel selectAircraftByStation(int inStationID) {
 
         ResultSet resultSet = null;
 
-        //System.out.println("Location: " + inLocation);
         try {
-            selectAircraftByLocation.setString(1, inLocation);
-            resultSet = selectAircraftByLocation.executeQuery();
+            selectAircraftByStation.setInt(1, inStationID);
+            resultSet = selectAircraftByStation.executeQuery();
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -130,9 +156,8 @@ public class AircraftDAO {
         return acTableModel;
     }
 
-    public Aircraft selectAircraftByTailnumber(String inTailNumber) {
+    public DefaultTableModel selectAircraftByTailnumber(String inTailNumber) {
 
-        Aircraft results = null;
         ResultSet resultSet = null;
         try {
             selectAircraftByTailNumber.setString(1, inTailNumber);
@@ -142,15 +167,23 @@ public class AircraftDAO {
             sqlExcept.printStackTrace();
         }
 
-        return results;
+        acTableModel = createAircraftTableModel(resultSet);
+        return acTableModel;
     }
 
-    public List<Aircraft> selectAircraftbyMaintFlag() {
+    public DefaultTableModel selectAircraftByMaintFlag(boolean inMaintFlag) {
 
-        List<Aircraft> results = null;
         ResultSet resultSet = null;
+        try {
+            selectAircraftByMaintFlag.setBoolean(1, inMaintFlag);
+            resultSet = selectAircraftByMaintFlag.executeQuery();
 
-        return results;
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+
+        acTableModel = createAircraftTableModel(resultSet);
+        return acTableModel;
     }
 
     public int insertNewAircraft(Aircraft inAircraft) {
@@ -165,7 +198,7 @@ public class AircraftDAO {
             insertNewAircraft.setInt(6, inAircraft.getTotalFlightHours());
             insertNewAircraft.setBoolean(7, inAircraft.getMaintenanceFlag());
             insertNewAircraft.setInt(8, inAircraft.getCurrentMaintenanceHours());
-            insertNewAircraft.setInt(9, inAircraft.getMaintenanceHoursThreshold());   
+            insertNewAircraft.setInt(9, inAircraft.getMaintenanceHoursThreshold());
 
             //java.util.Date myDate = new java.util.Date(inAircraft.getEndOfServiceDate());
             //java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
@@ -179,12 +212,14 @@ public class AircraftDAO {
         return result;
     }
 
+    //TODO CREATE FUNCTION
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
         return result;
     }
 
+    //TODO CREATE FUNCTION
     public boolean tailNumberExists(String tailNumber) {
 
         boolean result = false;
