@@ -36,6 +36,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -53,15 +55,19 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class AircraftView extends javax.swing.JPanel {
 
     //Instance variables
     private AircraftDAO aircraftDAO;
+    SimpleDateFormat simpleDateFormat;
 
     //Constructor
     public AircraftView() {
+        this.simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         initComponents();
     }
 
@@ -295,10 +301,7 @@ public class AircraftView extends javax.swing.JPanel {
         aircraftTable.setAutoCreateRowSorter(true);
         aircraftDAO = new AircraftDAO();
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
-        //Hide ID column in table but still allow application access to it
-        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
-        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+        setupAircraftTable();
         aircraftTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         aircraftTable.getTableHeader().setReorderingAllowed(false);
         aircraftTableScrollPane.setViewportView(aircraftTable);
@@ -385,10 +388,7 @@ public class AircraftView extends javax.swing.JPanel {
         addAircraftView.setVisible(true);
         //Refresh all aircraft records in table when returning from dialog
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
-        //Hide first column
-        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
-        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+        setupAircraftTable();
     }//GEN-LAST:event_addAircraftButtonActionPerformed
 
     private void modifyAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
@@ -406,11 +406,13 @@ public class AircraftView extends javax.swing.JPanel {
             String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
             String endOfServiceDate;
             //endOfServiceDate is sometimes null so we will use an empty string if it is
+            //We also format the string correctly to MM/dd/yyyy
             try {
-                endOfServiceDate = aircraftTable.getValueAt(selectedRow, 10).toString();
-            } catch (NullPointerException expected) {
+                endOfServiceDate = simpleDateFormat.format(aircraftTable.getValueAt(selectedRow, 10));
+            } catch (NullPointerException | IllegalArgumentException expected) {
                 endOfServiceDate = "";
             }
+            //Create ModifyAircraftView JDialog instance and pass parameters
             ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
                     true, ID, tailNumber, type, station, maxSpeed, maxAltitude,
                     currentMaintHours, maintHoursThreshold, endOfServiceDate);
@@ -422,10 +424,7 @@ public class AircraftView extends javax.swing.JPanel {
         }
         //Refresh all aircraft records in table when returning from dialog
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
-        //Hide first column
-        aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
-        aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+        setupAircraftTable();
 
     }//GEN-LAST:event_modifyAircraftButtonActionPerformed
 
@@ -445,10 +444,7 @@ public class AircraftView extends javax.swing.JPanel {
             //Search database and retrieve new table model from AircraftDAO
             aircraftTable.setModel(aircraftDAO.selectAircraftByTailnumber(
                     tailNumberTextField.getText().toUpperCase()));
-            //Hide first column
-            aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
-            aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
-            aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+            setupAircraftTable();
         }
 
         //If maintenance flag radio button is selected
@@ -456,10 +452,7 @@ public class AircraftView extends javax.swing.JPanel {
             //Search database and retrieve new table model from AircraftDAO
             aircraftTable.setModel(aircraftDAO.selectAircraftByMaintFlag(
                     Boolean.parseBoolean(maintFlagComboBox.getSelectedItem().toString())));
-            //Hide first column
-            aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
-            aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
-            aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+            setupAircraftTable();
         }
 
         //If station radio butto is selected
@@ -468,10 +461,7 @@ public class AircraftView extends javax.swing.JPanel {
             Station station = (Station) stationComboBox.getSelectedItem();
             int stationID = station.getStationID();
             aircraftTable.setModel(aircraftDAO.selectAircraftByStation(stationID));
-            //Hide first column
-            aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
-            aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
-            aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+            setupAircraftTable();
         }
     }//GEN-LAST:event_searchAircraftButtonActionPerformed
 
@@ -579,11 +569,29 @@ public class AircraftView extends javax.swing.JPanel {
     private void showAllButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
         //Show all aircraft records in table
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
+        setupAircraftTable();
+    }//GEN-LAST:event_showAllButtonActionPerformed
+
+    //Modifies aircraftTable to adjust columns correctly for display
+    private void setupAircraftTable() {
         //Hide first column
         aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
         aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
         aircraftTable.getColumnModel().getColumn(0).setWidth(0);
-    }//GEN-LAST:event_showAllButtonActionPerformed
+
+        //Change date format for column 10 to MM/dd/yyyy format
+        TableCellRenderer tableCellRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                if (value instanceof Date) {
+                    value = simpleDateFormat.format(value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+            }
+        };
+        aircraftTable.getColumnModel().getColumn(10).setCellRenderer(tableCellRenderer);
+    }
 
     private void tailNumberLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseEntered
         tailNumberLabel.setToolTipText("Select this option to search Aircraft by Tail Number");
