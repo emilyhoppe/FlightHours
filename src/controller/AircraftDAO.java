@@ -212,7 +212,6 @@ public class AircraftDAO {
         return result;
     }
 
-    //TODO CREATE FUNCTION
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
