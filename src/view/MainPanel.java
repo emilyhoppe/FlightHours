@@ -42,7 +42,7 @@ public class MainPanel extends javax.swing.JPanel {
     }
 
     //Initialize all Swing components and place them in the JPanel using CardLayout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
 
         aircraftView = new AircraftView();
         operationsView = new OperationsView();
@@ -52,12 +52,12 @@ public class MainPanel extends javax.swing.JPanel {
         add(aircraftView, "aircraftView");
         add(operationsView, "operationsView");
         add(maintenanceView, "maintenanceView");
-    }//GEN-END:initComponents
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private AircraftView aircraftView;
     private MaintenanceView maintenanceView;
     private OperationsView operationsView;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

@@ -83,7 +83,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     }
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         outerPanel = new JPanel();
@@ -131,7 +131,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
         titleLabel.setText("Modify Aircraft");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -336,9 +336,9 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }
 
-    private void modifyAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
+    private void modifyAircraftButtonActionPerformed(ActionEvent evt) {
         //Method Variables
         SimpleDateFormat simpleDateFormat;
         Aircraft aircraft;
@@ -443,14 +443,14 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
         //Close window
         dispose();
-    }//GEN-LAST:event_modifyAircraftButtonActionPerformed
+    }
 
-    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {
         //Cancel modifying aircraft and close window
         dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JPanel buttonPanel;
     private JButton cancelButton;
     private JLabel currentMaintHoursLabel;
@@ -478,5 +478,5 @@ public class ModifyAircraftView extends javax.swing.JDialog {
     private JTextField totalFlightHoursTextField;
     private JComboBox<String> typeComboBox;
     private JLabel typeLabel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

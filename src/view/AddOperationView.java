@@ -63,7 +63,7 @@ public class AddOperationView extends javax.swing.JDialog {
     }
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         outerPanel = new JPanel();
@@ -97,7 +97,7 @@ public class AddOperationView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
         titleLabel.setText("Add Operation");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -267,9 +267,9 @@ public class AddOperationView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }
 
-    private void addOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
+    private void addOperationButtonActionPerformed(ActionEvent evt) {
         //Method variables
         Operation operation;
         OperationDAO operationDAO;
@@ -346,14 +346,14 @@ public class AddOperationView extends javax.swing.JDialog {
         }
         //Close window
         dispose();
-    }//GEN-LAST:event_addOperationButtonActionPerformed
+    }
 
-    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {
         //Cancel adding operations and close window
         dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JButton addOperationButton;
     private JButton cancelButton;
     private JLabel endDateLabel;
@@ -380,5 +380,5 @@ public class AddOperationView extends javax.swing.JDialog {
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

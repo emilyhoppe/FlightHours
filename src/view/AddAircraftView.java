@@ -65,7 +65,7 @@ public class AddAircraftView extends javax.swing.JDialog {
     }
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         outerPanel = new JPanel();
@@ -96,7 +96,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
         titleLabel.setText("Add Aircraft");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -249,9 +249,9 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }
 
-    private void addAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
+    private void addAircraftButtonActionPerformed(ActionEvent evt) {
         //Validate all user input
         if (!InputValidator.isAlphaNumeric10(tailNumberTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Tail Number is invalid",
@@ -317,14 +317,14 @@ public class AddAircraftView extends javax.swing.JDialog {
         }
         //Close the window
         dispose();
-    }//GEN-LAST:event_addAircraftButtonActionPerformed
+    }
 
-    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {
         //Cancel adding aircraft and close window
         dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JButton addAircraftButton;
     private JButton cancelButton;
     private JPanel innerBottomPanel;
@@ -346,5 +346,5 @@ public class AddAircraftView extends javax.swing.JDialog {
     private JLabel titleLabel;
     private JComboBox<String> typeComboBox;
     private JLabel typeLabel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

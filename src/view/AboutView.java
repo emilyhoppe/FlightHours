@@ -41,7 +41,7 @@ public class AboutView extends javax.swing.JDialog {
     }
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         closeButton = new JButton();
@@ -68,7 +68,7 @@ public class AboutView extends javax.swing.JDialog {
         mainPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         mainPanel.setLayout(new GridBagLayout());
 
-        aboutLabel.setFont(new Font("Tahoma", 0, 18)); // NOI18N
+        aboutLabel.setFont(new Font("Tahoma", 0, 18)); 
         aboutLabel.setText("<html> <Center> FHS<BR> Flight Hours System<BR> Version 1.0<BR> <BR> This application was developed<BR> for UMUC CMSC495 Fall 2018 by:<BR> John Tamer<BR> Jason Grimard<BR> Demetrius Billups<BR> &<BR> Emily Hoppe");
         aboutLabel.setToolTipText("");
         gridBagConstraints = new GridBagConstraints();
@@ -85,16 +85,16 @@ public class AboutView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }
 
-    private void closeButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+    private void closeButtonActionPerformed(ActionEvent evt) {
         //Close the dialog box
         dispose();
-    }//GEN-LAST:event_closeButtonActionPerformed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JLabel aboutLabel;
     private JButton closeButton;
     private JPanel mainPanel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

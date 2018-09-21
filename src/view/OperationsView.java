@@ -74,7 +74,7 @@ public class OperationsView extends javax.swing.JPanel {
     }
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         logoLabel = new JLabel();
@@ -91,15 +91,15 @@ public class OperationsView extends javax.swing.JPanel {
 
         setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
-        logoLabel.setName(""); // NOI18N
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); 
+        logoLabel.setName(""); 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new Font("Arial", 1, 36)); // NOI18N
+        titleLabel.setFont(new Font("Arial", 1, 36)); 
         titleLabel.setText("Aircraft Operations");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -181,9 +181,9 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }//GEN-END:initComponents
+    }
 
-    private void backButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void backButtonActionPerformed(ActionEvent evt) {
         //Switch to aircraft view on card layout when aircraft back button is pressed
         //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
@@ -192,9 +192,9 @@ public class OperationsView extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, "aircraftView");
 
-    }//GEN-LAST:event_backButtonActionPerformed
+    }
 
-    private void addOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
+    private void addOperationButtonActionPerformed(ActionEvent evt) {
         //Open add operation window when add operaiton button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddOperationView addOperationView = new AddOperationView(frame, true, aircraftID,tailNumber);
@@ -202,9 +202,9 @@ public class OperationsView extends javax.swing.JPanel {
         //Refresh all operations records in table when returning from dialog
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
         setupOperationsTable();
-    }//GEN-LAST:event_addOperationButtonActionPerformed
+    }
 
-    private void modifyOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
+    private void modifyOperationButtonActionPerformed(ActionEvent evt) {
         //Open modify operation window when modify operation button is pressed
         //Retrieve selected table row and pass all data to new window
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -230,7 +230,7 @@ public class OperationsView extends javax.swing.JPanel {
         //Refresh all operations records in table when returning from dialog
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
         setupOperationsTable();
-    }//GEN-LAST:event_modifyOperationButtonActionPerformed
+    }
 
     //Modifies maintenanceTable to adjust columns correctly for display
     private void setupOperationsTable() {
@@ -264,7 +264,7 @@ public class OperationsView extends javax.swing.JPanel {
         operationsTable.getColumnModel().getColumn(8).setCellRenderer(tableCellRenderer);
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JButton addOperationButton;
     private JButton backButton;
     private JPanel bottomPanel;
@@ -276,5 +276,5 @@ public class OperationsView extends javax.swing.JPanel {
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
     private JPanel topPanel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

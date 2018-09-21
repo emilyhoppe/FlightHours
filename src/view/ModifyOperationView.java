@@ -90,7 +90,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
     }
 
     //Initialize all Swing components and place them in the JDialog using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         outerPanel = new JPanel();
@@ -146,7 +146,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); // NOI18N
+        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
         titleLabel.setText("Modify Operation");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -320,9 +320,9 @@ public class ModifyOperationView extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }
 
-    private void modifyOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
+    private void modifyOperationButtonActionPerformed(ActionEvent evt) {
         //Method variables
         Operation operation;
         OperationDAO operationDAO;
@@ -399,14 +399,14 @@ public class ModifyOperationView extends javax.swing.JDialog {
         }
         //Close window
         dispose();
-    }//GEN-LAST:event_modifyOperationButtonActionPerformed
+    }
 
-    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {
         //Cancel modifying operaiton and close window
         dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JButton cancelButton;
     private JLabel endDateLabel;
     private JTextField endDateTextField;
@@ -433,5 +433,5 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

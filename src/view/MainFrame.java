@@ -38,7 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     //Initialize all Swing components and place them in the JFrame using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         mainPanel = new MainPanel();
@@ -50,7 +50,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("FHS Flight Hours System");
-        setName("MainFrame"); // NOI18N
+        setName("MainFrame"); 
         setSize(new Dimension(700, 500));
         getContentPane().setLayout(new GridBagLayout());
         gridBagConstraints = new GridBagConstraints();
@@ -89,26 +89,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         setSize(new Dimension(966, 739));
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }
 
-    private void exitMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void exitMenuItemActionPerformed(ActionEvent evt) {
         //Exit the system
         System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    }
 
-    private void aboutMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+    private void aboutMenuItemActionPerformed(ActionEvent evt) {
         //Display the AboutView dialog
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
 
-    }//GEN-LAST:event_aboutMenuItemActionPerformed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JMenuItem aboutMenuItem;
     private JMenuItem exitMenuItem;
     private JMenu fileMenu;
     private JMenu helpMenu;
     private MainPanel mainPanel;
     private JMenuBar menuBar;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }

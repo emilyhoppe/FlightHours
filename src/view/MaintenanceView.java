@@ -74,7 +74,7 @@ public class MaintenanceView extends javax.swing.JPanel {
     }
 
     //Initialize all Swing components and place them in the JPanel using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         logoLabel = new JLabel();
@@ -91,15 +91,15 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
-        logoLabel.setName(""); // NOI18N
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); 
+        logoLabel.setName(""); 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new Font("Arial", 1, 36)); // NOI18N
+        titleLabel.setFont(new Font("Arial", 1, 36)); 
         titleLabel.setText("Aircraft Maintenance");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -178,9 +178,9 @@ public class MaintenanceView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }//GEN-END:initComponents
+    }
 
-    private void backButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void backButtonActionPerformed(ActionEvent evt) {
         //Switch to aircraft view on card layout when aircraft back button is pressed
         //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
@@ -188,9 +188,9 @@ public class MaintenanceView extends javax.swing.JPanel {
         MainPanel mainPanel = frame.getMainPanel();
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, "aircraftView");
-    }//GEN-LAST:event_backButtonActionPerformed
+    }
 
-    private void addMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
+    private void addMaintenanceButtonActionPerformed(ActionEvent evt) {
         //Open add maintenance window when add maintenance button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, aircraftID, tailNumber);
@@ -198,9 +198,9 @@ public class MaintenanceView extends javax.swing.JPanel {
         //Refresh all maintenance records in table when returning from dialog
         maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
         setupMaintenanceTable();
-    }//GEN-LAST:event_addMaintenanceButtonActionPerformed
+    }
 
-    private void modifyMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
+    private void modifyMaintenanceButtonActionPerformed(ActionEvent evt) {
         //Open modify maintenance window when modify maintenance button is pressed
         //Retrieve selected table row and pass all data to new window
         //Dates will be formatted to MM/dd/yyyy
@@ -222,7 +222,7 @@ public class MaintenanceView extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(topPanel, "Please select a maintenance event to modify", "Notice", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
+    }
 
     //Modifies maintenanceTable to adjust columns correctly for display
     private void setupMaintenanceTable() {
@@ -253,7 +253,7 @@ public class MaintenanceView extends javax.swing.JPanel {
     }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private JButton addMaintenanceButton;
     private JButton backButton;
     private JPanel bottomPanel;
@@ -265,5 +265,5 @@ public class MaintenanceView extends javax.swing.JPanel {
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
     private JPanel topPanel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }
