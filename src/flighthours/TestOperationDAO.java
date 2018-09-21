@@ -28,7 +28,7 @@ public class TestOperationDAO {
     public static void main(String args[]) {
         
         opQueries = new OperationDAO();
-        int aircraftID = 4;
+        int aircraftID = 1;
         opTableModel = opQueries.selectOperationsByAircraft(aircraftID);
         
         //Section below is to test and print results
@@ -55,16 +55,20 @@ public class TestOperationDAO {
         inOperation.setMissionID(2);
         inOperation.setOperationStartDate(start);
         inOperation.setOperationEndDate(end);
-        inOperation.setOperationFlightHour(6);
+        inOperation.setOperationFlightHour(60);
         
         //Insert Operation Test
-        //int success = opQueries.insertNewOperation(inOperation);
-        //System.out.println(String.valueOf(success));
-        
+        /*int success = opQueries.insertNewOperation(inOperation);
+        int success1 = opQueries.insertOpAdjustCurrentHours(inOperation);
+        int success2 = opQueries.insertOpAdjustTotalHours(inOperation);
+        System.out.println(String.valueOf(success));
+        System.out.println(String.valueOf(success1));
+        System.out.println(String.valueOf(success2));*/
         
         //Modify Operation Test
-        //int success = opQueries.modifyOperation(inOperation);
-        //System.out.println(String.valueOf(success));
+        int success = opQueries.modifyOperation(inOperation);
+        System.out.println(String.valueOf(success));
+        
         
         System.out.println("Stop Here");
     }
