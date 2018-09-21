@@ -109,7 +109,7 @@ public class AircraftView extends javax.swing.JPanel {
         tailNumberTextField = new JTextField();
         maintFlagComboBox = new JComboBox<>();
         StationDAO stationDAO = new StationDAO();
-        stationComboBox = new JComboBox(stationDAO.selectStationByType("AMO").toArray());
+        stationComboBox = new JComboBox<>(stationDAO.selectStationByType("AMO").toArray());
         topButtonPanel = new JPanel();
         searchAircraftButton = new JButton();
         showAllButton = new JButton();
@@ -218,7 +218,7 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(maintFlagLabel, gridBagConstraints);
 
-        stationLabel.setText("Station");
+        stationLabel.setText("AMO Station");
         stationLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
