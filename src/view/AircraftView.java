@@ -123,15 +123,15 @@ public class AircraftView extends javax.swing.JPanel {
 
         setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); // NOI18N
-        logoLabel.setName(""); // NOI18N
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png")));
+        logoLabel.setName("");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new Font("Arial", 1, 36)); // NOI18N
+        titleLabel.setFont(new Font("Arial", 1, 36));
         titleLabel.setText("Aircraft Search");
         titleLabel.setToolTipText("");
         gridBagConstraints = new GridBagConstraints();
