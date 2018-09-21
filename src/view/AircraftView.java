@@ -72,7 +72,7 @@ public class AircraftView extends javax.swing.JPanel {
     }
 
     //Initialize all Swing components and place them in the JPanel using GridBag layout
-    private void initComponents() {//GEN-BEGIN:initComponents
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         searchButtonGroup = new ButtonGroup();
@@ -352,9 +352,9 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
-    }//GEN-END:initComponents
+    }
 
-    private void aircraftOperationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aircraftOperationsButtonActionPerformed
+    private void aircraftOperationsButtonActionPerformed(ActionEvent evt) {
         //Switch to operations view on card layout when aircraft operations button is pressed
         //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
@@ -378,9 +378,9 @@ public class AircraftView extends javax.swing.JPanel {
                     "Please select an aircraft", "Notice", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_aircraftOperationsButtonActionPerformed
+    }
 
-    private void addAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addAircraftButtonActionPerformed
+    private void addAircraftButtonActionPerformed(ActionEvent evt) {
         //Open  add aircraft dialog window when add aircraft button is pressed
 
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -389,9 +389,9 @@ public class AircraftView extends javax.swing.JPanel {
         //Refresh all aircraft records in table when returning from dialog
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
         setupAircraftTable();
-    }//GEN-LAST:event_addAircraftButtonActionPerformed
+    }
 
-    private void modifyAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyAircraftButtonActionPerformed
+    private void modifyAircraftButtonActionPerformed(ActionEvent evt) {
         //Open modify aircraft window when modify aircraft button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
@@ -428,9 +428,9 @@ public class AircraftView extends javax.swing.JPanel {
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
         setupAircraftTable();
 
-    }//GEN-LAST:event_modifyAircraftButtonActionPerformed
+    }
 
-    private void searchAircraftButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_searchAircraftButtonActionPerformed
+    private void searchAircraftButtonActionPerformed(ActionEvent evt) {
         //Actions performed when search aircraft button is pressed
         //
         aircraftDAO = new AircraftDAO();
@@ -465,9 +465,9 @@ public class AircraftView extends javax.swing.JPanel {
             aircraftTable.setModel(aircraftDAO.selectAircraftByStation(stationID));
             setupAircraftTable();
         }
-    }//GEN-LAST:event_searchAircraftButtonActionPerformed
+    }
 
-    private void aircraftMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aircraftMaintenanceButtonActionPerformed
+    private void aircraftMaintenanceButtonActionPerformed(ActionEvent evt) {
         //Switch to maintenance view on card layout when aircraft maintenance button is pressed
         //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
@@ -491,9 +491,9 @@ public class AircraftView extends javax.swing.JPanel {
                     "Notice", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_aircraftMaintenanceButtonActionPerformed
+    }
 
-    private void tailNumberRadioButtonItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_tailNumberRadioButtonItemStateChanged
+    private void tailNumberRadioButtonItemStateChanged(ItemEvent evt) {
         //Change foreground to black of radio button is selected, gray if not.
         //This will help the user understand what is being searched
         if (tailNumberRadioButton.isSelected()) {
@@ -501,9 +501,9 @@ public class AircraftView extends javax.swing.JPanel {
         } else {
             tailNumberTextField.setForeground(Color.LIGHT_GRAY);
         }
-    }//GEN-LAST:event_tailNumberRadioButtonItemStateChanged
+    }
 
-    private void maintFlagRadioButtonItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_maintFlagRadioButtonItemStateChanged
+    private void maintFlagRadioButtonItemStateChanged(ItemEvent evt) {
         //Change foreground to black of radio button is selected, gray if not.
         //This will help the user understand what is being searched
         if (maintFlagRadioButton.isSelected()) {
@@ -511,9 +511,9 @@ public class AircraftView extends javax.swing.JPanel {
         } else {
             maintFlagComboBox.setForeground(Color.LIGHT_GRAY);
         }
-    }//GEN-LAST:event_maintFlagRadioButtonItemStateChanged
+    }
 
-    private void stationRadioButtonItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_stationRadioButtonItemStateChanged
+    private void stationRadioButtonItemStateChanged(ItemEvent evt) {
         //Change foreground to black of radio button is selected, gray if not.
         //This will help the user understand what is being searched
         if (stationRadioButton.isSelected()) {
@@ -521,58 +521,58 @@ public class AircraftView extends javax.swing.JPanel {
         } else {
             stationComboBox.setForeground(Color.LIGHT_GRAY);
         }
-    }//GEN-LAST:event_stationRadioButtonItemStateChanged
+    }
 
-    private void maintFlagComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_maintFlagComboBoxActionPerformed
+    private void maintFlagComboBoxActionPerformed(ActionEvent evt) {
         //Change radio button selection when user clicks on combo box
         maintFlagRadioButton.setSelected(true);
-    }//GEN-LAST:event_maintFlagComboBoxActionPerformed
+    }
 
-    private void stationComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_stationComboBoxActionPerformed
+    private void stationComboBoxActionPerformed(ActionEvent evt) {
         //Change radio button selection when user clicks on combo box
         stationRadioButton.setSelected(true);
-    }//GEN-LAST:event_stationComboBoxActionPerformed
+    }
 
-    private void tailNumberTextFieldMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tailNumberTextFieldMouseClicked
+    private void tailNumberTextFieldMouseClicked(MouseEvent evt) {
         //Change radio button selection when user clicks on text field
         tailNumberRadioButton.setSelected(true);
-    }//GEN-LAST:event_tailNumberTextFieldMouseClicked
+    }
 
-    private void maintFlagComboBoxMouseClicked(MouseEvent evt) {//GEN-FIRST:event_maintFlagComboBoxMouseClicked
+    private void maintFlagComboBoxMouseClicked(MouseEvent evt) {
         //Change radio button selection when user clicks on maint flag combo box
         maintFlagRadioButton.setSelected(true);
-    }//GEN-LAST:event_maintFlagComboBoxMouseClicked
+    }
 
-    private void stationComboBoxMouseClicked(MouseEvent evt) {//GEN-FIRST:event_stationComboBoxMouseClicked
+    private void stationComboBoxMouseClicked(MouseEvent evt) {
         //Change radio button selection when user clicks on station combo box
         stationRadioButton.setSelected(true);
-    }//GEN-LAST:event_stationComboBoxMouseClicked
+    }
 
-    private void tailNumberLabelMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseClicked
+    private void tailNumberLabelMouseClicked(MouseEvent evt) {
         //Change radio button selection when user clicks on label
         tailNumberRadioButton.setSelected(true);
-    }//GEN-LAST:event_tailNumberLabelMouseClicked
+    }
 
-    private void maintFlagLabelMouseClicked(MouseEvent evt) {//GEN-FIRST:event_maintFlagLabelMouseClicked
+    private void maintFlagLabelMouseClicked(MouseEvent evt) {
         //Change radio button selection when user clicks on label
         maintFlagRadioButton.setSelected(true);
-    }//GEN-LAST:event_maintFlagLabelMouseClicked
+    }
 
-    private void stationLabelMouseClicked(MouseEvent evt) {//GEN-FIRST:event_stationLabelMouseClicked
+    private void stationLabelMouseClicked(MouseEvent evt) {
         //Change radio button selection when user clicks on label
         stationRadioButton.setSelected(true);
-    }//GEN-LAST:event_stationLabelMouseClicked
+    }
 
-    private void tailNumberTextFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_tailNumberTextFieldActionPerformed
+    private void tailNumberTextFieldActionPerformed(ActionEvent evt) {
         //Perform search when enter key is pressed in text field
         searchAircraftButton.doClick();
-    }//GEN-LAST:event_tailNumberTextFieldActionPerformed
+    }
 
-    private void showAllButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
+    private void showAllButtonActionPerformed(ActionEvent evt) {
         //Show all aircraft records in table
         aircraftTable.setModel(aircraftDAO.selectAllAircraft());
         setupAircraftTable();
-    }//GEN-LAST:event_showAllButtonActionPerformed
+    }
 
     //Modifies aircraftTable to adjust columns correctly for display
     private void setupAircraftTable() {
@@ -595,20 +595,20 @@ public class AircraftView extends javax.swing.JPanel {
         aircraftTable.getColumnModel().getColumn(10).setCellRenderer(tableCellRenderer);
     }
 
-    private void tailNumberLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_tailNumberLabelMouseEntered
+    private void tailNumberLabelMouseEntered(MouseEvent evt) {
         tailNumberLabel.setToolTipText("Select this option to search Aircraft by Tail Number");
-    }//GEN-LAST:event_tailNumberLabelMouseEntered
-
-    private void maintFlagLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_maintFlagLabelMouseEntered
+    }
+    
+    private void maintFlagLabelMouseEntered(MouseEvent evt) {
         maintFlagLabel.setToolTipText("Select this option to search Aircraft by Maintenance Flag");
-    }//GEN-LAST:event_maintFlagLabelMouseEntered
+    }
 
-    private void stationLabelMouseEntered(MouseEvent evt) {//GEN-FIRST:event_stationLabelMouseEntered
+    private void stationLabelMouseEntered(MouseEvent evt) {
         stationLabel.setToolTipText("Select this option to search Aircraft by Station");
-    }//GEN-LAST:event_stationLabelMouseEntered
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration
     private JButton addAircraftButton;
     private JButton aircraftMaintenanceButton;
     private JButton aircraftOperationsButton;
@@ -623,9 +623,6 @@ public class AircraftView extends javax.swing.JPanel {
     private JButton searchAircraftButton;
     private ButtonGroup searchButtonGroup;
     private JButton showAllButton;
-    /*TODO REMOVE THIS LINE
-    private javax.swing.JComboBox<String> stationComboBox;
-    */
     private JComboBox stationComboBox;
     private JLabel stationLabel;
     private JRadioButton stationRadioButton;
@@ -635,5 +632,5 @@ public class AircraftView extends javax.swing.JPanel {
     private JLabel titleLabel;
     private JPanel topButtonPanel;
     private JPanel topPanel;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration
 }
