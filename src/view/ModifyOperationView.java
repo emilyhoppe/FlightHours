@@ -49,7 +49,7 @@ import util.InputValidator;
 public class ModifyOperationView extends javax.swing.JDialog {
 
     //Instance variables
-    private java.awt.Frame parent;
+    private final java.awt.Frame parent;
     private final int aircraftID;
     private final String tailNumber;
     private final int operationID;
