@@ -1,9 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- * Test commit/push
- */
+/** **********
+ *
+ *      Class:         StationDAO.java
+ *      Package:       controller
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: StationDAO accesses the embedded Apache Derby Database
+ *                  and performs the main station functions.
+ *
+ *
+ *********** */
 package controller;
 
 import flighthours.Station;
