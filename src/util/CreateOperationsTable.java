@@ -52,7 +52,7 @@ public class CreateOperationsTable {
                         + " OPERATION_NAME VARCHAR(20) NOT NULL,"
                         + " OPERATION_START_DATE DATE NOT NULL,"
                         + " OPERATION_END_DATE DATE NOT NULL,"
-                        + " OPERATION_FILGHT_HOURS INT NOT NULL)");
+                        + " OPERATION_FLIGHT_HOURS INT NOT NULL)");
 
                 System.out.println("OPERATIONS table created.");
 
@@ -66,7 +66,7 @@ public class CreateOperationsTable {
                             + "operation_name,"
                             + "operation_start_date,"
                             + "operation_end_date,"
-                            + "operation_filght_hours)"
+                            + "operation_flight_hours)"
                             + "VALUES"
                             + "(1,1,7,'Test Operation 1','2018-01-05','2018-01-05',3546),"
                             + "(1,26,4,'Test Operation 2','2018-01-13','2018-01-13',2281),"
