@@ -68,19 +68,19 @@ public class CreateOperationsTable {
                             + "operation_end_date,"
                             + "operation_flight_hours)"
                             + "VALUES"
-                            + "(1,1,7,'Test Operation 1','2018-01-05','2018-01-05',3546),"
+                            + "(1,19,7,'Test Operation 1','2018-01-05','2018-01-05',3546),"
                             + "(1,26,4,'Test Operation 2','2018-01-13','2018-01-13',2281),"
-                            + "(1,5,6,'Test Operation 3','2018-02-16','2018-02-16',9237),"
-                            + "(1,2,6,'Test Operation 4','2018-02-23','2018-02-25',19996),"
+                            + "(1,25,6,'Test Operation 3','2018-02-16','2018-02-16',9237),"
+                            + "(1,22,6,'Test Operation 4','2018-02-23','2018-02-25',19996),"
                             + "(4,26,4,'Test Operation 5','2018-01-05','2018-01-05',4099),"
-                            + "(7,3,3,'Test Operation 6','2018-01-13','2018-01-13',1220),"
-                            + "(7,3,4,'Test Operation 7','2018-02-16','2018-02-16',14015),"
+                            + "(7,23,3,'Test Operation 6','2018-01-13','2018-01-13',1220),"
+                            + "(7,23,4,'Test Operation 7','2018-02-16','2018-02-16',14015),"
                             + "(8,23,3,'Test Operation 8','2018-02-23','2018-02-23',21212),"
                             + "(11,29,1,'Test Operation 9','2018-01-05','2018-01-05',3685),"
                             + "(11,18,1,'Test Operation 10','2018-01-13','2018-01-13',4595),"
-                            + "(21,13,6,'Test Operation 11','2018-02-16','2018-02-16',9765),"
-                            + "(22,12,5,'Test Operation 12','2018-02-23','2018-02-23',5192),"
-                            + "(30,1,7,'Test Operation 13','2018-01-05','2018-01-05',12666)");
+                            + "(21,20,6,'Test Operation 11','2018-02-16','2018-02-16',9765),"
+                            + "(22,21,5,'Test Operation 12','2018-02-23','2018-02-23',5192),"
+                            + "(30,22,7,'Test Operation 13','2018-01-05','2018-01-05',12666)");
                     System.out.println("OPERATIONS inserted");
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "CreateOperationsTable Database Error: " + e,
