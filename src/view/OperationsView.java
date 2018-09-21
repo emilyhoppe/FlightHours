@@ -8,8 +8,8 @@
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
  *      Class Description: OperationsView is a GUI view class which extends JPanel.
- *          A table with aircraft operations will be provided, showing all 
- *          operations related to the previously selected aircraft.  The 
+ *          A table with aircraft operations will be provided, showing all
+ *          operations related to the previously selected aircraft.  The
  *          user can select an operation from the table and click Add Operation
  *          or Modify Operation to open input dialog boxes.  A Back button is provided
  *          which will switch the card layout back to the Aircraft Search view.
@@ -28,6 +28,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,6 +43,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 public class OperationsView extends javax.swing.JPanel {
 
@@ -48,6 +52,7 @@ public class OperationsView extends javax.swing.JPanel {
     OperationDAO operationDAO = new OperationDAO();
     private String tailNumber;
     private int aircraftID;
+    SimpleDateFormat simpleDateFormat;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -59,10 +64,12 @@ public class OperationsView extends javax.swing.JPanel {
     public void setAircraftID(int aircraftID) {
         this.aircraftID = aircraftID;
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
+        setupOperationsTable();
     }
 
     //Constructor
     public OperationsView() {
+        this.simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         initComponents();
     }
 
@@ -192,6 +199,9 @@ public class OperationsView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddOperationView addOperationView = new AddOperationView(frame, true, tailNumber);
         addOperationView.setVisible(true);
+        //Refresh all operations records in table when returning from dialog
+        operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
+        setupOperationsTable();
     }//GEN-LAST:event_addOperationButtonActionPerformed
 
     private void modifyOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
@@ -200,24 +210,57 @@ public class OperationsView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
             int selectedRow = operationsTable.getSelectedRow();
-            String operationID = operationsTable.getValueAt(selectedRow,0).toString();
+            String operationID = operationsTable.getValueAt(selectedRow, 0).toString();
             String name = operationsTable.getValueAt(selectedRow, 1).toString();
             String station = operationsTable.getValueAt(selectedRow, 2).toString();
             String mission = operationsTable.getValueAt(selectedRow, 3).toString();
             String startDate = operationsTable.getValueAt(selectedRow, 4).toString();
-            String endDate = operationsTable.getValueAt(selectedRow,5).toString();
+            String endDate = operationsTable.getValueAt(selectedRow, 5).toString();
             String flightHours = operationsTable.getValueAt(selectedRow, 6).toString();
             ModifyOperationView modifyOperationView = new ModifyOperationView(frame,
-                    true, tailNumber,operationID, name, station, mission, startDate, 
+                    true, tailNumber, operationID, name, station, mission, startDate,
                     endDate, flightHours);
 
             modifyOperationView.setVisible(true);
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(topPanel, "Please select an operation to modify", "Notice", JOptionPane.ERROR_MESSAGE);
         }
-
+        //Refresh all operations records in table when returning from dialog
+        operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
+        setupOperationsTable();
     }//GEN-LAST:event_modifyOperationButtonActionPerformed
 
+    //Modifies maintenanceTable to adjust columns correctly for display
+    private void setupOperationsTable() {
+        //Hide ID columns in table but still allow application access to them
+        operationsTable.getColumnModel().getColumn(0).setMinWidth(0);
+        operationsTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        operationsTable.getColumnModel().getColumn(0).setWidth(0);
+        operationsTable.getColumnModel().getColumn(1).setMinWidth(0);
+        operationsTable.getColumnModel().getColumn(1).setMaxWidth(0);
+        operationsTable.getColumnModel().getColumn(1).setWidth(0);
+        operationsTable.getColumnModel().getColumn(2).setMinWidth(0);
+        operationsTable.getColumnModel().getColumn(2).setMaxWidth(0);
+        operationsTable.getColumnModel().getColumn(2).setWidth(0);
+        operationsTable.getColumnModel().getColumn(3).setMinWidth(0);
+        operationsTable.getColumnModel().getColumn(3).setMaxWidth(0);
+        operationsTable.getColumnModel().getColumn(3).setWidth(0);
+
+        //Change date format for columns 7 and 8 to MM/dd/yyyy format
+        TableCellRenderer tableCellRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+                if (value instanceof Date) {
+                    value = simpleDateFormat.format(value);
+                }
+                return super.getTableCellRendererComponent(table, value, isSelected,
+                        hasFocus, row, column);
+            }
+        };
+        operationsTable.getColumnModel().getColumn(7).setCellRenderer(tableCellRenderer);
+        operationsTable.getColumnModel().getColumn(8).setCellRenderer(tableCellRenderer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton addOperationButton;
