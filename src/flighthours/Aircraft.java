@@ -7,26 +7,26 @@ import java.util.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ehoppe
  */
 public class Aircraft {
-    
+
+    private int aircraftID;
     private String tailNumber;
     private String aircraftType;
     private int stationID;
     //private String primaryMission;
     private int maxSpeed;
-    private int maxAltitude;  
+    private int maxAltitude;
     private int totalFlightHours;
     private boolean maintenanceFlag;
     private int currentMaintenanceHours;
     private int maintenanceHoursThreshold;
     private Date endOfServiceDate;
-    
-    public Aircraft(String tailNumber, String aircraftType, int stationID, 
+
+    public Aircraft(String tailNumber, String aircraftType, int stationID,
             int maxSpeed, int maxAltitude, int totalFlightHours, boolean maintenanceFlag, int currentMaintenanceHours,
             int maintenanceHoursThreshold) {
         this.tailNumber = tailNumber;
@@ -40,10 +40,11 @@ public class Aircraft {
         this.currentMaintenanceHours = currentMaintenanceHours;
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
     }
-    
-    public Aircraft(String tailNumber, String aircraftType, int stationID, 
-            int maxSpeed, int maxAltitude, int totalFlightHours, boolean maintenanceFlag, int currentMaintenanceHours,
+
+    public Aircraft(int aircraftID, String tailNumber, String aircraftType, int stationID,
+            int maxSpeed, int maxAltitude, int totalFlightHours, int currentMaintenanceHours,
             int maintenanceHoursThreshold, Date endOfServiceDate) {
+        this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         this.aircraftType = aircraftType;
         this.stationID = stationID;
@@ -51,10 +52,18 @@ public class Aircraft {
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
         this.totalFlightHours = totalFlightHours;
-        this.maintenanceFlag = maintenanceFlag;
+        //this.maintenanceFlag = maintenanceFlag;  //This should be calculated right?
         this.currentMaintenanceHours = currentMaintenanceHours;
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
-        this.endOfServiceDate= endOfServiceDate;
+        this.endOfServiceDate = endOfServiceDate;
+    }
+
+    public int getAircraftID() {
+        return aircraftID;
+    }
+
+    public void setAircraftID(int aircraftID) {
+        this.aircraftID = aircraftID;
     }
 
     public String getTailNumber() {
@@ -64,7 +73,7 @@ public class Aircraft {
     public void setTailNumber(String tailNumber) {
         this.tailNumber = tailNumber;
     }
-    
+
     public String getAircraftType() {
         return aircraftType;
     }
@@ -72,7 +81,7 @@ public class Aircraft {
     public void setAircraftType(String aircraftType) {
         this.aircraftType = aircraftType;
     }
-    
+
     public int getStationID() {
         return stationID;
     }
@@ -84,11 +93,9 @@ public class Aircraft {
     //public String getPrimaryMission() {
     //    return primaryMission;
     //}
-
     //public void setPrimaryMission(String primaryMission) {
     //    this.primaryMission = primaryMission;
     //}
-    
     public int getMaxSpeed() {
         return maxSpeed;
     }
@@ -96,7 +103,7 @@ public class Aircraft {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
-    
+
     public int getMaxAltitude() {
         return maxAltitude;
     }
@@ -104,7 +111,7 @@ public class Aircraft {
     public void setMaxAltitude(int maxAltitude) {
         this.maxAltitude = maxAltitude;
     }
-    
+
     public int getTotalFlightHours() {
         return totalFlightHours;
     }
@@ -112,7 +119,7 @@ public class Aircraft {
     public void setTotalFlightHours(int totalFlightHours) {
         this.totalFlightHours = totalFlightHours;
     }
-    
+
     public boolean getMaintenanceFlag() {
         return maintenanceFlag;
     }
@@ -120,7 +127,7 @@ public class Aircraft {
     public void setMaintenanceFlag(boolean maintenanceFlag) {
         this.maintenanceFlag = maintenanceFlag;
     }
-    
+
     public int getCurrentMaintenanceHours() {
         return currentMaintenanceHours;
     }
@@ -136,7 +143,7 @@ public class Aircraft {
     public void setMaintenanceHoursThreshold(int maintenanceHoursThreshold) {
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
     }
-    
+
     public Date getEndOfServiceDate() {
         return endOfServiceDate;
     }
@@ -144,19 +151,19 @@ public class Aircraft {
     public void setEndOfServiceDate(Date endOfServiceDate) {
         this.endOfServiceDate = endOfServiceDate;
     }
-    
+
     @Override
     public String toString() {
-        if(endOfServiceDate != null){
-            return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID + 
-                ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude + 
-                ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag + 
-                ", currentMaintenanceHours=" + currentMaintenanceHours + ", maintenanceHoursThreshold=" + maintenanceHoursThreshold + ", endOfServiceDate=" + endOfServiceDate + '}';
+        if (endOfServiceDate != null) {
+            return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID
+                    + ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude
+                    + ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag
+                    + ", currentMaintenanceHours=" + currentMaintenanceHours + ", maintenanceHoursThreshold=" + maintenanceHoursThreshold + ", endOfServiceDate=" + endOfServiceDate + '}';
         }
-        return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID + 
-                ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude + 
-                ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag + 
-                ", currentMaintenanceHours=" + currentMaintenanceHours + ", maintenanceHoursThreshold=" + maintenanceHoursThreshold + '}';
+        return "Aircraft{" + "tailNumber=" + tailNumber + ", aircraftType=" + aircraftType + ", stationID=" + stationID
+                + ", maxSpeed=" + maxSpeed + ", maxAltitude=" + maxAltitude
+                + ", totalFlightHours=" + totalFlightHours + ", maintenanceFlag=" + maintenanceFlag
+                + ", currentMaintenanceHours=" + currentMaintenanceHours + ", maintenanceHoursThreshold=" + maintenanceHoursThreshold + '}';
     }
-    
+
 }

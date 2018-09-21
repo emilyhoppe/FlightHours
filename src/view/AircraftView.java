@@ -402,6 +402,8 @@ public class AircraftView extends javax.swing.JPanel {
             String station = aircraftTable.getValueAt(selectedRow, 3).toString();
             String maxSpeed = aircraftTable.getValueAt(selectedRow, 4).toString();
             String maxAltitude = aircraftTable.getValueAt(selectedRow, 5).toString();
+            String totalFlightHours = aircraftTable.getValueAt(selectedRow, 6).toString();
+            //Maintenance Flag is automatically set and doesn't need to be passed to window
             String currentMaintHours = aircraftTable.getValueAt(selectedRow, 8).toString();
             String maintHoursThreshold = aircraftTable.getValueAt(selectedRow, 9).toString();
             String endOfServiceDate;
@@ -414,7 +416,7 @@ public class AircraftView extends javax.swing.JPanel {
             }
             //Create ModifyAircraftView JDialog instance and pass parameters
             ModifyAircraftView modifyAircraftView = new ModifyAircraftView(frame,
-                    true, ID, tailNumber, type, station, maxSpeed, maxAltitude,
+                    true, ID, tailNumber, type, station, maxSpeed, maxAltitude, totalFlightHours,
                     currentMaintHours, maintHoursThreshold, endOfServiceDate);
 
             modifyAircraftView.setVisible(true);

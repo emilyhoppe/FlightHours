@@ -126,7 +126,6 @@ public class AircraftDAO {
                     + " max_speed     = ?,"
                     + " max_altitude  = ?,"
                     + " total_flight_hours         = ?,"
-                    + " maintenance_flag           = ?,"
                     + " current_maintenance_hours  = ?,"
                     + " maintenance_hours_threshold= ?,"
                     + " end_of_service_date        = ?"
@@ -224,8 +223,17 @@ public class AircraftDAO {
 
         return result;
     }
-
-    //TODO CREATE FUNCTION
+//            modifyAircraft = conn.prepareStatement("UPDATE AIRCRAFT SET"
+//                    + " tail_number   = ?,"
+//                    + " aircraft_type = ?,"
+//                    + " station_id    = ?,"
+//                    + " max_speed     = ?,"
+//                    + " max_altitude  = ?,"
+//                    + " total_flight_hours         = ?,"
+//                    + " current_maintenance_hours  = ?,"
+//                    + " maintenance_hours_threshold= ?,"
+//                    + " end_of_service_date        = ?"
+//                    + "WHERE aircraft_id           = ?");
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
@@ -236,10 +244,14 @@ public class AircraftDAO {
             modifyAircraft.setInt(4, inAircraft.getMaxSpeed());
             modifyAircraft.setInt(5, inAircraft.getMaxAltitude());
             modifyAircraft.setInt(6, inAircraft.getTotalFlightHours());
-            modifyAircraft.setBoolean(7, inAircraft.getMaintenanceFlag());
-            modifyAircraft.setInt(8, inAircraft.getCurrentMaintenanceHours());
-            modifyAircraft.setInt(9, inAircraft.getMaintenanceHoursThreshold());
-            modifyAircraft.setDate(10, new java.sql.Date(inAircraft.getEndOfServiceDate().getTime()));
+            modifyAircraft.setInt(7, inAircraft.getCurrentMaintenanceHours());
+            modifyAircraft.setInt(8, inAircraft.getMaintenanceHoursThreshold());
+            if (inAircraft.getEndOfServiceDate() != null) {
+                modifyAircraft.setDate(9, new java.sql.Date(inAircraft.getEndOfServiceDate().getTime()));
+            } else {
+                modifyAircraft.setDate(9,null) ;
+            }
+            modifyAircraft.setInt(10, inAircraft.getAircraftID());
 
             result = modifyAircraft.executeUpdate();
 
