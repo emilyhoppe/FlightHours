@@ -125,7 +125,7 @@ public class AddOperationView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(operationNameLabel, gridBagConstraints);
 
-        stationLabel.setText("Station");
+        stationLabel.setText("USBP Station");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

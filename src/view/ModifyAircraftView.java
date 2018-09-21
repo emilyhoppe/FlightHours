@@ -159,7 +159,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         dataPanel.add(typeLabel, gridBagConstraints);
 
-        stationLabel.setText("Station");
+        stationLabel.setText("AMO Station");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

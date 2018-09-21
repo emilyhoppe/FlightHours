@@ -124,7 +124,7 @@ public class AddAircraftView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(typeLabel, gridBagConstraints);
 
-        stationLabel.setText("Station");
+        stationLabel.setText("AMO Station");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

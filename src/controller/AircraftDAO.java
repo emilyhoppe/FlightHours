@@ -282,7 +282,7 @@ public class AircraftDAO {
         tableColumns.add("ID");
         tableColumns.add("Tail Number");
         tableColumns.add("Type");
-        tableColumns.add("Station");
+        tableColumns.add("AMO Station");
         tableColumns.add("Max Speed");
         tableColumns.add("Max Altitude");
         tableColumns.add("Total Hours");

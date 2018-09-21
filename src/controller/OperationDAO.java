@@ -431,7 +431,7 @@ public class OperationDAO {
         tableColumns.add("Station ID");
         tableColumns.add("Mission ID");
         tableColumns.add("Name");
-        tableColumns.add("Station");
+        tableColumns.add("USBP Station");
         tableColumns.add("Mission");
         tableColumns.add("Start Date");
         tableColumns.add("End Date");
