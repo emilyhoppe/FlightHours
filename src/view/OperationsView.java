@@ -197,7 +197,7 @@ public class OperationsView extends javax.swing.JPanel {
     private void addOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addOperationButtonActionPerformed
         //Open add operation window when add operaiton button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddOperationView addOperationView = new AddOperationView(frame, true, tailNumber);
+        AddOperationView addOperationView = new AddOperationView(frame, true, aircraftID,tailNumber);
         addOperationView.setVisible(true);
         //Refresh all operations records in table when returning from dialog
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
@@ -211,14 +211,16 @@ public class OperationsView extends javax.swing.JPanel {
         try {
             int selectedRow = operationsTable.getSelectedRow();
             String operationID = operationsTable.getValueAt(selectedRow, 0).toString();
-            String name = operationsTable.getValueAt(selectedRow, 1).toString();
-            String station = operationsTable.getValueAt(selectedRow, 2).toString();
-            String mission = operationsTable.getValueAt(selectedRow, 3).toString();
-            String startDate = operationsTable.getValueAt(selectedRow, 4).toString();
-            String endDate = operationsTable.getValueAt(selectedRow, 5).toString();
-            String flightHours = operationsTable.getValueAt(selectedRow, 6).toString();
+            String stationID = operationsTable.getValueAt(selectedRow, 2).toString();
+            String missionID = operationsTable.getValueAt(selectedRow, 3).toString();
+            String name = operationsTable.getValueAt(selectedRow, 4).toString();
+            String station = operationsTable.getValueAt(selectedRow, 5).toString();
+            String mission = operationsTable.getValueAt(selectedRow, 6).toString();
+            String startDate = operationsTable.getValueAt(selectedRow, 7).toString();
+            String endDate = operationsTable.getValueAt(selectedRow, 8).toString();
+            String flightHours = operationsTable.getValueAt(selectedRow, 9).toString();
             ModifyOperationView modifyOperationView = new ModifyOperationView(frame,
-                    true, tailNumber, operationID, name, station, mission, startDate,
+                    true, aircraftID, tailNumber, operationID, stationID, missionID, name, station, mission, startDate,
                     endDate, flightHours);
 
             modifyOperationView.setVisible(true);

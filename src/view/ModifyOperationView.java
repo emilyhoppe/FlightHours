@@ -43,8 +43,11 @@ import javax.swing.border.SoftBevelBorder;
 public class ModifyOperationView extends javax.swing.JDialog {
 
     //Instance variables
+    private int aircraftID;
     private String tailNumber;
     private String operationID;
+    private String stationID;
+    private String missionID;
     private String name;
     private String station;
     private String mission;
@@ -52,14 +55,22 @@ public class ModifyOperationView extends javax.swing.JDialog {
     private String endDate;
     private String flightHours;
 
+//     ModifyOperationView modifyOperationView = new ModifyOperationView(frame,
+//                    true, aircraftID, tailNumber, operationID, stationID, missionID, 
+//                    name, station, mission, startDate,
+//                    endDate, flightHours);
+    
     //Constructor with parameters
     public ModifyOperationView(java.awt.Frame parent, boolean modal,
-            String tailNumber, String operationID, String name,
-            String station, String mission, String startDate,
+            int aircraftID, String tailNumber, String operationID, String stationID, 
+            String missionID, String name, String station, String mission, String startDate,
             String endDate, String flightHours) {
         super(parent, modal);
+        this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         this.operationID = operationID;
+        this.stationID = stationID;
+        this.missionID = missionID;
         this.name = name;
         this.station = station;
         this.mission = mission;

@@ -57,8 +57,9 @@ public class OperationDAO {
                     + "operations.operation_flight_hours "
                     + "FROM operations "
                     + "INNER JOIN stations ON operations.station_id = stations.station_id "
-                    + "INNER JOIN missions on operations.operation_id = missions.mission_id "
-                    + "WHERE aircraft_id = ?");
+                    + "INNER JOIN missions on operations.mission_id = missions.mission_id "
+                    + "WHERE aircraft_id = ? "
+                    + "ORDER BY operation_id");
 
             insertNewOperation = conn.prepareStatement("INSERT INTO OPERATIONS"
                     + " (AIRCRAFT_ID,"

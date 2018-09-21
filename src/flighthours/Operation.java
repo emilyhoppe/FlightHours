@@ -24,8 +24,22 @@ public class Operation {
     public Operation() {
     }
 
-    public Operation(int operationID, int aircraftID, int stationID, int missionID, String operationName, Date operationStartDate, Date operationEndDate, int operationFlighHour) {
+    public Operation(int operationID, int aircraftID, int stationID, int missionID, 
+            String operationName, Date operationStartDate, Date operationEndDate, 
+            int operationFlighHour) {
         this.operationID = operationID;
+        this.aircraftID = aircraftID;
+        this.stationID = stationID;
+        this.missionID = missionID;
+        this.operationName = operationName;
+        this.operationStartDate = operationStartDate;
+        this.operationEndDate = operationEndDate;
+        this.operationFlighHour = operationFlighHour;
+    }
+    
+    public Operation(int aircraftID, int stationID, int missionID, 
+            String operationName, Date operationStartDate, Date operationEndDate, 
+            int operationFlighHour) {
         this.aircraftID = aircraftID;
         this.stationID = stationID;
         this.missionID = missionID;
