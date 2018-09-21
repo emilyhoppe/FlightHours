@@ -191,7 +191,7 @@ public class MaintenanceView extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addMaintenanceButtonActionPerformed
-        // TODO add your handling code here:
+        //Open add maintenance window when add maintenance button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         AddMaintenanceView addMaintenanceView = new AddMaintenanceView(frame, true, aircraftID, tailNumber);
         addMaintenanceView.setVisible(true);

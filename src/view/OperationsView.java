@@ -210,14 +210,14 @@ public class OperationsView extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
             int selectedRow = operationsTable.getSelectedRow();
-            String operationID = operationsTable.getValueAt(selectedRow, 0).toString();
-            String stationID = operationsTable.getValueAt(selectedRow, 2).toString();
-            String missionID = operationsTable.getValueAt(selectedRow, 3).toString();
+            int operationID = Integer.parseInt(operationsTable.getValueAt(selectedRow, 0).toString());
+            int stationID = Integer.parseInt(operationsTable.getValueAt(selectedRow, 2).toString());
+            int missionID = Integer.parseInt(operationsTable.getValueAt(selectedRow, 3).toString());
             String name = operationsTable.getValueAt(selectedRow, 4).toString();
             String station = operationsTable.getValueAt(selectedRow, 5).toString();
             String mission = operationsTable.getValueAt(selectedRow, 6).toString();
-            String startDate = operationsTable.getValueAt(selectedRow, 7).toString();
-            String endDate = operationsTable.getValueAt(selectedRow, 8).toString();
+            String startDate = simpleDateFormat.format(operationsTable.getValueAt(selectedRow, 7));
+            String endDate = simpleDateFormat.format(operationsTable.getValueAt(selectedRow, 8));
             String flightHours = operationsTable.getValueAt(selectedRow, 9).toString();
             ModifyOperationView modifyOperationView = new ModifyOperationView(frame,
                     true, aircraftID, tailNumber, operationID, stationID, missionID, name, station, mission, startDate,

@@ -9,8 +9,8 @@
  *
  *      Class Description: ModifyOperationView is a GUI view class which extends JDialog.
  *              It provides text fields and combo boxes for the user to modify
- *              existing operations in the database.  When a user clicks the Modify 
- *              Operation button, the inputs will be validated and updated in 
+ *              existing operations in the database.  When a user clicks the Modify
+ *              Operation button, the inputs will be validated and updated in
  *              the database.
  *
  *
@@ -18,8 +18,10 @@
 package view;
 
 import controller.MissionDAO;
+import controller.OperationDAO;
 import controller.StationDAO;
 import flighthours.Mission;
+import flighthours.Operation;
 import flighthours.Station;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -27,7 +29,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -39,15 +44,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import util.InputValidator;
 
 public class ModifyOperationView extends javax.swing.JDialog {
 
     //Instance variables
     private int aircraftID;
     private String tailNumber;
-    private String operationID;
-    private String stationID;
-    private String missionID;
+    private int operationID;
+    private int stationID;
+    private int missionID;
     private String name;
     private String station;
     private String mission;
@@ -59,11 +65,10 @@ public class ModifyOperationView extends javax.swing.JDialog {
 //                    true, aircraftID, tailNumber, operationID, stationID, missionID, 
 //                    name, station, mission, startDate,
 //                    endDate, flightHours);
-    
     //Constructor with parameters
     public ModifyOperationView(java.awt.Frame parent, boolean modal,
-            int aircraftID, String tailNumber, String operationID, String stationID, 
-            String missionID, String name, String station, String mission, String startDate,
+            int aircraftID, String tailNumber, int operationID, int stationID,
+            int missionID, String name, String station, String mission, String startDate,
             String endDate, String flightHours) {
         super(parent, modal);
         this.aircraftID = aircraftID;
@@ -83,7 +88,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         //Set modify operation button to respond to enter key
         SwingUtilities.getRootPane(modifyOperationButton).setDefaultButton(modifyOperationButton);
     }
-    
+
     //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         GridBagConstraints gridBagConstraints;
@@ -318,18 +323,81 @@ public class ModifyOperationView extends javax.swing.JDialog {
     }//GEN-END:initComponents
 
     private void modifyOperationButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyOperationButtonActionPerformed
-        //TODO Call SQL function
-        //Temporarily show message box with values
-        JOptionPane.showMessageDialog(outerPanel,
-                "Modifying Operations Database record for aircraft tail number: " + tailNumberTextField.getText() + "\n"
-                + "Operation ID: " + operationID + "\n"
-                + "Operation Name: " + operationNameTextField.getText() + "\n"
-                + "Station: " + stationComboBox.getSelectedItem() + "\n"
-                + "Mission: " + missionComboBox.getSelectedItem()+ "\n"
-                + "Start Date: " + startDateTextField.getText() + "\n"
-                + "End Date: " + endDateTextField.getText() + "\n"
-                + "Flight Hours: " + flightHoursTextField.getText(),
-                "Notice", JOptionPane.PLAIN_MESSAGE);
+        //Method variables
+        Operation operation;
+        OperationDAO operationDAO;
+        SimpleDateFormat simpleDateFormat;
+        String newOperationName = "";
+        Station newStation;
+        int newStationID;
+        Mission newMission;
+        int newMissionID;
+        Date newStartDate = null;
+        Date newEndDate = null;
+        int newFlightHours;
+        
+        //Validate all user input
+        if (operationNameTextField.getText().length() > 20) {
+            JOptionPane.showMessageDialog(outerPanel, "Operation Name must be 20 characters or less",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!util.InputValidator.isValidDate(startDateTextField.getText())) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Start Date is invalid\n"
+                    + "Please use format MM/DD/YYYY\n",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!util.InputValidator.isValidDate(endDateTextField.getText())) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "End Date is invalid\n"
+                    + "Please use format MM/DD/YYYY\n",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!InputValidator.isPositiveNumber(flightHoursTextField.getText())) {
+            JOptionPane.showMessageDialog(outerPanel, "Flight hours input is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //Retrieve validated user input
+        newOperationName = operationNameTextField.getText();
+        newStation = (Station) stationComboBox.getSelectedItem();
+        newStationID = newStation.getStationID();
+        newMission = (Mission) missionComboBox.getSelectedItem();
+        newMissionID = newMission.getMissionID();
+        //Parse user entered dates into Date objects
+        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            newStartDate = simpleDateFormat.parse(startDateTextField.getText());
+            newEndDate = simpleDateFormat.parse(endDateTextField.getText());
+        } catch (ParseException ex) {
+            //Dates are already validated
+        }
+        newFlightHours = Integer.parseInt(flightHoursTextField.getText());
+
+        //Create new Operation instance
+        operation = new Operation(operationID, aircraftID, newStationID, newMissionID, newOperationName, 
+                newStartDate, newEndDate, newFlightHours);
+        //Insert maintenance instance into database by calling DAO object
+        operationDAO = new OperationDAO();
+        int success = operationDAO.modifyOperation(operation);
+        //Give user feedback
+        if (success >= 1) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Operation modified successfully",
+                    "Succes", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Failed to modify operation",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        //Close window
         dispose();
     }//GEN-LAST:event_modifyOperationButtonActionPerformed
 

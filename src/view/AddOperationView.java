@@ -329,7 +329,8 @@ public class AddOperationView extends javax.swing.JDialog {
         flightHours = Integer.parseInt(flightHoursTextField.getText());
 
         //Create new Operation instance
-        operation = new Operation(aircraftID, stationID, missionID, operationName, startDate, endDate, flightHours);
+        operation = new Operation(aircraftID, stationID, missionID, operationName, 
+                startDate, endDate, flightHours);
         //Insert maintenance instance into database by calling DAO object
         operationDAO = new OperationDAO();
         int success = operationDAO.insertNewOperation(operation);
