@@ -44,8 +44,21 @@ public class OperationDAO {
     public OperationDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
-            selectOperationByAircraft = conn.prepareStatement("SELECT * FROM OPERATIONS "
-                    + "WHERE AIRCRAFT_ID = ?");
+            selectOperationByAircraft = conn.prepareStatement("SELECT "
+                    + "operations.operation_id, "
+                    + "operations.aircraft_id, "
+                    + "operations.station_id, "
+                    + "operations.mission_id, "
+                    + "operations.operation_name, "
+                    + "stations.station_name, "
+                    + "missions.mission_name, "
+                    + "operations.operation_start_date, "
+                    + "operations.operation_end_date, "
+                    + "operations.operation_flight_hours "
+                    + "FROM operations "
+                    + "INNER JOIN stations ON operations.station_id = stations.station_id "
+                    + "INNER JOIN missions on operations.operation_id = missions.mission_id "
+                    + "WHERE aircraft_id = ?");
 
             insertNewOperation = conn.prepareStatement("INSERT INTO OPERATIONS"
                     + " (AIRCRAFT_ID,"
@@ -184,7 +197,7 @@ public class OperationDAO {
 
             //If previousHours retrieval was successful than proceed with modification
             if (previousHours > -1) {
-                
+
                 //Main Operation modifications
                 modifyOperation.setInt(1, inOperation.getStationID());
                 modifyOperation.setInt(2, inOperation.getMissionID());
@@ -197,7 +210,7 @@ public class OperationDAO {
 
                 //If modification was successful, check if Aircraft current or total hours need modification
                 if (result == 1) {
-                    
+
                     //If Operation's flight hours are changed and modification was successful
                     if (previousHours != newHours) {
 
@@ -205,8 +218,8 @@ public class OperationDAO {
                         retrieveLastMaintenanceDate.setInt(1, inOperation.getAircraftID());
                         resultSet = retrieveLastMaintenanceDate.executeQuery();
                         resultSet.next();
-                        
-                        if(resultSet.wasNull()){
+
+                        if (resultSet.wasNull()) {
                             lastMaintenanceDate = resultSet.getDate(1);
                         }
 
@@ -214,7 +227,7 @@ public class OperationDAO {
                         int difference = newHours - previousHours;
                         System.out.println(String.valueOf(difference));
                         int resultOfACMod = 0;
-                        
+
                         //If the new End Date is after the last Maintenance Date 
                         //Then change Aircraft's current and total hours                
                         if (lastMaintenanceDate == null || 0 < endDate.compareTo(lastMaintenanceDate)) { //returns 1 if endDate comes after lastMaintenanceDate
@@ -233,7 +246,7 @@ public class OperationDAO {
                                     break;
                             }
                             //If modification of total hours was successful proceed with changing current hours
-                            if (result == 3){
+                            if (result == 3) {
                                 //Adjust current hours
                                 resultOfACMod = modifyOpAdjustCurrentHours(inOperation, difference);
                                 //Assign success or specific failure to result
@@ -248,7 +261,7 @@ public class OperationDAO {
                                         break;
                                 }
                             }
-                            
+
                         } //Else only change total hours
                         else {
                             //Adjust total hours
@@ -276,14 +289,14 @@ public class OperationDAO {
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
-    //Successes    
+        //Successes    
         //Returns 1 if Operation modification was successful 
         // and there were no Operation or Aircraft flight hours changes.
         //Returns 2 if Operation modification was successful 
         // and only total Aircraft hours were changed.
         //Returns 3 if Operation modification was successful 
         // and current and total Aircraft hours were changed.
-    //Main Failures
+        //Main Failures
         //Returns 0 if retrieval of previous Operation flight hours failed
         // and no modification of Operation or Aircraft hours were completed.
         //Returns -1 if Operation modification failed
@@ -296,7 +309,7 @@ public class OperationDAO {
         //Returns -4 if Operation modification was successful,
         // the needed total Aircraft hours modification was successful,
         // but the current Aircraft hours modification failed.     
-    //Failures within secondary methods directly below(modifyOpAdjustTotalHours or modifyOpAdjustCurrentHours)
+        //Failures within secondary methods directly below(modifyOpAdjustTotalHours or modifyOpAdjustCurrentHours)
         //Return -5 if retrieval of the total hours failed
         //Return - 6 if retrieval of the current hours failed
         return result;
@@ -315,7 +328,7 @@ public class OperationDAO {
             System.out.println("new hours " + String.valueOf(newHours));
             System.out.println("old hours " + String.valueOf(oldHours));
             System.out.println("difference " + String.valueOf(difference));
-            if (newHours < 0){
+            if (newHours < 0) {
                 newHours = 0;
             }
             result = modifyAircraftCurrentHours(inOperation.getAircraftID(), newHours);
@@ -417,6 +430,8 @@ public class OperationDAO {
         tableColumns.add("Station ID");
         tableColumns.add("Mission ID");
         tableColumns.add("Name");
+        tableColumns.add("Station");
+        tableColumns.add("Mission");
         tableColumns.add("Start Date");
         tableColumns.add("End Date");
         tableColumns.add("Flight Hours");
@@ -433,6 +448,8 @@ public class OperationDAO {
                 vector.add(results.getObject(6));
                 vector.add(results.getObject(7));
                 vector.add(results.getObject(8));
+                vector.add(results.getObject(9));
+                vector.add(results.getObject(10));
                 tableData.add(vector);
             }
         } catch (SQLException sqlExcept) {
