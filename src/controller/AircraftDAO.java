@@ -223,17 +223,7 @@ public class AircraftDAO {
 
         return result;
     }
-//            modifyAircraft = conn.prepareStatement("UPDATE AIRCRAFT SET"
-//                    + " tail_number   = ?,"
-//                    + " aircraft_type = ?,"
-//                    + " station_id    = ?,"
-//                    + " max_speed     = ?,"
-//                    + " max_altitude  = ?,"
-//                    + " total_flight_hours         = ?,"
-//                    + " current_maintenance_hours  = ?,"
-//                    + " maintenance_hours_threshold= ?,"
-//                    + " end_of_service_date        = ?"
-//                    + "WHERE aircraft_id           = ?");
+
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 

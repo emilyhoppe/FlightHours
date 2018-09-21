@@ -9,20 +9,25 @@
  *
  *      Class Description: ModifyMaintenance is a GUI view class which extends JDialog.
  *              It provides text fields and combo boxes for the user to modify
- *              existing maintenance events in the database.  When a user clicks the Modify 
- *              Maintenance button, the inputs will be validated and updated in 
+ *              existing maintenance events in the database.  When a user clicks the Modify
+ *              Maintenance button, the inputs will be validated and updated in
  *              the database.
  *
  *
  *********** */
 package view;
 
+import controller.MaintenanceDAO;
+import flighthours.Maintenance;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,6 +43,7 @@ import javax.swing.border.SoftBevelBorder;
 public class ModifyMaintenanceView extends javax.swing.JDialog {
 
     //Instance variables
+    private int aircraftID;
     private String tailNumber;
     private String maintenanceID;
     private String startDate;
@@ -45,9 +51,10 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
     private String description;
 
     //Constructor with parameters
-    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, String tailNumber,
+    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, int aircraftID, String tailNumber,
             String maintenanceID, String startDate, String endDate, String description) {
         super(parent, modal);
+        this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         this.maintenanceID = maintenanceID;
         this.startDate = startDate;
@@ -59,7 +66,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         //Set modify maintenance button to respond to enter key
         SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
     }
-    
+
     //Initialize all Swing components and place them in the JDialog using GridBag layout
     private void initComponents() {//GEN-BEGIN:initComponents
         GridBagConstraints gridBagConstraints;
@@ -221,15 +228,69 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
     }//GEN-END:initComponents
 
     private void modifyMaintenanceButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifyMaintenanceButtonActionPerformed
-        //TODO Call SQL function
-        //Temporarily show message box with values
-        JOptionPane.showMessageDialog(outerPanel,
-                "Modify Maintenance Database record for aircraft tail number: " + tailNumberTextField.getText() + "\n"
-                + "Maintenance ID: " + maintenanceID + "\n"
-                + "Start Date: " + startDateTextField.getText() + "\n"
-                + "End Date: " + endDateTextField.getText()+ "\n"
-                + "Description: " + descriptionTextArea.getText(),
-                "Notice", JOptionPane.PLAIN_MESSAGE);
+        //Method variables
+        SimpleDateFormat simpleDateFormat;
+        MaintenanceDAO maintenanceDAO;
+        Maintenance maintenance;
+        int maintenanceIdInt;
+        Date newStartDate = null;
+        Date newEndDate = null;
+        String newDescription = "";
+
+        //Validate user input
+        if (!util.InputValidator.isValidDate(startDateTextField.getText())) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Start Date is invalid\n"
+                    + "Please use format MM/DD/YYYY\n",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!util.InputValidator.isValidDate(endDateTextField.getText())) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "End Date is invalid\n"
+                    + "Please use format MM/DD/YYYY\n",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (descriptionTextArea.getText()
+                .length() > 100) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Description is too long \n use 100 characters or less",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            newStartDate = simpleDateFormat.parse(startDateTextField.getText());
+            newEndDate = simpleDateFormat.parse(endDateTextField.getText());
+        } catch (ParseException ex) {
+            //Dates are already validated
+        }
+        newDescription = descriptionTextArea.getText();
+        
+        maintenanceIdInt = Integer.parseInt(maintenanceID);
+        
+        //Create new Maintenance instance
+        maintenance = new Maintenance(maintenanceIdInt, aircraftID, newStartDate, newEndDate, newDescription);
+
+        //Modify maintenance in database by calling DAO object
+        maintenanceDAO = new MaintenanceDAO();
+        int success = maintenanceDAO.modifyMaintenance(maintenance);
+        //Give user feedback
+        if (success == 1) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Maintenance modified successfully",
+                    "Succes", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Failed to modify maintenance",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        //Close window
         dispose();
     }//GEN-LAST:event_modifyMaintenanceButtonActionPerformed
 

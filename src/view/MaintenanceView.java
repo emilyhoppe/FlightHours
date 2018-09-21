@@ -212,7 +212,7 @@ public class MaintenanceView extends javax.swing.JPanel {
             String endDate = simpleDateFormat.format(maintenanceTable.getValueAt(selectedRow, 3));
             String description = maintenanceTable.getValueAt(selectedRow, 4).toString();
             ModifyMaintenanceView modifyMaintenanceView = new ModifyMaintenanceView(frame,
-                    true, tailNumber, maintenanceID, startDate, endDate, description);
+                    true, aircraftID, tailNumber, maintenanceID, startDate, endDate, description);
 
             modifyMaintenanceView.setVisible(true);
             //Refresh all maintenance records in table when returning from dialog
