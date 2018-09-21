@@ -281,9 +281,9 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         int success = maintenanceDAO.modifyMaintenance(maintenance);
         //Give user feedback
         if (success == 1) {
-            JOptionPane.showMessageDialog(outerPanel,
-                    "Maintenance modified successfully",
-                    "Succes", JOptionPane.PLAIN_MESSAGE);
+//            JOptionPane.showMessageDialog(outerPanel,
+//                    "Maintenance modified successfully",
+//                    "Succes", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to modify maintenance",

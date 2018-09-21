@@ -432,9 +432,9 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         int success = aircraftDAO.modifyAircraft(aircraft);
         //Give user feedback
         if (success == 1) {
-            JOptionPane.showMessageDialog(outerPanel,
-                    "Aircraft modified successfully",
-                    "Succes", JOptionPane.PLAIN_MESSAGE);
+//            JOptionPane.showMessageDialog(outerPanel,
+//                    "Aircraft modified successfully",
+//                    "Succes", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to modify aircraft",

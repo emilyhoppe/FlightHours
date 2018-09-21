@@ -271,9 +271,9 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         int success = maintenanceDAO.insertNewMaintenance(maintenance);
         //Give user feedback
         if (success == 1) {
-            JOptionPane.showMessageDialog(outerPanel,
-                    "Maintenance added successfully",
-                    "Succes", JOptionPane.PLAIN_MESSAGE);
+//            JOptionPane.showMessageDialog(outerPanel,
+//                    "Maintenance added successfully",
+//                    "Succes", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to add maintenance",

@@ -336,9 +336,9 @@ public class AddOperationView extends javax.swing.JDialog {
         int success = operationDAO.insertNewOperation(operation);
         //Give user feedback
         if (success == 1) {
-            JOptionPane.showMessageDialog(outerPanel,
-                    "Operation added successfully",
-                    "Succes", JOptionPane.PLAIN_MESSAGE);
+//            JOptionPane.showMessageDialog(outerPanel,
+//                    "Operation added successfully",
+//                    "Succes", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to add operation",

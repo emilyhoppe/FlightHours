@@ -307,9 +307,9 @@ public class AddAircraftView extends javax.swing.JDialog {
         //Insert aircraft into database by calling DAO object
         int success = aircraftDAO.insertNewAircraft(aircraft);
         if (success == 1) {
-            JOptionPane.showMessageDialog(outerPanel,
-                    "Aircraft added successfully",
-                    "Succes", JOptionPane.PLAIN_MESSAGE);
+//            JOptionPane.showMessageDialog(outerPanel,
+//                    "Aircraft added successfully",
+//                    "Succes", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to add aircraft",
