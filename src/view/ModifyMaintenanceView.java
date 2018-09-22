@@ -20,6 +20,7 @@ package view;
 import controller.MaintenanceDAO;
 import flighthours.Maintenance;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -43,17 +44,34 @@ import javax.swing.border.SoftBevelBorder;
 public class ModifyMaintenanceView extends javax.swing.JDialog {
 
     //Instance variables
-    private int aircraftID;
-    private String tailNumber;
-    private String maintenanceID;
-    private String startDate;
-    private String endDate;
-    private String description;
+    private final Frame parent;
+    private final int aircraftID;
+    private final String tailNumber;
+    private final String maintenanceID;
+    private final String startDate;
+    private final String endDate;
+    private final String description;
+    private JButton cancelButton;
+    private JLabel descriptionLabel;
+    private JScrollPane descriptionScrollPane;
+    private JTextArea descriptionTextArea;
+    private JLabel endDateLabel;
+    private JTextField endDateTextField;
+    private JPanel innerBottomPanel;
+    private JPanel innerMiddlePanel;
+    private JButton modifyMaintenanceButton;
+    private JPanel outerPanel;
+    private JLabel startDateLabel;
+    private JTextField startDateTextField;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
 
     //Constructor with parameters
-    public ModifyMaintenanceView(java.awt.Frame parent, boolean modal, int aircraftID, String tailNumber,
+    public ModifyMaintenanceView(Frame parent, boolean modal, int aircraftID, String tailNumber,
             String maintenanceID, String startDate, String endDate, String description) {
         super(parent, modal);
+        this.parent = parent;
         this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         this.maintenanceID = maintenanceID;
@@ -61,8 +79,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         this.endDate = endDate;
         this.description = description;
         initComponents();
-        //Make dialog appear in canter of parent frame
-        setLocationRelativeTo(parent);
         //Set modify maintenance button to respond to enter key
         SwingUtilities.getRootPane(modifyMaintenanceButton).setDefaultButton(modifyMaintenanceButton);
     }
@@ -95,7 +111,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
+        titleLabel.setFont(new Font("Tahoma", 1, 18));
         titleLabel.setText("Modify Maintenance");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -187,6 +203,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
 
         modifyMaintenanceButton.setText("Modify Maintenance");
         modifyMaintenanceButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 modifyMaintenanceButtonActionPerformed(evt);
             }
@@ -199,6 +216,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
@@ -224,9 +242,11 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
     }
 
+    //Modify maintenance button actions
     private void modifyMaintenanceButtonActionPerformed(ActionEvent evt) {
         //Method variables
         SimpleDateFormat simpleDateFormat;
@@ -261,7 +281,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         try {
             newStartDate = simpleDateFormat.parse(startDateTextField.getText());
@@ -270,9 +290,9 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
             //Dates are already validated
         }
         newDescription = descriptionTextArea.getText();
-        
+
         maintenanceIdInt = Integer.parseInt(maintenanceID);
-        
+
         //Create new Maintenance instance
         maintenance = new Maintenance(maintenanceIdInt, aircraftID, newStartDate, newEndDate, newDescription);
 
@@ -280,11 +300,7 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         maintenanceDAO = new MaintenanceDAO();
         int success = maintenanceDAO.modifyMaintenance(maintenance);
         //Give user feedback
-        if (success == 1) {
-//            JOptionPane.showMessageDialog(outerPanel,
-//                    "Maintenance modified successfully",
-//                    "Succes", JOptionPane.PLAIN_MESSAGE);
-        } else {
+        if (success != 1) {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to modify maintenance",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -294,26 +310,8 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
         dispose();
     }
 
+    //Cancel modifying maintenance record and close window
     private void cancelButtonActionPerformed(ActionEvent evt) {
-        //Cancel modifying maintenance record and close window
         dispose();
     }
-
-    // Variables declaration - do not modify
-    private JButton cancelButton;
-    private JLabel descriptionLabel;
-    private JScrollPane descriptionScrollPane;
-    private JTextArea descriptionTextArea;
-    private JLabel endDateLabel;
-    private JTextField endDateTextField;
-    private JPanel innerBottomPanel;
-    private JPanel innerMiddlePanel;
-    private JButton modifyMaintenanceButton;
-    private JPanel outerPanel;
-    private JLabel startDateLabel;
-    private JTextField startDateTextField;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    // End of variables declaration
 }

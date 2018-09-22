@@ -410,11 +410,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         operationDAO = new OperationDAO();
         int success = operationDAO.modifyOperation(operation);
         //Give user feedback
-        if (success >= 1) {
-//            JOptionPane.showMessageDialog(outerPanel,
-//                    "Operation modified successfully",
-//                    "Succes", JOptionPane.PLAIN_MESSAGE);
-        } else {
+        if (success < 1) {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to modify operation",
                     "Error", JOptionPane.ERROR_MESSAGE);

@@ -20,6 +20,7 @@ package view;
 import controller.MaintenanceDAO;
 import flighthours.Maintenance;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -43,17 +44,32 @@ import javax.swing.border.SoftBevelBorder;
 public class AddMaintenanceView extends javax.swing.JDialog {
 
     //Instance variables
-    private String tailNumber;
-    private int aircraftID;
+    private final Frame parent;
+    private final String tailNumber;
+    private final int aircraftID;
+    private JButton addMaintenanceButton;
+    private JButton cancelButton;
+    private JLabel descriptionLabel;
+    private JScrollPane descriptionScrollPane;
+    private JTextArea descriptionTextArea;
+    private JLabel endDateLabel;
+    private JTextField endDateTextField;
+    private JPanel innerBottomPanel;
+    private JPanel innerMiddlePanel;
+    private JPanel outerPanel;
+    private JLabel startDateLabel;
+    private JTextField startDateTextField;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
 
     //Constructor with parameters
-    public AddMaintenanceView(java.awt.Frame parent, boolean modal, int aircraftID, String tailNumber) {
+    public AddMaintenanceView(Frame parent, boolean modal, int aircraftID, String tailNumber) {
         super(parent, modal);
+        this.parent = parent;
         this.tailNumber = tailNumber;
         this.aircraftID = aircraftID;
         initComponents();
-        //Make dialog appear in canter of parent frame
-        setLocationRelativeTo(parent);
         //Set add maintenance button to respond to enter key
         SwingUtilities.getRootPane(addMaintenanceButton).setDefaultButton(addMaintenanceButton);
     }
@@ -86,7 +102,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
+        titleLabel.setFont(new Font("Tahoma", 1, 18));
         titleLabel.setText("Add Maintenance");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -178,6 +194,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
 
         addMaintenanceButton.setText("Add Maintenance");
         addMaintenanceButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 addMaintenanceButtonActionPerformed(evt);
             }
@@ -190,6 +207,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
@@ -215,7 +233,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
     }
 
     private void addMaintenanceButtonActionPerformed(ActionEvent evt) {
@@ -262,7 +281,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
             //Dates are already validated
         }
         description = descriptionTextArea.getText();
-        
+
         //Create new Maintenance instance
         maintenance = new Maintenance(aircraftID, startDate, endDate, description);
 
@@ -270,11 +289,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         maintenanceDAO = new MaintenanceDAO();
         int success = maintenanceDAO.insertNewMaintenance(maintenance);
         //Give user feedback
-        if (success == 1) {
-//            JOptionPane.showMessageDialog(outerPanel,
-//                    "Maintenance added successfully",
-//                    "Succes", JOptionPane.PLAIN_MESSAGE);
-        } else {
+        if (success != 1) {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to add maintenance",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -287,22 +302,4 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         //Cancel adding maintenance record and close window
         dispose();
     }
-
-    // Variables declaration - do not modify
-    private JButton addMaintenanceButton;
-    private JButton cancelButton;
-    private JLabel descriptionLabel;
-    private JScrollPane descriptionScrollPane;
-    private JTextArea descriptionTextArea;
-    private JLabel endDateLabel;
-    private JTextField endDateTextField;
-    private JPanel innerBottomPanel;
-    private JPanel innerMiddlePanel;
-    private JPanel outerPanel;
-    private JLabel startDateLabel;
-    private JTextField startDateTextField;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    // End of variables declaration
 }

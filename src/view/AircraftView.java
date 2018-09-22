@@ -649,5 +649,10 @@ public class AircraftView extends javax.swing.JPanel {
     private void stationLabelMouseEntered(MouseEvent evt) {
         stationLabel.setToolTipText("Select this option to search Aircraft by Station");
     }
+    
+    //Allows refreshing table when hitting back button on other views
+    public void refreshAircraftTable(){
+        showAllButton.doClick();
+    }
 
 }

@@ -7,9 +7,9 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description: The MainPanel class extends JPanel.  This panel sits 
+ *      Class Description: The MainPanel class extends JPanel.  This panel sits
  *              on the Main Frame and uses the CardLayout layout manager.  Aircraft,
- *              Operations, and Maintenance panels are added to this layout as 
+ *              Operations, and Maintenance panels are added to this layout as
  *              cards, so they can be switched between to show the user different
  *              screens.
  *
@@ -20,6 +20,11 @@ package view;
 import java.awt.CardLayout;
 
 public class MainPanel extends javax.swing.JPanel {
+
+    //Instance variables
+    private AircraftView aircraftView;
+    private MaintenanceView maintenanceView;
+    private OperationsView operationsView;
 
     //Getter for aircraftView object used to pass data to view
     public AircraftView getAircraftView() {
@@ -53,11 +58,4 @@ public class MainPanel extends javax.swing.JPanel {
         add(operationsView, "operationsView");
         add(maintenanceView, "maintenanceView");
     }
-
-
-    // Variables declaration - do not modify
-    private AircraftView aircraftView;
-    private MaintenanceView maintenanceView;
-    private OperationsView operationsView;
-    // End of variables declaration
 }

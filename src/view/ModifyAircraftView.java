@@ -47,17 +47,41 @@ import javax.swing.border.SoftBevelBorder;
 public class ModifyAircraftView extends javax.swing.JDialog {
 
     //Instance variables
-    private String aircraftID;
-    private String tailNumber;
-    private String type;
-    private String stationString;
-    private String station;
-    private String maxSpeed;
-    private String maxAltitude;
-    private String totalFlightHours;
-    private String currentMaintHours;
-    private String maintHoursThreshold;
-    private String endOfServiceDate;
+    private final Frame parent;
+    private final String aircraftID;
+    private final String tailNumber;
+    private final String type;
+    private final String stationString;
+    private final String maxSpeed;
+    private final String maxAltitude;
+    private final String totalFlightHours;
+    private final String currentMaintHours;
+    private final String maintHoursThreshold;
+    private final String endOfServiceDate;
+    private JPanel buttonPanel;
+    private JButton cancelButton;
+    private JLabel currentMaintHoursLabel;
+    private JTextField currentMaintHoursTextField;
+    private JPanel dataPanel;
+    private JLabel endOfServiceLabel;
+    private JTextField endOfServiceTextField;
+    private JLabel maintThresholdLabel;
+    private JTextField maintThresholdTextField;
+    private JLabel maxAltitudeLabel;
+    private JTextField maxAltitudeTextField;
+    private JLabel maxSpeedLabel;
+    private JTextField maxSpeedTextField;
+    private JButton modifyAircraftButton;
+    private JPanel outerPanel;
+    private JComboBox stationComboBox;
+    private JLabel stationLabel;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JLabel totalFlightHoursLabel;
+    private JTextField totalFlightHoursTextField;
+    private JComboBox<String> typeComboBox;
+    private JLabel typeLabel;
 
     //Constructor with parameters
     public ModifyAircraftView(Frame parent, boolean modal, String aircraftID, String tailNumber,
@@ -65,6 +89,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
             String maxAltitude, String totalFlightHours, String currentMaintHours,
             String maintHoursThreshold, String endOfServiceDate) {
         super(parent, modal);
+        this.parent = parent;
         this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         this.type = type;
@@ -76,8 +101,6 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         this.maintHoursThreshold = maintHoursThreshold;
         this.endOfServiceDate = endOfServiceDate;
         initComponents();
-        //Make dialog appear in canter of parent frame
-        setLocationRelativeTo(parent);
         //Set modify aircraft button to respond to enter key
         SwingUtilities.getRootPane(modifyAircraftButton).setDefaultButton(modifyAircraftButton);
     }
@@ -104,9 +127,9 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         List<Station> stationArrayList = new ArrayList<>(stationDAO.selectStationByType("AMO"));
         //Find selected index to use for station combo box
         stationComboBoxIndex = -1;
-        for(Station currentStation : stationArrayList){
+        for (Station currentStation : stationArrayList) {
             stationComboBoxIndex++;
-            if(currentStation.getStationName().equals(stationString)){
+            if (currentStation.getStationName().equals(stationString)) {
                 break;
             }
         }
@@ -131,7 +154,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
+        titleLabel.setFont(new Font("Tahoma", 1, 18));
         titleLabel.setText("Modify Aircraft");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -298,6 +321,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
         modifyAircraftButton.setText("Modify Aircraft");
         modifyAircraftButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 modifyAircraftButtonActionPerformed(evt);
             }
@@ -310,6 +334,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
@@ -335,7 +360,8 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
     }
 
     private void modifyAircraftButtonActionPerformed(ActionEvent evt) {
@@ -367,6 +393,11 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         }
         if (!util.InputValidator.isPositiveNumber(maxAltitudeTextField.getText())) {
             JOptionPane.showMessageDialog(outerPanel, "Max Altitude is invalid",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!util.InputValidator.isPositiveNumber(totalFlightHoursTextField.getText())) {
+            JOptionPane.showMessageDialog(outerPanel, "Total Flight Hours input is invalid",
                     "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -431,11 +462,7 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         aircraftDAO = new AircraftDAO();
         int success = aircraftDAO.modifyAircraft(aircraft);
         //Give user feedback
-        if (success == 1) {
-//            JOptionPane.showMessageDialog(outerPanel,
-//                    "Aircraft modified successfully",
-//                    "Succes", JOptionPane.PLAIN_MESSAGE);
-        } else {
+        if (success != 1) {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to modify aircraft",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -449,34 +476,4 @@ public class ModifyAircraftView extends javax.swing.JDialog {
         //Cancel modifying aircraft and close window
         dispose();
     }
-
-    // Variables declaration - do not modify
-    private JPanel buttonPanel;
-    private JButton cancelButton;
-    private JLabel currentMaintHoursLabel;
-    private JTextField currentMaintHoursTextField;
-    private JPanel dataPanel;
-    private JLabel endOfServiceLabel;
-    private JTextField endOfServiceTextField;
-    private JLabel maintThresholdLabel;
-    private JTextField maintThresholdTextField;
-    private JLabel maxAltitudeLabel;
-    private JTextField maxAltitudeTextField;
-    private JLabel maxSpeedLabel;
-    private JTextField maxSpeedTextField;
-    private JButton modifyAircraftButton;
-    private JPanel outerPanel;
-    /*TODO REMOVE THIS LINE
-    private javax.swing.JComboBox<String> stationComboBox;
-    */
-    private JComboBox stationComboBox;
-    private JLabel stationLabel;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    private JLabel totalFlightHoursLabel;
-    private JTextField totalFlightHoursTextField;
-    private JComboBox<String> typeComboBox;
-    private JLabel typeLabel;
-    // End of variables declaration
 }

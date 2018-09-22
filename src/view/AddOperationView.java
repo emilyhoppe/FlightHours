@@ -24,6 +24,7 @@ import flighthours.Mission;
 import flighthours.Operation;
 import flighthours.Station;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -47,17 +48,37 @@ import util.InputValidator;
 public class AddOperationView extends javax.swing.JDialog {
 
     //Instance variables
-    private int aircraftID;
-    private String tailNumber;
+    private final Frame parent;
+    private final int aircraftID;
+    private final String tailNumber;
+    private JButton addOperationButton;
+    private JButton cancelButton;
+    private JLabel endDateLabel;
+    private JTextField endDateTextField;
+    private JLabel flightHoursLabel;
+    private JTextField flightHoursTextField;
+    private JPanel innerBottomPanel;
+    private JPanel innerMiddlePanel;
+    private JComboBox missionComboBox;
+    private JLabel missionLabel;
+    private JLabel operationNameLabel;
+    private JTextField operationNameTextField;
+    private JPanel outerPanel;
+    private JLabel startDateLabel;
+    private JTextField startDateTextField;
+    private JComboBox stationComboBox;
+    private JLabel stationLabel;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
 
     //Constructor with parameters
-    public AddOperationView(java.awt.Frame parent, boolean modal, int aircraftID, String tailNumber) {
+    public AddOperationView(Frame parent, boolean modal, int aircraftID, String tailNumber) {
         super(parent, modal);
+        this.parent = parent;
         this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
         initComponents();
-        //Make dialog appear in canter of parent frame
-        setLocationRelativeTo(parent);
         //Set add operation button to respond to enter key
         SwingUtilities.getRootPane(addOperationButton).setDefaultButton(addOperationButton);
     }
@@ -97,7 +118,7 @@ public class AddOperationView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
+        titleLabel.setFont(new Font("Tahoma", 1, 18));
         titleLabel.setText("Add Operation");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -229,6 +250,7 @@ public class AddOperationView extends javax.swing.JDialog {
 
         addOperationButton.setText("Add Operation");
         addOperationButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 addOperationButtonActionPerformed(evt);
             }
@@ -241,6 +263,7 @@ public class AddOperationView extends javax.swing.JDialog {
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
@@ -266,11 +289,12 @@ public class AddOperationView extends javax.swing.JDialog {
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
     }
 
+    //Method variables
     private void addOperationButtonActionPerformed(ActionEvent evt) {
-        //Method variables
         Operation operation;
         OperationDAO operationDAO;
         SimpleDateFormat simpleDateFormat;
@@ -314,9 +338,9 @@ public class AddOperationView extends javax.swing.JDialog {
 
         //Retrieve validated user input
         operationName = operationNameTextField.getText();
-        station = (Station)stationComboBox.getSelectedItem();
+        station = (Station) stationComboBox.getSelectedItem();
         stationID = station.getStationID();
-        mission = (Mission)missionComboBox.getSelectedItem();
+        mission = (Mission) missionComboBox.getSelectedItem();
         missionID = mission.getMissionID();
         //Parse user entered dates into Date objects
         simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -329,17 +353,13 @@ public class AddOperationView extends javax.swing.JDialog {
         flightHours = Integer.parseInt(flightHoursTextField.getText());
 
         //Create new Operation instance
-        operation = new Operation(aircraftID, stationID, missionID, operationName, 
+        operation = new Operation(aircraftID, stationID, missionID, operationName,
                 startDate, endDate, flightHours);
         //Insert maintenance instance into database by calling DAO object
         operationDAO = new OperationDAO();
         int success = operationDAO.insertNewOperation(operation);
         //Give user feedback
-        if (success == 1) {
-//            JOptionPane.showMessageDialog(outerPanel,
-//                    "Operation added successfully",
-//                    "Succes", JOptionPane.PLAIN_MESSAGE);
-        } else {
+        if (success != 1) {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to add operation",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -348,37 +368,8 @@ public class AddOperationView extends javax.swing.JDialog {
         dispose();
     }
 
+    //Cancel adding operations and close window
     private void cancelButtonActionPerformed(ActionEvent evt) {
-        //Cancel adding operations and close window
         dispose();
     }
-
-    // Variables declaration - do not modify
-    private JButton addOperationButton;
-    private JButton cancelButton;
-    private JLabel endDateLabel;
-    private JTextField endDateTextField;
-    private JLabel flightHoursLabel;
-    private JTextField flightHoursTextField;
-    private JPanel innerBottomPanel;
-    private JPanel innerMiddlePanel;
-    /*TODO REMOVE THIS LINE
-    private javax.swing.JComboBox<String> missionComboBox;
-    */
-    private JComboBox missionComboBox;
-    private JLabel missionLabel;
-    private JLabel operationNameLabel;
-    private JTextField operationNameTextField;
-    private JPanel outerPanel;
-    private JLabel startDateLabel;
-    private JTextField startDateTextField;
-    /*TODO REMOVE THIS LINE
-    private javax.swing.JComboBox<String> stationComboBox;
-    */
-    private JComboBox stationComboBox;
-    private JLabel stationLabel;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    // End of variables declaration
 }

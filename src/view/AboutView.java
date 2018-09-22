@@ -7,7 +7,7 @@
  *      Course: UMUC CMSC 495 6381
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
- *      Class Description: AboutView is a GUI JDialog window which displays the 
+ *      Class Description: AboutView is a GUI JDialog window which displays the
  *          current version of the FHS application and lists its creators.
  *
  *
@@ -15,6 +15,7 @@
 package view;
 
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -30,12 +31,17 @@ import javax.swing.border.SoftBevelBorder;
 
 public class AboutView extends javax.swing.JDialog {
 
+    //Instance variables
+    private final Frame parent;
+    private JLabel aboutLabel;
+    private JButton closeButton;
+    private JPanel mainPanel;
+
     //Constructor
-    public AboutView(java.awt.Frame parent, boolean model) {
+    public AboutView(Frame parent, boolean model) {
         super(parent, model);
+        this.parent = parent;
         initComponents();
-        //Make dialog appear in canter of parent frame
-        setLocationRelativeTo(parent);
         //Set close button to respond to enter key
         SwingUtilities.getRootPane(closeButton).setDefaultButton(closeButton);
     }
@@ -55,6 +61,7 @@ public class AboutView extends javax.swing.JDialog {
 
         closeButton.setText("Close");
         closeButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 closeButtonActionPerformed(evt);
             }
@@ -68,7 +75,7 @@ public class AboutView extends javax.swing.JDialog {
         mainPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         mainPanel.setLayout(new GridBagLayout());
 
-        aboutLabel.setFont(new Font("Tahoma", 0, 18)); 
+        aboutLabel.setFont(new Font("Tahoma", 0, 18));
         aboutLabel.setText("<html> <Center> FHS<BR> Flight Hours System<BR> Version 1.0<BR> <BR> This application was developed<BR> for UMUC CMSC495 Fall 2018 by:<BR> John Tamer<BR> Jason Grimard<BR> Demetrius Billups<BR> &<BR> Emily Hoppe");
         aboutLabel.setToolTipText("");
         gridBagConstraints = new GridBagConstraints();
@@ -84,7 +91,8 @@ public class AboutView extends javax.swing.JDialog {
         getContentPane().add(mainPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
     }
 
     private void closeButtonActionPerformed(ActionEvent evt) {
@@ -92,9 +100,4 @@ public class AboutView extends javax.swing.JDialog {
         dispose();
     }
 
-    // Variables declaration - do not modify
-    private JLabel aboutLabel;
-    private JButton closeButton;
-    private JPanel mainPanel;
-    // End of variables declaration
 }

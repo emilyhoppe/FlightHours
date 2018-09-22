@@ -53,6 +53,17 @@ public class OperationsView extends javax.swing.JPanel {
     private String tailNumber;
     private int aircraftID;
     SimpleDateFormat simpleDateFormat;
+    private JButton addOperationButton;
+    private JButton backButton;
+    private JPanel bottomPanel;
+    private JLabel logoLabel;
+    private JButton modifyOperationButton;
+    private JTable operationsTable;
+    private JScrollPane operationsTableScrollPane;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JPanel topPanel;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -91,15 +102,15 @@ public class OperationsView extends javax.swing.JPanel {
 
         setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); 
-        logoLabel.setName(""); 
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png")));
+        logoLabel.setName("");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new Font("Arial", 1, 36)); 
+        titleLabel.setFont(new Font("Arial", 1, 36));
         titleLabel.setText("Aircraft Operations");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -136,10 +147,6 @@ public class OperationsView extends javax.swing.JPanel {
 
         operationsTable.setAutoCreateRowSorter(true);
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
-        //Hide ID column in table but still allow application access to it
-        operationsTable.getColumnModel().getColumn(0).setMinWidth(0);
-        operationsTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        operationsTable.getColumnModel().getColumn(0).setWidth(0);
         operationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         operationsTableScrollPane.setViewportView(operationsTable);
 
@@ -154,6 +161,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         backButton.setText("Back");
         backButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
@@ -162,6 +170,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         addOperationButton.setText("Add Operation");
         addOperationButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 addOperationButtonActionPerformed(evt);
             }
@@ -170,6 +179,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         modifyOperationButton.setText("Modify Operation");
         modifyOperationButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 modifyOperationButtonActionPerformed(evt);
             }
@@ -183,30 +193,33 @@ public class OperationsView extends javax.swing.JPanel {
         add(bottomPanel, gridBagConstraints);
     }
 
+    //Switch to aircraft view on card layout when aircraft back button is pressed
+    //Gaining control of CardLayout by getting mainPanel from root frame
     private void backButtonActionPerformed(ActionEvent evt) {
-        //Switch to aircraft view on card layout when aircraft back button is pressed
-        //Gaining control of CardLayout by getting mainPanel from root frame
         Component component = (Component) evt.getSource();
         MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
         MainPanel mainPanel = frame.getMainPanel();
+        //Refresh the table in the aircraft panel before returning
+        AircraftView aircraftView = mainPanel.getAircraftView();
+        aircraftView.refreshAircraftTable();
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, "aircraftView");
 
     }
 
+    //Open add operation window when add operaiton button is pressed
     private void addOperationButtonActionPerformed(ActionEvent evt) {
-        //Open add operation window when add operaiton button is pressed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddOperationView addOperationView = new AddOperationView(frame, true, aircraftID,tailNumber);
+        AddOperationView addOperationView = new AddOperationView(frame, true, aircraftID, tailNumber);
         addOperationView.setVisible(true);
         //Refresh all operations records in table when returning from dialog
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
         setupOperationsTable();
     }
 
+    //Open modify operation window when modify operation button is pressed
+    //Retrieve selected table row and pass all data to new window
     private void modifyOperationButtonActionPerformed(ActionEvent evt) {
-        //Open modify operation window when modify operation button is pressed
-        //Retrieve selected table row and pass all data to new window
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         try {
             int selectedRow = operationsTable.getSelectedRow();
@@ -264,17 +277,4 @@ public class OperationsView extends javax.swing.JPanel {
         operationsTable.getColumnModel().getColumn(8).setCellRenderer(tableCellRenderer);
     }
 
-    // Variables declaration - do not modify
-    private JButton addOperationButton;
-    private JButton backButton;
-    private JPanel bottomPanel;
-    private JLabel logoLabel;
-    private JButton modifyOperationButton;
-    private JTable operationsTable;
-    private JScrollPane operationsTableScrollPane;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    private JPanel topPanel;
-    // End of variables declaration
 }

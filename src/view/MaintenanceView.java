@@ -53,6 +53,17 @@ public class MaintenanceView extends javax.swing.JPanel {
     private String tailNumber;
     private int aircraftID;
     SimpleDateFormat simpleDateFormat;
+    private JButton addMaintenanceButton;
+    private JButton backButton;
+    private JPanel bottomPanel;
+    private JLabel logoLabel;
+    private JTable maintenanceTable;
+    private JScrollPane maintenanceTableScrollPane;
+    private JButton modifyMaintenanceButton;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JPanel topPanel;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -91,15 +102,15 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         setLayout(new GridBagLayout());
 
-        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png"))); 
-        logoLabel.setName(""); 
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png")));
+        logoLabel.setName("");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new Insets(20, 10, 10, 10);
         add(logoLabel, gridBagConstraints);
 
-        titleLabel.setFont(new Font("Arial", 1, 36)); 
+        titleLabel.setFont(new Font("Arial", 1, 36));
         titleLabel.setText("Aircraft Maintenance");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -151,6 +162,7 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         backButton.setText("Back");
         backButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
@@ -159,6 +171,7 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         addMaintenanceButton.setText("Add Maintenance");
         addMaintenanceButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 addMaintenanceButtonActionPerformed(evt);
             }
@@ -167,6 +180,7 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         modifyMaintenanceButton.setText("Modify Maintenance");
         modifyMaintenanceButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 modifyMaintenanceButtonActionPerformed(evt);
             }
@@ -186,6 +200,9 @@ public class MaintenanceView extends javax.swing.JPanel {
         Component component = (Component) evt.getSource();
         MainFrame frame = (MainFrame) SwingUtilities.getRoot(component);
         MainPanel mainPanel = frame.getMainPanel();
+        //Refresh the table in the aircraft panel before returning
+        AircraftView aircraftView = mainPanel.getAircraftView();
+        aircraftView.refreshAircraftTable();
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, "aircraftView");
     }
@@ -251,19 +268,4 @@ public class MaintenanceView extends javax.swing.JPanel {
         maintenanceTable.getColumnModel().getColumn(2).setCellRenderer(tableCellRenderer);
         maintenanceTable.getColumnModel().getColumn(3).setCellRenderer(tableCellRenderer);
     }
-
-
-    // Variables declaration - do not modify
-    private JButton addMaintenanceButton;
-    private JButton backButton;
-    private JPanel bottomPanel;
-    private JLabel logoLabel;
-    private JTable maintenanceTable;
-    private JScrollPane maintenanceTableScrollPane;
-    private JButton modifyMaintenanceButton;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    private JPanel topPanel;
-    // End of variables declaration
 }

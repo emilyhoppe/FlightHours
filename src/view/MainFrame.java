@@ -8,7 +8,7 @@
  *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
  *
  *      Class Description: The MainFrame class extends JFrame and is the base
- *          of the GUI which all other GUI components sit on.  This class also 
+ *          of the GUI which all other GUI components sit on.  This class also
  *          creates the menu bar and menu items.
  *
  *
@@ -26,6 +26,14 @@ import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
 public class MainFrame extends javax.swing.JFrame {
+
+    //Instance variables
+    private JMenuItem aboutMenuItem;
+    private JMenuItem exitMenuItem;
+    private JMenu fileMenu;
+    private JMenu helpMenu;
+    private MainPanel mainPanel;
+    private JMenuBar menuBar;
 
     //Returns mainPanel object so cardLayout can be changed by user, aka switch screens
     public MainPanel getMainPanel() {
@@ -50,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("FHS Flight Hours System");
-        setName("MainFrame"); 
+        setName("MainFrame");
         setSize(new Dimension(700, 500));
         getContentPane().setLayout(new GridBagLayout());
         gridBagConstraints = new GridBagConstraints();
@@ -65,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
             }
@@ -77,6 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
             }
@@ -91,24 +101,15 @@ public class MainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    //Exit the system
     private void exitMenuItemActionPerformed(ActionEvent evt) {
-        //Exit the system
         System.exit(0);
     }
 
+    //Display the AboutView dialog
     private void aboutMenuItemActionPerformed(ActionEvent evt) {
-        //Display the AboutView dialog
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
 
     }
-
-    // Variables declaration - do not modify
-    private JMenuItem aboutMenuItem;
-    private JMenuItem exitMenuItem;
-    private JMenu fileMenu;
-    private JMenu helpMenu;
-    private MainPanel mainPanel;
-    private JMenuBar menuBar;
-    // End of variables declaration
 }

@@ -22,6 +22,7 @@ import controller.AircraftDAO;
 import controller.StationDAO;
 import flighthours.Station;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -42,6 +43,7 @@ import util.InputValidator;
 public class AddAircraftView extends javax.swing.JDialog {
 
     //Instance variables
+    private final Frame parent;
     private Aircraft aircraft;
     private String tailNumber;
     private String aircraftType;
@@ -53,13 +55,30 @@ public class AddAircraftView extends javax.swing.JDialog {
     private boolean maintenanceFlag;
     private int currentMaintenanceHours;
     private int maintenanceThreshold;
+    private JButton addAircraftButton;
+    private JButton cancelButton;
+    private JPanel innerBottomPanel;
+    private JPanel innerMiddlePanel;
+    private JLabel maintThresholdLabel;
+    private JTextField maintThresholdTextField;
+    private JLabel maxAltitudeLabel;
+    private JTextField maxAltitudeTextField;
+    private JLabel maxSpeedLabel;
+    private JTextField maxSpeedTextField;
+    private JPanel outerPanel;
+    private JComboBox stationComboBox;
+    private JLabel stationLabel;
+    private JLabel tailNumberLabel;
+    private JTextField tailNumberTextField;
+    private JLabel titleLabel;
+    private JComboBox<String> typeComboBox;
+    private JLabel typeLabel;
 
     //Constructor
-    public AddAircraftView(java.awt.Frame parent, boolean modal) {
+    public AddAircraftView(Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
-        //Make dialog appear in canter of parent frame
-        setLocationRelativeTo(parent);
         //Set add aircraft button to respond to enter key
         SwingUtilities.getRootPane(addAircraftButton).setDefaultButton(addAircraftButton);
     }
@@ -96,7 +115,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         outerPanel.setLayout(new GridBagLayout());
 
-        titleLabel.setFont(new Font("Tahoma", 1, 18)); 
+        titleLabel.setFont(new Font("Tahoma", 1, 18));
         titleLabel.setText("Add Aircraft");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -211,6 +230,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         addAircraftButton.setText("Add Aircraft");
         addAircraftButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 addAircraftButtonActionPerformed(evt);
             }
@@ -223,6 +243,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
@@ -248,7 +269,8 @@ public class AddAircraftView extends javax.swing.JDialog {
         getContentPane().add(outerPanel, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
+        //Make dialog appear in canter of parent frame
+        setLocationRelativeTo(parent);
     }
 
     private void addAircraftButtonActionPerformed(ActionEvent evt) {
@@ -306,11 +328,7 @@ public class AddAircraftView extends javax.swing.JDialog {
 
         //Insert aircraft into database by calling DAO object
         int success = aircraftDAO.insertNewAircraft(aircraft);
-        if (success == 1) {
-//            JOptionPane.showMessageDialog(outerPanel,
-//                    "Aircraft added successfully",
-//                    "Succes", JOptionPane.PLAIN_MESSAGE);
-        } else {
+        if (success != 1) {
             JOptionPane.showMessageDialog(outerPanel,
                     "Failed to add aircraft",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -323,28 +341,4 @@ public class AddAircraftView extends javax.swing.JDialog {
         //Cancel adding aircraft and close window
         dispose();
     }
-
-    // Variables declaration - do not modify
-    private JButton addAircraftButton;
-    private JButton cancelButton;
-    private JPanel innerBottomPanel;
-    private JPanel innerMiddlePanel;
-    private JLabel maintThresholdLabel;
-    private JTextField maintThresholdTextField;
-    private JLabel maxAltitudeLabel;
-    private JTextField maxAltitudeTextField;
-    private JLabel maxSpeedLabel;
-    private JTextField maxSpeedTextField;
-    private JPanel outerPanel;
-    /*TODO REMOVE THIS LINE
-    private javax.swing.JComboBox<String> stationComboBox;
-    */
-    private JComboBox stationComboBox;
-    private JLabel stationLabel;
-    private JLabel tailNumberLabel;
-    private JTextField tailNumberTextField;
-    private JLabel titleLabel;
-    private JComboBox<String> typeComboBox;
-    private JLabel typeLabel;
-    // End of variables declaration
 }
