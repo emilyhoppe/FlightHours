@@ -9,6 +9,7 @@ package flighthours;
  *
  * @author jjtam
  */
+import model.Aircraft;
 import controller.AircraftDAO;
 import controller.MaintenanceDAO;
 //import java.sql.Connection;

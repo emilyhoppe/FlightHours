@@ -5,6 +5,7 @@
  */
 package flighthours;
 
+import model.Mission;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;

@@ -14,7 +14,7 @@
  *********** */
 package controller;
 
-import flighthours.Station;
+import model.Station;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

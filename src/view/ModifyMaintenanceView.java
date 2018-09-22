@@ -18,7 +18,7 @@
 package view;
 
 import controller.MaintenanceDAO;
-import flighthours.Maintenance;
+import model.Maintenance;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;

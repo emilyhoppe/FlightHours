@@ -1,4 +1,4 @@
-package flighthours;
+package model;
 
 import java.util.Date;
 

@@ -9,6 +9,7 @@ package flighthours;
  *
  * @author ehoppe
  */
+import model.Maintenance;
 import controller.MaintenanceDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;

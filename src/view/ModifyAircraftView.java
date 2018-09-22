@@ -19,8 +19,8 @@ package view;
 
 import controller.AircraftDAO;
 import controller.StationDAO;
-import flighthours.Aircraft;
-import flighthours.Station;
+import model.Aircraft;
+import model.Station;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;

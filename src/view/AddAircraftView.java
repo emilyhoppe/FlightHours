@@ -17,10 +17,10 @@
  *********** */
 package view;
 
-import flighthours.Aircraft;
+import model.Aircraft;
 import controller.AircraftDAO;
 import controller.StationDAO;
-import flighthours.Station;
+import model.Station;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;

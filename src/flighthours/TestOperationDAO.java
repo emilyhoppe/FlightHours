@@ -9,6 +9,7 @@ package flighthours;
  *
  * @author ehoppe
  */
+import model.Operation;
 import controller.OperationDAO;
 import java.sql.Connection;
 import java.text.ParseException;

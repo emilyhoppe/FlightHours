@@ -9,6 +9,7 @@ package flighthours;
  *
  * @author tamerjj1
  */
+import model.Station;
 import controller.StationDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;

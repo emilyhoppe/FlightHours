@@ -21,7 +21,7 @@ package view;
 
 import controller.AircraftDAO;
 import controller.StationDAO;
-import flighthours.Station;
+import model.Station;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
