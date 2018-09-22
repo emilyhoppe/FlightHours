@@ -29,7 +29,6 @@ public class OperationDAO {
 
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
-    private Statement stmt = null;
     private PreparedStatement selectOperationByAircraft;
     private PreparedStatement insertNewOperation;
     private PreparedStatement modifyOperation;
@@ -114,15 +113,13 @@ public class OperationDAO {
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
-
         opTableModel = createOperationTableModel(resultSet);
-
         return opTableModel;
     }
 
-    //Must use in conjunction with insertOpAdjustCurrentHours and insertOpAdjustTotalHours methods directly below
     public int insertNewOperation(Operation inOperation) {
         int result = 0;
+        int additionalHours = inOperation.getOperationFlightHour();
         try {
             insertNewOperation.setInt(1, inOperation.getAircraftID());
             insertNewOperation.setInt(2, inOperation.getStationID());
@@ -130,63 +127,25 @@ public class OperationDAO {
             insertNewOperation.setString(4, inOperation.getOperationName());
             insertNewOperation.setDate(5, new java.sql.Date(inOperation.getOperationStartDate().getTime()));
             insertNewOperation.setDate(6, new java.sql.Date(inOperation.getOperationEndDate().getTime()));
-            insertNewOperation.setInt(7, inOperation.getOperationFlightHour());
+            insertNewOperation.setInt(7, additionalHours);
             result = insertNewOperation.executeUpdate();
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
-        return result;
-    }
-
-    //Must use with insertNewOperation Method above
-    public int insertOpAdjustCurrentHours(Operation inOperation) {
-        int result = -1;
-
-        int newHours = 0;
-        int oldHours = retrieveAircraftCurrentHours(inOperation.getAircraftID());
-        int additionalHours = inOperation.getOperationFlightHour();
-
-        if (oldHours > -1) {
-            //Caluculating new total for aircraft's current hours
-            newHours = oldHours + additionalHours;
-            result = modifyAircraftCurrentHours(inOperation.getAircraftID(), newHours);
+        adjustTotalHours(inOperation, additionalHours);
+        if (afterMaintenanceDate(inOperation)) {
+            adjustCurrentHours(inOperation, additionalHours);
         }
-
-        //Returns -1 if retrieval of the current hours failed
-        //Returns 0 if the modification of current hours failed
-        //Returns 1 if successful
         return result;
     }
-
-    //Must use with insertNewOperation Method above
-    public int insertOpAdjustTotalHours(Operation inOperation) {
-        int result = -1;
-
-        int newHours = 0;
-        int oldHours = retrieveAircraftTotalHours(inOperation.getAircraftID());
-        int additionalHours = inOperation.getOperationFlightHour();
-
-        if (oldHours > -1) {
-            //Caluculating new total for aircraft's total hours
-            newHours = oldHours + additionalHours;
-            result = modifyAircraftTotalHours(inOperation.getAircraftID(), newHours);
-        }
-
-        //Returns -1 if retrieval of the total hours failed
-        //Returns 0 if the modification of total hours failed
-        //Returns 1 if successful
-        return result;
-    }
-
-    //Must use in conjunction with modifyOpReadjustCurrentHours and modifyOpReadjustTotalHours methods directly below
+    
     public int modifyOperation(Operation inOperation) {
         int result = 0;
         ResultSet resultSet = null;
-        int previousHours = -1;
+        int previousHours = 0;
         int newHours = inOperation.getOperationFlightHour();
-        //Date previousEndDate = null;
-        Date lastMaintenanceDate = null;
+        //Date lastMaintenanceDate = null;
         Date startDate = new java.sql.Date(inOperation.getOperationStartDate().getTime());
         Date endDate = new java.sql.Date(inOperation.getOperationEndDate().getTime());
         try {
@@ -196,193 +155,64 @@ public class OperationDAO {
             resultSet.next();
             previousHours = resultSet.getInt(1);
 
-            //If previousHours retrieval was successful than proceed with modification
-            if (previousHours > -1) {
-
-                //Main Operation modifications
-                modifyOperation.setInt(1, inOperation.getStationID());
-                modifyOperation.setInt(2, inOperation.getMissionID());
-                modifyOperation.setString(3, inOperation.getOperationName());
-                modifyOperation.setDate(4, startDate);
-                modifyOperation.setDate(5, endDate);
-                modifyOperation.setInt(6, newHours);
-                modifyOperation.setInt(7, inOperation.getOperationID());
-                result = modifyOperation.executeUpdate();
-
-                //If modification was successful, check if Aircraft current or total hours need modification
-                if (result == 1) {
-
-                    //If Operation's flight hours are changed and modification was successful
-                    if (previousHours != newHours) {
-
-                        //Retrieve last maintenance date to see if hours should be updated
-                        retrieveLastMaintenanceDate.setInt(1, inOperation.getAircraftID());
-                        resultSet = retrieveLastMaintenanceDate.executeQuery();
-                        resultSet.next();
-
-                        if (resultSet.wasNull()) {
-                            lastMaintenanceDate = resultSet.getDate(1);
-                        }
-
-                        //Calculate Hours Difference (Positive or Negative)                        
-                        int difference = newHours - previousHours;
-                        System.out.println(String.valueOf(difference));
-                        int resultOfACMod = 0;
-
-                        //If the new End Date is after the last Maintenance Date 
-                        //Then change Aircraft's current and total hours                
-                        if (lastMaintenanceDate == null || 0 < endDate.compareTo(lastMaintenanceDate)) { //returns 1 if endDate comes after lastMaintenanceDate
-                            //Adjust total hours
-                            resultOfACMod = modifyOpAdjustTotalHours(inOperation, difference);
-                            //Assign success or specific failure to result
-                            switch (resultOfACMod) {
-                                case 1:
-                                    result = 3;
-                                    break;
-                                case 0:
-                                    result = -3;
-                                    break;
-                                default:
-                                    result = -5;
-                                    break;
-                            }
-                            //If modification of total hours was successful proceed with changing current hours
-                            if (result == 3) {
-                                //Adjust current hours
-                                resultOfACMod = modifyOpAdjustCurrentHours(inOperation, difference);
-                                //Assign success or specific failure to result
-                                switch (resultOfACMod) {
-                                    case 1:
-                                        break;
-                                    case 0:
-                                        result = -4;
-                                        break;
-                                    default:
-                                        result = -6;
-                                        break;
-                                }
-                            }
-
-                        } //Else only change total hours
-                        else {
-                            //Adjust total hours
-                            resultOfACMod = modifyOpAdjustTotalHours(inOperation, difference);
-                            //Assign success or specific failure to result
-                            switch (resultOfACMod) {
-                                case 1:
-                                    result = 2;
-                                    break;
-                                case 0:
-                                    result = -2;
-                                    break;
-                                default:
-                                    result = -5;
-                                    break;
-                            }
-                        }
-                    }
-                } else {
-                    result = -1;
-                }
-            } else {
-                result = 0;
-            }
+            //Main Operation modifications
+            modifyOperation.setInt(1, inOperation.getStationID());
+            modifyOperation.setInt(2, inOperation.getMissionID());
+            modifyOperation.setString(3, inOperation.getOperationName());
+            modifyOperation.setDate(4, startDate);
+            modifyOperation.setDate(5, endDate);
+            modifyOperation.setInt(6, newHours);
+            modifyOperation.setInt(7, inOperation.getOperationID());
+            result = modifyOperation.executeUpdate();
+            
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
-        //Successes    
-        //Returns 1 if Operation modification was successful 
-        // and there were no Operation or Aircraft flight hours changes.
-        //Returns 2 if Operation modification was successful 
-        // and only total Aircraft hours were changed.
-        //Returns 3 if Operation modification was successful 
-        // and current and total Aircraft hours were changed.
-        //Main Failures
-        //Returns 0 if retrieval of previous Operation flight hours failed
-        // and no modification of Operation or Aircraft hours were completed.
-        //Returns -1 if Operation modification failed
-        // and no Aircraft hours modifications were made.
-        //Returns -2 if Operation modification was successful
-        // but the total Aircraft hours modification failed.
-        //Returns -3 if Operation modification was successful,
-        // but the total Aircraft hours modification failed,
-        // and the current Aircraft hours modification was never attempted but needed.
-        //Returns -4 if Operation modification was successful,
-        // the needed total Aircraft hours modification was successful,
-        // but the current Aircraft hours modification failed.     
-        //Failures within secondary methods directly below(modifyOpAdjustTotalHours or modifyOpAdjustCurrentHours)
-        //Return -5 if retrieval of the total hours failed
-        //Return - 6 if retrieval of the current hours failed
-        return result;
-    }
 
-    //Used within modifyOperation Method above
-    public int modifyOpAdjustCurrentHours(Operation inOperation, int difference) {
-        int result = -1;
+        //If modification was successful, check if Aircraft's current or total hours need modification
+        if (result == 1) {
 
-        int newHours = 0;
-        int oldHours = retrieveAircraftCurrentHours(inOperation.getAircraftID());
+            //If Operation's flight hours are changed and modification was successful
+            if (previousHours != newHours) {
 
-        if (oldHours > -1) {
-            //Caluculating new total for aircraft's current hours
-            newHours = oldHours + difference;
-            System.out.println("new hours " + String.valueOf(newHours));
-            System.out.println("old hours " + String.valueOf(oldHours));
-            System.out.println("difference " + String.valueOf(difference));
-            if (newHours < 0) {
-                newHours = 0;
+                //Calculate Hours Difference (Positive or Negative)                        
+                int difference = newHours - previousHours;
+
+                //Change Aircraft Total Hours
+                result = adjustTotalHours(inOperation, difference);
+
+                //Check Last Maintenance and change current Aircraft Hours if needed
+                // and if the total hours adjustment was successful
+                if (afterMaintenanceDate(inOperation) && result == 1) {
+                    result = adjustCurrentHours(inOperation, difference);
+                }
             }
-            result = modifyAircraftCurrentHours(inOperation.getAircraftID(), newHours);
-            System.out.println(String.valueOf(result));
         }
-
-        //Returns -1 if retrieval of the current hours failed
-        //Returns 0 if the modification of current hours failed
-        //Returns 1 if successful
+        
         return result;
     }
 
-    //Use within modifyOperation Method above
-    public int modifyOpAdjustTotalHours(Operation inOperation, int difference) {
-        int result = -1;
-
+    //Used within modifyOperation and insertNewOperation methods above
+    public int adjustCurrentHours(Operation inOperation, int difference) {
+        int result = 0;
         int newHours = 0;
-        int oldHours = retrieveAircraftTotalHours(inOperation.getAircraftID());
-
-        if (oldHours > -1) {
-            //Caluculating new total for aircraft's total hours
-            newHours = oldHours + difference;
-            System.out.println("new hours " + String.valueOf(newHours));
-            System.out.println("old hours " + String.valueOf(oldHours));
-            System.out.println("difference " + String.valueOf(difference));
-            result = modifyAircraftTotalHours(inOperation.getAircraftID(), newHours);
-            System.out.println(String.valueOf(result));
-        }
-
-        //Returns -1 if retrieval of the total hours failed
-        //Returns 0 if the modification of total hours failed
-        //Returns 1 if successful
-        return result;
-    }
-
-//Methods below are helper methods for Aircraft Hours Adjustments
-    public int retrieveAircraftCurrentHours(int aircraftID) {
-        int result = -1;
+        int oldHours = 0;
+        int aircraftID = inOperation.getAircraftID();
         ResultSet resultSet = null;
         try {
+            //Retrieve aircraft's current hours from the database
             retrieveAircraftCurrentHours.setInt(1, aircraftID);
             resultSet = retrieveAircraftCurrentHours.executeQuery();
             resultSet.next();
-            result = resultSet.getInt(1);
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }
-        return result;
-    }
+            oldHours = resultSet.getInt(1);
 
-    public int modifyAircraftCurrentHours(int aircraftID, int newHours) {
-        int result = 0;
-        try {
+            //Caluculating new total for aircraft's total hours
+            newHours = oldHours + difference;
+            //Prevent hours from becoming negative
+            if (newHours < 0) {
+                newHours = 0;
+            }
+            //Change the current hours
             modifyAircraftCurrentHours.setInt(1, newHours);
             modifyAircraftCurrentHours.setInt(2, aircraftID);
             result = modifyAircraftCurrentHours.executeUpdate();
@@ -393,23 +223,27 @@ public class OperationDAO {
         return result;
     }
 
-    public int retrieveAircraftTotalHours(int aircraftID) {
-        int result = -1;
+    //Used within modifyOperation and insertNewOperation methods above
+    public int adjustTotalHours(Operation inOperation, int difference) {
+        int result = 0;
+        int newHours = 0;
+        int oldHours = 0;
+        int aircraftID = inOperation.getAircraftID();
         ResultSet resultSet = null;
         try {
+            //Retrieve aircraft's total hours from the database
             retrieveAircraftTotalHours.setInt(1, aircraftID);
             resultSet = retrieveAircraftTotalHours.executeQuery();
             resultSet.next();
-            result = resultSet.getInt(1);
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }
-        return result;
-    }
+            oldHours = resultSet.getInt(1);
 
-    public int modifyAircraftTotalHours(int aircraftID, int newHours) {
-        int result = 0;
-        try {
+            //Caluculating new total for aircraft's total hours
+            newHours = oldHours + difference;
+            //Prevent hours from becoming negative
+            if (newHours < 0) {
+                newHours = 0;
+            }
+            //Change the total hours
             modifyAircraftTotalHours.setInt(1, newHours);
             modifyAircraftTotalHours.setInt(2, aircraftID);
             result = modifyAircraftTotalHours.executeUpdate();
@@ -419,7 +253,31 @@ public class OperationDAO {
         }
         return result;
     }
-//End of helper methods for Aircraft Hours Adjustments
+
+    //Used within modifyOperation and insertNewOperation methods above
+    // to check for the Last Maintenance Date
+    public boolean afterMaintenanceDate(Operation inOperation) {
+        boolean result = false;
+        ResultSet resultSet = null;
+        Date lastMaintenanceDate = null;
+        Date endDate = new java.sql.Date(inOperation.getOperationEndDate().getTime());
+        try {
+            retrieveLastMaintenanceDate.setInt(1, inOperation.getAircraftID());
+            resultSet = retrieveLastMaintenanceDate.executeQuery();
+
+            if (resultSet.next()) {
+                lastMaintenanceDate = resultSet.getDate(1);
+            }
+            //If the new End Date is after the last Maintenance Date
+            //Or Last Maintenance Date is null
+            if (lastMaintenanceDate == null || 0 < endDate.compareTo(lastMaintenanceDate)) {
+                result = true;
+            }
+        } catch (SQLException sqlExcept) {
+            sqlExcept.printStackTrace();
+        }
+        return result;
+    }
 
     private DefaultTableModel createOperationTableModel(ResultSet results) {
 
