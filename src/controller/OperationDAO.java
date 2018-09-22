@@ -133,9 +133,14 @@ public class OperationDAO {
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
         }
-        adjustTotalHours(inOperation, additionalHours);
-        if (afterMaintenanceDate(inOperation)) {
-            adjustCurrentHours(inOperation, additionalHours);
+        //If operation modification is successful
+        if(result == 1){
+            result = adjustTotalHours(inOperation, additionalHours);
+        }  
+        //If operation modification was successful, adjustTotalHours was successful,
+        // and the end date is after the last maintenance date or maintenance date is null.
+        if (afterMaintenanceDate(inOperation) && result == 1) {
+            result = adjustCurrentHours(inOperation, additionalHours);
         }
         return result;
     }
