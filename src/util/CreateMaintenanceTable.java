@@ -30,7 +30,7 @@ public class CreateMaintenanceTable {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION);
             Statement s = conn.createStatement();
-            s.execute("SELECT '1' FROM MAINTENANCE");
+            s.execute("SELECT '1' FROM maintenance");
         } catch (SQLException sqle) {
             String theError = (sqle).getSQLState();
             if (theError.equals("42X05")) // Table does not exist
@@ -44,12 +44,12 @@ public class CreateMaintenanceTable {
         if (okayToCreate) {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE MAINTENANCE ( "
-                        + " MAINTENANCE_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " AIRCRAFT_ID INT NOT NULL,"
-                        + " MAINTENANCE_START_DATE DATE NOT NULL,"
-                        + " MAINTENANCE_END_DATE DATE NOT NULL,"
-                        + " MAINTENANCE_DESCRIPTION VARCHAR(100) NOT NULL)");
+                statement.executeUpdate("CREATE TABLE maintenance ( "
+                        + " maintenance_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " aircraft_id INT NOT NULL,"
+                        + " maintenance_start_date DATE NOT NULL,"
+                        + " maintenance_end_date DATE NOT NULL,"
+                        + " maintenance_description VARCHAR(100) NOT NULL)");
 
                 System.out.println("MAINTENANCE table created.");
 
@@ -102,10 +102,3 @@ public class CreateMaintenanceTable {
     }
 
 }
-/*    
-    private int maintenanceID;
-    private int aircraftID;
-    private int startDate;
-    private int endDate;
-    private String maintDescr;
- */

@@ -30,7 +30,7 @@ public class CreateMissionsTable {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION);
             Statement s = conn.createStatement();
-            s.execute("SELECT '1' FROM MISSIONS");
+            s.execute("SELECT '1' FROM missions");
         } catch (SQLException sqle) {
             String theError = (sqle).getSQLState();
             if (theError.equals("42X05")) // Table does not exist
@@ -44,16 +44,16 @@ public class CreateMissionsTable {
         if (okayToCreate) {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE MISSIONS ( "
-                        + " MISSION_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " MISSION_NAME VARCHAR (50) NOT NULL)");
+                statement.executeUpdate("CREATE TABLE missions ( "
+                        + " mission_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " mission_name VARCHAR (50) NOT NULL)");
 
                 System.out.println("MISSIONS table created.");
 
                 //Insert rows into the table
                 try {
                     Statement insertStatement = conn.createStatement();
-                    insertStatement.executeUpdate("INSERT INTO MISSIONS (MISSION_NAME) VALUES "
+                    insertStatement.executeUpdate("INSERT INTO missions (mission_name) VALUES "
                             + "('Interdiction'), "
                             + "('Surveillance'), "
                             + "('Intelligence'), "

@@ -61,44 +61,44 @@ public class OperationDAO {
                     + "WHERE aircraft_id = ? "
                     + "ORDER BY operation_id");
 
-            insertNewOperation = conn.prepareStatement("INSERT INTO OPERATIONS"
-                    + " (AIRCRAFT_ID,"
-                    + " STATION_ID,"
-                    + " MISSION_ID,"
-                    + " OPERATION_NAME,"
-                    + " OPERATION_START_DATE,"
-                    + " OPERATION_END_DATE,"
-                    + " OPERATION_FLIGHT_HOURS)"
+            insertNewOperation = conn.prepareStatement("INSERT INTO operations"
+                    + " (aircraft_id,"
+                    + " station_id,"
+                    + " mission_id,"
+                    + " operation_name,"
+                    + " operation_start_date,"
+                    + " operation_end_date,"
+                    + " operation_flight_hours)"
                     + "VALUES (?,?,?,?,?,?,?)");
 
             retrieveAircraftCurrentHours = conn.prepareStatement("SELECT current_maintenance_hours"
-                    + " FROM AIRCRAFT WHERE aircraft_id = ?");
+                    + " FROM aircraft WHERE aircraft_id = ?");
 
             retrieveAircraftTotalHours = conn.prepareStatement("SELECT total_flight_hours"
-                    + " FROM AIRCRAFT WHERE aircraft_id = ?");
+                    + " FROM aircraft WHERE aircraft_id = ?");
 
-            modifyAircraftCurrentHours = conn.prepareStatement("UPDATE AIRCRAFT SET"
+            modifyAircraftCurrentHours = conn.prepareStatement("UPDATE aircraft SET"
                     + " current_maintenance_hours = ?"
                     + " WHERE aircraft_id = ?");
 
-            modifyAircraftTotalHours = conn.prepareStatement("UPDATE AIRCRAFT SET"
+            modifyAircraftTotalHours = conn.prepareStatement("UPDATE aircraft SET"
                     + " total_flight_hours = ?"
                     + " WHERE aircraft_id = ?");
 
-            retrieveOperationHours = conn.prepareStatement("SELECT OPERATION_FLIGHT_HOURS"
-                    + " FROM OPERATIONS WHERE OPERATION_ID = ?");
+            retrieveOperationHours = conn.prepareStatement("SELECT operation_flight_hours"
+                    + " FROM operations WHERE operation_id = ?");
 
-            retrieveLastMaintenanceDate = conn.prepareStatement("SELECT MAINTENANCE_END_DATE"
-                    + " FROM MAINTENANCE WHERE AIRCRAFT_ID = ? ORDER BY MAINTENANCE_END_DATE DESC");
+            retrieveLastMaintenanceDate = conn.prepareStatement("SELECT maintenance_end_date"
+                    + " FROM maintenance WHERE aircraft_id = ? ORDER BY maintenance_end_date DESC");
 
-            modifyOperation = conn.prepareStatement("UPDATE OPERATIONS SET"
-                    + " STATION_ID = ?,"
-                    + " MISSION_ID = ?,"
-                    + " OPERATION_NAME = ?,"
-                    + " OPERATION_START_DATE = ?,"
-                    + " OPERATION_END_DATE = ?,"
-                    + " OPERATION_FLIGHT_HOURS = ?"
-                    + " WHERE OPERATION_ID = ?");
+            modifyOperation = conn.prepareStatement("UPDATE operations SET"
+                    + " station_id = ?,"
+                    + " mission_id = ?,"
+                    + " operation_name = ?,"
+                    + " operation_start_date = ?,"
+                    + " operation_end_date = ?,"
+                    + " operation_flight_hours = ?"
+                    + " WHERE operation_id = ?");
 
         } catch (Exception except) {
             except.printStackTrace();

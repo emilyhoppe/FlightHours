@@ -50,10 +50,10 @@ public class StationDAO {
         try {
             //StationDAO.conn = conn;
             conn = DriverManager.getConnection(dbURL);
-            selectStationByType = conn.prepareStatement("SELECT * FROM STATIONS WHERE STATION_TYPE = ?");
-            selectAllStations = conn.prepareStatement("SELECT * FROM STATIONS");
+            selectStationByType = conn.prepareStatement("SELECT * FROM stations WHERE station_type = ?");
+            selectAllStations = conn.prepareStatement("SELECT * FROM stations");
 
-            insertNewStation = conn.prepareStatement("INSERT INTO STATIONS (STATION_NAME, STATION_TYPE)"
+            insertNewStation = conn.prepareStatement("INSERT INTO stations (station_name, station_type)"
                     + "VALUES (?, ?)");
 
         } catch (Exception except) {
@@ -74,9 +74,9 @@ public class StationDAO {
 
             while (resultSet.next()) {
                 results.add(new Station(
-                        resultSet.getInt("STATION_ID"),
-                        resultSet.getString("STATION_NAME"),
-                        resultSet.getString("STATION_TYPE")));
+                        resultSet.getInt("station_id"),
+                        resultSet.getString("station_name"),
+                        resultSet.getString("station_type")));
             }
 
         } catch (SQLException sqlExcept) {
@@ -103,9 +103,9 @@ public class StationDAO {
 
             while (resultSet.next()) {
                 results.add(new Station(
-                        resultSet.getInt("STATION_ID"),
-                        resultSet.getString("STATION_NAME"),
-                        resultSet.getString("STATION_TYPE")));
+                        resultSet.getInt("station_id"),
+                        resultSet.getString("station_name"),
+                        resultSet.getString("station_type")));
             }
 
         } catch (SQLException sqlExcept) {

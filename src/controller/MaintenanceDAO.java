@@ -37,21 +37,21 @@ public class MaintenanceDAO {
     public MaintenanceDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
-            selectMaintenanceByAircraft = conn.prepareStatement("select * from MAINTENANCE "
-                    + "where AIRCRAFT_ID = ?");
+            selectMaintenanceByAircraft = conn.prepareStatement("SELECT * FROM maintenance "
+                    + "WHERE aircraft_id = ?");
             
-            insertNewMaintenance = conn.prepareStatement("INSERT INTO MAINTENANCE"
-                    + " (AIRCRAFT_ID,"
-                    + " MAINTENANCE_START_DATE,"
-                    + " MAINTENANCE_END_DATE,"
-                    + " MAINTENANCE_DESCRIPTION)"
+            insertNewMaintenance = conn.prepareStatement("INSERT INTO maintenance"
+                    + " (aircraft_id,"
+                    + " maintenance_start_date,"
+                    + " maintenance_end_date,"
+                    + " maintenance_description)"
                     + "VALUES (?,?,?,?)");
             
-            modifyMaintenance = conn.prepareStatement("UPDATE MAINTENANCE SET"
-                    + " MAINTENANCE_START_DATE = ?,"
-                    + " MAINTENANCE_END_DATE = ?,"
-                    + " MAINTENANCE_DESCRIPTION = ?"
-                    + " WHERE MAINTENANCE_ID = ?");
+            modifyMaintenance = conn.prepareStatement("UPDATE maintenance SET"
+                    + " maintenance_start_date = ?,"
+                    + " maintenance_end_date = ?,"
+                    + " maintenance_description = ?"
+                    + " WHERE maintenance_id = ?");
 
         } catch (Exception except) {
             except.printStackTrace();

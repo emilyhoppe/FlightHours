@@ -30,7 +30,7 @@ public class CreateOperationsTable {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION);
             Statement s = conn.createStatement();
-            s.execute("SELECT '1' FROM OPERATIONS");
+            s.execute("SELECT '1' FROM operations");
         } catch (SQLException sqle) {
             String theError = (sqle).getSQLState();
             if (theError.equals("42X05")) // Table does not exist
@@ -44,23 +44,23 @@ public class CreateOperationsTable {
         if (okayToCreate) {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE OPERATIONS ( "
-                        + " OPERATION_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " AIRCRAFT_ID INT NOT NULL,"
-                        + " STATION_ID INT NOT NULL,"
-                        + " MISSION_ID INT NOT NULL,"
-                        + " OPERATION_NAME VARCHAR(20) NOT NULL,"
-                        + " OPERATION_START_DATE DATE NOT NULL,"
-                        + " OPERATION_END_DATE DATE NOT NULL,"
-                        + " OPERATION_FLIGHT_HOURS INT NOT NULL)");
+                statement.executeUpdate("CREATE TABLE operations ( "
+                        + " operation_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " aircraft_id INT NOT NULL,"
+                        + " station_id INT NOT NULL,"
+                        + " mission_id INT NOT NULL,"
+                        + " operation_name VARCHAR(20) NOT NULL,"
+                        + " operation_start_date DATE NOT NULL,"
+                        + " operation_end_date DATE NOT NULL,"
+                        + " operation_flight_hours INT NOT NULL)");
 
                 System.out.println("OPERATIONS table created.");
 
                 //Insert rows of sample data into the table
                 try {
                     Statement insertStatement = conn.createStatement();
-                    insertStatement.executeUpdate("INSERT INTO operations"
-                            + "(aircraft_id,"
+                    insertStatement.executeUpdate("INSERT INTO operations ("
+                            + "aircraft_id,"
                             + "station_id,"
                             + "mission_id,"
                             + "operation_name,"
@@ -96,13 +96,3 @@ public class CreateOperationsTable {
     }
 
 }
-/*
-    private int operationID;
-    private int aircraftID;
-    private int stationID;
-    private int missionID;
-    private String operationName;
-    private int operationStartDate;
-    private int operationEndDate;
-    private int operationFlighHour;
- */

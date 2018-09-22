@@ -30,7 +30,7 @@ public class CreateStationsTable {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION);
             Statement s = conn.createStatement();
-            s.execute("SELECT '1' FROM STATIONS");
+            s.execute("SELECT '1' FROM stations");
         } catch (SQLException sqle) {
             String theError = (sqle).getSQLState();
             if (theError.equals("42X05")) // Table does not exist
@@ -45,15 +45,15 @@ public class CreateStationsTable {
             //Create Table
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE STATIONS ( "
-                        + " STATION_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " STATION_NAME VARCHAR (50) NOT NULL, "
-                        + " STATION_TYPE VARCHAR (10) NOT NULL)");
+                statement.executeUpdate("CREATE TABLE stations ( "
+                        + " station_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " station_name VARCHAR (50) NOT NULL, "
+                        + " station_type VARCHAR (10) NOT NULL)");
                 System.out.println("STATIONS table created.");
                 //Insert rows into the table
                 try {
                     Statement insertStatement = conn.createStatement();
-                    insertStatement.executeUpdate("INSERT INTO STATIONS (STATION_NAME, STATION_TYPE) VALUES "
+                    insertStatement.executeUpdate("INSERT INTO stations (station_name, station_type) VALUES "
                             + "('McAllen Air and Marine Branch', 'AMO'), "
                             + "('Laredo Air Branch', 'AMO'), "
                             + "('San Antonio Air Unit', 'AMO'), "

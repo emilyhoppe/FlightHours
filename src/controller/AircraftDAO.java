@@ -57,7 +57,7 @@ public class AircraftDAO {
                     + "FROM aircraft "
                     + "INNER JOIN stations ON aircraft.station_id = stations.station_id");
 
-            tailNumberExists = conn.prepareStatement("SELECT COUNT(*) FROM AIRCRAFT WHERE TAIL_NUMBER = ?");
+            tailNumberExists = conn.prepareStatement("SELECT COUNT(*) FROM aircraft WHERE tail_number = ?");
 
             selectAircraftByStation = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
@@ -89,7 +89,7 @@ public class AircraftDAO {
                     + "end_of_service_date "
                     + "FROM aircraft "
                     + "INNER JOIN stations ON aircraft.station_id = stations.station_id "
-                    + "WHERE TAIL_NUMBER = ?");
+                    + "WHERE tail_number = ?");
 
             selectAircraftByMaintFlag = conn.prepareStatement("SELECT "
                     + "aircraft_id, "
@@ -105,7 +105,7 @@ public class AircraftDAO {
                     + "end_of_service_date "
                     + "FROM aircraft "
                     + "INNER JOIN stations ON aircraft.station_id = stations.station_id "
-                    + "WHERE MAINTENANCE_FLAG = ?");
+                    + "WHERE maintenance_flag = ?");
 
             insertNewAircraft = conn.prepareStatement("INSERT INTO aircraft"
                     + "(tail_number,"

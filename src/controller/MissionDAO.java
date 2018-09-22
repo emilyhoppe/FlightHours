@@ -38,7 +38,7 @@ public class MissionDAO {
         try {
             //MissionDAO.conn = conn;
             conn = DriverManager.getConnection(dbURL);
-            selectAllMissions = conn.prepareStatement("SELECT * FROM MISSIONS ORDER BY MISSION_NAME");
+            selectAllMissions = conn.prepareStatement("SELECT * FROM missions ORDER BY mission_name");
 
         } catch (Exception except) {
             except.printStackTrace();
@@ -56,8 +56,8 @@ public class MissionDAO {
 
             while (resultSet.next()) {
                 results.add(new Mission(
-                        resultSet.getInt("MISSION_ID"),
-                        resultSet.getString("MISSION_NAME")));
+                        resultSet.getInt("mission_id"),
+                        resultSet.getString("mission_name")));
             }
 
         } catch (SQLException sqlExcept) {

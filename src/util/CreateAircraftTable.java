@@ -45,18 +45,18 @@ public class CreateAircraftTable {
             //Create table in database
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
-                statement.executeUpdate("CREATE TABLE AIRCRAFT ( "
-                        + " AIRCRAFT_ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " TAIL_NUMBER   VARCHAR (10) NOT NULL UNIQUE,"
-                        + " AIRCRAFT_TYPE VARCHAR (20) NOT NULL,"
-                        + " STATION_ID INT NOT NULL,"
-                        + " MAX_SPEED INT NOT NULL,"
-                        + " MAX_ALTITUDE INT NOT NULL,"
-                        + " TOTAL_FLIGHT_HOURS INT NOT NULL,"
-                        + " MAINTENANCE_FLAG BOOLEAN NOT NULL,"
-                        + " CURRENT_MAINTENANCE_HOURS INT NOT NULL,"
-                        + " MAINTENANCE_HOURS_THRESHOLD INT NOT NULL,"
-                        + " END_OF_SERVICE_DATE DATE) ");
+                statement.executeUpdate("CREATE TABLE aircraft ( "
+                        + " aircraft_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " tail_number   VARCHAR (10) NOT NULL UNIQUE,"
+                        + " aircraft_type VARCHAR (20) NOT NULL,"
+                        + " station_id INT NOT NULL,"
+                        + " max_speed INT NOT NULL,"
+                        + " max_altitude INT NOT NULL,"
+                        + " total_flight_hours INT NOT NULL,"
+                        + " maintenance_flag BOOLEAN NOT NULL,"
+                        + " current_maintenance_hours INT NOT NULL,"
+                        + " maintenance_hours_threshold INT NOT NULL,"
+                        + " end_of_service_date DATE) ");
                 System.out.println("AIRCRAFT table created.");
                 //Insert rows of sample data into the table
                 try {
@@ -121,16 +121,3 @@ public class CreateAircraftTable {
     }
 
 }
-/*
-    private String tailNumber;
-    private String aircraftType;
-    private int stationID;
-    private String primaryMission;
-    private int maxSpeed;
-    private int maxAltitude;  
-    private int totalFlightHours;
-    private boolean maintenanceFlag;
-    private int currentMaintenanceHours;
-    private int maintenanceHoursThreshold;
-    private Date endOfServiceDate;
- */
