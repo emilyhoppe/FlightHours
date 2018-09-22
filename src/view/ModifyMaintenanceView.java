@@ -282,6 +282,9 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
             return;
         }
 
+        //TODO: VALIDATE START DATE IS SMALLER OR EQUAL TO END DATE
+        
+        
         simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         try {
             newStartDate = simpleDateFormat.parse(startDateTextField.getText());

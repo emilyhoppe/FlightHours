@@ -148,7 +148,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         }
         Mission[] missionArray = missionArrayList.toArray(new Mission[0]);
         missionComboBox = new JComboBox<>(missionArray);
-        
+
         startDateTextField = new JTextField(startDate);
         endDateTextField = new JTextField(endDate);
         flightHoursTextField = new JTextField(flightHours);
@@ -165,7 +165,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         outerPanel.setLayout(new GridBagLayout());
         titleLabel.setFont(new Font("Tahoma", 1, 18));
         titleLabel.setText("Modify Operation");
-        
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -342,7 +342,7 @@ public class ModifyOperationView extends javax.swing.JDialog {
         //Make dialog appear in center of parent frame
         setLocationRelativeTo(parent);
     }
-    
+
     //Modify button action
     private void modifyOperationButtonActionPerformed(ActionEvent evt) {
         //Method variables
@@ -387,6 +387,8 @@ public class ModifyOperationView extends javax.swing.JDialog {
             return;
         }
 
+        //TODO: VALIDATE START DATE IS SMALLER OR EQUAL TO END DATE
+        
         //Retrieve validated user input
         newOperationName = operationNameTextField.getText();
         newStation = (Station) stationComboBox.getSelectedItem();

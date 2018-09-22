@@ -28,6 +28,9 @@ public class FlightHours {
         System.out.println("Welcome to CMSC495 FlightHours!");
 
         //Create tables and load with sample data
+        //TODO: MOVE THESE TO A METHOD AND ADD RETURN FROM CREATETABLE METHOD TO 
+        //CHECK FOR ERRORS.  ONLY SHOW ONE ERROR DIALOG INSTEAD OF 5 FOR FAILED DATABASE
+        //CONNECTION
         util.CreateStationsTable.createTable();
         util.CreateMissionsTable.createTable();
         util.CreateAircraftTable.createTable();

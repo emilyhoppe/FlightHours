@@ -271,6 +271,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
             return;
         }
 
+        //TODO: VALIDATE START DATE IS SMALLER OR EQUAL TO END DATE
+        
         //Retrieve validated user input
         //Parse user entered dates into Date objects
         simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");

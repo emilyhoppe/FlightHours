@@ -336,6 +336,8 @@ public class AddOperationView extends javax.swing.JDialog {
             return;
         }
 
+        //TODO: VALIDATE START DATE IS SMALLER OR EQUAL TO END DATE
+        
         //Retrieve validated user input
         operationName = operationNameTextField.getText();
         station = (Station) stationComboBox.getSelectedItem();

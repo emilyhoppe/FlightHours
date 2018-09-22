@@ -103,6 +103,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     //Exit the system
     private void exitMenuItemActionPerformed(ActionEvent evt) {
+        //TODO SHUTDOWN DATABASE ON EXIT, ALSO NEED TO DO SAME ON WINDOW X
         System.exit(0);
     }
 
