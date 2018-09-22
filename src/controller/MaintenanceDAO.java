@@ -37,8 +37,9 @@ public class MaintenanceDAO {
     public MaintenanceDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
-            selectMaintenanceByAircraft = conn.prepareStatement("SELECT * FROM maintenance "
-                    + "WHERE aircraft_id = ?");
+            selectMaintenanceByAircraft = conn.prepareStatement("SELECT * FROM maintenance"
+                    + " WHERE aircraft_id = ?"
+                    + " ORDER BY maintenance_end_date DESC");
             
             insertNewMaintenance = conn.prepareStatement("INSERT INTO maintenance"
                     + " (aircraft_id,"

@@ -58,7 +58,7 @@ public class OperationDAO {
                     + "INNER JOIN stations ON operations.station_id = stations.station_id "
                     + "INNER JOIN missions on operations.mission_id = missions.mission_id "
                     + "WHERE aircraft_id = ? "
-                    + "ORDER BY operation_id");
+                    + "ORDER BY operations.operation_end_date DESC");
 
             insertNewOperation = conn.prepareStatement("INSERT INTO operations"
                     + " (aircraft_id,"
@@ -145,7 +145,6 @@ public class OperationDAO {
         ResultSet resultSet = null;
         int previousHours = 0;
         int newHours = inOperation.getOperationFlightHour();
-        //Date lastMaintenanceDate = null;
         Date startDate = new java.sql.Date(inOperation.getOperationStartDate().getTime());
         Date endDate = new java.sql.Date(inOperation.getOperationEndDate().getTime());
         try {
