@@ -282,9 +282,6 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
             return;
         }
 
-        //TODO: VALIDATE START DATE IS SMALLER OR EQUAL TO END DATE
-        
-        
         simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         try {
             newStartDate = simpleDateFormat.parse(startDateTextField.getText());
@@ -293,8 +290,15 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
             //Dates are already validated
         }
         newDescription = descriptionTextArea.getText();
-
         maintenanceIdInt = Integer.parseInt(maintenanceID);
+
+        //Validate that start date is before end date
+        if (newStartDate.after(newEndDate)) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Start date must be before end date",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         //Create new Maintenance instance
         maintenance = new Maintenance(maintenanceIdInt, aircraftID, newStartDate, newEndDate, newDescription);

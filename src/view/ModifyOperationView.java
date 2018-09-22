@@ -387,8 +387,6 @@ public class ModifyOperationView extends javax.swing.JDialog {
             return;
         }
 
-        //TODO: VALIDATE START DATE IS SMALLER OR EQUAL TO END DATE
-        
         //Retrieve validated user input
         newOperationName = operationNameTextField.getText();
         newStation = (Station) stationComboBox.getSelectedItem();
@@ -404,6 +402,14 @@ public class ModifyOperationView extends javax.swing.JDialog {
             //Dates are already validated
         }
         newFlightHours = Integer.parseInt(flightHoursTextField.getText());
+
+        //Validate that start date is before end date
+        if (newStartDate.after(newEndDate)) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Start date must be before end date",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         //Create new Operation instance
         operation = new Operation(operationID, aircraftID, newStationID, newMissionID, newOperationName,
