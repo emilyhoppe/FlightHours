@@ -32,6 +32,9 @@ public class MaintenanceDAO {
     private PreparedStatement selectMaintenanceByAircraft;
     private PreparedStatement insertNewMaintenance;
     private PreparedStatement modifyMaintenance;
+    private PreparedStatement modifyAircraftMaintenanceFlag;
+    private PreparedStatement retrieveLastMaintenanceDate;
+    private PreparedStatement retrieveMaintenanceFlag;
     private DefaultTableModel mtTableModel;
 
     public MaintenanceDAO() {
@@ -53,6 +56,16 @@ public class MaintenanceDAO {
                     + " maintenance_end_date = ?,"
                     + " maintenance_description = ?"
                     + " WHERE maintenance_id = ?");
+            
+            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
+                    + " maintenance_flag = ?"
+                    + " WHERE aircraft_id = ?");
+            
+            retrieveLastMaintenanceDate = conn.prepareStatement("SELECT maintenance_end_date"
+                    + " FROM maintenance WHERE aircraft_id = ? ORDER BY maintenance_end_date DESC");
+            
+            retrieveMaintenanceFlag = conn.prepareStatement("SELECT maintenance_flag"
+                    + " FROM maintenance WHERE aircraft_id = ? ");
 
         } catch (Exception except) {
             except.printStackTrace();
