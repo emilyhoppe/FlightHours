@@ -20,6 +20,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -97,14 +103,22 @@ public class MainFrame extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
+        //Override the window closing action event to close the database first
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                windowClosingEventActionPerformed();
+            }
+        });
+
         setSize(new Dimension(966, 739));
         setLocationRelativeTo(null);
     }
 
     //Exit the system
     private void exitMenuItemActionPerformed(ActionEvent evt) {
-        //TODO SHUTDOWN DATABASE ON EXIT, ALSO NEED TO DO SAME ON WINDOW X
-        System.exit(0);
+        System.out.println("exit menu button clicked");
+        windowClosingEventActionPerformed();
     }
 
     //Display the AboutView dialog
@@ -112,5 +126,25 @@ public class MainFrame extends javax.swing.JFrame {
         AboutView aboutView = new AboutView(this, true);
         aboutView.setVisible(true);
 
+    }
+
+    //Window closing event - Close database on window close
+    //This prevents skipping 100 numbers on auto incrimented columns
+    private void windowClosingEventActionPerformed() {
+        //Shutdown connection string
+        final String CONNECTION = "jdbc:derby:;shutdown=true";
+        try {
+            DriverManager.getConnection(CONNECTION);
+        } catch (SQLException ex) {
+            if (ex.getSQLState().equals("XJ015")) {
+                System.out.println("Database shutdown properly");
+            } else{
+                System.out.println("Database faile to shutdown");
+            }
+        }
+        //Force garbage collection to release database
+        System.gc();
+        //Now close the window
+        this.dispose();
     }
 }
