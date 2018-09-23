@@ -15,6 +15,7 @@ package controller;
 
 import model.Aircraft;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -210,10 +211,6 @@ public class AircraftDAO {
             insertNewAircraft.setBoolean(7, inAircraft.getMaintenanceFlag());
             insertNewAircraft.setInt(8, inAircraft.getCurrentMaintenanceHours());
             insertNewAircraft.setInt(9, inAircraft.getMaintenanceHoursThreshold());
-
-            //java.util.Date myDate = new java.util.Date(inAircraft.getEndOfServiceDate());
-            //java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-            //insertNewAircraft.setNull(9, 1); 
             result = insertNewAircraft.executeUpdate();
 
         } catch (SQLException sqlExcept) {
@@ -238,7 +235,7 @@ public class AircraftDAO {
             if (inAircraft.getEndOfServiceDate() != null) {
                 modifyAircraft.setDate(9, new java.sql.Date(inAircraft.getEndOfServiceDate().getTime()));
             } else {
-                modifyAircraft.setDate(9,null) ;
+                modifyAircraft.setDate(9, null);
             }
             modifyAircraft.setInt(10, inAircraft.getAircraftID());
 
@@ -260,9 +257,9 @@ public class AircraftDAO {
             tailNumberExists.setString(1, tailNumber);
             resultSet = tailNumberExists.executeQuery();
             resultSet.next();
-            int nrows = resultSet.getInt(1);
+            int number = resultSet.getInt(1);
 
-            if (nrows > 0) {
+            if (number > 0) {
                 result = true;
             }
 
@@ -312,10 +309,42 @@ public class AircraftDAO {
         }
 
         DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {
-            //Override default table model method and make all cells non-editable
+            //Override isCellEditable method and make all cells non-editable
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
+            }
+
+            //Override getColumnClass to set column types correctly for proper sorting
+            //This also makes the boolean values show as checkboxes which is nice
+            @Override
+            public Class getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return Integer.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return Integer.class;
+                    case 5:
+                        return Integer.class;
+                    case 6:
+                        return Integer.class;
+                    case 7:
+                        return Boolean.class;
+                    case 8:
+                        return Integer.class;
+                    case 9:
+                        return Integer.class;
+                    case 10:
+                        return Date.class;
+                    default:
+                        return String.class;
+                }
             }
         };
 
