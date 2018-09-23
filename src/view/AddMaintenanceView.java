@@ -48,6 +48,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
     private final Frame parent;
     private final String tailNumber;
     private final int aircraftID;
+    private final SimpleDateFormat simpleDateFormat;
+    private final Date currentDate;
     private JButton addMaintenanceButton;
     private JButton cancelButton;
     private JLabel descriptionLabel;
@@ -72,6 +74,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         this.parent = parent;
         this.tailNumber = tailNumber;
         this.aircraftID = aircraftID;
+        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        currentDate = new Date();
         initComponents();
         //Set add maintenance button to respond to enter key
         SwingUtilities.getRootPane(addMaintenanceButton).setDefaultButton(addMaintenanceButton);
@@ -90,8 +94,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         resetCheckBoxLabel = new JLabel();
         descriptionLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
-        startDateTextField = new JTextField();
-        endDateTextField = new JTextField();
+        startDateTextField = new JTextField(simpleDateFormat.format(currentDate));
+        endDateTextField = new JTextField(simpleDateFormat.format(currentDate));
         resetCheckBox = new JCheckBox();
         descriptionScrollPane = new JScrollPane();
         descriptionTextArea = new JTextArea();
@@ -261,7 +265,6 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         //Method variables
         Maintenance maintenance;
         MaintenanceDAO maintenanceDAO;
-        SimpleDateFormat simpleDateFormat;
         Date startDate = null;
         Date endDate = null;
         boolean resetCheckBoxState;
@@ -294,7 +297,6 @@ public class AddMaintenanceView extends javax.swing.JDialog {
 
         //Retrieve validated user input
         //Parse user entered dates into Date objects
-        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         try {
             startDate = simpleDateFormat.parse(startDateTextField.getText());
             endDate = simpleDateFormat.parse(endDateTextField.getText());

@@ -51,6 +51,8 @@ public class AddOperationView extends javax.swing.JDialog {
     private final Frame parent;
     private final int aircraftID;
     private final String tailNumber;
+    private final SimpleDateFormat simpleDateFormat;
+    private final Date currentDate;
     private JButton addOperationButton;
     private JButton cancelButton;
     private JLabel endDateLabel;
@@ -78,6 +80,8 @@ public class AddOperationView extends javax.swing.JDialog {
         this.parent = parent;
         this.aircraftID = aircraftID;
         this.tailNumber = tailNumber;
+        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        currentDate = new Date();
         initComponents();
         //Set add operation button to respond to enter key
         SwingUtilities.getRootPane(addOperationButton).setDefaultButton(addOperationButton);
@@ -103,8 +107,8 @@ public class AddOperationView extends javax.swing.JDialog {
         stationComboBox = new JComboBox<>(stationDAO.selectStationByType("USBP").toArray());
         MissionDAO missionDAO = new MissionDAO();
         missionComboBox = new JComboBox<>(missionDAO.selectAllMissions().toArray());
-        startDateTextField = new JTextField();
-        endDateTextField = new JTextField();
+        startDateTextField = new JTextField(simpleDateFormat.format(currentDate));
+        endDateTextField = new JTextField(simpleDateFormat.format(currentDate));
         flightHoursTextField = new JTextField();
         innerBottomPanel = new JPanel();
         addOperationButton = new JButton();
@@ -297,7 +301,6 @@ public class AddOperationView extends javax.swing.JDialog {
     private void addOperationButtonActionPerformed(ActionEvent evt) {
         Operation operation;
         OperationDAO operationDAO;
-        SimpleDateFormat simpleDateFormat;
         String operationName = "";
         Station station;
         int stationID;
@@ -343,7 +346,6 @@ public class AddOperationView extends javax.swing.JDialog {
         mission = (Mission) missionComboBox.getSelectedItem();
         missionID = mission.getMissionID();
         //Parse user entered dates into Date objects
-        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         try {
             startDate = simpleDateFormat.parse(startDateTextField.getText());
             endDate = simpleDateFormat.parse(endDateTextField.getText());
