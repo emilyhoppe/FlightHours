@@ -17,7 +17,6 @@ public class Aircraft {
     private String tailNumber;
     private String aircraftType;
     private int stationID;
-    //private String primaryMission;
     private int maxSpeed;
     private int maxAltitude;
     private int totalFlightHours;
@@ -32,7 +31,6 @@ public class Aircraft {
         this.tailNumber = tailNumber;
         this.aircraftType = aircraftType;
         this.stationID = stationID;
-        //this.primaryMission = primaryMission;
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
         this.totalFlightHours = totalFlightHours;
@@ -48,11 +46,9 @@ public class Aircraft {
         this.tailNumber = tailNumber;
         this.aircraftType = aircraftType;
         this.stationID = stationID;
-        //this.primaryMission = primaryMission;
         this.maxSpeed = maxSpeed;
         this.maxAltitude = maxAltitude;
         this.totalFlightHours = totalFlightHours;
-        //this.maintenanceFlag = maintenanceFlag;  //This should be calculated right?
         this.currentMaintenanceHours = currentMaintenanceHours;
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
         this.endOfServiceDate = endOfServiceDate;
@@ -89,13 +85,7 @@ public class Aircraft {
     public void setStationID(int stationID) {
         this.stationID = stationID;
     }
-
-    //public String getPrimaryMission() {
-    //    return primaryMission;
-    //}
-    //public void setPrimaryMission(String primaryMission) {
-    //    this.primaryMission = primaryMission;
-    //}
+    
     public int getMaxSpeed() {
         return maxSpeed;
     }

@@ -20,8 +20,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Date;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,11 +34,6 @@ public class OperationDAO {
     private PreparedStatement modifyAircraftTotalHours;
     private PreparedStatement retrieveAircraftCurrentHours;
     private PreparedStatement retrieveAircraftTotalHours;
-    private PreparedStatement retrieveOperationHours;
-    private PreparedStatement retrieveLastMaintenanceDate;
-    private PreparedStatement retrieveAircraftMaintenanceThreshold;
-    private PreparedStatement modifyAircraftMaintenanceFlag;
-    private PreparedStatement retrieveAircraftMaintenanceFlag;
     private DefaultTableModel opTableModel;
 
     public OperationDAO() {
@@ -78,18 +71,6 @@ public class OperationDAO {
 
             retrieveAircraftTotalHours = conn.prepareStatement("SELECT total_flight_hours"
                     + " FROM aircraft WHERE aircraft_id = ?");
-            
-            retrieveAircraftMaintenanceThreshold = conn.prepareStatement("SELECT maintenance_hours_threshold"
-                    + " FROM aircraft WHERE aircraft_id = ?");
-            
-            retrieveAircraftMaintenanceFlag = conn.prepareStatement("SELECT maintenance_flag"
-                    + " FROM aircraft WHERE aircraft_id = ?");
-            
-//removed this one because it was throwing an sql exception -JG 9/22/18 10:54pm
-//SQLSyntaxErrorException: You may not override the value of generated column 'MAINTENANCE_FLAG'.
-//            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
-//                    + " maintenance_flag = ?"
-//                    + " WHERE aircraft_id = ?");
 
             modifyAircraftCurrentHours = conn.prepareStatement("UPDATE aircraft SET"
                     + " current_maintenance_hours = ?"
@@ -98,12 +79,6 @@ public class OperationDAO {
             modifyAircraftTotalHours = conn.prepareStatement("UPDATE aircraft SET"
                     + " total_flight_hours = ?"
                     + " WHERE aircraft_id = ?");
-
-            retrieveOperationHours = conn.prepareStatement("SELECT operation_flight_hours"
-                    + " FROM operations WHERE operation_id = ?");
-
-            retrieveLastMaintenanceDate = conn.prepareStatement("SELECT maintenance_end_date"
-                    + " FROM maintenance WHERE aircraft_id = ? ORDER BY maintenance_end_date DESC");
 
             modifyOperation = conn.prepareStatement("UPDATE operations SET"
                     + " station_id = ?,"
@@ -152,9 +127,8 @@ public class OperationDAO {
         if(result == 1){
             result = modifyTotalHours(inOperation, additionalHours);
         }  
-        //If operation modification was successful, adjustTotalHours was successful,
-        // and the end date is after the last maintenance date or maintenance date is null.
-        if (afterMaintenanceDate(inOperation) && result == 1) {
+        //If operation modification was successful, adjustTotalHours was successful.
+        if (result == 1) {
             result = modifyCurrentHours(inOperation, additionalHours);
         }
         return result;
@@ -162,63 +136,28 @@ public class OperationDAO {
     
     public int modifyOperation(Operation inOperation) {
         int result = 0;
-        ResultSet resultSet = null;
-        int previousHours = 0;
-        int newHours = inOperation.getOperationFlightHour();
-        Date startDate = new java.sql.Date(inOperation.getOperationStartDate().getTime());
-        Date endDate = new java.sql.Date(inOperation.getOperationEndDate().getTime());
         try {
-            //Retrieve previous Operation flight hours for modifications to Aircraft's current and total flight hours
-            retrieveOperationHours.setInt(1, inOperation.getOperationID());
-            resultSet = retrieveOperationHours.executeQuery();
-            resultSet.next();
-            previousHours = resultSet.getInt(1);
-
-            //Main Operation modifications
             modifyOperation.setInt(1, inOperation.getStationID());
             modifyOperation.setInt(2, inOperation.getMissionID());
             modifyOperation.setString(3, inOperation.getOperationName());
-            modifyOperation.setDate(4, startDate);
-            modifyOperation.setDate(5, endDate);
-            modifyOperation.setInt(6, newHours);
+            modifyOperation.setDate(4, new java.sql.Date(inOperation.getOperationStartDate().getTime()));
+            modifyOperation.setDate(5, new java.sql.Date(inOperation.getOperationEndDate().getTime()));
+            modifyOperation.setInt(6, inOperation.getOperationFlightHour());
             modifyOperation.setInt(7, inOperation.getOperationID());
             result = modifyOperation.executeUpdate();
             
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
-        }
-
-        //If modification was successful, check if Aircraft's current or total hours need modification
-        if (result == 1) {
-
-            //If Operation's flight hours are changed and modification was successful
-            if (previousHours != newHours) {
-
-                //Calculate Hours Difference (Positive or Negative)                        
-                int difference = newHours - previousHours;
-
-                //Change Aircraft Total Hours
-                result = modifyTotalHours(inOperation, difference);
-
-                //Check Last Maintenance and change current Aircraft Hours if needed
-                // and if the total hours adjustment was successful
-                if (afterMaintenanceDate(inOperation) && result == 1) {
-                    result = modifyCurrentHours(inOperation, difference);
-                }
-            }
-        }
-        
+        }        
         return result;
     }
 
-    //Used within modifyOperation and insertNewOperation methods above
-    public int modifyCurrentHours(Operation inOperation, int difference) {
+    //Used within insertNewOperation method above
+    public int modifyCurrentHours(Operation inOperation, int additionalHours) {
         int result = 0;
         int newHours = 0;
         int oldHours = 0;
         int aircraftID = inOperation.getAircraftID();
-        boolean currentFlag = false;
-        boolean flag = false;
         ResultSet resultSet = null;
         try {
             //Retrieve aircraft's current hours from the database
@@ -228,26 +167,12 @@ public class OperationDAO {
             oldHours = resultSet.getInt(1);
 
             //Caluculating new total for aircraft's total hours
-            newHours = oldHours + difference;
-            //Prevent hours from becoming negative
-            if (newHours < 0) {
-                newHours = 0;
-            }
+            newHours = oldHours + additionalHours;
+            
             //Change the current hours
             modifyAircraftCurrentHours.setInt(1, newHours);
             modifyAircraftCurrentHours.setInt(2, aircraftID);
             result = modifyAircraftCurrentHours.executeUpdate();
-            
-            //Retrieve Current Maintenance Flag
-            retrieveAircraftMaintenanceFlag.setInt(1, aircraftID);
-            resultSet = retrieveAircraftMaintenanceFlag.executeQuery();
-            resultSet.next();
-            currentFlag = resultSet.getBoolean(1);
-            
-            //Check Maintenance Flag            
-            if(((flag = neededMaintenanceFlag(newHours, aircraftID)) != currentFlag ) && result == 1){
-                result = modifyMaintenanceFlag(aircraftID, flag);
-            }
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
@@ -255,8 +180,8 @@ public class OperationDAO {
         return result;
     }
 
-    //Used within modifyOperation and insertNewOperation methods above
-    public int modifyTotalHours(Operation inOperation, int difference) {
+    //Used within insertNewOperation method above
+    public int modifyTotalHours(Operation inOperation, int additionalHours) {
         int result = 0;
         int newHours = 0;
         int oldHours = 0;
@@ -270,73 +195,12 @@ public class OperationDAO {
             oldHours = resultSet.getInt(1);
 
             //Caluculating new total for aircraft's total hours
-            newHours = oldHours + difference;
-            //Prevent hours from becoming negative
-            if (newHours < 0) {
-                newHours = 0;
-            }
+            newHours = oldHours + additionalHours;
+            
             //Change the total hours
             modifyAircraftTotalHours.setInt(1, newHours);
             modifyAircraftTotalHours.setInt(2, aircraftID);
             result = modifyAircraftTotalHours.executeUpdate();
-
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }
-        return result;
-    }
-
-    //Used within modifyOperation and insertNewOperation methods above
-    // to check for the Last Maintenance Date
-    public boolean afterMaintenanceDate(Operation inOperation) {
-        boolean result = false;
-        ResultSet resultSet = null;
-        Date lastMaintenanceDate = null;
-        Date endDate = new java.sql.Date(inOperation.getOperationEndDate().getTime());
-        try {
-            retrieveLastMaintenanceDate.setInt(1, inOperation.getAircraftID());
-            resultSet = retrieveLastMaintenanceDate.executeQuery();
-
-            if (resultSet.next()) {
-                lastMaintenanceDate = resultSet.getDate(1);
-            }
-            //If the new End Date is after the last Maintenance Date
-            //Or Last Maintenance Date is null
-            if (lastMaintenanceDate == null || 0 < endDate.compareTo(lastMaintenanceDate)) {
-                result = true;
-            }
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }
-        return result;
-    }
-    
-    public boolean neededMaintenanceFlag(int currentHours, int aircraftID) {
-        boolean result = false;
-        ResultSet resultSet = null;     
-        int threshold = 0;
-        try {
-            retrieveAircraftMaintenanceThreshold.setInt(1, aircraftID);
-            resultSet = retrieveAircraftMaintenanceThreshold.executeQuery();
-            resultSet.next();
-            threshold = resultSet.getInt(1);
-            
-        } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }
-        if(threshold <= currentHours){
-            result = true;
-        }
-        return result;
-    }
-    
-    public int modifyMaintenanceFlag(int aircraftID, boolean flag) {
-        int result = 0;
-        try {
-            //Change the maintenance flag to true
-            modifyAircraftMaintenanceFlag.setBoolean(1, flag);
-            modifyAircraftMaintenanceFlag.setInt(2, aircraftID);
-            result = modifyAircraftMaintenanceFlag.executeUpdate();
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();

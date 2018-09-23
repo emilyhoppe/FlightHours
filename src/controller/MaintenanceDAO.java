@@ -28,13 +28,10 @@ public class MaintenanceDAO {
 
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
-    private Statement stmt = null;
     private PreparedStatement selectMaintenanceByAircraft;
     private PreparedStatement insertNewMaintenance;
     private PreparedStatement modifyMaintenance;
-    private PreparedStatement modifyAircraftMaintenanceFlag;
-    private PreparedStatement retrieveLastMaintenanceDate;
-    private PreparedStatement retrieveMaintenanceFlag;
+    private PreparedStatement modifyAircraftCurrentHours;
     private DefaultTableModel mtTableModel;
 
     public MaintenanceDAO() {
@@ -57,18 +54,9 @@ public class MaintenanceDAO {
                     + " maintenance_description = ?"
                     + " WHERE maintenance_id = ?");
             
-//removed this one because it was throwing an sql exception -JG 9/22/18 10:54pm
-//SQLSyntaxErrorException: You may not override the value of generated column 'MAINTENANCE_FLAG'.
-//            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
-//                    + " maintenance_flag = ?"
-//                    + " WHERE aircraft_id = ?");
-            
-            retrieveLastMaintenanceDate = conn.prepareStatement("SELECT maintenance_end_date"
-                    + " FROM maintenance WHERE aircraft_id = ? ORDER BY maintenance_end_date DESC");
-            
-           //removed this one because it was throwing an sql exception -JG 9/22/18 10:54pm 
-//            retrieveMaintenanceFlag = conn.prepareStatement("SELECT maintenance_flag"
-//                    + " FROM maintenance WHERE aircraft_id = ? ");
+            modifyAircraftCurrentHours = conn.prepareStatement("UPDATE aircraft SET"
+                    + " current_maintenance_hours = ?"
+                    + " WHERE aircraft_id = ?");
 
         } catch (Exception except) {
             except.printStackTrace();
@@ -91,20 +79,19 @@ public class MaintenanceDAO {
 
     public int insertNewMaintenance(Maintenance inMaintenance) {
         int result = 0;
-        try {
-            //TODO: DO SOMETHING WITH resetMaintenance boolean
-            //////////////////////////////////////////////////////////////////////
-            if (inMaintenance.getResetMaintenance()) {
-                System.out.println("WE NEED TO RESET THE MAINTENANCE HOURS TO 0");
-            } else {
-                System.out.println("WE DON'T NEED TO RESET MAINT HOURS");
-            }
-            //////////////////////////////////////////////////////////////////////
-            insertNewMaintenance.setInt(1, inMaintenance.getAircraftID());
+        int aircraftID = inMaintenance.getAircraftID();
+        try {                        
+            insertNewMaintenance.setInt(1, aircraftID);
             insertNewMaintenance.setDate(2, new java.sql.Date(inMaintenance.getStartDate().getTime()));
             insertNewMaintenance.setDate(3, new java.sql.Date(inMaintenance.getEndDate().getTime()));
             insertNewMaintenance.setString(4, inMaintenance.getMaintDescr());
             result = insertNewMaintenance.executeUpdate();
+            
+            if (inMaintenance.getResetMaintenance() && result == 1) {
+               modifyAircraftCurrentHours.setInt(1, 0);
+               modifyAircraftCurrentHours.setInt(2, aircraftID);
+               result = modifyAircraftCurrentHours.executeUpdate();
+            } 
 
         } catch (SQLException sqlExcept) {
             sqlExcept.printStackTrace();
