@@ -13,6 +13,7 @@ public class Maintenance {
     private int aircraftID;
     private Date startDate;
     private Date endDate;
+    private boolean resetMaintenance;
     private String maintDescr;
 
     public Maintenance(int maintenanceID, int aircraftID, Date startDate, Date endDate, String maintDesce) {
@@ -27,6 +28,14 @@ public class Maintenance {
         this.aircraftID = aircraftID;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.maintDescr = maintDesce;
+    }
+
+    public Maintenance(int aircraftID, Date startDate, Date endDate, boolean resetMaintenance, String maintDesce) {
+        this.aircraftID = aircraftID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.resetMaintenance = resetMaintenance;
         this.maintDescr = maintDesce;
     }
 
@@ -63,6 +72,14 @@ public class Maintenance {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+    
+    public boolean getResetMaintenance() {
+        return resetMaintenance;
+    }
+    
+    public void setResetMaintenance(boolean resetMaintenance) {
+        this.resetMaintenance = resetMaintenance;
     }
 
     public String getMaintDescr() {

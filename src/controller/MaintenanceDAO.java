@@ -24,8 +24,8 @@ import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
-public class MaintenanceDAO {    
-    
+public class MaintenanceDAO {
+
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private Statement stmt = null;
@@ -40,14 +40,14 @@ public class MaintenanceDAO {
             selectMaintenanceByAircraft = conn.prepareStatement("SELECT * FROM maintenance"
                     + " WHERE aircraft_id = ?"
                     + " ORDER BY maintenance_end_date DESC");
-            
+
             insertNewMaintenance = conn.prepareStatement("INSERT INTO maintenance"
                     + " (aircraft_id,"
                     + " maintenance_start_date,"
                     + " maintenance_end_date,"
                     + " maintenance_description)"
                     + "VALUES (?,?,?,?)");
-            
+
             modifyMaintenance = conn.prepareStatement("UPDATE maintenance SET"
                     + " maintenance_start_date = ?,"
                     + " maintenance_end_date = ?,"
@@ -58,9 +58,9 @@ public class MaintenanceDAO {
             except.printStackTrace();
         }
     }
-    
+
     public DefaultTableModel selectMaintenanceByAircraft(int aircraftID) {
-        
+
         ResultSet resultSet = null;
         try {
             selectMaintenanceByAircraft.setInt(1, aircraftID);
@@ -72,14 +72,22 @@ public class MaintenanceDAO {
         mtTableModel = createMaintenanceTableModel(resultSet);
         return mtTableModel;
     }
-    
+
     public int insertNewMaintenance(Maintenance inMaintenance) {
         int result = 0;
         try {
+            //TODO: DO SOMETHING WITH resetMaintenance boolean
+            //////////////////////////////////////////////////////////////////////
+            if (inMaintenance.getResetMaintenance()) {
+                System.out.println("WE NEED TO RESET THE MAINTENANCE HOURS AND FLAG");
+            } else {
+                System.out.println("WE DON'T NEED TO RESET MAINT HOURS OR FLAG");
+            }
+            //////////////////////////////////////////////////////////////////////
             insertNewMaintenance.setInt(1, inMaintenance.getAircraftID());
             insertNewMaintenance.setDate(2, new java.sql.Date(inMaintenance.getStartDate().getTime()));
             insertNewMaintenance.setDate(3, new java.sql.Date(inMaintenance.getEndDate().getTime()));
-            insertNewMaintenance.setString(4, inMaintenance.getMaintDescr());  
+            insertNewMaintenance.setString(4, inMaintenance.getMaintDescr());
             result = insertNewMaintenance.executeUpdate();
 
         } catch (SQLException sqlExcept) {
@@ -102,7 +110,7 @@ public class MaintenanceDAO {
         }
         return result;
     }
-    
+
     private DefaultTableModel createMaintenanceTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();

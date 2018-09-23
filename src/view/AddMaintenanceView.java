@@ -30,6 +30,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -62,6 +63,8 @@ public class AddMaintenanceView extends javax.swing.JDialog {
     private JLabel tailNumberLabel;
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
+    private JLabel resetCheckBoxLabel;
+    private JCheckBox resetCheckBox;
 
     //Constructor with parameters
     public AddMaintenanceView(Frame parent, boolean modal, int aircraftID, String tailNumber) {
@@ -84,10 +87,12 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         tailNumberLabel = new JLabel();
         startDateLabel = new JLabel();
         endDateLabel = new JLabel();
+        resetCheckBoxLabel = new JLabel();
         descriptionLabel = new JLabel();
         tailNumberTextField = new JTextField(tailNumber);
         startDateTextField = new JTextField();
         endDateTextField = new JTextField();
+        resetCheckBox = new JCheckBox();
         descriptionScrollPane = new JScrollPane();
         descriptionTextArea = new JTextArea();
         innerBottomPanel = new JPanel();
@@ -138,10 +143,18 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(endDateLabel, gridBagConstraints);
 
-        descriptionLabel.setText("Description");
+        resetCheckBoxLabel.setText("Reset Flag and Hours");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        innerMiddlePanel.add(resetCheckBoxLabel, gridBagConstraints);
+
+        descriptionLabel.setText("Description");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(descriptionLabel, gridBagConstraints);
@@ -170,6 +183,13 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(endDateTextField, gridBagConstraints);
+  
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        innerMiddlePanel.add(resetCheckBox, gridBagConstraints);
 
         descriptionTextArea.setColumns(30);
         descriptionTextArea.setRows(5);
@@ -178,7 +198,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         innerMiddlePanel.add(descriptionScrollPane, gridBagConstraints);
@@ -244,6 +264,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         SimpleDateFormat simpleDateFormat;
         Date startDate = null;
         Date endDate = null;
+        boolean resetCheckBoxState;
         String description = "";
 
         //Validate all user input
@@ -281,7 +302,9 @@ public class AddMaintenanceView extends javax.swing.JDialog {
             //Dates are already validated
         }
         description = descriptionTextArea.getText();
-
+        
+        resetCheckBoxState = resetCheckBox.isSelected();
+        
         //Validate that start date is before end date
         if (startDate.after(endDate)) {
             JOptionPane.showMessageDialog(outerPanel,
@@ -291,7 +314,7 @@ public class AddMaintenanceView extends javax.swing.JDialog {
         }
 
         //Create new Maintenance instance
-        maintenance = new Maintenance(aircraftID, startDate, endDate, description);
+        maintenance = new Maintenance(aircraftID, startDate, endDate, resetCheckBoxState, description);
 
         //Insert maintenance instance into database by calling DAO object
         maintenanceDAO = new MaintenanceDAO();
