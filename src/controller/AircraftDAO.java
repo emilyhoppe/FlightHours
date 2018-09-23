@@ -114,10 +114,9 @@ public class AircraftDAO {
                     + " max_speed,"
                     + " max_altitude,"
                     + " total_flight_hours,"
-                    + " maintenance_flag,"
                     + " current_maintenance_hours,"
                     + " maintenance_hours_threshold)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?)");
+                    + "VALUES (?,?,?,?,?,?,?,?)");
 
             modifyAircraft = conn.prepareStatement("UPDATE AIRCRAFT SET"
                     + " tail_number   = ?,"
