@@ -57,15 +57,18 @@ public class MaintenanceDAO {
                     + " maintenance_description = ?"
                     + " WHERE maintenance_id = ?");
             
-            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
-                    + " maintenance_flag = ?"
-                    + " WHERE aircraft_id = ?");
+//removed this one because it was throwing an sql exception -JG 9/22/18 10:54pm
+//SQLSyntaxErrorException: You may not override the value of generated column 'MAINTENANCE_FLAG'.
+//            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
+//                    + " maintenance_flag = ?"
+//                    + " WHERE aircraft_id = ?");
             
             retrieveLastMaintenanceDate = conn.prepareStatement("SELECT maintenance_end_date"
                     + " FROM maintenance WHERE aircraft_id = ? ORDER BY maintenance_end_date DESC");
             
-            retrieveMaintenanceFlag = conn.prepareStatement("SELECT maintenance_flag"
-                    + " FROM maintenance WHERE aircraft_id = ? ");
+           //removed this one because it was throwing an sql exception -JG 9/22/18 10:54pm 
+//            retrieveMaintenanceFlag = conn.prepareStatement("SELECT maintenance_flag"
+//                    + " FROM maintenance WHERE aircraft_id = ? ");
 
         } catch (Exception except) {
             except.printStackTrace();
@@ -92,9 +95,9 @@ public class MaintenanceDAO {
             //TODO: DO SOMETHING WITH resetMaintenance boolean
             //////////////////////////////////////////////////////////////////////
             if (inMaintenance.getResetMaintenance()) {
-                System.out.println("WE NEED TO RESET THE MAINTENANCE HOURS AND FLAG");
+                System.out.println("WE NEED TO RESET THE MAINTENANCE HOURS TO 0");
             } else {
-                System.out.println("WE DON'T NEED TO RESET MAINT HOURS OR FLAG");
+                System.out.println("WE DON'T NEED TO RESET MAINT HOURS");
             }
             //////////////////////////////////////////////////////////////////////
             insertNewMaintenance.setInt(1, inMaintenance.getAircraftID());

@@ -85,9 +85,11 @@ public class OperationDAO {
             retrieveAircraftMaintenanceFlag = conn.prepareStatement("SELECT maintenance_flag"
                     + " FROM aircraft WHERE aircraft_id = ?");
             
-            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
-                    + " maintenance_flag = ?"
-                    + " WHERE aircraft_id = ?");
+//removed this one because it was throwing an sql exception -JG 9/22/18 10:54pm
+//SQLSyntaxErrorException: You may not override the value of generated column 'MAINTENANCE_FLAG'.
+//            modifyAircraftMaintenanceFlag = conn.prepareStatement("UPDATE aircraft SET"
+//                    + " maintenance_flag = ?"
+//                    + " WHERE aircraft_id = ?");
 
             modifyAircraftCurrentHours = conn.prepareStatement("UPDATE aircraft SET"
                     + " current_maintenance_hours = ?"
