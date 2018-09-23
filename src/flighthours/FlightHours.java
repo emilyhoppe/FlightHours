@@ -17,6 +17,9 @@
  *********** */
 package flighthours;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import view.MainFrame;
 
@@ -26,24 +29,43 @@ public class FlightHours {
         //Welcome message for our Dev team
         System.out.println("Hello Team!");
         System.out.println("Welcome to CMSC495 FlightHours!");
+        if (testDatabaseConnection()) {
+            //Only continue if database connection is available
+            createTables();
+            //Start GUI, this is needed to avoid unresponsive GUI on slow tasks
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    createAndShowGUI();
+                }
+            });
+        }
+    }
 
-        //Create tables and load with sample data
-        //TODO: MOVE THESE TO A METHOD AND ADD RETURN FROM CREATETABLE METHOD TO 
-        //CHECK FOR ERRORS.  ONLY SHOW ONE ERROR DIALOG INSTEAD OF 5 FOR FAILED DATABASE
-        //CONNECTION
+    //Test database connection
+    private static boolean testDatabaseConnection() {
+        final String CONNECTION = "jdbc:derby:FlightHours;create=true";
+
+        try {
+            DriverManager.getConnection(CONNECTION);
+        } catch (SQLException sqle) {
+            {
+                JOptionPane.showMessageDialog(null, "Database connection error.\n"
+                        + "Please only open one instance of this application at a time.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Create tables and insert sample data
+    private static void createTables() {
         util.CreateStationsTable.createTable();
         util.CreateMissionsTable.createTable();
         util.CreateAircraftTable.createTable();
         util.CreateOperationsTable.createTable();
         util.CreateMaintenanceTable.createTable();
-
-        //Start GUI, this is needed to avoid unresponsive GUI on slow tasks
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                createAndShowGUI();
-            }
-        });
     }
 
     //Create applicaiton frame and set it to visible
@@ -51,5 +73,4 @@ public class FlightHours {
         MainFrame mainView = new MainFrame();
         mainView.setVisible(true);
     }
-
 }
