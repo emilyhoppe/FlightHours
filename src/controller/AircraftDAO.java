@@ -208,9 +208,8 @@ public class AircraftDAO {
             insertNewAircraft.setInt(4, inAircraft.getMaxSpeed());
             insertNewAircraft.setInt(5, inAircraft.getMaxAltitude());
             insertNewAircraft.setInt(6, inAircraft.getTotalFlightHours());
-            insertNewAircraft.setBoolean(7, inAircraft.getMaintenanceFlag());
-            insertNewAircraft.setInt(8, inAircraft.getCurrentMaintenanceHours());
-            insertNewAircraft.setInt(9, inAircraft.getMaintenanceHoursThreshold());
+            insertNewAircraft.setInt(7, inAircraft.getCurrentMaintenanceHours());
+            insertNewAircraft.setInt(8, inAircraft.getMaintenanceHoursThreshold());
             result = insertNewAircraft.executeUpdate();
 
         } catch (SQLException sqlExcept) {
