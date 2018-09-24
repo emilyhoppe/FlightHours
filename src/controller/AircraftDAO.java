@@ -210,7 +210,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
-        //Insert a new aircraft into the database
+    //Insert a new aircraft into the database
     public int insertNewAircraft(Aircraft inAircraft) {
         int result = 0;
 
