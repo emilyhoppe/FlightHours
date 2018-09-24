@@ -46,7 +46,7 @@ public class CreateStationsTable {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE stations ( "
-                        + " station_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " station_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
                         + " station_name VARCHAR (50) NOT NULL, "
                         + " station_type VARCHAR (10) NOT NULL)");
                 System.out.println("STATIONS table created.");

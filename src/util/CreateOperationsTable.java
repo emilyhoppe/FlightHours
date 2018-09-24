@@ -45,10 +45,10 @@ public class CreateOperationsTable {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE operations ( "
-                        + " operation_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " aircraft_id INT NOT NULL,"
-                        + " station_id INT NOT NULL,"
-                        + " mission_id INT NOT NULL,"
+                        + " operation_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
+                        + " aircraft_id INT NOT NULL REFERENCES aircraft(aircraft_id),"
+                        + " station_id INT NOT NULL REFERENCES stations(station_id),"
+                        + " mission_id INT NOT NULL REFERENCES missions(mission_id),"
                         + " operation_name VARCHAR(20) NOT NULL,"
                         + " operation_start_date DATE NOT NULL,"
                         + " operation_end_date DATE NOT NULL,"

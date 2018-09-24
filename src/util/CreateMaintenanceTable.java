@@ -45,8 +45,8 @@ public class CreateMaintenanceTable {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE maintenance ( "
-                        + " maintenance_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                        + " aircraft_id INT NOT NULL,"
+                        + " maintenance_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
+                        + " aircraft_id INT NOT NULL REFERENCES aircraft(aircraft_id),"
                         + " maintenance_start_date DATE NOT NULL,"
                         + " maintenance_end_date DATE NOT NULL,"
                         + " maintenance_description VARCHAR(100) NOT NULL)");

@@ -46,10 +46,10 @@ public class CreateAircraftTable {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE aircraft ( "
-                        + " aircraft_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " aircraft_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
                         + " tail_number   VARCHAR (10) NOT NULL UNIQUE,"
                         + " aircraft_type VARCHAR (20) NOT NULL,"
-                        + " station_id INT NOT NULL,"
+                        + " station_id INT NOT NULL REFERENCES stations(station_id),"
                         + " max_speed INT NOT NULL,"
                         + " max_altitude INT NOT NULL,"
                         + " total_flight_hours INT NOT NULL,"
@@ -57,7 +57,7 @@ public class CreateAircraftTable {
                         + "     (current_maintenance_hours >= maintenance_hours_threshold),"
                         + " current_maintenance_hours INT NOT NULL,"
                         + " maintenance_hours_threshold INT NOT NULL,"
-                        + " end_of_service_date DATE) ");
+                        + " end_of_service_date DATE)");
                 System.out.println("AIRCRAFT table created.");
                 //Insert rows of sample data into the table
                 try {
@@ -76,7 +76,7 @@ public class CreateAircraftTable {
                             + "('N7255N','Rotary Wing',12,130,15000,10713,5251,6000,NULL),"
                             + "('N6506R','Fixed Wing',17,174,18000,10889,2416,4000,NULL),"
                             + "('N7166P','UAV',16,260,26000,10205,717,1500,NULL),"
-                            + "('N3707R','Rotary Wing',8,150,20000,18853,2475,4000,NULL),"
+                            + "('N3707R','Rotary Wing',8,150,20000,18853,4475,4000,NULL),"
                             + "('N8877N','Rotary Wing',17,130,15000,8769,2580,4000,NULL),"
                             + "('N4900P','Fixed Wing',15,270,31000,11862,2278,5000,NULL),"
                             + "('N1010N','Fixed Wing',13,174,18000,14635,2657,4000,NULL),"

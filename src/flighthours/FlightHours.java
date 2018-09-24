@@ -61,8 +61,8 @@ public class FlightHours {
 
     //Create tables and insert sample data
     private static void createTables() {
-        util.CreateStationsTable.createTable();
         util.CreateMissionsTable.createTable();
+        util.CreateStationsTable.createTable();
         util.CreateAircraftTable.createTable();
         util.CreateOperationsTable.createTable();
         util.CreateMaintenanceTable.createTable();

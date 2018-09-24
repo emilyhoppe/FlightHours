@@ -45,7 +45,7 @@ public class CreateMissionsTable {
             try (Connection conn = DriverManager.getConnection(CONNECTION);
                     Statement statement = conn.createStatement()) {
                 statement.executeUpdate("CREATE TABLE missions ( "
-                        + " mission_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                        + " mission_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
                         + " mission_name VARCHAR (50) NOT NULL)");
 
                 System.out.println("MISSIONS table created.");
