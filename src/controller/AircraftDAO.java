@@ -20,16 +20,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class AircraftDAO {
 
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
-    private Statement stmt = null;
     private PreparedStatement selectAllAircraft;
     private PreparedStatement selectAircraftByStation;
     private PreparedStatement selectAircraftByTailNumber;
@@ -37,7 +35,6 @@ public class AircraftDAO {
     private PreparedStatement insertNewAircraft;
     private PreparedStatement modifyAircraft;
     private PreparedStatement tailNumberExists;
-    private List<Aircraft> AircraftList;
     private DefaultTableModel acTableModel;
 
     public AircraftDAO() {
@@ -131,8 +128,10 @@ public class AircraftDAO {
                     + " end_of_service_date        = ?"
                     + "WHERE aircraft_id           = ?");
 
-        } catch (Exception except) {
-            except.printStackTrace();
+        } catch (SQLException except) {
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -145,7 +144,9 @@ public class AircraftDAO {
             resultSet = selectAllAircraft.executeQuery();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         acTableModel = createAircraftTableModel(resultSet);
@@ -161,7 +162,9 @@ public class AircraftDAO {
             resultSet = selectAircraftByStation.executeQuery();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         acTableModel = createAircraftTableModel(resultSet);
@@ -176,7 +179,9 @@ public class AircraftDAO {
             resultSet = selectAircraftByTailNumber.executeQuery();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         acTableModel = createAircraftTableModel(resultSet);
@@ -191,7 +196,9 @@ public class AircraftDAO {
             resultSet = selectAircraftByMaintFlag.executeQuery();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         acTableModel = createAircraftTableModel(resultSet);
@@ -213,7 +220,9 @@ public class AircraftDAO {
             result = insertNewAircraft.executeUpdate();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return result;
@@ -241,7 +250,9 @@ public class AircraftDAO {
             result = modifyAircraft.executeUpdate();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return result;
@@ -263,7 +274,9 @@ public class AircraftDAO {
             }
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return result;
@@ -304,7 +317,9 @@ public class AircraftDAO {
                 tableData.add(vector);
             }
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         DefaultTableModel aircraftTableModel = new DefaultTableModel(tableData, tableColumns) {

@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class OperationDAO {
@@ -89,8 +90,10 @@ public class OperationDAO {
                     + " operation_flight_hours = ?"
                     + " WHERE operation_id = ?");
 
-        } catch (Exception except) {
-            except.printStackTrace();
+        } catch (SQLException except) {
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -101,7 +104,9 @@ public class OperationDAO {
             selectOperationByAircraft.setInt(1, aircraftID);
             resultSet = selectOperationByAircraft.executeQuery();
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         opTableModel = createOperationTableModel(resultSet);
         return opTableModel;
@@ -121,19 +126,21 @@ public class OperationDAO {
             result = insertNewOperation.executeUpdate();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         //If operation modification is successful
-        if(result == 1){
+        if (result == 1) {
             result = modifyTotalHours(inOperation, additionalHours);
-        }  
+        }
         //If operation modification was successful, adjustTotalHours was successful.
         if (result == 1) {
             result = modifyCurrentHours(inOperation, additionalHours);
         }
         return result;
     }
-    
+
     public int modifyOperation(Operation inOperation) {
         int result = 0;
         try {
@@ -145,10 +152,12 @@ public class OperationDAO {
             modifyOperation.setInt(6, inOperation.getOperationFlightHour());
             modifyOperation.setInt(7, inOperation.getOperationID());
             result = modifyOperation.executeUpdate();
-            
+
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
-        }        
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
         return result;
     }
 
@@ -168,14 +177,16 @@ public class OperationDAO {
 
             //Caluculating new total for aircraft's total hours
             newHours = oldHours + additionalHours;
-            
+
             //Change the current hours
             modifyAircraftCurrentHours.setInt(1, newHours);
             modifyAircraftCurrentHours.setInt(2, aircraftID);
             result = modifyAircraftCurrentHours.executeUpdate();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         return result;
     }
@@ -196,14 +207,16 @@ public class OperationDAO {
 
             //Caluculating new total for aircraft's total hours
             newHours = oldHours + additionalHours;
-            
+
             //Change the total hours
             modifyAircraftTotalHours.setInt(1, newHours);
             modifyAircraftTotalHours.setInt(2, aircraftID);
             result = modifyAircraftTotalHours.executeUpdate();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         return result;
     }
@@ -241,7 +254,9 @@ public class OperationDAO {
                 tableData.add(vector);
             }
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         DefaultTableModel operationTableModel = new DefaultTableModel(tableData, tableColumns) {

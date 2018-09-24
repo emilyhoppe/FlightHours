@@ -20,35 +20,20 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class StationDAO {
 
     private String dbURL = "jdbc:derby:FlightHours";
-    //private static String tableName = "STATIONS";
-    // jdbc Connection
     private Connection conn = null;
-    private Statement stmt = null;
     private PreparedStatement selectStationByType;
     private PreparedStatement selectAllStations;
     private PreparedStatement insertNewStation;
-    private List<Station> stationList;
 
-    /* public static void main(String[] args) {
-        createConnection();
-        //selectAllStations();
-        //selectStationType("AMO");
-        stationList = selectStationByType("AMO");
-        System.out.println(stationList.size());
-        shutdown();
-     } */
     public StationDAO() {
         try {
-            //StationDAO.conn = conn;
             conn = DriverManager.getConnection(dbURL);
             selectStationByType = conn.prepareStatement("SELECT * FROM stations WHERE station_type = ?");
             selectAllStations = conn.prepareStatement("SELECT * FROM stations");
@@ -56,11 +41,12 @@ public class StationDAO {
             insertNewStation = conn.prepareStatement("INSERT INTO stations (station_name, station_type)"
                     + "VALUES (?, ?)");
 
-        } catch (Exception except) {
-            except.printStackTrace();
+        } catch (SQLException except) {
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        //createConnection();
     }
 
     public List< Station> selectAllStations() {
@@ -80,12 +66,18 @@ public class StationDAO {
             }
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException sqlExcept) {
-                sqlExcept.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                        "Database Error",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -109,12 +101,18 @@ public class StationDAO {
             }
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException sqlExcept) {
-                sqlExcept.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                        "Database Error",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         return results;
@@ -129,26 +127,12 @@ public class StationDAO {
             result = insertNewStation.executeUpdate();
 
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
 
         }
 
         return result;
     }
-
-    private void shutdown() {
-        try {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                //DriverManager.getConnection(dbURL + ";shutdown=true");
-                conn.close();
-            }
-        } catch (SQLException sqlExcept) {
-
-        }
-
-    }
-
 }

@@ -21,10 +21,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class MissionDAO {
 
@@ -36,12 +35,13 @@ public class MissionDAO {
 
     public MissionDAO() {
         try {
-            //MissionDAO.conn = conn;
             conn = DriverManager.getConnection(dbURL);
             selectAllMissions = conn.prepareStatement("SELECT * FROM missions ORDER BY mission_name");
 
-        } catch (Exception except) {
-            except.printStackTrace();
+        } catch (SQLException except) {
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -49,7 +49,7 @@ public class MissionDAO {
 
         List<Mission> results = null;
         ResultSet resultSet = null;
-        
+
         try {
             resultSet = selectAllMissions.executeQuery();
             results = new ArrayList<Mission>();
@@ -61,18 +61,23 @@ public class MissionDAO {
             }
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
-                resultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                }
             } catch (SQLException sqlExcept) {
-                sqlExcept.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                        "Database Error",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
         return results;
 
-       
     }
 
 }

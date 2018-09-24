@@ -20,8 +20,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MaintenanceDAO {
@@ -53,13 +53,15 @@ public class MaintenanceDAO {
                     + " maintenance_end_date = ?,"
                     + " maintenance_description = ?"
                     + " WHERE maintenance_id = ?");
-            
+
             modifyAircraftCurrentHours = conn.prepareStatement("UPDATE aircraft SET"
                     + " current_maintenance_hours = ?"
                     + " WHERE aircraft_id = ?");
 
-        } catch (Exception except) {
-            except.printStackTrace();
+        } catch (SQLException except) {
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -70,7 +72,9 @@ public class MaintenanceDAO {
             selectMaintenanceByAircraft.setInt(1, aircraftID);
             resultSet = selectMaintenanceByAircraft.executeQuery();
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         mtTableModel = createMaintenanceTableModel(resultSet);
@@ -80,21 +84,23 @@ public class MaintenanceDAO {
     public int insertNewMaintenance(Maintenance inMaintenance) {
         int result = 0;
         int aircraftID = inMaintenance.getAircraftID();
-        try {                        
+        try {
             insertNewMaintenance.setInt(1, aircraftID);
             insertNewMaintenance.setDate(2, new java.sql.Date(inMaintenance.getStartDate().getTime()));
             insertNewMaintenance.setDate(3, new java.sql.Date(inMaintenance.getEndDate().getTime()));
             insertNewMaintenance.setString(4, inMaintenance.getMaintDescr());
             result = insertNewMaintenance.executeUpdate();
-            
+
             if (inMaintenance.getResetMaintenance() && result == 1) {
-               modifyAircraftCurrentHours.setInt(1, 0);
-               modifyAircraftCurrentHours.setInt(2, aircraftID);
-               result = modifyAircraftCurrentHours.executeUpdate();
-            } 
+                modifyAircraftCurrentHours.setInt(1, 0);
+                modifyAircraftCurrentHours.setInt(2, aircraftID);
+                result = modifyAircraftCurrentHours.executeUpdate();
+            }
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         return result;
     }
@@ -109,7 +115,9 @@ public class MaintenanceDAO {
             result = modifyMaintenance.executeUpdate();
 
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         return result;
     }
@@ -137,7 +145,9 @@ public class MaintenanceDAO {
                 tableData.add(vector);
             }
         } catch (SQLException sqlExcept) {
-            sqlExcept.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         DefaultTableModel maintenanceTableModel = new DefaultTableModel(tableData, tableColumns) {
