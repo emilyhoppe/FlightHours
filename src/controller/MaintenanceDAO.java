@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class MaintenanceDAO {
 
+    //Instance variables
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private PreparedStatement selectMaintenanceByAircraft;
@@ -34,6 +35,7 @@ public class MaintenanceDAO {
     private PreparedStatement modifyAircraftCurrentHours;
     private DefaultTableModel mtTableModel;
 
+    //Constructor
     public MaintenanceDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
@@ -65,6 +67,7 @@ public class MaintenanceDAO {
         }
     }
 
+    //Select all maintenance records by aircraftID from database and return a DefaultTableModel object
     public DefaultTableModel selectMaintenanceByAircraft(int aircraftID) {
 
         ResultSet resultSet = null;
@@ -81,6 +84,7 @@ public class MaintenanceDAO {
         return mtTableModel;
     }
 
+    //Insert a new maintenance record into the database
     public int insertNewMaintenance(Maintenance inMaintenance) {
         int result = 0;
         int aircraftID = inMaintenance.getAircraftID();
@@ -105,6 +109,7 @@ public class MaintenanceDAO {
         return result;
     }
 
+    //Modify an existing maintenance record in the database
     public int modifyMaintenance(Maintenance inMaintenance) {
         int result = 0;
         try {
@@ -122,6 +127,7 @@ public class MaintenanceDAO {
         return result;
     }
 
+    //Create a DefaultTableModel for the Maintenance Table from a ResultSet
     private DefaultTableModel createMaintenanceTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
@@ -159,6 +165,5 @@ public class MaintenanceDAO {
         };
 
         return maintenanceTableModel;
-
     }
 }

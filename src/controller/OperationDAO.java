@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class OperationDAO {
 
+    //Instance variables
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private PreparedStatement selectOperationByAircraft;
@@ -37,6 +38,7 @@ public class OperationDAO {
     private PreparedStatement retrieveAircraftTotalHours;
     private DefaultTableModel opTableModel;
 
+    //Constructor
     public OperationDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
@@ -97,6 +99,7 @@ public class OperationDAO {
         }
     }
 
+    //Select all Operations records by aircraftID from database and return a DefaultTableModel object
     public DefaultTableModel selectOperationsByAircraft(int aircraftID) {
 
         ResultSet resultSet = null;
@@ -112,6 +115,7 @@ public class OperationDAO {
         return opTableModel;
     }
 
+    //Insert a new Operations record into the database
     public int insertNewOperation(Operation inOperation) {
         int result = 0;
         int additionalHours = inOperation.getOperationFlightHour();
@@ -134,13 +138,14 @@ public class OperationDAO {
         if (result == 1) {
             result = modifyTotalHours(inOperation, additionalHours);
         }
-        //If operation modification was successful, adjustTotalHours was successful.
+        //If operation modification was successful and adjustTotalHours was successful.
         if (result == 1) {
             result = modifyCurrentHours(inOperation, additionalHours);
         }
         return result;
     }
 
+    //Modify an existing Operations record in the database
     public int modifyOperation(Operation inOperation) {
         int result = 0;
         try {
@@ -161,7 +166,8 @@ public class OperationDAO {
         return result;
     }
 
-    //Used within insertNewOperation method above
+    //Used within insertNewOperation method above to modify aircraft current hours
+    //when adding new opperation
     public int modifyCurrentHours(Operation inOperation, int additionalHours) {
         int result = 0;
         int newHours = 0;
@@ -191,7 +197,8 @@ public class OperationDAO {
         return result;
     }
 
-    //Used within insertNewOperation method above
+    //Used within insertNewOperation method above to modify aircraft total hours
+    //when adding new operaiton
     public int modifyTotalHours(Operation inOperation, int additionalHours) {
         int result = 0;
         int newHours = 0;
@@ -221,6 +228,7 @@ public class OperationDAO {
         return result;
     }
 
+    //Returns a DefaultTableModel for the Operations table from a ResultSet parameter
     private DefaultTableModel createOperationTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();
@@ -266,8 +274,6 @@ public class OperationDAO {
                 return false;
             }
         };
-
         return operationTableModel;
-
     }
 }

@@ -1,27 +1,35 @@
+/** **********
+ *
+ *      Class:         Station.java
+ *      Package:       model
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: The Station model class is used to represent a Station
+ *                  and includes all relevant constructors, getter methods and
+ *                  setter methods.
+ *
+ *
+ *********** */
 package model;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author tamerjj1
- */
 public class Station {
-    
+
+    //Instance variables
     private int stationID;
     private String stationName;
     private String stationType;
 
+    //Parameterized constructor
     public Station(int stationID, String stationName, String stationType) {
         this.stationID = stationID;
         this.stationName = stationName;
         this.stationType = stationType;
     }
 
+    //Getters and Setters
     public int getStationID() {
         return stationID;
     }
@@ -51,7 +59,5 @@ public class Station {
     public String toString() {
         return stationName;
     }
-    
-    
-    
+
 }

@@ -1,17 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** **********
+ *
+ *      Class:         Operation.java
+ *      Package:       model
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: The Operation model class is used to represent an Operation
+ *                  and includes all relevant constructors, getter methods and
+ *                  setter methods.
+ *
+ *
+ *********** */
 package model;
 
 import java.util.Date;
 
-/**
- *
- * @author jjtam
- */
 public class Operation {
+
+    //Instance variables
     private int operationID;
     private int aircraftID;
     private int stationID;
@@ -21,11 +29,13 @@ public class Operation {
     private Date operationEndDate;
     private int operationFlighHour;
 
+    //Default constructor
     public Operation() {
     }
 
-    public Operation(int operationID, int aircraftID, int stationID, int missionID, 
-            String operationName, Date operationStartDate, Date operationEndDate, 
+    //Constructor with Operation ID parameter
+    public Operation(int operationID, int aircraftID, int stationID, int missionID,
+            String operationName, Date operationStartDate, Date operationEndDate,
             int operationFlighHour) {
         this.operationID = operationID;
         this.aircraftID = aircraftID;
@@ -36,9 +46,10 @@ public class Operation {
         this.operationEndDate = operationEndDate;
         this.operationFlighHour = operationFlighHour;
     }
-    
-    public Operation(int aircraftID, int stationID, int missionID, 
-            String operationName, Date operationStartDate, Date operationEndDate, 
+
+    //Constructor without Operation ID parameter
+    public Operation(int aircraftID, int stationID, int missionID,
+            String operationName, Date operationStartDate, Date operationEndDate,
             int operationFlighHour) {
         this.aircraftID = aircraftID;
         this.stationID = stationID;
@@ -49,6 +60,7 @@ public class Operation {
         this.operationFlighHour = operationFlighHour;
     }
 
+    //Getters and Setters
     public int getOperationID() {
         return operationID;
     }
@@ -117,6 +129,5 @@ public class Operation {
     public String toString() {
         return "Operation{" + "operationID=" + operationID + ", aircraftID=" + aircraftID + ", stationID=" + stationID + ", missionID=" + missionID + ", operationName=" + operationName + ", operationStartDate=" + operationStartDate + ", operationEndDate=" + operationEndDate + ", operationFlighHour=" + operationFlighHour + '}';
     }
-    
-    
+
 }

@@ -27,12 +27,14 @@ import javax.swing.JOptionPane;
 
 public class MissionDAO {
 
+    //Instance variables
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private Statement stmt = null;
     private PreparedStatement selectAllMissions;
     private List<Mission> MissionList;
 
+    //Constructor
     public MissionDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
@@ -45,6 +47,7 @@ public class MissionDAO {
         }
     }
 
+    //Select all missions from database and return a List of Missions objects
     public List<Mission> selectAllMissions() {
 
         List<Mission> results = null;
@@ -75,9 +78,6 @@ public class MissionDAO {
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-
         return results;
-
     }
-
 }

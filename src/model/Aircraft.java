@@ -1,18 +1,25 @@
+/** **********
+ *
+ *      Class:         Aircraft.java
+ *      Package:       model
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: The Aircraft model class is used to represent an Aircraft
+ *                  and includes all relevant constructors, getter methods and 
+ *                  setter methods.
+ *
+ *
+ *********** */
 package model;
 
 import java.util.Date;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author ehoppe
- */
 public class Aircraft {
 
+    //Instance variables
     private int aircraftID;
     private String tailNumber;
     private String aircraftType;
@@ -25,6 +32,7 @@ public class Aircraft {
     private int maintenanceHoursThreshold;
     private Date endOfServiceDate;
 
+    //Constructor without aircraft ID
     public Aircraft(String tailNumber, String aircraftType, int stationID,
             int maxSpeed, int maxAltitude, int totalFlightHours, boolean maintenanceFlag, int currentMaintenanceHours,
             int maintenanceHoursThreshold) {
@@ -39,6 +47,7 @@ public class Aircraft {
         this.maintenanceHoursThreshold = maintenanceHoursThreshold;
     }
 
+    //Constructor with aircraft ID
     public Aircraft(int aircraftID, String tailNumber, String aircraftType, int stationID,
             int maxSpeed, int maxAltitude, int totalFlightHours, int currentMaintenanceHours,
             int maintenanceHoursThreshold, Date endOfServiceDate) {
@@ -54,6 +63,7 @@ public class Aircraft {
         this.endOfServiceDate = endOfServiceDate;
     }
 
+    //Getters and Setters
     public int getAircraftID() {
         return aircraftID;
     }

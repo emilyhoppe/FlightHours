@@ -1,14 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/** **********
+ *
+ *      Class:         Maintenance.java
+ *      Package:       model
+ *      Date:          October 14, 2018
+ *
+ *      Course: UMUC CMSC 495 6381
+ *      Group A Members: John Tamer, Jason Grimard, Demetrius Billups, & Emily Hoppe
+ *
+ *      Class Description: The Maintenance model class is used to represent a Maintenance
+ *                  event and includes all relevant constructors, getter methods and 
+ *                  setter methods.
+ *
+ *
+ *********** */
 package model;
 
 import java.util.Date;
 
 public class Maintenance {
     
+    //Instance variables
     private int maintenanceID;
     private int aircraftID;
     private Date startDate;
@@ -16,6 +27,7 @@ public class Maintenance {
     private boolean resetMaintenance;
     private String maintDescr;
 
+    //Constructor with maintenance ID parameter 
     public Maintenance(int maintenanceID, int aircraftID, Date startDate, Date endDate, String maintDesce) {
         this.maintenanceID = maintenanceID;
         this.aircraftID = aircraftID;
@@ -24,6 +36,7 @@ public class Maintenance {
         this.maintDescr = maintDesce;
     }
     
+   //Constructor without maintenance ID parameter
     public Maintenance(int aircraftID, Date startDate, Date endDate, String maintDesce) {
         this.aircraftID = aircraftID;
         this.startDate = startDate;
@@ -31,6 +44,7 @@ public class Maintenance {
         this.maintDescr = maintDesce;
     }
 
+    //Constructor without maintenance ID parameter and with resetMaintenance parameter
     public Maintenance(int aircraftID, Date startDate, Date endDate, boolean resetMaintenance, String maintDesce) {
         this.aircraftID = aircraftID;
         this.startDate = startDate;
@@ -39,9 +53,11 @@ public class Maintenance {
         this.maintDescr = maintDesce;
     }
 
+    //Default construtor
     public Maintenance() {
     }
 
+    //Getters and Setters
     public int getMaintenanceID() {
         return maintenanceID;
     }

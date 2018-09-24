@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class AircraftDAO {
 
+    //Instance variables
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private PreparedStatement selectAllAircraft;
@@ -37,6 +38,7 @@ public class AircraftDAO {
     private PreparedStatement tailNumberExists;
     private DefaultTableModel acTableModel;
 
+    //Constructor
     public AircraftDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
@@ -133,9 +135,9 @@ public class AircraftDAO {
                     "Database Error",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
+    //Select all aircraft from database and return a DefaultTableModel object
     public DefaultTableModel selectAllAircraft() {
 
         ResultSet resultSet = null;
@@ -153,6 +155,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
+    //Select all aircraft by station from database and return a DefaultTableModel object
     public DefaultTableModel selectAircraftByStation(int inStationID) {
 
         ResultSet resultSet = null;
@@ -171,6 +174,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
+    //Select aircraft by tail number from database and return a DefaultTableModel object
     public DefaultTableModel selectAircraftByTailnumber(String inTailNumber) {
 
         ResultSet resultSet = null;
@@ -188,6 +192,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
+    //Select all aircraft by maint flag from database and return a DefaultTableModel object
     public DefaultTableModel selectAircraftByMaintFlag(boolean inMaintFlag) {
 
         ResultSet resultSet = null;
@@ -205,6 +210,7 @@ public class AircraftDAO {
         return acTableModel;
     }
 
+        //Insert a new aircraft into the database
     public int insertNewAircraft(Aircraft inAircraft) {
         int result = 0;
 
@@ -228,6 +234,7 @@ public class AircraftDAO {
         return result;
     }
 
+    //Modify an existing aircraft in the database
     public int modifyAircraft(Aircraft inAircraft) {
         int result = 0;
 
@@ -258,6 +265,7 @@ public class AircraftDAO {
         return result;
     }
 
+    //Check database to see if a tail number already exists, they must be unique
     public boolean tailNumberExists(String tailNumber) {
 
         boolean result = false;
@@ -282,6 +290,7 @@ public class AircraftDAO {
         return result;
     }
 
+    //Create a DefaultTableModel from a ResultSet for the Aircraft Table
     private DefaultTableModel createAircraftTableModel(ResultSet results) {
 
         Vector<String> tableColumns = new Vector<String>();

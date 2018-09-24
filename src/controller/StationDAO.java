@@ -26,12 +26,14 @@ import javax.swing.JOptionPane;
 
 public class StationDAO {
 
+    //Instance variables
     private String dbURL = "jdbc:derby:FlightHours";
     private Connection conn = null;
     private PreparedStatement selectStationByType;
     private PreparedStatement selectAllStations;
     private PreparedStatement insertNewStation;
 
+    //Default constructor
     public StationDAO() {
         try {
             conn = DriverManager.getConnection(dbURL);
@@ -49,7 +51,8 @@ public class StationDAO {
 
     }
 
-    public List< Station> selectAllStations() {
+    //Select all stations from the database and return a List of Station objects
+    public List<Station> selectAllStations() {
 
         List<Station> results = null;
         ResultSet resultSet = null;
@@ -80,10 +83,10 @@ public class StationDAO {
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-
         return results;
     }
 
+    //Select stations by type from the database and return a List of Station objects
     public List<Station> selectStationByType(String stationType) {
 
         List<Station> results = null;
@@ -118,6 +121,7 @@ public class StationDAO {
         return results;
     }
 
+    //Add a new station to the database
     public int addStation(Station inStation) {
         int result = 0;
 
@@ -130,9 +134,7 @@ public class StationDAO {
             JOptionPane.showMessageDialog(null,
                     "Database Error",
                     "Error", JOptionPane.ERROR_MESSAGE);
-
         }
-
         return result;
     }
 }
