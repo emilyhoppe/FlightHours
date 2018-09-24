@@ -52,6 +52,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -86,6 +87,7 @@ public class AircraftView extends javax.swing.JPanel {
     private JLabel titleLabel;
     private JPanel topButtonPanel;
     private JPanel topPanel;
+    private JLabel noRecordsLabel;
 
     //Constructor
     public AircraftView() {
@@ -116,29 +118,13 @@ public class AircraftView extends javax.swing.JPanel {
         aircraftTableScrollPane = new JScrollPane();
         aircraftTable = new JTable();
         bottomPanel = new JPanel();
+        noRecordsLabel = new JLabel();
         aircraftOperationsButton = new JButton();
         aircraftMaintenanceButton = new JButton();
         addAircraftButton = new JButton();
         modifyAircraftButton = new JButton();
 
         setLayout(new GridBagLayout());
-
-        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png")));
-        logoLabel.setName("");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new Insets(20, 10, 10, 10);
-        add(logoLabel, gridBagConstraints);
-
-        titleLabel.setFont(new Font("Arial", 1, 36));
-        titleLabel.setText("Aircraft Search");
-        titleLabel.setToolTipText("");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
-        add(titleLabel, gridBagConstraints);
 
         topPanel.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
         topPanel.setLayout(new GridBagLayout());
@@ -333,11 +319,39 @@ public class AircraftView extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 3;
         topPanel.add(topButtonPanel, gridBagConstraints);
 
+        //Add components to AircraftView JPanel
+        logoLabel.setIcon(new ImageIcon(getClass().getResource("/view/Logo.png")));
+        logoLabel.setName("");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new Insets(20, 10, 10, 10);
+        add(logoLabel, gridBagConstraints);
+
+        titleLabel.setFont(new Font("Arial", 1, 36));
+        titleLabel.setText("Aircraft Search");
+        titleLabel.setToolTipText("");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
+        add(titleLabel, gridBagConstraints);
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
+
+        noRecordsLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        noRecordsLabel.setMinimumSize(new Dimension(200, 20));
+        noRecordsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new Insets(0, 10, 0, 10);
+        add(noRecordsLabel, gridBagConstraints);
 
         aircraftTable.setAutoCreateRowSorter(true);
         aircraftDAO = new AircraftDAO();
@@ -349,7 +363,7 @@ public class AircraftView extends javax.swing.JPanel {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -394,7 +408,7 @@ public class AircraftView extends javax.swing.JPanel {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
     }
@@ -636,6 +650,14 @@ public class AircraftView extends javax.swing.JPanel {
             }
         };
         aircraftTable.getColumnModel().getColumn(10).setCellRenderer(tableCellRenderer);
+
+        //Set noRecordsLabel if there are no records in the table
+        if (aircraftTable.getModel().getRowCount() == 0) {
+            noRecordsLabel.setText("No Records Found");
+        } else {
+            noRecordsLabel.setText("");
+        }
+
     }
 
     private void tailNumberLabelMouseEntered(MouseEvent evt) {
@@ -649,9 +671,9 @@ public class AircraftView extends javax.swing.JPanel {
     private void stationLabelMouseEntered(MouseEvent evt) {
         stationLabel.setToolTipText("Select this option to search Aircraft by Station");
     }
-    
+
     //Allows refreshing table when hitting back button on other views
-    public void refreshAircraftTable(){
+    public void refreshAircraftTable() {
         showAllButton.doClick();
     }
 

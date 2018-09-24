@@ -40,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -64,6 +65,7 @@ public class MaintenanceView extends javax.swing.JPanel {
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
     private JPanel topPanel;
+    private JLabel noRecordsLabel;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -99,6 +101,7 @@ public class MaintenanceView extends javax.swing.JPanel {
         backButton = new JButton();
         addMaintenanceButton = new JButton();
         modifyMaintenanceButton = new JButton();
+        noRecordsLabel = new JLabel();
 
         setLayout(new GridBagLayout());
 
@@ -145,6 +148,16 @@ public class MaintenanceView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
+        noRecordsLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        noRecordsLabel.setMinimumSize(new Dimension(200, 20));
+        noRecordsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new Insets(0, 10, 0, 10);
+        add(noRecordsLabel, gridBagConstraints);
+
         maintenanceTable.setAutoCreateRowSorter(true);
         maintenanceTable.setModel(maintenanceDAO.selectMaintenanceByAircraft(aircraftID));
         setupMaintenanceTable();
@@ -153,7 +166,7 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -189,7 +202,7 @@ public class MaintenanceView extends javax.swing.JPanel {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
     }
@@ -267,5 +280,12 @@ public class MaintenanceView extends javax.swing.JPanel {
         };
         maintenanceTable.getColumnModel().getColumn(2).setCellRenderer(tableCellRenderer);
         maintenanceTable.getColumnModel().getColumn(3).setCellRenderer(tableCellRenderer);
+
+        //Set noRecordsLabel if there are no records in the table
+        if (maintenanceTable.getModel().getRowCount() == 0) {
+            noRecordsLabel.setText("No Records Found");
+        } else {
+            noRecordsLabel.setText("");
+        }
     }
 }

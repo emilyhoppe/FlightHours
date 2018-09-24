@@ -40,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -64,6 +65,7 @@ public class OperationsView extends javax.swing.JPanel {
     private JTextField tailNumberTextField;
     private JLabel titleLabel;
     private JPanel topPanel;
+    private JLabel noRecordsLabel;
 
     //Set tail number public method
     public void setTailNumber(String tailNumber) {
@@ -99,6 +101,7 @@ public class OperationsView extends javax.swing.JPanel {
         backButton = new JButton();
         addOperationButton = new JButton();
         modifyOperationButton = new JButton();
+        noRecordsLabel = new JLabel();
 
         setLayout(new GridBagLayout());
 
@@ -145,6 +148,16 @@ public class OperationsView extends javax.swing.JPanel {
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         add(topPanel, gridBagConstraints);
 
+        noRecordsLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        noRecordsLabel.setMinimumSize(new Dimension(200, 20));
+        noRecordsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new Insets(0, 10, 0, 10);
+        add(noRecordsLabel, gridBagConstraints);
+
         operationsTable.setAutoCreateRowSorter(true);
         operationsTable.setModel(operationDAO.selectOperationsByAircraft(aircraftID));
         operationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -152,7 +165,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -188,7 +201,7 @@ public class OperationsView extends javax.swing.JPanel {
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new Insets(10, 10, 20, 10);
         add(bottomPanel, gridBagConstraints);
     }
@@ -275,6 +288,12 @@ public class OperationsView extends javax.swing.JPanel {
         };
         operationsTable.getColumnModel().getColumn(7).setCellRenderer(tableCellRenderer);
         operationsTable.getColumnModel().getColumn(8).setCellRenderer(tableCellRenderer);
+        //Set noRecordsLabel if there are no records in the table
+        if (operationsTable.getModel().getRowCount() == 0) {
+            noRecordsLabel.setText("No Records Found");
+        } else {
+            noRecordsLabel.setText("");
+        }
     }
 
 }
