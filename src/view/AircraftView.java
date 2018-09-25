@@ -633,10 +633,12 @@ public class AircraftView extends javax.swing.JPanel {
 
     //Modifies aircraftTable to adjust columns correctly for display
     private void setupAircraftTable() {
-        //Hide first column
+        //Hide first column - ID
         aircraftTable.getColumnModel().getColumn(0).setMinWidth(0);
         aircraftTable.getColumnModel().getColumn(0).setMaxWidth(0);
         aircraftTable.getColumnModel().getColumn(0).setWidth(0);
+        //Set 3rd column min width - Station
+        aircraftTable.getColumnModel().getColumn(3).setMinWidth(130);
 
         //Change date format for column 10 to MM/dd/yyyy format
         TableCellRenderer tableCellRenderer = new DefaultTableCellRenderer() {
