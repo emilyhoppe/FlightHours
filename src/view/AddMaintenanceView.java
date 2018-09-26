@@ -295,6 +295,14 @@ public class AddMaintenanceView extends javax.swing.JDialog {
             return;
         }
 
+        if (descriptionTextArea.getText()
+                .length() < 1) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Please enter a Description",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         //Retrieve validated user input
         //Parse user entered dates into Date objects
         try {

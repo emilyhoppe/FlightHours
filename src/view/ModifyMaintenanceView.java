@@ -282,6 +282,14 @@ public class ModifyMaintenanceView extends javax.swing.JDialog {
             return;
         }
 
+        if (descriptionTextArea.getText()
+                .length() < 1) {
+            JOptionPane.showMessageDialog(outerPanel,
+                    "Please enter a Description",
+                    "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         try {
             newStartDate = simpleDateFormat.parse(startDateTextField.getText());
